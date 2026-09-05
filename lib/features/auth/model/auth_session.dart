@@ -61,6 +61,16 @@ class AuthSession {
     this.originalStartupData,
     this.joinedStartupName,
     this.joinedStartupData,
+    this.investorSectors = const [],
+    this.investorStages = const [],
+    this.investorType,
+    this.investorCoInvestments = const [],
+    this.investorDocumentsSubmitted = false,
+    this.investorConsultationComplete = false,
+    this.investorVerificationComplete = false,
+    this.ideaPhaseData,
+    this.ideaPhaseProfiles = const [],
+    this.activeIdeaPhaseId,
     this.posts = const [],
   });
 
@@ -120,11 +130,36 @@ class AuthSession {
   final Map<String, dynamic>? originalStartupData;
   final String? joinedStartupName;
   final Map<String, dynamic>? joinedStartupData;
+  final List<String> investorSectors;
+  final List<String> investorStages;
+  final String? investorType;
+  final List<String> investorCoInvestments;
+  final bool investorDocumentsSubmitted;
+  final bool investorConsultationComplete;
+  final bool investorVerificationComplete;
+  final Map<String, dynamic>? ideaPhaseData;
+  final List<Map<String, dynamic>> ideaPhaseProfiles;
+  final String? activeIdeaPhaseId;
   final List<StartupPost> posts;
 
   UserRole get activeUserRole => UserRole.fromString(activeRole ?? role);
 
   bool get isStartupRole => activeUserRole.isStartupRole;
+
+  Map<String, dynamic>? get activeIdeaPhaseData {
+    if (ideaPhaseProfiles.isNotEmpty) {
+      return ideaPhaseProfiles.firstWhere(
+        (profile) => profile['id']?.toString() == activeIdeaPhaseId,
+        orElse: () => ideaPhaseProfiles.first,
+      );
+    }
+    return ideaPhaseData;
+  }
+
+  bool get hasIdeaPhaseProfile {
+    final name = activeIdeaPhaseData?['ideaName']?.toString().trim() ?? '';
+    return name.isNotEmpty;
+  }
 
   List<UserRole> get userRoles {
     if (roles == null || roles!.isEmpty) {
@@ -189,6 +224,16 @@ class AuthSession {
     Map<String, dynamic>? originalStartupData,
     String? joinedStartupName,
     Map<String, dynamic>? joinedStartupData,
+    List<String>? investorSectors,
+    List<String>? investorStages,
+    String? investorType,
+    List<String>? investorCoInvestments,
+    bool? investorDocumentsSubmitted,
+    bool? investorConsultationComplete,
+    bool? investorVerificationComplete,
+    Map<String, dynamic>? ideaPhaseData,
+    List<Map<String, dynamic>>? ideaPhaseProfiles,
+    String? activeIdeaPhaseId,
     bool clearJoinedStartup = false,
     List<StartupPost>? posts,
   }) {
@@ -223,31 +268,58 @@ class AuthSession {
       startupMission: startupMission ?? this.startupMission,
       startupVision: startupVision ?? this.startupVision,
       startupWebsite: startupWebsite ?? this.startupWebsite,
-      startupIncorporationDate: startupIncorporationDate ?? this.startupIncorporationDate,
-      startupFounderPhotoPath: startupFounderPhotoPath ?? this.startupFounderPhotoPath,
+      startupIncorporationDate:
+          startupIncorporationDate ?? this.startupIncorporationDate,
+      startupFounderPhotoPath:
+          startupFounderPhotoPath ?? this.startupFounderPhotoPath,
       startupFounderName: startupFounderName ?? this.startupFounderName,
-      startupFounderDesignation: startupFounderDesignation ?? this.startupFounderDesignation,
+      startupFounderDesignation:
+          startupFounderDesignation ?? this.startupFounderDesignation,
       startupFounderEmail: startupFounderEmail ?? this.startupFounderEmail,
       startupFounderPhone: startupFounderPhone ?? this.startupFounderPhone,
-      startupFounderLinkedin: startupFounderLinkedin ?? this.startupFounderLinkedin,
+      startupFounderLinkedin:
+          startupFounderLinkedin ?? this.startupFounderLinkedin,
       startupFounderBio: startupFounderBio ?? this.startupFounderBio,
       startupSocialWebsite: startupSocialWebsite ?? this.startupSocialWebsite,
-      startupSocialLinkedin: startupSocialLinkedin ?? this.startupSocialLinkedin,
-      startupSocialProductHunt: startupSocialProductHunt ?? this.startupSocialProductHunt,
+      startupSocialLinkedin:
+          startupSocialLinkedin ?? this.startupSocialLinkedin,
+      startupSocialProductHunt:
+          startupSocialProductHunt ?? this.startupSocialProductHunt,
       startupUseOfFunds: startupUseOfFunds ?? this.startupUseOfFunds,
       startupTeamSize: startupTeamSize ?? this.startupTeamSize,
       startupFundingStage: startupFundingStage ?? this.startupFundingStage,
-      startupCurrentlyRaising: startupCurrentlyRaising ?? this.startupCurrentlyRaising,
+      startupCurrentlyRaising:
+          startupCurrentlyRaising ?? this.startupCurrentlyRaising,
       startupVisibility: startupVisibility ?? this.startupVisibility,
       startupTargetAmount: startupTargetAmount ?? this.startupTargetAmount,
       startupRoundSize: startupRoundSize ?? this.startupRoundSize,
       startupValuation: startupValuation ?? this.startupValuation,
-      startupFundingDeadline: startupFundingDeadline ?? this.startupFundingDeadline,
-      startupExistingInvestors: startupExistingInvestors ?? this.startupExistingInvestors,
+      startupFundingDeadline:
+          startupFundingDeadline ?? this.startupFundingDeadline,
+      startupExistingInvestors:
+          startupExistingInvestors ?? this.startupExistingInvestors,
       originalStartupName: originalStartupName ?? this.originalStartupName,
       originalStartupData: originalStartupData ?? this.originalStartupData,
-      joinedStartupName: clearJoinedStartup ? null : (joinedStartupName ?? this.joinedStartupName),
-      joinedStartupData: clearJoinedStartup ? null : (joinedStartupData ?? this.joinedStartupData),
+      joinedStartupName: clearJoinedStartup
+          ? null
+          : (joinedStartupName ?? this.joinedStartupName),
+      joinedStartupData: clearJoinedStartup
+          ? null
+          : (joinedStartupData ?? this.joinedStartupData),
+      investorSectors: investorSectors ?? this.investorSectors,
+      investorStages: investorStages ?? this.investorStages,
+      investorType: investorType ?? this.investorType,
+      investorCoInvestments:
+          investorCoInvestments ?? this.investorCoInvestments,
+      investorDocumentsSubmitted:
+          investorDocumentsSubmitted ?? this.investorDocumentsSubmitted,
+      investorConsultationComplete:
+          investorConsultationComplete ?? this.investorConsultationComplete,
+      investorVerificationComplete:
+          investorVerificationComplete ?? this.investorVerificationComplete,
+      ideaPhaseData: ideaPhaseData ?? this.ideaPhaseData,
+      ideaPhaseProfiles: ideaPhaseProfiles ?? this.ideaPhaseProfiles,
+      activeIdeaPhaseId: activeIdeaPhaseId ?? this.activeIdeaPhaseId,
       posts: posts ?? this.posts,
     );
   }
@@ -309,6 +381,16 @@ class AuthSession {
       'originalStartupData': originalStartupData,
       'joinedStartupName': joinedStartupName,
       'joinedStartupData': joinedStartupData,
+      'investorSectors': investorSectors,
+      'investorStages': investorStages,
+      'investorType': investorType,
+      'investorCoInvestments': investorCoInvestments,
+      'investorDocumentsSubmitted': investorDocumentsSubmitted,
+      'investorConsultationComplete': investorConsultationComplete,
+      'investorVerificationComplete': investorVerificationComplete,
+      'ideaPhaseData': ideaPhaseData,
+      'ideaPhaseProfiles': ideaPhaseProfiles,
+      'activeIdeaPhaseId': activeIdeaPhaseId,
       'posts': posts.map((p) => p.toJson()).toList(),
     };
   }
@@ -373,10 +455,45 @@ class AuthSession {
       startupFundingDeadline: json['startupFundingDeadline'] as String?,
       startupExistingInvestors: json['startupExistingInvestors'] as String?,
       originalStartupName: json['originalStartupName'] as String?,
-      originalStartupData: (json['originalStartupData'] as Map<String, dynamic>?)?.cast<String, dynamic>(),
+      originalStartupData:
+          (json['originalStartupData'] as Map<String, dynamic>?)
+              ?.cast<String, dynamic>(),
       joinedStartupName: json['joinedStartupName'] as String?,
-      joinedStartupData: (json['joinedStartupData'] as Map<String, dynamic>?)?.cast<String, dynamic>(),
-      posts: (json['posts'] as List<dynamic>?)
+      joinedStartupData: (json['joinedStartupData'] as Map<String, dynamic>?)
+          ?.cast<String, dynamic>(),
+      investorSectors:
+          (json['investorSectors'] as List<dynamic>?)
+              ?.map((value) => value.toString())
+              .toList() ??
+          const [],
+      investorStages:
+          (json['investorStages'] as List<dynamic>?)
+              ?.map((value) => value.toString())
+              .toList() ??
+          const [],
+      investorType: json['investorType'] as String?,
+      investorCoInvestments:
+          (json['investorCoInvestments'] as List<dynamic>?)
+              ?.map((value) => value.toString())
+              .toList() ??
+          const [],
+      investorDocumentsSubmitted:
+          json['investorDocumentsSubmitted'] as bool? ?? false,
+      investorConsultationComplete:
+          json['investorConsultationComplete'] as bool? ?? false,
+      investorVerificationComplete:
+          json['investorVerificationComplete'] as bool? ?? false,
+      ideaPhaseData: (json['ideaPhaseData'] as Map<String, dynamic>?)
+          ?.cast<String, dynamic>(),
+      ideaPhaseProfiles:
+          (json['ideaPhaseProfiles'] as List<dynamic>?)
+              ?.whereType<Map>()
+              .map((profile) => Map<String, dynamic>.from(profile))
+              .toList() ??
+          const [],
+      activeIdeaPhaseId: json['activeIdeaPhaseId'] as String?,
+      posts:
+          (json['posts'] as List<dynamic>?)
               ?.map((e) => StartupPost.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],

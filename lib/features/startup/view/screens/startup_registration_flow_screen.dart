@@ -12,7 +12,6 @@ import '../../../../core/di/providers.dart';
 import '../../../../shared/utils/app_snackbar.dart';
 import 'startup_success_screen.dart';
 
-
 class StartupRegistrationFlowScreen extends ConsumerStatefulWidget {
   const StartupRegistrationFlowScreen({
     super.key,
@@ -63,8 +62,9 @@ class _StartupRegistrationFlowScreenState
       TextEditingController(text: 'producthunt.com/acme');
   final TextEditingController _inviteEmailController = TextEditingController();
   final TextEditingController _useOfFundsController = TextEditingController();
-  final TextEditingController _legalStructureController =
-      TextEditingController(text: 'Private Limited');
+  final TextEditingController _legalStructureController = TextEditingController(
+    text: 'Private Limited',
+  );
   String _phoneCode = '+91';
   bool _reviewConfirmed = false;
   final Set<String> _reviewExpanded = {'startup'};
@@ -86,7 +86,7 @@ class _StartupRegistrationFlowScreenState
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     _verificationAppId =
         'APP-${now.year}-${(now.millisecondsSinceEpoch % 900000) + 100000}';
@@ -120,12 +120,30 @@ class _StartupRegistrationFlowScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(width: 40, height: 4, decoration: BoxDecoration(color: const Color(0xFFE5E7EB), borderRadius: BorderRadius.circular(999))),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: const Color(0xFFE5E7EB),
+                borderRadius: BorderRadius.circular(999),
+              ),
+            ),
             const SizedBox(height: 20),
-            const Text('Choose Photo', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+            const Text(
+              'Choose Photo',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+            ),
             const SizedBox(height: 16),
-            _sourceOption(Icons.photo_library_outlined, 'Gallery', ImageSource.gallery),
-            _sourceOption(Icons.camera_alt_outlined, 'Camera', ImageSource.camera),
+            _sourceOption(
+              Icons.photo_library_outlined,
+              'Gallery',
+              ImageSource.gallery,
+            ),
+            _sourceOption(
+              Icons.camera_alt_outlined,
+              'Camera',
+              ImageSource.camera,
+            ),
           ],
         ),
       ),
@@ -137,13 +155,22 @@ class _StartupRegistrationFlowScreenState
       if (!status) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Permission required to access photos. Please enable it in Settings.'), behavior: SnackBarBehavior.floating),
+          const SnackBar(
+            content: Text(
+              'Permission required to access photos. Please enable it in Settings.',
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
         );
         return;
       }
     }
 
-    final picked = await _imagePicker.pickImage(source: source, imageQuality: 85, maxWidth: 1200);
+    final picked = await _imagePicker.pickImage(
+      source: source,
+      imageQuality: 85,
+      maxWidth: 1200,
+    );
     if (picked != null) setState(() => _founderPhoto = File(picked.path));
   }
 
@@ -161,7 +188,10 @@ class _StartupRegistrationFlowScreenState
           children: [
             Icon(icon, color: const Color(0xFF0284C7), size: 22),
             const SizedBox(width: 14),
-            Text(label, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+            ),
           ],
         ),
       ),
@@ -183,12 +213,30 @@ class _StartupRegistrationFlowScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(width: 40, height: 4, decoration: BoxDecoration(color: const Color(0xFFE5E7EB), borderRadius: BorderRadius.circular(999))),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: const Color(0xFFE5E7EB),
+                borderRadius: BorderRadius.circular(999),
+              ),
+            ),
             const SizedBox(height: 20),
-            Text('Upload $type', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+            Text(
+              'Upload $type',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+            ),
             const SizedBox(height: 16),
-            _sourceOption(Icons.photo_library_outlined, 'Gallery', ImageSource.gallery),
-            _sourceOption(Icons.camera_alt_outlined, 'Camera', ImageSource.camera),
+            _sourceOption(
+              Icons.photo_library_outlined,
+              'Gallery',
+              ImageSource.gallery,
+            ),
+            _sourceOption(
+              Icons.camera_alt_outlined,
+              'Camera',
+              ImageSource.camera,
+            ),
           ],
         ),
       ),
@@ -200,13 +248,22 @@ class _StartupRegistrationFlowScreenState
       if (!status) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Permission required to access photos. Please enable it in Settings.'), behavior: SnackBarBehavior.floating),
+          const SnackBar(
+            content: Text(
+              'Permission required to access photos. Please enable it in Settings.',
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
         );
         return;
       }
     }
 
-    final picked = await _imagePicker.pickImage(source: source, imageQuality: 85, maxWidth: 1920);
+    final picked = await _imagePicker.pickImage(
+      source: source,
+      imageQuality: 85,
+      maxWidth: 1920,
+    );
     if (picked == null || !mounted) return;
     final file = File(picked.path);
     setState(() {
@@ -234,8 +291,8 @@ class _StartupRegistrationFlowScreenState
       allowedExtensions: type == 'Pitch Deck'
           ? ['pdf', 'pptx', 'ppt']
           : deckTypes.contains(type)
-              ? ['pdf', 'jpg', 'jpeg', 'png']
-              : ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'],
+          ? ['pdf', 'jpg', 'jpeg', 'png']
+          : ['pdf', 'doc', 'docx', 'txt', 'png', 'jpg'],
       allowMultiple: type == 'Supporting Documents',
     );
     if (result == null || result.files.isEmpty) return;
@@ -422,71 +479,106 @@ class _StartupRegistrationFlowScreenState
       return;
     }
 
+    final createdStartupData = <String, dynamic>{
+      'startupName': startupName,
+      'startupIndustry': _industryController.text.trim(),
+      'startupStage': regState.selectedStage,
+      'startupTagline': _taglineController.text.trim(),
+      'startupCountry': _countryController.text.trim(),
+      'startupCity': _cityController.text.trim(),
+      'startupDescription': _shortDescriptionController.text.trim(),
+      'startupProblem': _problemController.text.trim(),
+      'startupSolution': _solutionController.text.trim(),
+      'startupMission': _missionController.text.trim(),
+      'startupVision': _visionController.text.trim(),
+      'startupWebsite': _websiteController.text.trim(),
+      'startupIncorporationDate': _incorporationController.text.trim(),
+      'startupFounderName': _founderNameController.text.trim(),
+      'startupFounderDesignation': _designationController.text.trim(),
+      'startupFounderEmail': _emailController.text.trim(),
+      'startupFounderPhone': _phoneController.text.trim(),
+      'startupFounderLinkedin': _linkedinController.text.trim(),
+      'startupFounderBio': _bioController.text.trim(),
+      'startupTeamSize': regState.selectedTeamSize,
+      'startupFundingStage': regState.selectedFundingStage,
+      'startupCurrentlyRaising': regState.currentlyRaising,
+      'startupVisibility': regState.selectedVisibility,
+    };
+    final existingSession = ref.read(authViewModelProvider).session;
+
     // Save the profile before showing the confirmation screen so it survives
     // an app restart or an interrupted completion screen.
-    await ref.read(authViewModelProvider.notifier).updateStartupData(
-      startupName: startupName,
-      industry: _industryController.text.trim(),
-      stage: regState.selectedStage,
-      tagline: _taglineController.text.trim(),
-      logoPath: _logoFile?.path,
-      coverPath: _coverFile?.path,
-      country: _countryController.text.trim(),
-      city: _cityController.text.trim(),
-      description: _shortDescriptionController.text.trim(),
-      problem: _problemController.text.trim(),
-      solution: _solutionController.text.trim(),
-      mission: _missionController.text.trim(),
-      vision: _visionController.text.trim(),
-      website: _websiteController.text.trim(),
-      incorporationDate: _incorporationController.text.trim(),
-      founderName: _founderNameController.text.trim(),
-      founderPhotoPath: _founderPhoto?.path,
-      founderDesignation: _designationController.text.trim(),
-      founderEmail: _emailController.text.trim(),
-      founderPhone: _phoneController.text.trim().isEmpty
-          ? ''
-          : '$_phoneCode ${_phoneController.text.trim()}',
-      founderLinkedin: _linkedinController.text.trim(),
-      founderBio: _bioController.text.trim(),
-      socialWebsite: _socialWebsiteController.text.trim(),
-      socialLinkedin: _socialLinkedInController.text.trim(),
-      socialProductHunt: _socialProductHuntController.text.trim(),
-      useOfFunds: _useOfFundsController.text.trim(),
-      teamSize: regState.selectedTeamSize,
-      fundingStage: regState.selectedFundingStage,
-      currentlyRaising: regState.currentlyRaising,
-      visibility: regState.selectedVisibility,
-      // Do NOT set originalStartupName/Data here — those are only written
-      // by the join-another-startup flow, never at registration time.
-    );
+    await ref
+        .read(authViewModelProvider.notifier)
+        .updateStartupData(
+          startupName: startupName,
+          industry: _industryController.text.trim(),
+          stage: regState.selectedStage,
+          tagline: _taglineController.text.trim(),
+          logoPath: _logoFile?.path,
+          coverPath: _coverFile?.path,
+          country: _countryController.text.trim(),
+          city: _cityController.text.trim(),
+          description: _shortDescriptionController.text.trim(),
+          problem: _problemController.text.trim(),
+          solution: _solutionController.text.trim(),
+          mission: _missionController.text.trim(),
+          vision: _visionController.text.trim(),
+          website: _websiteController.text.trim(),
+          incorporationDate: _incorporationController.text.trim(),
+          founderName: _founderNameController.text.trim(),
+          founderPhotoPath: _founderPhoto?.path,
+          founderDesignation: _designationController.text.trim(),
+          founderEmail: _emailController.text.trim(),
+          founderPhone: _phoneController.text.trim().isEmpty
+              ? ''
+              : '$_phoneCode ${_phoneController.text.trim()}',
+          founderLinkedin: _linkedinController.text.trim(),
+          founderBio: _bioController.text.trim(),
+          socialWebsite: _socialWebsiteController.text.trim(),
+          socialLinkedin: _socialLinkedInController.text.trim(),
+          socialProductHunt: _socialProductHuntController.text.trim(),
+          useOfFunds: _useOfFundsController.text.trim(),
+          teamSize: regState.selectedTeamSize,
+          fundingStage: regState.selectedFundingStage,
+          currentlyRaising: regState.currentlyRaising,
+          visibility: regState.selectedVisibility,
+          // Keep the first created workspace available when the user later joins
+          // another startup and switches between the two.
+          originalStartupName:
+              existingSession?.originalStartupName ?? startupName,
+          originalStartupData:
+              existingSession?.originalStartupData ?? createdStartupData,
+        );
 
     // --- Frontend registry: publish so Join Startup screen can find it ---
     final industry = _industryController.text.trim();
     final teamSizeStr = regState.selectedTeamSize; // e.g. '1-5'
     final teamCount = int.tryParse(teamSizeStr.split('-').first) ?? 1;
-    ref.read(startupRegistryProvider.notifier).addStartup(
-      SuggestedStartup(
-        name: startupName,
-        industry: industry.isNotEmpty ? industry : 'Other',
-        location: [
-          _cityController.text.trim(),
-          _countryController.text.trim(),
-        ].where((s) => s.isNotEmpty).join(', '),
-        teamMembers: teamCount,
-        stage: regState.selectedStage,
-        tags: industry.isNotEmpty ? [industry] : [],
-        tagline: _taglineController.text.trim(),
-        description: _shortDescriptionController.text.trim(),
-        problem: _problemController.text.trim(),
-        solution: _solutionController.text.trim(),
-        mission: _missionController.text.trim(),
-        vision: _visionController.text.trim(),
-        website: _websiteController.text.trim(),
-        founderName: _founderNameController.text.trim(),
-        incorporationDate: _incorporationController.text.trim(),
-      ),
-    );
+    ref
+        .read(startupRegistryProvider.notifier)
+        .addStartup(
+          SuggestedStartup(
+            name: startupName,
+            industry: industry.isNotEmpty ? industry : 'Other',
+            location: [
+              _cityController.text.trim(),
+              _countryController.text.trim(),
+            ].where((s) => s.isNotEmpty).join(', '),
+            teamMembers: teamCount,
+            stage: regState.selectedStage,
+            tags: industry.isNotEmpty ? [industry] : [],
+            tagline: _taglineController.text.trim(),
+            description: _shortDescriptionController.text.trim(),
+            problem: _problemController.text.trim(),
+            solution: _solutionController.text.trim(),
+            mission: _missionController.text.trim(),
+            vision: _visionController.text.trim(),
+            website: _websiteController.text.trim(),
+            founderName: _founderNameController.text.trim(),
+            incorporationDate: _incorporationController.text.trim(),
+          ),
+        );
     // -----------------------------------------------------------------------
 
     if (!mounted) return;
@@ -590,7 +682,9 @@ class _StartupRegistrationFlowScreenState
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (index) {
-                  ref.read(registrationViewModelProvider.notifier).setCurrentStep(index);
+                  ref
+                      .read(registrationViewModelProvider.notifier)
+                      .setCurrentStep(index);
                 },
                 children: [
                   _buildBasicInformationStep(),
@@ -646,7 +740,9 @@ class _StartupRegistrationFlowScreenState
                     ),
                   ),
                   child: Text(
-                    regState.currentStep == RegistrationState.totalSteps - 1 ? 'Publish' : 'Next Step',
+                    regState.currentStep == RegistrationState.totalSteps - 1
+                        ? 'Publish'
+                        : 'Next Step',
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                 ),
@@ -774,7 +870,8 @@ class _StartupRegistrationFlowScreenState
   // Kept for upcoming steps redesign (team size selector).
   // ignore: unused_element
   Widget _teamSizeChip(String label) {
-    final selected = ref.watch(registrationViewModelProvider).selectedTeamSize == label;
+    final selected =
+        ref.watch(registrationViewModelProvider).selectedTeamSize == label;
     return GestureDetector(
       onTap: () {
         ref.read(registrationViewModelProvider.notifier).selectTeamSize(label);
@@ -835,8 +932,7 @@ class _StartupRegistrationFlowScreenState
                 _basicLabel(
                   'Startup / Company Name',
                   required: true,
-                  count:
-                      '${_startupNameController.text.length}/100',
+                  count: '${_startupNameController.text.length}/100',
                 ),
                 const SizedBox(height: 9),
                 _basicTextField(
@@ -862,8 +958,7 @@ class _StartupRegistrationFlowScreenState
                 const SizedBox(height: 29),
                 _basicLabel(
                   'Tagline (Optional)',
-                  count:
-                      '${_taglineController.text.length}/120',
+                  count: '${_taglineController.text.length}/120',
                 ),
                 const SizedBox(height: 9),
                 _basicTextField(
@@ -885,15 +980,9 @@ class _StartupRegistrationFlowScreenState
                   ),
                 ),
                 const SizedBox(height: 37),
-                const Divider(
-                  color: Color(0xFFBAE6FD),
-                  height: 1,
-                ),
+                const Divider(color: Color(0xFFBAE6FD), height: 1),
                 const SizedBox(height: 39),
-                _basicLabel(
-                  'Country of Incorporation',
-                  required: true,
-                ),
+                _basicLabel('Country of Incorporation', required: true),
                 const SizedBox(height: 9),
                 _basicTextField(
                   controller: _countryController,
@@ -906,10 +995,7 @@ class _StartupRegistrationFlowScreenState
                   ),
                 ),
                 const SizedBox(height: 29),
-                _basicLabel(
-                  'Incorporation Date',
-                  required: true,
-                ),
+                _basicLabel('Incorporation Date', required: true),
                 const SizedBox(height: 9),
                 _basicTextField(
                   controller: _incorporationController,
@@ -923,10 +1009,7 @@ class _StartupRegistrationFlowScreenState
                   ),
                 ),
                 const SizedBox(height: 29),
-                _basicLabel(
-                  'Legal Structure',
-                  required: true,
-                ),
+                _basicLabel('Legal Structure', required: true),
                 const SizedBox(height: 9),
                 _basicTextField(
                   controller: _legalStructureController,
@@ -946,11 +1029,7 @@ class _StartupRegistrationFlowScreenState
     );
   }
 
-  Widget _basicLabel(
-    String text, {
-    bool required = false,
-    String? count,
-  }) {
+  Widget _basicLabel(String text, {bool required = false, String? count}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -967,9 +1046,7 @@ class _StartupRegistrationFlowScreenState
                   ? const [
                       TextSpan(
                         text: ' *',
-                        style: TextStyle(
-                          color: Color(0xFFD32F2F),
-                        ),
+                        style: TextStyle(color: Color(0xFFD32F2F)),
                       ),
                     ]
                   : [],
@@ -979,10 +1056,7 @@ class _StartupRegistrationFlowScreenState
         if (count != null)
           Text(
             count,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Color(0xFF5D6472),
-            ),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF5D6472)),
           ),
       ],
     );
@@ -998,7 +1072,8 @@ class _StartupRegistrationFlowScreenState
     bool readOnly = false,
     VoidCallback? onTap,
   }) {
-    final hasFocusBorder = !readOnly &&
+    final hasFocusBorder =
+        !readOnly &&
         controller == _startupNameController &&
         controller.text.trim().isNotEmpty;
     return Container(
@@ -1015,27 +1090,23 @@ class _StartupRegistrationFlowScreenState
       ),
       child: Row(
         children: [
-          if (prefix != null) ...[
-            prefix,
-            const SizedBox(width: 14),
-          ],
+          if (prefix != null) ...[prefix, const SizedBox(width: 14)],
           Expanded(
             child: TextFormField(
               controller: controller,
               readOnly: readOnly,
               onTap: onTap,
               maxLength: maxLength,
-              buildCounter: (context,
-                      {required currentLength,
-                      required isFocused,
-                      maxLength}) =>
-                  const SizedBox.shrink(),
+              buildCounter:
+                  (
+                    context, {
+                    required currentLength,
+                    required isFocused,
+                    maxLength,
+                  }) => const SizedBox.shrink(),
               keyboardType: keyboardType,
               onChanged: (_) => setState(() {}),
-              style: const TextStyle(
-                fontSize: 17,
-                color: Color(0xFF25283A),
-              ),
+              style: const TextStyle(fontSize: 17, color: Color(0xFF25283A)),
               decoration: InputDecoration(
                 hintText: hint,
                 hintStyle: const TextStyle(
@@ -1077,7 +1148,7 @@ class _StartupRegistrationFlowScreenState
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     setState(() {
       _incorporationController.text =
@@ -1129,13 +1200,12 @@ class _StartupRegistrationFlowScreenState
                         option,
                         style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      trailing:
-                          _legalStructureController.text == option
-                              ? const Icon(
-                                  Icons.check_rounded,
-                                  color: Color(0xFF0284C7),
-                                )
-                              : null,
+                      trailing: _legalStructureController.text == option
+                          ? const Icon(
+                              Icons.check_rounded,
+                              color: Color(0xFF0284C7),
+                            )
+                          : null,
                       onTap: () {
                         setState(() {
                           _legalStructureController.text = option;
@@ -1301,8 +1371,7 @@ class _StartupRegistrationFlowScreenState
                 const SizedBox(height: 20),
                 _basicLabel(
                   'Short Description (Optional)',
-                  count:
-                      '${_shortDescriptionController.text.length}/300',
+                  count: '${_shortDescriptionController.text.length}/300',
                 ),
                 const SizedBox(height: 9),
                 Container(
@@ -1313,19 +1382,19 @@ class _StartupRegistrationFlowScreenState
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: const Color(0xFFBAE6FD),
-                    ),
+                    border: Border.all(color: const Color(0xFFBAE6FD)),
                   ),
                   child: TextFormField(
                     controller: _shortDescriptionController,
                     maxLines: 4,
                     maxLength: 300,
-                    buildCounter: (context,
-                            {required currentLength,
-                            required isFocused,
-                            maxLength}) =>
-                        const SizedBox.shrink(),
+                    buildCounter:
+                        (
+                          context, {
+                          required currentLength,
+                          required isFocused,
+                          maxLength,
+                        }) => const SizedBox.shrink(),
                     onChanged: (_) => setState(() {}),
                     style: const TextStyle(
                       fontSize: 16,
@@ -1365,16 +1434,11 @@ class _StartupRegistrationFlowScreenState
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 19,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 19),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: const Color(0xFFBAE6FD),
-          ),
+          border: Border.all(color: const Color(0xFFBAE6FD)),
         ),
         child: Row(
           children: [
@@ -1389,10 +1453,7 @@ class _StartupRegistrationFlowScreenState
                 ),
               ),
             ),
-            const Icon(
-              Icons.keyboard_arrow_down,
-              color: Color(0xFF5D6472),
-            ),
+            const Icon(Icons.keyboard_arrow_down, color: Color(0xFF5D6472)),
           ],
         ),
       ),
@@ -1438,8 +1499,7 @@ class _StartupRegistrationFlowScreenState
                       ),
                       title: Text(
                         option,
-                        style:
-                            const TextStyle(fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                       trailing: current == option
                           ? const Icon(
@@ -1515,8 +1575,7 @@ class _StartupRegistrationFlowScreenState
                   subtitle: 'If applicable (PDF, JPG, PNG · Max 5MB)',
                   icon: Icons.receipt_long_outlined,
                   file: _gstCertFile,
-                  onUpload: () =>
-                      _pickDocument(type: 'GST Certificate'),
+                  onUpload: () => _pickDocument(type: 'GST Certificate'),
                 ),
                 const SizedBox(height: 10),
                 _documentItem(
@@ -1535,17 +1594,11 @@ class _StartupRegistrationFlowScreenState
                   decoration: BoxDecoration(
                     color: const Color(0xFFE0F2FE),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: const Color(0xFFBAE6FD),
-                    ),
+                    border: Border.all(color: const Color(0xFFBAE6FD)),
                   ),
                   child: const Row(
                     children: [
-                      Icon(
-                        Icons.lock,
-                        size: 16,
-                        color: Color(0xFF0284C7),
-                      ),
+                      Icon(Icons.lock, size: 16, color: Color(0xFF0284C7)),
                       SizedBox(width: 9),
                       Expanded(
                         child: Text(
@@ -1583,9 +1636,7 @@ class _StartupRegistrationFlowScreenState
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: const Color(0xFFBAE6FD),
-        ),
+        border: Border.all(color: const Color(0xFFBAE6FD)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1605,9 +1656,7 @@ class _StartupRegistrationFlowScreenState
                       if (required)
                         const TextSpan(
                           text: ' *',
-                          style: TextStyle(
-                            color: Color(0xFFD32F2F),
-                          ),
+                          style: TextStyle(color: Color(0xFFD32F2F)),
                         ),
                     ],
                   ),
@@ -1620,11 +1669,7 @@ class _StartupRegistrationFlowScreenState
                   color: Color(0xFF4CAF50),
                 )
               else
-                Icon(
-                  icon,
-                  size: 18,
-                  color: const Color(0xFF5D6472),
-                ),
+                Icon(icon, size: 18, color: const Color(0xFF5D6472)),
             ],
           ),
           const SizedBox(height: 5),
@@ -1637,8 +1682,7 @@ class _StartupRegistrationFlowScreenState
               color: fileName != null
                   ? const Color(0xFF0284C7)
                   : const Color(0xFF5D6472),
-              fontWeight:
-                  fileName != null ? FontWeight.w600 : FontWeight.w400,
+              fontWeight: fileName != null ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
           const SizedBox(height: 10),
@@ -1650,9 +1694,7 @@ class _StartupRegistrationFlowScreenState
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: const Color(0xFFBAE6FD),
-                ),
+                border: Border.all(color: const Color(0xFFBAE6FD)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1770,9 +1812,7 @@ class _StartupRegistrationFlowScreenState
                           _founderPhoto != null
                               ? 'Change Photo'
                               : 'Upload Photo',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
@@ -1803,14 +1843,11 @@ class _StartupRegistrationFlowScreenState
                       child: Container(
                         height: 62,
                         width: 96,
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: const Color(0xFFBAE6FD),
-                          ),
+                          border: Border.all(color: const Color(0xFFBAE6FD)),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -1906,8 +1943,7 @@ class _StartupRegistrationFlowScreenState
                       ),
                       title: Text(
                         code,
-                        style:
-                            const TextStyle(fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontWeight: FontWeight.w500),
                       ),
                       trailing: _phoneCode == code
                           ? const Icon(
@@ -1930,6 +1966,7 @@ class _StartupRegistrationFlowScreenState
       },
     );
   }
+
   // Kept for upcoming steps redesign (brand uploads).
   // ignore: unused_element
   Widget _uploadPanel({
@@ -2002,7 +2039,10 @@ class _StartupRegistrationFlowScreenState
             if (statusLabel != null) ...[
               const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xFFE6F7ED),
                   borderRadius: BorderRadius.circular(999),
@@ -2025,11 +2065,7 @@ class _StartupRegistrationFlowScreenState
 
   Widget _buildSocialLinksStep() {
     final members = ref.watch(registrationViewModelProvider).members;
-    const avatarBgs = [
-      Color(0xFFE0F2FE),
-      Color(0xFFE0F2FE),
-      Color(0xFFF1F5F9),
-    ];
+    const avatarBgs = [Color(0xFFE0F2FE), Color(0xFFE0F2FE), Color(0xFFF1F5F9)];
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
       child: Column(
@@ -2068,10 +2104,7 @@ class _StartupRegistrationFlowScreenState
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Divider(
-                  height: 1,
-                  color: Color(0xFFBAE6FD),
-                ),
+                const Divider(height: 1, color: Color(0xFFBAE6FD)),
                 const SizedBox(height: 10),
                 if (members.isEmpty)
                   const Padding(
@@ -2113,9 +2146,7 @@ class _StartupRegistrationFlowScreenState
                     onPressed: _showAddTeamMemberDialog,
                     style: OutlinedButton.styleFrom(
                       foregroundColor: const Color(0xFF0284C7),
-                      side: const BorderSide(
-                        color: Color(0xFF0284C7),
-                      ),
+                      side: const BorderSide(color: Color(0xFF0284C7)),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -2154,26 +2185,18 @@ class _StartupRegistrationFlowScreenState
   }) {
     final isFounder = role.toLowerCase().contains('founder');
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: const Color(0xFFFBFAFF),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: const Color(0xFFBAE6FD),
-        ),
+        border: Border.all(color: const Color(0xFFBAE6FD)),
       ),
       child: Row(
         children: [
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: avatarBg,
-            ),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: avatarBg),
             alignment: Alignment.center,
             child: Text(
               initials.isEmpty ? '?' : initials,
@@ -2221,10 +2244,7 @@ class _StartupRegistrationFlowScreenState
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 7,
-              vertical: 3,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
             decoration: BoxDecoration(
               color: isFounder
                   ? const Color(0xFFE0F2FE)
@@ -2294,16 +2314,12 @@ class _StartupRegistrationFlowScreenState
               DropdownButtonFormField<String>(
                 initialValue: selectedRole,
                 items: roles
-                    .map(
-                      (r) => DropdownMenuItem(value: r, child: Text(r)),
-                    )
+                    .map((r) => DropdownMenuItem(value: r, child: Text(r)))
                     .toList(),
                 onChanged: (v) {
                   if (v != null) setDialogState(() => selectedRole = v);
                 },
-                decoration: const InputDecoration(
-                  labelText: 'Role',
-                ),
+                decoration: const InputDecoration(labelText: 'Role'),
               ),
             ],
           ),
@@ -2508,10 +2524,7 @@ class _StartupRegistrationFlowScreenState
                     ],
                   ),
                   const SizedBox(height: 17),
-                  _reviewInfo(
-                    'Structure',
-                    val(_legalStructureController.text),
-                  ),
+                  _reviewInfo('Structure', val(_legalStructureController.text)),
                 ],
               ),
             ),
@@ -2527,11 +2540,9 @@ class _StartupRegistrationFlowScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _reviewInfo(
-                    'Name', val(_founderNameController.text)),
+                  _reviewInfo('Name', val(_founderNameController.text)),
                   const SizedBox(height: 17),
-                  _reviewInfo(
-                    'Email', val(_emailController.text)),
+                  _reviewInfo('Email', val(_emailController.text)),
                   const SizedBox(height: 17),
                   _reviewInfo(
                     'Phone',
@@ -2540,10 +2551,7 @@ class _StartupRegistrationFlowScreenState
                         : '$_phoneCode ${_phoneController.text.trim()}',
                   ),
                   const SizedBox(height: 17),
-                  _reviewInfo(
-                    'Designation',
-                    val(_designationController.text),
-                  ),
+                  _reviewInfo('Designation', val(_designationController.text)),
                 ],
               ),
             ),
@@ -2561,17 +2569,13 @@ class _StartupRegistrationFlowScreenState
               child: members.isEmpty
                   ? const Text(
                       'No team members added yet.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF5D6472),
-                      ),
+                      style: TextStyle(fontSize: 14, color: Color(0xFF5D6472)),
                     )
                   : Column(
                       children: [
                         for (final m in members)
                           Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.only(bottom: 10),
                             child: Row(
                               children: [
                                 Container(
@@ -2634,8 +2638,7 @@ class _StartupRegistrationFlowScreenState
             key: 'docs',
             icon: Icons.description_outlined,
             title: 'Documents',
-            subtitle:
-                '$docCount document${docCount == 1 ? '' : 's'}',
+            subtitle: '$docCount document${docCount == 1 ? '' : 's'}',
             editStep: 2,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 18),
@@ -2654,16 +2657,13 @@ class _StartupRegistrationFlowScreenState
           ),
           const SizedBox(height: 24),
           GestureDetector(
-            onTap: () =>
-                setState(() => _reviewConfirmed = !_reviewConfirmed),
+            onTap: () => setState(() => _reviewConfirmed = !_reviewConfirmed),
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: const Color(0xFFF0F9FF),
                 borderRadius: BorderRadius.circular(11),
-                border: Border.all(
-                  color: const Color(0xFFBAE6FD),
-                ),
+                border: Border.all(color: const Color(0xFFBAE6FD)),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2684,11 +2684,7 @@ class _StartupRegistrationFlowScreenState
                       ),
                     ),
                     child: _reviewConfirmed
-                        ? const Icon(
-                            Icons.check,
-                            size: 16,
-                            color: Colors.white,
-                          )
+                        ? const Icon(Icons.check, size: 16, color: Colors.white)
                         : null,
                   ),
                   const SizedBox(width: 16),
@@ -2736,10 +2732,7 @@ class _StartupRegistrationFlowScreenState
               ),
               child: const Text(
                 'Submit Application',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -2770,9 +2763,7 @@ class _StartupRegistrationFlowScreenState
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xFFBAE6FD),
-        ),
+        border: Border.all(color: const Color(0xFFBAE6FD)),
       ),
       child: Column(
         children: [
@@ -2785,24 +2776,15 @@ class _StartupRegistrationFlowScreenState
               }
             }),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 14,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               decoration: BoxDecoration(
                 color: const Color(0xFFF0F9FF),
                 borderRadius: BorderRadius.vertical(
                   top: const Radius.circular(12),
-                  bottom: expanded
-                      ? Radius.zero
-                      : const Radius.circular(12),
+                  bottom: expanded ? Radius.zero : const Radius.circular(12),
                 ),
                 border: expanded
-                    ? const Border(
-                        bottom: BorderSide(
-                          color: Color(0xFFBAE6FD),
-                        ),
-                      )
+                    ? const Border(bottom: BorderSide(color: Color(0xFFBAE6FD)))
                     : null,
               ),
               child: Row(
@@ -2869,11 +2851,7 @@ class _StartupRegistrationFlowScreenState
         color: Color(0xFFE0F2FE),
         shape: BoxShape.circle,
       ),
-      child: Icon(
-        icon,
-        size: 18,
-        color: const Color(0xFF0284C7),
-      ),
+      child: Icon(icon, size: 18, color: const Color(0xFF0284C7)),
     );
   }
 
@@ -2883,18 +2861,12 @@ class _StartupRegistrationFlowScreenState
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFF5D6472),
-          ),
+          style: const TextStyle(fontSize: 12, color: Color(0xFF5D6472)),
         ),
         const SizedBox(height: 6),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Color(0xFF172033),
-          ),
+          style: const TextStyle(fontSize: 14, color: Color(0xFF172033)),
         ),
       ],
     );
@@ -2909,9 +2881,7 @@ class _StartupRegistrationFlowScreenState
           Icon(
             picked ? Icons.check_circle_rounded : Icons.circle_outlined,
             size: 18,
-            color: picked
-                ? const Color(0xFF4CAF50)
-                : const Color(0xFF94A3B8),
+            color: picked ? const Color(0xFF4CAF50) : const Color(0xFF94A3B8),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -2944,9 +2914,7 @@ class _StartupRegistrationFlowScreenState
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              color: picked
-                  ? const Color(0xFF4CAF50)
-                  : const Color(0xFF9CA0AD),
+              color: picked ? const Color(0xFF4CAF50) : const Color(0xFF9CA0AD),
             ),
           ),
         ],
@@ -3044,10 +3012,7 @@ class _StartupRegistrationFlowScreenState
           const SizedBox(height: 8),
           const Text(
             'Your application is under review.',
-            style: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF5D6472),
-            ),
+            style: TextStyle(fontSize: 16, color: Color(0xFF5D6472)),
           ),
           const SizedBox(height: 32),
           Container(
@@ -3056,10 +3021,7 @@ class _StartupRegistrationFlowScreenState
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: const Color(0xFFE0F2FE),
-              border: Border.all(
-                color: const Color(0xFFBAE6FD),
-                width: 5,
-              ),
+              border: Border.all(color: const Color(0xFFBAE6FD), width: 5),
             ),
             child: const Center(
               child: Icon(
@@ -3071,10 +3033,7 @@ class _StartupRegistrationFlowScreenState
           ),
           const SizedBox(height: 25),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 18,
-              vertical: 9,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
             decoration: BoxDecoration(
               color: const Color(0xFFF1F5F9),
               borderRadius: BorderRadius.circular(20),
@@ -3082,11 +3041,7 @@ class _StartupRegistrationFlowScreenState
             child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  Icons.circle,
-                  size: 9,
-                  color: Color(0xFFD97706),
-                ),
+                Icon(Icons.circle, size: 9, color: Color(0xFFD97706)),
                 SizedBox(width: 8),
                 Text(
                   'Under Review',
@@ -3116,16 +3071,11 @@ class _StartupRegistrationFlowScreenState
           ),
           const SizedBox(height: 32),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: const Color(0xFFBAE6FD),
-              ),
+              border: Border.all(color: const Color(0xFFBAE6FD)),
             ),
             child: Column(
               children: [
@@ -3133,31 +3083,19 @@ class _StartupRegistrationFlowScreenState
                   'Application ID',
                   _verificationAppId ?? '—',
                 ),
-                const Divider(
-                  height: 1,
-                  color: Color(0xFFBAE6FD),
-                ),
+                const Divider(height: 1, color: Color(0xFFBAE6FD)),
                 _verificationDetail(
                   'Submitted On',
                   _verificationSubmittedOn ?? '—',
                 ),
-                const Divider(
-                  height: 1,
-                  color: Color(0xFFBAE6FD),
-                ),
+                const Divider(height: 1, color: Color(0xFFBAE6FD)),
                 _verificationDetail(
                   'Status',
                   '• Under Review',
                   valueColor: const Color(0xFFD97706),
                 ),
-                const Divider(
-                  height: 1,
-                  color: Color(0xFFBAE6FD),
-                ),
-                _verificationDetail(
-                  'Estimated Time',
-                  '2-3 Business Days',
-                ),
+                const Divider(height: 1, color: Color(0xFFBAE6FD)),
+                _verificationDetail('Estimated Time', '2-3 Business Days'),
               ],
             ),
           ),
@@ -3168,18 +3106,12 @@ class _StartupRegistrationFlowScreenState
             decoration: BoxDecoration(
               color: const Color(0xFFE0F2FE),
               borderRadius: BorderRadius.circular(11),
-              border: Border.all(
-                color: const Color(0xFFBAE6FD),
-              ),
+              border: Border.all(color: const Color(0xFFBAE6FD)),
             ),
             child: const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.info_outline,
-                  color: Color(0xFF0284C7),
-                  size: 23,
-                ),
+                Icon(Icons.info_outline, color: Color(0xFF0284C7), size: 23),
                 SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -3204,20 +3136,14 @@ class _StartupRegistrationFlowScreenState
               onPressed: _goToNextStep,
               style: OutlinedButton.styleFrom(
                 foregroundColor: const Color(0xFF0284C7),
-                side: const BorderSide(
-                  color: Color(0xFF0284C7),
-                  width: 2,
-                ),
+                side: const BorderSide(color: Color(0xFF0284C7), width: 2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               child: const Text(
                 'Track Status',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -3238,10 +3164,7 @@ class _StartupRegistrationFlowScreenState
         children: [
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Color(0xFF5D6472),
-            ),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF5D6472)),
           ),
           Flexible(
             child: Text(
@@ -3273,9 +3196,7 @@ class _StartupRegistrationFlowScreenState
             decoration: BoxDecoration(
               color: const Color(0xFFF0F9FF),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: const Color(0xFFBAE6FD),
-              ),
+              border: Border.all(color: const Color(0xFFBAE6FD)),
             ),
             clipBehavior: Clip.antiAlias,
             child: Image.asset(
@@ -3310,10 +3231,7 @@ class _StartupRegistrationFlowScreenState
               AppSnackBar.showSuccess(context, 'Application ID copied');
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 17,
-                vertical: 11,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 11),
               decoration: BoxDecoration(
                 color: const Color(0xFFF1F5F9),
                 borderRadius: BorderRadius.circular(25),
@@ -3345,23 +3263,18 @@ class _StartupRegistrationFlowScreenState
             decoration: BoxDecoration(
               color: const Color(0xFFF0F9FF),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: const Color(0xFFBAE6FD),
-              ),
+              border: Border.all(color: const Color(0xFFBAE6FD)),
             ),
             child: const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.info,
-                  size: 21,
-                  color: Color(0xFF0284C7),
-                ),
+                Icon(Icons.info, size: 21, color: Color(0xFF0284C7)),
                 SizedBox(width: 12),
                 Expanded(
                   child: Text.rich(
                     TextSpan(
-                      text: 'Verification in progress. Estimated\n'
+                      text:
+                          'Verification in progress. Estimated\n'
                           'review time: ',
                       style: TextStyle(
                         fontSize: 15,
@@ -3391,7 +3304,8 @@ class _StartupRegistrationFlowScreenState
           ),
           _verificationTimelineItem(
             title: 'Tax Verification',
-            description: 'We are currently reviewing your submitted\n'
+            description:
+                'We are currently reviewing your submitted\n'
                 'tax documents and corporate structure.',
             status: _TimelineStatus.current,
           ),
@@ -3420,10 +3334,7 @@ class _StartupRegistrationFlowScreenState
               ),
               child: const Text(
                 'Return to Dashboard',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -3455,21 +3366,14 @@ class _StartupRegistrationFlowScreenState
                   color: completed
                       ? const Color(0xFF4CAF50)
                       : current
-                          ? const Color(0xFF0284C7)
-                          : const Color(0xFFE2E8F0),
+                      ? const Color(0xFF0284C7)
+                      : const Color(0xFFE2E8F0),
                   border: current
-                      ? Border.all(
-                          color: const Color(0xFFBAE6FD),
-                          width: 4,
-                        )
+                      ? Border.all(color: const Color(0xFFBAE6FD), width: 4)
                       : null,
                 ),
                 child: completed
-                    ? const Icon(
-                        Icons.check,
-                        size: 16,
-                        color: Colors.white,
-                      )
+                    ? const Icon(Icons.check, size: 16, color: Colors.white)
                     : null,
               ),
               if (!isLast)
@@ -3494,8 +3398,7 @@ class _StartupRegistrationFlowScreenState
                   title,
                   style: TextStyle(
                     fontSize: 16,
-                    fontWeight:
-                        current ? FontWeight.w600 : FontWeight.w400,
+                    fontWeight: current ? FontWeight.w600 : FontWeight.w400,
                     color: current
                         ? const Color(0xFF0284C7)
                         : const Color(0xFF25283A),
@@ -3572,8 +3475,4 @@ class _StartupRegistrationFlowScreenState
   }
 }
 
-enum _TimelineStatus {
-  completed,
-  current,
-  pending,
-}
+enum _TimelineStatus { completed, current, pending }

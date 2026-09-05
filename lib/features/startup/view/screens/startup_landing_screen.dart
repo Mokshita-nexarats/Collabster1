@@ -5,8 +5,9 @@ import '../../../../core/di/providers.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../auth/view/secondary_goal_screen.dart';
 import 'company_type_screen.dart';
-import 'startup_dashboard_screen.dart';
+import 'idea_phase_verification_screen.dart';
 import 'startup_registration_intro_screen.dart';
+import 'your_startups_screen.dart';
 
 class StartupLandingScreen extends ConsumerWidget {
   const StartupLandingScreen({super.key, this.selectedRole = 'Startup'});
@@ -19,8 +20,16 @@ class StartupLandingScreen extends ConsumerWidget {
     final existingStartupName = (session?.startupName?.isNotEmpty == true)
         ? session!.startupName!
         : (session?.joinedStartupName?.isNotEmpty == true)
-            ? session!.joinedStartupName!
-            : null;
+        ? session!.joinedStartupName!
+        : null;
+    final hasIdeaPhaseProfile = session?.hasIdeaPhaseProfile ?? false;
+    final activeIdeaName =
+        session?.activeIdeaPhaseData?['ideaName']?.toString().trim() ?? '';
+    final hasSavedWorkspaces =
+        existingStartupName != null ||
+        (session?.originalStartupName?.isNotEmpty ?? false) ||
+        (session?.joinedStartupName?.isNotEmpty ?? false) ||
+        hasIdeaPhaseProfile;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
@@ -46,7 +55,8 @@ class StartupLandingScreen extends ConsumerWidget {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (_) => const SecondaryGoalScreen(),
+                                      builder: (_) =>
+                                          const SecondaryGoalScreen(),
                                     ),
                                   );
                                 }
@@ -102,29 +112,40 @@ class StartupLandingScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 22),
-                        if (existingStartupName != null) ...[
-                          _StartupActionCard(
-                            icon: Icons.dashboard_rounded,
-                            iconBackground: const Color(0xFFD1FAE5),
-                            title: 'Open $existingStartupName Dashboard',
-                            description:
-                                'Access your active workspace for $existingStartupName to manage team, pitch decks, and posts.',
-                            buttonLabel: 'Go to Dashboard',
-                            buttonIcon: Icons.arrow_forward_rounded,
-                            buttonFilled: true,
-                            onPressed: () {
+                        if (hasSavedWorkspaces) ...[
+                          _YourStartupsCard(
+                            activeIdeaName: activeIdeaName,
+                            onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => StartupDashboardScreen(
-                                    startupName: existingStartupName,
-                                  ),
+                                  builder: (_) => const YourStartupsScreen(),
                                 ),
                               );
                             },
                           ),
                           const SizedBox(height: 12),
                         ],
+                        _StartupActionCard(
+                          icon: Icons.lightbulb_outline_rounded,
+                          iconBackground: const Color(0xFFE0F2FE),
+                          title: 'Ideal Phase Startup',
+                          description:
+                              'Shape your idea, validate the opportunity, and build a strong foundation before launching your startup.',
+                          buttonLabel: 'Start your ideal journey',
+                          buttonIcon: Icons.arrow_forward_rounded,
+                          buttonFilled: false,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    const IdeaPhaseVerificationScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 12),
                         _StartupActionCard(
                           icon: Icons.rocket_launch_rounded,
                           iconBackground: const Color(0xFFE0F2FE),
@@ -134,17 +155,17 @@ class StartupLandingScreen extends ConsumerWidget {
                           buttonLabel: 'Create Startup',
                           buttonIcon: Icons.arrow_forward_rounded,
                           buttonFilled: existingStartupName == null,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      StartupRegistrationIntroScreen(
-                                    selectedRole: selectedRole,
-                                  ),
-                                ),
-                              );
-                            },
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    StartupRegistrationIntroScreen(
+                                      selectedRole: selectedRole,
+                                    ),
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 12),
                         _StartupActionCard(
@@ -171,6 +192,73 @@ class StartupLandingScreen extends ConsumerWidget {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+class _YourStartupsCard extends StatelessWidget {
+  const _YourStartupsCard({required this.activeIdeaName, required this.onTap});
+
+  final String activeIdeaName;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0F9FF),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xFFBAE6FD)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 54,
+              height: 54,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Icon(
+                Icons.workspaces_outline,
+                color: Color(0xFF0088CC),
+                size: 28,
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Your Startups',
+                    style: TextStyle(
+                      color: Color(0xFF13233B),
+                      fontSize: 19,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    activeIdeaName.isEmpty
+                        ? 'Open your created, joined, and idea workspaces.'
+                        : 'Includes your $activeIdeaName idea workspace.',
+                    style: const TextStyle(
+                      color: Color(0xFF5F6676),
+                      fontSize: 13,
+                      height: 1.35,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.arrow_forward_rounded, color: Color(0xFF0088CC)),
+          ],
         ),
       ),
     );

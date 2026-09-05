@@ -21,20 +21,28 @@ class InvestorProfileScreen extends ConsumerStatefulWidget {
   final VoidCallback? onGoHome;
 
   @override
-  ConsumerState<InvestorProfileScreen> createState() => _InvestorProfileScreenState();
+  ConsumerState<InvestorProfileScreen> createState() =>
+      _InvestorProfileScreenState();
 }
 
 class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
-  int _activeTab = 0; // 0: Overview & Preferences, 1: Portfolio & Activity, 2: Account & Settings
+  int _activeTab =
+      0; // 0: Overview & Preferences, 1: Portfolio & Activity, 2: Account & Settings
 
   // Interactive Preference State
-  final Set<String> _selectedStages = {'Pre-Seed', 'Seed', 'Series A'};
-  final Set<String> _selectedSectors = {'Fintech', 'AI / SaaS', 'HealthTech', 'Robotics'};
+  final Set<String> _selectedStages = {};
+  final Set<String> _selectedSectors = {};
   RangeValues _checkSizeRange = const RangeValues(25000, 250000);
   bool _accreditedVerified = true;
   bool _dealNotifications = true;
 
-  static const _allStages = ['Pre-Seed', 'Seed', 'Series A', 'Series B', 'Growth'];
+  static const _allStages = [
+    'Pre-Seed',
+    'Seed',
+    'Series A',
+    'Series B',
+    'Growth',
+  ];
   static const _allSectors = [
     'Fintech',
     'AI / SaaS',
@@ -43,8 +51,25 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
     'Climate Tech',
     'Web3 / Crypto',
     'EdTech',
-    'E-commerce'
+    'E-commerce',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    final session = ref.read(authViewModelProvider).session;
+    _selectedStages.addAll(
+      session?.investorStages.isNotEmpty == true
+          ? session!.investorStages
+          : const ['Pre-Seed', 'Seed', 'Series A'],
+    );
+    _selectedSectors.addAll(
+      session?.investorSectors.isNotEmpty == true
+          ? session!.investorSectors
+          : const ['Fintech', 'AI / SaaS', 'HealthTech', 'Robotics'],
+    );
+    _accreditedVerified = session?.investorVerificationComplete ?? false;
+  }
 
   String _compact(double value) {
     if (value >= 1000000) {
@@ -104,7 +129,10 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           ),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.close_rounded, color: InvestorColors.textMuted),
+                          icon: const Icon(
+                            Icons.close_rounded,
+                            color: InvestorColors.textMuted,
+                          ),
                           onPressed: () => Navigator.pop(ctx),
                         ),
                       ],
@@ -131,7 +159,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                             spacing: 8,
                             runSpacing: 8,
                             children: _allStages.map((stage) {
-                              final isSelected = _selectedStages.contains(stage);
+                              final isSelected = _selectedStages.contains(
+                                stage,
+                              );
                               return FilterChip(
                                 label: Text(stage),
                                 selected: isSelected,
@@ -149,7 +179,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                 labelStyle: TextStyle(
                                   fontSize: 12.5,
                                   fontWeight: FontWeight.w700,
-                                  color: isSelected ? Colors.white : InvestorColors.inkSoft,
+                                  color: isSelected
+                                      ? Colors.white
+                                      : InvestorColors.inkSoft,
                                 ),
                                 backgroundColor: InvestorColors.goldBg,
                                 shape: RoundedRectangleBorder(
@@ -179,7 +211,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                             spacing: 8,
                             runSpacing: 8,
                             children: _allSectors.map((sector) {
-                              final isSelected = _selectedSectors.contains(sector);
+                              final isSelected = _selectedSectors.contains(
+                                sector,
+                              );
                               return FilterChip(
                                 label: Text(sector),
                                 selected: isSelected,
@@ -197,7 +231,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                 labelStyle: TextStyle(
                                   fontSize: 12.5,
                                   fontWeight: FontWeight.w700,
-                                  color: isSelected ? Colors.white : InvestorColors.inkSoft,
+                                  color: isSelected
+                                      ? Colors.white
+                                      : InvestorColors.inkSoft,
                                 ),
                                 backgroundColor: InvestorColors.goldBg,
                                 shape: RoundedRectangleBorder(
@@ -261,7 +297,31 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                     child: SizedBox(
                       width: double.infinity,
                       child: FilledButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          final session = ref
+                              .read(authViewModelProvider)
+                              .session;
+                          if (session != null) {
+                            await ref
+                                .read(authViewModelProvider.notifier)
+                                .updateInvestorVerification(
+                                  fullName: session.fullName,
+                                  email: session.email,
+                                  phone: session.phone,
+                                  sectors: _selectedSectors.toList(),
+                                  stages: _selectedStages.toList(),
+                                  investorType:
+                                      session.investorType ?? 'Solo investor',
+                                  coInvestments: session.investorCoInvestments,
+                                  documentsSubmitted:
+                                      session.investorDocumentsSubmitted,
+                                  consultationComplete:
+                                      session.investorConsultationComplete,
+                                  verificationComplete:
+                                      session.investorVerificationComplete,
+                                );
+                          }
+                          if (!mounted || !ctx.mounted) return;
                           Navigator.pop(ctx);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -280,7 +340,10 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                         ),
                         child: const Text(
                           'Save Preferences',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
@@ -300,6 +363,7 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
     final userName = session?.fullName ?? 'Investor';
     final email = session?.email ?? 'investor@collabsphere.app';
     final photoPath = session?.profilePhotoPath ?? '';
+    final investorType = session?.investorType ?? 'Solo investor';
     final hasPhoto = photoPath.isNotEmpty && File(photoPath).existsSync();
     final state = ref.watch(investorViewModelProvider);
     final invested = state.totalInvested;
@@ -312,7 +376,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
           // Header section
           SliverToBoxAdapter(
             child: Container(
-              decoration: const BoxDecoration(gradient: InvestorColors.headerGradient),
+              decoration: const BoxDecoration(
+                gradient: InvestorColors.headerGradient,
+              ),
               child: SafeArea(
                 bottom: false,
                 child: Padding(
@@ -330,7 +396,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                 color: Colors.white.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: const Icon(Icons.person_rounded, color: Colors.white, size: 21),
+                              child: const Icon(
+                                Icons.person_rounded,
+                                color: Colors.white,
+                                size: 21,
+                              ),
                             )
                           else
                             GestureDetector(
@@ -342,7 +412,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                   color: Colors.white.withValues(alpha: 0.15),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 21),
+                                child: const Icon(
+                                  Icons.arrow_back_rounded,
+                                  color: Colors.white,
+                                  size: 21,
+                                ),
                               ),
                             ),
                           const SizedBox(width: 12),
@@ -360,7 +434,10 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                 ),
                                 Text(
                                   'Identity, Thesis & Controls',
-                                  style: TextStyle(color: Colors.white70, fontSize: 12.5),
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 12.5,
+                                  ),
                                 ),
                               ],
                             ),
@@ -378,8 +455,12 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                             children: [
                               CircleAvatar(
                                 radius: 34,
-                                backgroundColor: Colors.white.withValues(alpha: 0.2),
-                                backgroundImage: hasPhoto ? FileImage(File(photoPath)) : null,
+                                backgroundColor: Colors.white.withValues(
+                                  alpha: 0.2,
+                                ),
+                                backgroundImage: hasPhoto
+                                    ? FileImage(File(photoPath))
+                                    : null,
                                 child: hasPhoto
                                     ? null
                                     : Text(
@@ -440,19 +521,30 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                   spacing: 6,
                                   children: [
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3.5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.18),
-                                        borderRadius: BorderRadius.circular(999),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 9,
+                                        vertical: 3.5,
                                       ),
-                                      child: const Row(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(
+                                          alpha: 0.18,
+                                        ),
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
+                                      ),
+                                      child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Icon(Icons.workspace_premium_rounded, size: 12, color: Colors.white),
-                                          SizedBox(width: 4),
+                                          const Icon(
+                                            Icons.workspace_premium_rounded,
+                                            size: 12,
+                                            color: Colors.white,
+                                          ),
+                                          const SizedBox(width: 4),
                                           Text(
-                                            'Angel Investor',
-                                            style: TextStyle(
+                                            investorType,
+                                            style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 10.5,
                                               fontWeight: FontWeight.w700,
@@ -463,10 +555,16 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                     ),
                                     if (_accreditedVerified)
                                       Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3.5),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 9,
+                                          vertical: 3.5,
+                                        ),
                                         decoration: BoxDecoration(
-                                          color: InvestorColors.green.withValues(alpha: 0.25),
-                                          borderRadius: BorderRadius.circular(999),
+                                          color: InvestorColors.green
+                                              .withValues(alpha: 0.25),
+                                          borderRadius: BorderRadius.circular(
+                                            999,
+                                          ),
                                         ),
                                         child: const Text(
                                           'Accredited',
@@ -507,15 +605,26 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.14),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.2),
+                          ),
                         ),
                         child: Row(
                           children: [
-                            _headerStatCell('${state.investments.length}', 'DEALS CLOSED'),
+                            _headerStatCell(
+                              '${state.investments.length}',
+                              'DEALS CLOSED',
+                            ),
                             _headerDivider(),
-                            _headerStatCell(_compact(invested), 'CAPITAL DEPLOYED'),
+                            _headerStatCell(
+                              _compact(invested),
+                              'CAPITAL DEPLOYED',
+                            ),
                             _headerDivider(),
-                            _headerStatCell('${state.fundingRounds.length}', 'PIPELINE'),
+                            _headerStatCell(
+                              '${state.fundingRounds.length}',
+                              'PIPELINE',
+                            ),
                           ],
                         ),
                       ),
@@ -565,7 +674,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       ),
                       TextButton.icon(
                         onPressed: _showEditPreferencesSheet,
-                        icon: const Icon(Icons.edit_rounded, size: 16, color: InvestorColors.goldDeep),
+                        icon: const Icon(
+                          Icons.edit_rounded,
+                          size: 16,
+                          color: InvestorColors.goldDeep,
+                        ),
                         label: const Text(
                           'Edit',
                           style: TextStyle(
@@ -585,7 +698,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
                       boxShadow: const [
-                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                        BoxShadow(
+                          color: Color(0x0A000000),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
                       ],
                     ),
                     child: Column(
@@ -606,11 +723,16 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           runSpacing: 8,
                           children: _selectedStages.map((stage) {
                             return Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 13,
+                                vertical: 7,
+                              ),
                               decoration: BoxDecoration(
                                 color: InvestorColors.goldSoft,
                                 borderRadius: BorderRadius.circular(999),
-                                border: Border.all(color: InvestorColors.goldLight),
+                                border: Border.all(
+                                  color: InvestorColors.goldLight,
+                                ),
                               ),
                               child: Text(
                                 stage,
@@ -639,11 +761,16 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           runSpacing: 8,
                           children: _selectedSectors.map((sector) {
                             return Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 13,
+                                vertical: 7,
+                              ),
                               decoration: BoxDecoration(
                                 color: InvestorColors.goldSoft,
                                 borderRadius: BorderRadius.circular(999),
-                                border: Border.all(color: InvestorColors.goldLight),
+                                border: Border.all(
+                                  color: InvestorColors.goldLight,
+                                ),
                               ),
                               child: Text(
                                 sector,
@@ -702,7 +829,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
                       boxShadow: const [
-                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                        BoxShadow(
+                          color: Color(0x0A000000),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
                       ],
                     ),
                     child: Column(
@@ -737,7 +868,10 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                   SizedBox(height: 2),
                                   Text(
                                     'Verified by CollabSphere Capital Desk',
-                                    style: TextStyle(fontSize: 12, color: InvestorColors.textMuted),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: InvestorColors.textMuted,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -773,7 +907,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
                       boxShadow: const [
-                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                        BoxShadow(
+                          color: Color(0x0A000000),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
                       ],
                     ),
                     child: Column(
@@ -796,7 +934,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w800,
-                                color: state.roiPercent >= 0 ? InvestorColors.green : InvestorColors.red,
+                                color: state.roiPercent >= 0
+                                    ? InvestorColors.green
+                                    : InvestorColors.red,
                               ),
                             ),
                           ],
@@ -816,59 +956,74 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                         if (state.investments.isEmpty)
                           const Text(
                             'No investments yet — deals you close will appear here.',
-                            style: TextStyle(fontSize: 12.5, color: InvestorColors.textMuted),
+                            style: TextStyle(
+                              fontSize: 12.5,
+                              color: InvestorColors.textMuted,
+                            ),
                           )
                         else
-                          ...state.investments.take(3).map(
-                              (inv) => Padding(
-                                padding: const EdgeInsets.only(bottom: 12),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 36,
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: InvestorColors.colorForKey(inv.colorKey).withValues(alpha: 0.15),
-                                        borderRadius: BorderRadius.circular(10),
+                          ...state.investments
+                              .take(3)
+                              .map(
+                                (inv) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 36,
+                                        height: 36,
+                                        decoration: BoxDecoration(
+                                          color: InvestorColors.colorForKey(
+                                            inv.colorKey,
+                                          ).withValues(alpha: 0.15),
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.show_chart_rounded,
+                                          color: InvestorColors.colorForKey(
+                                            inv.colorKey,
+                                          ),
+                                          size: 20,
+                                        ),
                                       ),
-                                      child: Icon(
-                                        Icons.show_chart_rounded,
-                                        color: InvestorColors.colorForKey(inv.colorKey),
-                                        size: 20,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            inv.company,
-                                            style: const TextStyle(
-                                              fontSize: 13.5,
-                                              fontWeight: FontWeight.w800,
-                                              color: InvestorColors.ink,
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              inv.company,
+                                              style: const TextStyle(
+                                                fontSize: 13.5,
+                                                fontWeight: FontWeight.w800,
+                                                color: InvestorColors.ink,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            '${inv.stage} • ${inv.sector}',
-                                            style: const TextStyle(fontSize: 11, color: InvestorColors.textMuted),
-                                          ),
-                                        ],
+                                            Text(
+                                              '${inv.stage} • ${inv.sector}',
+                                              style: const TextStyle(
+                                                fontSize: 11,
+                                                color: InvestorColors.textMuted,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      _compact(inv.currentValue),
-                                      style: const TextStyle(
-                                        fontSize: 13.5,
-                                        fontWeight: FontWeight.w800,
-                                        color: InvestorColors.ink,
+                                      Text(
+                                        _compact(inv.currentValue),
+                                        style: const TextStyle(
+                                          fontSize: 13.5,
+                                          fontWeight: FontWeight.w800,
+                                          color: InvestorColors.ink,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
                       ],
                     ),
                   ),
@@ -890,7 +1045,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
                       boxShadow: const [
-                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                        BoxShadow(
+                          color: Color(0x0A000000),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
                       ],
                     ),
                     child: Column(
@@ -902,7 +1061,8 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           trailing: Switch(
                             value: _dealNotifications,
                             activeColor: InvestorColors.goldDeep,
-                            onChanged: (val) => setState(() => _dealNotifications = val),
+                            onChanged: (val) =>
+                                setState(() => _dealNotifications = val),
                           ),
                         ),
                         const Divider(height: 1, color: InvestorColors.border),
@@ -913,7 +1073,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (_) => const ProfileScreen()),
+                              MaterialPageRoute(
+                                builder: (_) => const ProfileScreen(),
+                              ),
                             );
                           },
                         ),
@@ -929,7 +1091,8 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           icon: Icons.home_rounded,
                           title: 'Go to Home',
                           color: InvestorColors.goldDeep,
-                          onTap: widget.onGoHome ?? () => Navigator.pop(context),
+                          onTap:
+                              widget.onGoHome ?? () => Navigator.pop(context),
                         ),
                         const Divider(height: 1, color: InvestorColors.border),
                         _settingsActionTile(
@@ -937,11 +1100,15 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           title: 'Logout',
                           color: InvestorColors.red,
                           onTap: () async {
-                            await ref.read(authViewModelProvider.notifier).logout();
+                            await ref
+                                .read(authViewModelProvider.notifier)
+                                .logout();
                             if (!context.mounted) return;
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (_) => const SignInScreen()),
+                              MaterialPageRoute(
+                                builder: (_) => const SignInScreen(),
+                              ),
                             );
                           },
                         ),
@@ -1137,7 +1304,10 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                 ),
                 Text(
                   subtitle,
-                  style: const TextStyle(fontSize: 11.5, color: InvestorColors.textMuted),
+                  style: const TextStyle(
+                    fontSize: 11.5,
+                    color: InvestorColors.textMuted,
+                  ),
                 ),
               ],
             ),

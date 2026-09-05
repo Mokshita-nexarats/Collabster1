@@ -391,22 +391,6 @@ class _CareerDashboardScreenState extends ConsumerState<CareerDashboardScreen> {
                           onTap: () =>
                               _scaffoldKey.currentState?.openDrawer(),
                         ),
-                        const SizedBox(width: 10),
-                        Container(
-                          width: 46,
-                          height: 46,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
-                            ),
-                            borderRadius: BorderRadius.circular(14),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.3),
-                              width: 1.5,
-                            ),
-                          ),
-                          child: const Icon(Icons.work_rounded, color: Colors.white, size: 24),
-                        ),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
