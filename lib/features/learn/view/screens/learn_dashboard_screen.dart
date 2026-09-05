@@ -626,54 +626,45 @@ class _LearnDashboardScreenState extends ConsumerState<LearnDashboardScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       isScrollControlled: true,
-      builder: (ctx) => SafeArea(
-        top: false,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: MediaQuery.of(ctx).size.height * 0.85),
-          child: Container(
-            decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(width: 40, height: 4, decoration: BoxDecoration(color: const Color(0xFFE5E7EB), borderRadius: BorderRadius.circular(999))),
-                  const SizedBox(height: 14),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: const Color(0xFFEDE9FE),
-                    backgroundImage: hasPhoto ? FileImage(File(photoPath)) : null,
-                    child: hasPhoto ? null : Text(getInitials(userName), style: const TextStyle(color: Color(0xFF8B5CF6), fontSize: 24, fontWeight: FontWeight.w800)),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(userName, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: Color(0xFF12233D))),
-                  if (email.isNotEmpty) ...[const SizedBox(height: 2), Text(email, style: const TextStyle(fontSize: 13, color: Color(0xFF6B7280), fontWeight: FontWeight.w500))],
-                  const SizedBox(height: 2),
-                  Text(roleLabel, style: const TextStyle(fontSize: 13, color: Color(0xFF6B7280))),
-                  const SizedBox(height: 14),
-                  _sheetAction(Icons.person_outline_rounded, 'View Profile', const Color(0xFF8B5CF6), () {
-                    Navigator.pop(ctx);
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
-                  }),
-                  const SizedBox(height: 8),
-                  _sheetAction(Icons.swap_horiz_rounded, 'Switch Tab', const Color(0xFF8B5CF6), () {
-                    Navigator.pop(ctx);
-                    RoleSwitcherSheet.show(context);
-                  }),
-                  const SizedBox(height: 8),
-                  _sheetAction(Icons.logout_rounded, 'Logout', const Color(0xFFEF4444), () async {
-                    Navigator.pop(ctx);
-                    await ref.read(authViewModelProvider.notifier).logout();
-                    if (!mounted) return;
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const SignInScreen()));
-                  }),
-                  const SizedBox(height: 8),
-                ],
-              ),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      builder: (ctx) => SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(width: 40, height: 4, decoration: BoxDecoration(color: const Color(0xFFE5E7EB), borderRadius: BorderRadius.circular(999))),
+            const SizedBox(height: 14),
+            CircleAvatar(
+              radius: 30,
+              backgroundColor: const Color(0xFFEDE9FE),
+              backgroundImage: hasPhoto ? FileImage(File(photoPath)) : null,
+              child: hasPhoto ? null : Text(getInitials(userName), style: const TextStyle(color: Color(0xFF8B5CF6), fontSize: 24, fontWeight: FontWeight.w800)),
             ),
-          ),
+            const SizedBox(height: 10),
+            Text(userName, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: Color(0xFF12233D))),
+            if (email.isNotEmpty) ...[const SizedBox(height: 2), Text(email, style: const TextStyle(fontSize: 13, color: Color(0xFF6B7280), fontWeight: FontWeight.w500))],
+            const SizedBox(height: 2),
+            Text(roleLabel, style: const TextStyle(fontSize: 13, color: Color(0xFF6B7280))),
+            const SizedBox(height: 14),
+            _sheetAction(Icons.person_outline_rounded, 'View Profile', const Color(0xFF8B5CF6), () {
+              Navigator.pop(ctx);
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+            }),
+            const SizedBox(height: 8),
+            _sheetAction(Icons.swap_horiz_rounded, 'Switch Tab', const Color(0xFF8B5CF6), () {
+              Navigator.pop(ctx);
+              RoleSwitcherSheet.show(context);
+            }),
+            const SizedBox(height: 8),
+            _sheetAction(Icons.logout_rounded, 'Logout', const Color(0xFFEF4444), () async {
+              Navigator.pop(ctx);
+              await ref.read(authViewModelProvider.notifier).logout();
+              if (!mounted) return;
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const SignInScreen()));
+            }),
+          ],
         ),
       ),
     );

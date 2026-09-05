@@ -37,7 +37,16 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
   List<UserRole> get _availableRoles {
     final session = ref.read(authViewModelProvider).session;
     final primaryRole = session?.activeUserRole ?? UserRole.professional;
-    return UserRole.values.where((r) => r != primaryRole).toList();
+    final primaryLabel = primaryRole.label;
+    // Deduplicate by label and exclude primary's label — prevents 2× Career/Startup/Community cards
+    final seen = <String>{primaryLabel};
+    final deduped = <UserRole>[];
+    for (final role in UserRole.values) {
+      if (role == primaryRole) continue;
+      if (role.label == primaryLabel) continue;
+      if (seen.add(role.label)) deduped.add(role);
+    }
+    return deduped;
   }
 
   Future<void> _complete() async {

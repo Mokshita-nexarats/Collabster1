@@ -858,11 +858,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   Widget _buildRoleSelectionStep(SignUpState state) {
-    // Show only one card per unique label — removes duplicate Career, Startup & Community cards
-    final seenLabels = <String>{};
-    final roles = UserRole.values
-        .where((r) => seenLabels.add(r.label))
-        .toList();
+    // Deduplicate by label — one card per label prevents 2× Startup / 2× Career / 2× Community
+    final rolesByLabel = <String, UserRole>{};
+    for (final role in UserRole.values) {
+      rolesByLabel.putIfAbsent(role.label, () => role);
+    }
+    final roles = rolesByLabel.values.toList();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),

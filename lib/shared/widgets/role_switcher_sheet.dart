@@ -13,8 +13,9 @@ class RoleSwitcherSheet extends ConsumerWidget {
   static void show(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       builder: (_) => const RoleSwitcherSheet(),
     );
   }
@@ -34,7 +35,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
       ),
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        borderRadius: BorderRadius.zero,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -84,7 +85,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
           Flexible(
             child: ListView(
               shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.fromLTRB(20, 0, 20, MediaQuery.of(context).viewPadding.bottom),
               children: [
                 // ─── Feed shortcut (always shown) ───
                 _FeedTile(
@@ -104,11 +105,23 @@ class RoleSwitcherSheet extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  ...userRoles.map((role) => _RoleTile(
-                        role: role,
-                        isActive: role == currentRole,
-                        onTap: () => _switchAndNavigate(context, ref, role),
-                      )),
+                  ...() {
+                    // Deduplicate by label — prevents 2× Career / Startup / Community tiles
+                    final deduped = <String, UserRole>{};
+                    for (final r in userRoles) {
+                      // Keep active role as representative for its label
+                      if (r.label == currentRole.label) {
+                        deduped[r.label] = currentRole;
+                      } else {
+                        deduped.putIfAbsent(r.label, () => r);
+                      }
+                    }
+                    return deduped.values.map((role) => _RoleTile(
+                          role: role,
+                          isActive: role.label == currentRole.label,
+                          onTap: () => _switchAndNavigate(context, ref, role),
+                        ));
+                  }(),
                   const SizedBox(height: 16),
                   Container(
                     height: 1,
@@ -117,15 +130,12 @@ class RoleSwitcherSheet extends ConsumerWidget {
                   const SizedBox(height: 16),
                 ],
                 Builder(builder: (context) {
-                  final ownedLabels = userRoles
-                      .where((r) => !r.isStartupRole)
-                      .map((r) => r.label)
-                      .toSet();
-
+                  final ownedLabels = userRoles.map((r) => r.label).toSet();
+                  final seenAddable = <String>{};
                   final addableRoles = UserRole.values.where((role) {
                     if (userRoles.contains(role)) return false;
-                    if (role.isStartupRole) return true;
-                    return !ownedLabels.contains(role.label);
+                    if (ownedLabels.contains(role.label)) return false;
+                    return seenAddable.add(role.label);
                   }).toList();
 
                   if (addableRoles.isEmpty) return const SizedBox.shrink();

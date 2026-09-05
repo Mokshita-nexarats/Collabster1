@@ -609,21 +609,11 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       isScrollControlled: true,
-      builder: (ctx) => SafeArea(
-        top: false,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(ctx).size.height * 0.85,
-          ),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-            ),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      builder: (ctx) => SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -725,9 +715,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 

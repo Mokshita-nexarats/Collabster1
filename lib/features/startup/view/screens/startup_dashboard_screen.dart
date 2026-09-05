@@ -1334,21 +1334,11 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: sheetBg,
       isScrollControlled: true,
-      builder: (ctx) => SafeArea(
-        top: false,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(ctx).size.height * 0.85,
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              color: sheetBg,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-            ),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      builder: (ctx) => SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -1554,9 +1544,6 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                 ],
               ),
             ),
-          ),
-        ),
-      ),
     ).then((_) {
       if (mounted) ref.read(startupDashboardViewModelProvider.notifier).selectNav(0);
     });
