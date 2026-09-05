@@ -67,7 +67,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 32,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF0369A1),
+                                      color: Color(0xFF006699),
                                     ),
                                   ),
                                   Text(
@@ -120,7 +120,7 @@ class AIOptimizationScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF0284C7),
+                          color: Color(0xFF0088CC),
                           letterSpacing: 0.8,
                         ),
                       ),
@@ -134,7 +134,7 @@ class AIOptimizationScreen extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                              color: const Color(0xFFE0F2FE), width: 1.2),
+                              color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -142,7 +142,7 @@ class AIOptimizationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(Icons.check_circle_outline_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: RichText(
@@ -158,7 +158,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                           text: '4 experience bullet points',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0284C7),
+                                            color: Color(0xFF0088CC),
                                           ),
                                         ),
                                         TextSpan(text: '.'),
@@ -173,7 +173,7 @@ class AIOptimizationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(Icons.check_circle_outline_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: RichText(
@@ -189,7 +189,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                           text: '"Cloud Architecture"',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0369A1),
+                                            color: Color(0xFF006699),
                                           ),
                                         ),
                                         TextSpan(text: ' and '),
@@ -197,7 +197,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                           text: '"DevOps"',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0369A1),
+                                            color: Color(0xFF006699),
                                           ),
                                         ),
                                         TextSpan(text: ' keywords.'),
@@ -232,7 +232,7 @@ class AIOptimizationScreen extends StatelessWidget {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                              color: const Color(0xFFE0F2FE), width: 1.2),
+                              color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -240,7 +240,7 @@ class AIOptimizationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(Icons.info_outline_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: RichText(
@@ -271,7 +271,7 @@ class AIOptimizationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Icon(Icons.warning_amber_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: RichText(
@@ -320,7 +320,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF0284C7),
+                            backgroundColor: const Color(0xFF0088CC),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -349,7 +349,7 @@ class AIOptimizationScreen extends StatelessWidget {
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF0284C7),
+                            backgroundColor: const Color(0xFF0088CC),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -404,7 +404,7 @@ class AIOptimizationScreen extends StatelessWidget {
             : const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: isSelected
             ? BoxDecoration(
-                color: const Color(0xFFE0F2FE),
+                color: const Color(0xFFE8F4FB),
                 borderRadius: BorderRadius.circular(20),
               )
             : null,
@@ -464,7 +464,7 @@ class _DonutGaugePainter extends CustomPainter {
 
     // Background track
     final bgPaint = Paint()
-      ..color = const Color(0xFFE0F2FE)
+      ..color = const Color(0xFFE8F4FB)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -473,7 +473,7 @@ class _DonutGaugePainter extends CustomPainter {
 
     // Progress track
     final fgPaint = Paint()
-      ..color = const Color(0xFF0284C7)
+      ..color = const Color(0xFF0088CC)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

@@ -44,7 +44,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
     return ChoiceChip(
       label: Text(label),
       selected: selected,
-      selectedColor: const Color(0xFF5B21B6),
+      selectedColor: const Color(0xFF0088CC),
       labelStyle: TextStyle(
         color: selected ? Colors.white : const Color(0xFF374151),
         fontWeight: FontWeight.w700,
@@ -119,12 +119,12 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color:
-                              const Color(0xFF5B21B6).withValues(alpha: 0.1),
+                              const Color(0xFF0088CC).withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.work_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -160,7 +160,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       hintText: 'e.g. Senior Flutter Developer',
                       prefixIcon: const Icon(Icons.title_rounded),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -178,7 +178,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                             hintText: 'e.g. 18 - 25 LPA',
                             prefixIcon: const Icon(Icons.payments_outlined),
                             filled: true,
-                            fillColor: const Color(0xFFF6F3FF),
+                            fillColor: const Color(0xFFF0F9FF),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide.none,
@@ -195,7 +195,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                             hintText: 'e.g. 2+ Yrs',
                             prefixIcon: const Icon(Icons.stars_outlined),
                             filled: true,
-                            fillColor: const Color(0xFFF6F3FF),
+                            fillColor: const Color(0xFFF0F9FF),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide.none,
@@ -213,7 +213,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       hintText: 'e.g. Flutter, Dart, Firebase, AI/ML',
                       prefixIcon: const Icon(Icons.psychology_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -228,7 +228,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       hintText: 'e.g. Remote / Hybrid Bangalore',
                       prefixIcon: const Icon(Icons.location_on_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -253,7 +253,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       return ChoiceChip(
                         label: Text(d),
                         selected: isSelected,
-                        selectedColor: const Color(0xFF5B21B6),
+                        selectedColor: const Color(0xFF0088CC),
                         labelStyle: TextStyle(
                           color: isSelected
                               ? Colors.white
@@ -323,7 +323,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -411,12 +411,12 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color:
-                            const Color(0xFF5B21B6).withValues(alpha: 0.1),
+                            const Color(0xFF0088CC).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: const Icon(
                         Icons.people_rounded,
-                        color: Color(0xFF5B21B6),
+                        color: Color(0xFF0088CC),
                         size: 22,
                       ),
                     ),
@@ -465,11 +465,11 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                           children: [
                             CircleAvatar(
                               radius: 22,
-                              backgroundColor: const Color(0xFFEDE9FE),
+                              backgroundColor: const Color(0xFFE8F4FB),
                               child: Text(
                                 candidate['name']![0],
                                 style: const TextStyle(
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -541,7 +541,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                                 decoration: BoxDecoration(
                                   color: candidate['status'] == 'Shortlisted'
                                       ? const Color(0xFF059669)
-                                      : const Color(0xFF5B21B6),
+                                      : const Color(0xFF0088CC),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
@@ -593,7 +593,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
             ),
             const SizedBox(height: 16),
             const Icon(Icons.schedule_rounded,
-                color: Color(0xFF5B21B6), size: 40),
+                color: Color(0xFF0088CC), size: 40),
             const SizedBox(height: 12),
             const Text(
               'Upcoming Interview',
@@ -622,7 +622,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -670,11 +670,11 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF5B21B6) : Colors.white,
+          color: isSelected ? const Color(0xFF0088CC) : Colors.white,
           borderRadius: BorderRadius.circular(999),
           border: Border.all(
             color: isSelected
-                ? const Color(0xFF5B21B6)
+                ? const Color(0xFF0088CC)
                 : const Color(0xFFE5E7EB),
           ),
         ),
@@ -727,11 +727,11 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF5B21B6).withValues(alpha: 0.1),
+                        color: const Color(0xFF0088CC).withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: const Icon(Icons.list_alt_rounded,
-                          color: Color(0xFF5B21B6), size: 22),
+                          color: Color(0xFF0088CC), size: 22),
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -784,7 +784,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
     final filtered = _filteredRoles(hiringState);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -794,9 +794,9 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4338CA)
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF0088CC)
                   ],
                 ),
               ),
@@ -923,12 +923,12 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                              color: const Color(0xFFE8DBFF),
+                              color: const Color(0xFFE0F2FE),
                               borderRadius: BorderRadius.circular(999)),
                           child: const Text(
                             'Full List →',
                             style: TextStyle(
-                                color: Color(0xFF5B21B6),
+                                color: Color(0xFF0088CC),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700),
                           ),
@@ -1056,9 +1056,9 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-                color: const Color(0xFFEDE9FE),
+                color: const Color(0xFFE8F4FB),
                 borderRadius: BorderRadius.circular(10)),
-            child: Icon(icon, color: const Color(0xFF5B21B6), size: 20),
+            child: Icon(icon, color: const Color(0xFF0088CC), size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -1080,7 +1080,7 @@ class _HiringCommandScreenState extends ConsumerState<HiringCommandScreen> {
             onPressed: onAct,
             child: const Text('Act',
                 style: TextStyle(
-                    color: Color(0xFF5B21B6), fontWeight: FontWeight.w700)),
+                    color: Color(0xFF0088CC), fontWeight: FontWeight.w700)),
           ),
         ],
       ),
@@ -1241,8 +1241,8 @@ class _RoleCard extends StatelessWidget {
             child: OutlinedButton(
               onPressed: onViewApplicants,
               style: OutlinedButton.styleFrom(
-                foregroundColor: const Color(0xFF5B21B6),
-                side: const BorderSide(color: Color(0xFF5B21B6)),
+                foregroundColor: const Color(0xFF0088CC),
+                side: const BorderSide(color: Color(0xFF0088CC)),
                 minimumSize: const Size.fromHeight(44),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),

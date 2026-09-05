@@ -5,6 +5,7 @@ import '../../../../core/di/providers.dart';
 import '../../../startup/model/startup_models.dart';
 import '../../model/chat_model.dart';
 import '../screens/chat_screen.dart';
+import 'community_search_bar.dart';
 
 class MessagesTab extends ConsumerStatefulWidget {
   const MessagesTab({super.key});
@@ -149,12 +150,12 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                        colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                       ),
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFFF97316).withValues(alpha: 0.3),
+                          color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -173,9 +174,9 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
           const SizedBox(height: 8),
           TabBar(
             controller: _tabController,
-            indicatorColor: const Color(0xFFEA580C),
+            indicatorColor: const Color(0xFF229ED9),
             indicatorWeight: 3,
-            labelColor: const Color(0xFFEA580C),
+            labelColor: const Color(0xFF229ED9),
             unselectedLabelColor: const Color(0xFF64748B),
             labelStyle: const TextStyle(
               fontSize: 14,
@@ -200,7 +201,7 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEA580C),
+                          color: const Color(0xFF229ED9),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
@@ -236,79 +237,24 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
   Widget _buildChatsContent(dynamic messageState) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 14, 20, 10),
-          child: Container(
-            height: 46,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: const Color(0xFFE2E8F0)),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: 14),
-                const Icon(
-                  Icons.search_rounded,
-                  color: Color(0xFF94A3B8),
-                  size: 20,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextField(
-                    controller: _searchController,
-                    onChanged: (value) {
-                      ref
-                          .read(messageViewModelProvider.notifier)
-                          .setSearchQuery(value);
-                      setState(() {});
-                    },
-                    style: const TextStyle(
-                      color: Color(0xFF0F172A),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    decoration: const InputDecoration(
-                      hintText: 'Search chats and rooms...',
-                      hintStyle: TextStyle(
-                        color: Color(0xFF94A3B8),
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                      isDense: true,
-                    ),
-                  ),
-                ),
-                if (_searchController.text.isNotEmpty)
-                  GestureDetector(
-                    onTap: () {
-                      _searchController.clear();
-                      ref
-                          .read(messageViewModelProvider.notifier)
-                          .setSearchQuery('');
-                      setState(() {});
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFF1F5F9),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.close_rounded,
-                        color: Color(0xFF64748B),
-                        size: 14,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
+        CommunitySearchBar(
+          controller: _searchController,
+          hintText: 'Search chats and rooms...',
+          showClear: _searchController.text.isNotEmpty,
+          margin: const EdgeInsets.fromLTRB(20, 14, 20, 10),
+          onChanged: (value) {
+            ref
+                .read(messageViewModelProvider.notifier)
+                .setSearchQuery(value);
+            setState(() {});
+          },
+          onClear: () {
+            _searchController.clear();
+            ref
+                .read(messageViewModelProvider.notifier)
+                .setSearchQuery('');
+            setState(() {});
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -405,13 +351,13 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
                 children: [
                   CircleAvatar(
                     radius: 22,
-                    backgroundColor: const Color(0xFFFFF7ED),
+                    backgroundColor: const Color(0xFFE8F4FB),
                     child: Text(
                       r.initials,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFFEA580C),
+                        color: Color(0xFF229ED9),
                       ),
                     ),
                   ),
@@ -489,7 +435,7 @@ class _MessagesTabState extends ConsumerState<MessagesTab>
                                     .read(requestsViewModelProvider.notifier)
                                     .accept(r.name),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFEA580C),
+                                  backgroundColor: const Color(0xFF229ED9),
                                   foregroundColor: Colors.white,
                                   minimumSize: const Size(0, 36),
                                   padding: EdgeInsets.zero,
@@ -570,10 +516,10 @@ class _FilterChip extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFFFFEDD5) : Colors.white,
+          color: selected ? const Color(0xFFE8F4FB) : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: selected ? const Color(0xFFEA580C) : const Color(0xFFE2E8F0),
+            color: selected ? const Color(0xFF229ED9) : const Color(0xFFE2E8F0),
           ),
         ),
         child: Text(
@@ -581,7 +527,7 @@ class _FilterChip extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w600,
-            color: selected ? const Color(0xFFEA580C) : const Color(0xFF64748B),
+            color: selected ? const Color(0xFF229ED9) : const Color(0xFF64748B),
           ),
         ),
       ),
@@ -626,7 +572,7 @@ class _ConversationTile extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    shape: BoxShape.circle,
                   ),
                   child: Center(
                     child: Text(
@@ -680,7 +626,7 @@ class _ConversationTile extends StatelessWidget {
                           fontSize: 11.5,
                           fontWeight: FontWeight.w600,
                           color: conversation.unreadCount > 0
-                              ? const Color(0xFFEA580C)
+                              ? const Color(0xFF229ED9)
                               : const Color(0xFF94A3B8),
                         ),
                       ),
@@ -736,7 +682,7 @@ class _ConversationTile extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
-                              colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                              colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -784,7 +730,7 @@ class _ComposeMemberTile extends StatelessWidget {
                 gradient: const LinearGradient(
                   colors: [Color(0xFF2563EB), Color(0xFF3B82F6)],
                 ),
-                borderRadius: BorderRadius.circular(14),
+                shape: BoxShape.circle,
               ),
               child: Center(
                 child: Text(

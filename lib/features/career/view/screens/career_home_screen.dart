@@ -16,7 +16,7 @@ class CareerHomeScreen extends ConsumerWidget {
     final activeRole = session?.activeUserRole ?? UserRole.professional;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -26,9 +26,9 @@ class CareerHomeScreen extends ConsumerWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF1B5E20),
-                    Color(0xFF2E7D32),
-                    Color(0xFF1B5E20),
+                    Color(0xFF006699),
+                    Color(0xFF0088CC),
+                    Color(0xFF006699),
                   ],
                 ),
               ),
@@ -46,7 +46,7 @@ class CareerHomeScreen extends ConsumerWidget {
                             height: 46,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
-                                colors: [Color(0xFF2E7D32), Color(0xFF1B5E20)],
+                                colors: [Color(0xFF0088CC), Color(0xFF006699)],
                               ),
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
@@ -153,7 +153,7 @@ class CareerHomeScreen extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 _buildStatRow(
-                  const Color(0xFF1B5E20),
+                  const Color(0xFF006699),
                   [
                     _StatItem(value: '0', label: 'APPLICA\nTIONS'),
                     _StatItem(value: '0', label: 'SAVED\nJOBS'),
@@ -235,8 +235,8 @@ class CareerHomeScreen extends ConsumerWidget {
 
   Widget _buildActionGrid(BuildContext context) {
     final actions = [
-      _Action(icon: Icons.search_rounded, label: 'Find Jobs', color: const Color(0xFF1B5E20)),
-      _Action(icon: Icons.description_rounded, label: 'My Resume', color: const Color(0xFF2196F3)),
+      _Action(icon: Icons.search_rounded, label: 'Find Jobs', color: const Color(0xFF006699)),
+      _Action(icon: Icons.description_rounded, label: 'My Resume', color: const Color(0xFF229ED9)),
       _Action(icon: Icons.assignment_rounded, label: 'Applications', color: const Color(0xFFFF9800)),
     ];
 

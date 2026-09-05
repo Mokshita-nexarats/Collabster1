@@ -134,7 +134,7 @@ class _ManualRecommendationsScreenState extends State<ManualRecommendationsScree
                     size: 18,
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0284C7),
+                    backgroundColor: const Color(0xFF0088CC),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -177,7 +177,7 @@ class _RecommendationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,7 @@ class _RecommendationCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF0284C7),
+              color: Color(0xFF0088CC),
               letterSpacing: 0.8,
             ),
           ),
@@ -266,7 +266,7 @@ class _RecommendationCard extends StatelessWidget {
               ElevatedButton(
                 onPressed: isApplied || isDeclined ? null : onApply,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isApplied ? const Color(0xFF10B981) : const Color(0xFF0284C7),
+                  backgroundColor: isApplied ? const Color(0xFF10B981) : const Color(0xFF0088CC),
                   elevation: 0,
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                   minimumSize: Size.zero,

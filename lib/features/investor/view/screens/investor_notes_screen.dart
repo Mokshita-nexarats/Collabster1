@@ -202,7 +202,7 @@ class _InvestorNotesScreenState extends State<InvestorNotesScreen> {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF7C3AED).withValues(alpha: 0.1),
+                                  color: const Color(0xFF229ED9).withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
@@ -210,7 +210,7 @@ class _InvestorNotesScreenState extends State<InvestorNotesScreen> {
                                   style: const TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w800,
-                                    color: Color(0xFF7C3AED),
+                                    color: Color(0xFF229ED9),
                                   ),
                                 ),
                               ),
@@ -225,7 +225,7 @@ class _InvestorNotesScreenState extends State<InvestorNotesScreen> {
                               ),
                               const Spacer(),
                               if (note.isPinned)
-                                const Icon(Icons.push_pin_rounded, size: 16, color: Color(0xFF7C3AED)),
+                                const Icon(Icons.push_pin_rounded, size: 16, color: Color(0xFF229ED9)),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -261,7 +261,7 @@ class _InvestorNotesScreenState extends State<InvestorNotesScreen> {
                                       ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                           content: Text('Note copied to clipboard!'),
-                                          backgroundColor: Color(0xFF7C3AED),
+                                          backgroundColor: Color(0xFF229ED9),
                                         ),
                                       );
                                     },

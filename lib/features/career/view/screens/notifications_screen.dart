@@ -15,8 +15,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   int _selectedFilterIndex = 0;
   final List<String> _filters = ['All', 'Jobs', 'Interviews', 'System & Promos'];
 
-  static const _kPurple = Color(0xFF6366F1);
-  static const _kTextDark = Color(0xFF1E1B4B);
+  static const _kPurple = Color(0xFF229ED9);
+  static const _kTextDark = Color(0xFF0F172A);
   static const _kTextMid = Color(0xFF64748B);
 
   late List<_NotificationData> _notifications;
@@ -33,8 +33,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         body:
             'Upgrade to ResuAI Pro for just \$9.99/mo. Unlock unlimited mock interviews and advanced resume optimization.',
         icon: Icons.local_offer_rounded,
-        accentColor: const Color(0xFF6366F1),
-        bgColor: const Color(0xFFEEF2FF),
+        accentColor: const Color(0xFF229ED9),
+        bgColor: const Color(0xFFE8F4FB),
         primaryActionText: 'Upgrade Now',
         secondaryActionText: 'Dismiss',
       ),
@@ -46,8 +46,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         body:
             'Google scheduled your technical round for Monday, Oct 19 at 10:00 AM.',
         icon: Icons.calendar_month_rounded,
-        accentColor: const Color(0xFF4F46E5),
-        bgColor: const Color(0xFFEEF2FF),
+        accentColor: const Color(0xFF229ED9),
+        bgColor: const Color(0xFFE8F4FB),
         primaryActionText: 'Join Lobby',
         secondaryActionText: 'View Schedule',
       ),
@@ -72,8 +72,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         body:
             '"Hi Alex, great performance in our mock! I\'ve uploaded your full feedback sheet."',
         icon: Icons.chat_bubble_rounded,
-        accentColor: const Color(0xFF6366F1),
-        bgColor: const Color(0xFFEEF2FF),
+        accentColor: const Color(0xFF229ED9),
+        bgColor: const Color(0xFFE8F4FB),
         primaryActionText: 'Reply',
         secondaryActionText: 'Open Chat',
       ),
@@ -407,7 +407,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             width: 72,
             height: 72,
             decoration: const BoxDecoration(
-              color: Color(0xFFEEF2FF),
+              color: Color(0xFFE8F4FB),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.notifications_none_rounded, size: 36, color: _kPurple),

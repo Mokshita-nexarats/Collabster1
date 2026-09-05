@@ -19,8 +19,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
       'logoUrl': 'https://img.icons8.com/color/48/adobe-illustrator.png',
       'isBookmarked': true,
       'badgeText': 'ACTIVE',
-      'badgeColor': const Color(0xFFE0F2FE),
-      'badgeTextColor': const Color(0xFF0369A1),
+      'badgeColor': const Color(0xFFE8F4FB),
+      'badgeTextColor': const Color(0xFF006699),
       'title': 'Senior Product Designer',
       'company': 'Nexus Systems',
       'salaryInfo': '\$120k - \$150k • San Francisco, CA (Hybrid)',
@@ -32,8 +32,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
       'logoUrl': 'https://img.icons8.com/color/48/figma--v1.png',
       'isBookmarked': true,
       'badgeText': 'CLOSING SOON',
-      'badgeColor': const Color(0xFFE0F2FE),
-      'badgeTextColor': const Color(0xFF0284C7),
+      'badgeColor': const Color(0xFFE8F4FB),
+      'badgeTextColor': const Color(0xFF0088CC),
       'title': 'Frontend Web Revamp',
       'company': 'Vortex AI',
       'salaryInfo': '\$1,500 - \$2,500 (Project based) • Remote',
@@ -58,8 +58,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
       'logoUrl': 'https://img.icons8.com/color/48/google-logo.png',
       'isBookmarked': true,
       'badgeText': 'ACTIVE',
-      'badgeColor': const Color(0xFFE0F2FE),
-      'badgeTextColor': const Color(0xFF0369A1),
+      'badgeColor': const Color(0xFFE8F4FB),
+      'badgeTextColor': const Color(0xFF006699),
       'title': 'Machine Learning Engineer',
       'company': 'Vortex AI',
       'salaryInfo': '\$160k - \$210k • Palo Alto, CA (Hybrid)',
@@ -212,10 +212,10 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: const BoxDecoration(
-              color: Color(0xFFE0F2FE),
+              color: Color(0xFFE8F4FB),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0284C7), size: 28),
+            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0088CC), size: 28),
           ),
           const SizedBox(height: 12),
           const Text(
@@ -244,7 +244,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFF0284C7) : const Color(0xFFF3F4F6),
+          color: selected ? const Color(0xFF0088CC) : const Color(0xFFF3F4F6),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -277,7 +277,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,7 +305,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
               const SizedBox(width: 10),
               Icon(
                 isBookmarked ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-                color: isBookmarked ? const Color(0xFF0284C7) : Colors.grey.shade400,
+                color: isBookmarked ? const Color(0xFF0088CC) : Colors.grey.shade400,
                 size: 20,
               ),
             ],
@@ -364,7 +364,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen> {
             child: ElevatedButton(
               onPressed: isActive ? () {} : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: isActive ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+                backgroundColor: isActive ? const Color(0xFF0088CC) : const Color(0xFFE2E8F0),
                 disabledBackgroundColor: const Color(0xFFE2E8F0),
                 elevation: 0,
                 minimumSize: Size.zero,

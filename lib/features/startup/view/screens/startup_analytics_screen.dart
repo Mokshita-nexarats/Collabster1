@@ -49,22 +49,22 @@ const _metricsData = {
 
 const _trafficData = {
   'Day': [
-    (label: 'Direct Search', fraction: 0.52, color: Color(0xFF5B21B6)),
+    (label: 'Direct Search', fraction: 0.52, color: Color(0xFF0088CC)),
     (label: 'Social Media', fraction: 0.28, color: Color(0xFF2563EB)),
     (label: 'Investor Referrals', fraction: 0.20, color: Color(0xFF059669)),
   ],
   'Week': [
-    (label: 'Direct Search', fraction: 0.48, color: Color(0xFF5B21B6)),
+    (label: 'Direct Search', fraction: 0.48, color: Color(0xFF0088CC)),
     (label: 'Social Media', fraction: 0.35, color: Color(0xFF2563EB)),
     (label: 'Investor Referrals', fraction: 0.17, color: Color(0xFF059669)),
   ],
   'Month': [
-    (label: 'Direct Search', fraction: 0.45, color: Color(0xFF5B21B6)),
+    (label: 'Direct Search', fraction: 0.45, color: Color(0xFF0088CC)),
     (label: 'Social Media', fraction: 0.32, color: Color(0xFF2563EB)),
     (label: 'Investor Referrals', fraction: 0.23, color: Color(0xFF059669)),
   ],
   'Year': [
-    (label: 'Direct Search', fraction: 0.41, color: Color(0xFF5B21B6)),
+    (label: 'Direct Search', fraction: 0.41, color: Color(0xFF0088CC)),
     (label: 'Social Media', fraction: 0.38, color: Color(0xFF2563EB)),
     (label: 'Investor Referrals', fraction: 0.21, color: Color(0xFF059669)),
   ],
@@ -93,7 +93,7 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
     final metrics = _metricsData[_metricsPeriod]!;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // ── Profile Views Header Card ──────────────────────────────────────
@@ -103,7 +103,7 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF5B21B6), Color(0xFF7C3AED), Color(0xFF4338CA)],
+                  colors: [Color(0xFF0088CC), Color(0xFF229ED9), Color(0xFF0088CC)],
                 ),
               ),
               padding: EdgeInsets.only(
@@ -291,13 +291,13 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           _metricsPeriod,
                           style: const TextStyle(
-                              color: Color(0xFF5B21B6),
+                              color: Color(0xFF0088CC),
                               fontSize: 11,
                               fontWeight: FontWeight.w700),
                         ),
@@ -315,12 +315,12 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                           width: 34,
                           height: 34,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFEDE9FE),
+                            color: const Color(0xFFE8F4FB),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Icon(
                             Icons.calendar_month_rounded,
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             size: 18,
                           ),
                         ),
@@ -374,13 +374,13 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           _trafficPeriod,
                           style: const TextStyle(
-                              color: Color(0xFF5B21B6),
+                              color: Color(0xFF0088CC),
                               fontSize: 11,
                               fontWeight: FontWeight.w700),
                         ),
@@ -398,12 +398,12 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                           width: 34,
                           height: 34,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFEDE9FE),
+                            color: const Color(0xFFE8F4FB),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Icon(
                             Icons.calendar_month_rounded,
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             size: 18,
                           ),
                         ),
@@ -480,11 +480,11 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEDE9FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(Icons.calendar_month_rounded,
-                      color: Color(0xFF5B21B6), size: 20),
+                      color: Color(0xFF0088CC), size: 20),
                 ),
                 const SizedBox(width: 12),
                 Column(
@@ -529,12 +529,12 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                       horizontal: 16, vertical: 14),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? const Color(0xFF5B21B6)
+                        ? const Color(0xFF0088CC)
                         : const Color(0xFFF9FAFB),
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
                       color: isSelected
-                          ? const Color(0xFF5B21B6)
+                          ? const Color(0xFF0088CC)
                           : const Color(0xFFE5E7EB),
                     ),
                   ),
@@ -544,7 +544,7 @@ class _StartupAnalyticsScreenState extends State<StartupAnalyticsScreen> {
                         icons[p]!,
                         color: isSelected
                             ? Colors.white
-                            : const Color(0xFF5B21B6),
+                            : const Color(0xFF0088CC),
                         size: 22,
                       ),
                       const SizedBox(width: 14),
@@ -656,9 +656,9 @@ class _MetricRow extends StatelessWidget {
             width: 42,
             height: 42,
             decoration: BoxDecoration(
-                color: const Color(0xFFEDE9FE),
+                color: const Color(0xFFE8F4FB),
                 borderRadius: BorderRadius.circular(12)),
-            child: Icon(icon, color: const Color(0xFF5B21B6), size: 22),
+            child: Icon(icon, color: const Color(0xFF0088CC), size: 22),
           ),
           const SizedBox(width: 14),
           Text(label,

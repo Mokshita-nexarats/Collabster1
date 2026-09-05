@@ -74,14 +74,14 @@ class PostCard extends ConsumerWidget {
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: const Color(
-                      0xFFEA580C,
+                      0xFF229ED9,
                     ).withValues(alpha: 0.12),
                     child: Text(
                       post.authorName.isNotEmpty
                           ? post.authorName[0].toUpperCase()
                           : 'A',
                       style: const TextStyle(
-                        color: Color(0xFFEA580C),
+                        color: Color(0xFF229ED9),
                         fontWeight: FontWeight.w800,
                         fontSize: 15,
                       ),
@@ -177,7 +177,7 @@ class PostCard extends ConsumerWidget {
                         : Icons.thumb_up_outlined,
                     label: '${post.likes}',
                     color: post.isLiked
-                        ? const Color(0xFFEA580C)
+                        ? const Color(0xFF229ED9)
                         : Colors.grey.shade500,
                     onTap: () => ref
                         .read(postViewModelProvider.notifier)

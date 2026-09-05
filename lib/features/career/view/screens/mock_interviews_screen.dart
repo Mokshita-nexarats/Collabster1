@@ -76,7 +76,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                         margin: const EdgeInsets.only(right: 8),
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         decoration: BoxDecoration(
-                          color: selected ? AppColors.primary : const Color(0xFFE0F2FE),
+                          color: selected ? AppColors.primary : const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
@@ -84,7 +84,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: selected ? Colors.white : const Color(0xFF0369A1),
+                            color: selected ? Colors.white : const Color(0xFF006699),
                           ),
                         ),
                       ),
@@ -99,7 +99,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
               width: double.infinity,
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
-                color: const Color(0xFFE0F2FE),
+                color: const Color(0xFFE8F4FB),
                 borderRadius: BorderRadius.circular(18),
               ),
               child: Row(
@@ -113,7 +113,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0284C7),
+                            color: Color(0xFF0088CC),
                             letterSpacing: 0.8,
                           ),
                         ),
@@ -123,7 +123,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0369A1),
+                            color: Color(0xFF006699),
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -148,7 +148,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0369A1),
+                            color: Color(0xFF006699),
                           ),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.02),
@@ -232,7 +232,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -333,7 +333,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                   icon: Icons.code_rounded,
                   title: 'Coding',
                   sessions: '42 Live Sessions',
-                  bgColor: Color(0xFFF3F0FF),
+                  bgColor: Color(0xFFF0F9FF),
                 ),
                 _CategoryGridCard(
                   icon: Icons.hub_outlined,
@@ -345,7 +345,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                   icon: Icons.people_outline_rounded,
                   title: 'Behavioral',
                   sessions: '24 Live Sessions',
-                  bgColor: Color(0xFFEDF5FF),
+                  bgColor: Color(0xFFE8F4FB),
                 ),
                 _CategoryGridCard(
                   icon: Icons.insert_chart_outlined_rounded,
@@ -413,7 +413,7 @@ class _MockInterviewsScreenState extends State<MockInterviewsScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0284C7),
+                  backgroundColor: const Color(0xFF0088CC),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -449,7 +449,7 @@ class _MocksGaugePainter extends CustomPainter {
 
     // Background track
     final bgPaint = Paint()
-      ..color = const Color(0xFFBAE6FD)
+      ..color = const Color(0xFFE8F4FB)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -458,7 +458,7 @@ class _MocksGaugePainter extends CustomPainter {
 
     // Progress track
     final fgPaint = Paint()
-      ..color = const Color(0xFF0284C7)
+      ..color = const Color(0xFF0088CC)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -501,7 +501,7 @@ class _TrendingMockCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -510,7 +510,7 @@ class _TrendingMockCard extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: const BoxDecoration(
-                color: Color(0xFFF3F0FF),
+                color: Color(0xFFF0F9FF),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: AppColors.primary, size: 18),
@@ -667,7 +667,7 @@ class _CoachRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Row(
         children: [
@@ -721,7 +721,7 @@ class _CoachRow extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (_) => const PeerBookingScreen()));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFE0F2FE),
+              backgroundColor: const Color(0xFFE8F4FB),
               elevation: 0,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               minimumSize: Size.zero,
@@ -735,7 +735,7 @@ class _CoachRow extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0284C7),
+                color: Color(0xFF0088CC),
               ),
             ),
           ),

@@ -345,6 +345,19 @@ class StartupMember {
   const StartupMember({required this.name, required this.role, required this.status, required this.initials});
 }
 
+class SocialLink {
+  final String platform;
+  final String url;
+  const SocialLink({required this.platform, required this.url});
+
+  SocialLink copyWith({String? platform, String? url}) {
+    return SocialLink(
+      platform: platform ?? this.platform,
+      url: url ?? this.url,
+    );
+  }
+}
+
 class StartupPost {
   final String id;
   final String type;

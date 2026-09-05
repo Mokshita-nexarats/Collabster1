@@ -5,8 +5,8 @@ import '../../../model/event_model.dart';
 import '../../../view/widgets/attendee_chip.dart';
 
 const _bg = Color(0xFFF8FAFC);
-const _accent = Color(0xFF059669);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentBg = Color(0xFFEFF6FF);
 const _live = Color(0xFFFF3C5C);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
@@ -116,7 +116,7 @@ class EventDetailScreen extends ConsumerWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF065F46), Color(0xFF0F766E)],
+          colors: [Color(0xFF006699), Color(0xFF0F766E)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

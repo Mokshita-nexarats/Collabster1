@@ -138,14 +138,14 @@ class _CareerSearchBarState extends State<CareerSearchBar> {
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: widget.hasActiveFilter
-                        ? const Color(0xFFFFF7ED)
+                        ? const Color(0xFFE8F4FB)
                         : const Color(0xFFF1F5F9),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
                     Icons.tune_rounded,
                     color: widget.hasActiveFilter
-                        ? const Color(0xFFEA580C)
+                        ? const Color(0xFF0088CC)
                         : const Color(0xFF475569),
                     size: 17,
                   ),

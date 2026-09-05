@@ -26,7 +26,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
   static const Map<String, _PostTypeOption> _postTypes = {
     'Company News': _PostTypeOption(
       icon: Icons.campaign_rounded,
-      color: Color(0xFF5B21B6),
+      color: Color(0xFF0088CC),
       description: 'Share company announcements and updates',
     ),
     'Product Launch': _PostTypeOption(
@@ -46,7 +46,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
     ),
     'Fundraising': _PostTypeOption(
       icon: Icons.trending_up_rounded,
-      color: Color(0xFF0891B2),
+      color: Color(0xFF0088CC),
       description: 'Share funding rounds or investment news',
     ),
     'Hiring': _PostTypeOption(
@@ -202,13 +202,13 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
               decoration: BoxDecoration(
                 color: isDelete
                     ? const Color(0xFFDC2626).withValues(alpha: 0.1)
-                    : const Color(0xFF5B21B6).withValues(alpha: 0.1),
+                    : const Color(0xFF0088CC).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
                 icon,
                 color:
-                    isDelete ? const Color(0xFFDC2626) : const Color(0xFF5B21B6),
+                    isDelete ? const Color(0xFFDC2626) : const Color(0xFF0088CC),
                 size: 22,
               ),
             ),
@@ -295,7 +295,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
     final option = _postTypes[_selectedType] ?? _postTypes.values.first;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -305,9 +305,9 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4338CA),
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -518,7 +518,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
                       borderSide: const BorderSide(
-                        color: Color(0xFF5B21B6),
+                        color: Color(0xFF0088CC),
                         width: 2,
                       ),
                     ),
@@ -573,7 +573,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
                       borderSide: const BorderSide(
-                        color: Color(0xFF5B21B6),
+                        color: Color(0xFF0088CC),
                         width: 2,
                       ),
                     ),
@@ -601,7 +601,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: _selectedImage != null
-                            ? const Color(0xFF5B21B6)
+                            ? const Color(0xFF0088CC)
                             : const Color(0xFFE5E7EB),
                         width: _selectedImage != null ? 2 : 1,
                       ),
@@ -617,11 +617,11 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
                                       Container(
-                                    color: const Color(0xFFEDE9FE),
+                                    color: const Color(0xFFE8F4FB),
                                     child: const Center(
                                       child: Icon(
                                         Icons.image_outlined,
-                                        color: Color(0xFF5B21B6),
+                                        color: Color(0xFF0088CC),
                                         size: 32,
                                       ),
                                     ),
@@ -658,13 +658,13 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                                 width: 48,
                                 height: 48,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF5B21B6)
+                                  color: const Color(0xFF0088CC)
                                       .withValues(alpha: 0.08),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const Icon(
                                   Icons.add_photo_alternate_outlined,
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   size: 24,
                                 ),
                               ),
@@ -727,7 +727,7 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(14),
                       borderSide: const BorderSide(
-                        color: Color(0xFF5B21B6),
+                        color: Color(0xFF0088CC),
                         width: 2,
                       ),
                     ),
@@ -818,9 +818,9 @@ class _StartupPostUpdateScreenState extends State<StartupPostUpdateScreen> {
                 onPressed: _isPublishing ? null : _publish,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: const Color(0xFF5B21B6),
+                  backgroundColor: const Color(0xFF0088CC),
                   foregroundColor: Colors.white,
-                  disabledBackgroundColor: const Color(0xFF5B21B6).withValues(alpha: 0.5),
+                  disabledBackgroundColor: const Color(0xFF0088CC).withValues(alpha: 0.5),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),

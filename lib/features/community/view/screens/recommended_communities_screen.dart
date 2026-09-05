@@ -39,7 +39,7 @@ class RecommendedCommunitiesScreen extends ConsumerWidget {
               children: [
                 const Icon(
                   Icons.auto_awesome_rounded,
-                  color: Color(0xFFEA580C),
+                  color: Color(0xFF229ED9),
                   size: 18,
                 ),
                 const SizedBox(width: 4),
@@ -48,7 +48,7 @@ class RecommendedCommunitiesScreen extends ConsumerWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFFEA580C),
+                    color: Color(0xFF229ED9),
                   ),
                 ),
               ],
@@ -78,13 +78,13 @@ class RecommendedCommunitiesScreen extends ConsumerWidget {
             width: 88,
             height: 88,
             decoration: BoxDecoration(
-              color: const Color(0xFFEA580C).withValues(alpha: 0.08),
+              color: const Color(0xFF229ED9).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.auto_awesome_rounded,
               size: 42,
-              color: Color(0xFFEA580C),
+              color: Color(0xFF229ED9),
             ),
           ),
           const SizedBox(height: 20),
@@ -207,11 +207,11 @@ class _RecommendedCard extends ConsumerWidget {
                       ),
                       decoration: BoxDecoration(
                         color: community.isJoined
-                            ? const Color(0xFFEA580C)
+                            ? const Color(0xFF229ED9)
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: const Color(0xFFEA580C),
+                          color: const Color(0xFF229ED9),
                           width: 1.5,
                         ),
                       ),
@@ -222,7 +222,7 @@ class _RecommendedCard extends ConsumerWidget {
                           fontWeight: FontWeight.w700,
                           color: community.isJoined
                               ? Colors.white
-                              : const Color(0xFFEA580C),
+                              : const Color(0xFF229ED9),
                         ),
                       ),
                     ),

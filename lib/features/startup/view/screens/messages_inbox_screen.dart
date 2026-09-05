@@ -95,10 +95,10 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
     final members = _filtered(teamState);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color(0xFF5B21B6),
+        backgroundColor: const Color(0xFF0088CC),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -147,7 +147,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFF7C3AED), Color(0xFF4C1D95)],
+              colors: [Color(0xFF229ED9), Color(0xFF006699)],
             ),
           ),
         ),
@@ -431,13 +431,13 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                 children: [
                   CircleAvatar(
                     radius: 22,
-                    backgroundColor: const Color(0xFFF3E8FF),
+                    backgroundColor: const Color(0xFFE8F4FB),
                     child: Text(
                       r.initials,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF7C3AED),
+                        color: Color(0xFF229ED9),
                       ),
                     ),
                   ),
@@ -515,7 +515,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                                     .read(requestsViewModelProvider.notifier)
                                     .accept(r.name),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF7C3AED),
+                                  backgroundColor: const Color(0xFF229ED9),
                                   foregroundColor: Colors.white,
                                   minimumSize: const Size(0, 36),
                                   padding: EdgeInsets.zero,
@@ -686,7 +686,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                             style: TextStyle(
                               fontSize: 11,
                               color: unread > 0
-                                  ? const Color(0xFF5B21B6)
+                                  ? const Color(0xFF0088CC)
                                   : const Color(0xFF9CA3AF),
                               fontWeight: unread > 0
                                   ? FontWeight.w700
@@ -706,7 +706,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                                         'typing',
                                         style: TextStyle(
                                           fontSize: 13,
-                                          color: Color(0xFF5B21B6),
+                                          color: Color(0xFF0088CC),
                                           fontStyle: FontStyle.italic,
                                         ),
                                       ),
@@ -738,7 +738,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                                 vertical: 3,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF5B21B6),
+                                color: const Color(0xFF0088CC),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -759,7 +759,7 @@ class _MessagesInboxScreenState extends ConsumerState<MessagesInboxScreen>
                                     : Icons.done_rounded,
                                 size: 14,
                                 color: lastMsg.status == MessageStatus.seen
-                                    ? const Color(0xFF5B21B6)
+                                    ? const Color(0xFF0088CC)
                                     : const Color(0xFF9CA3AF),
                               ),
                             ),
@@ -820,7 +820,7 @@ class _TypingDotsState extends State<_TypingDots>
                 width: 5,
                 height: 5,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF5B21B6),
+                  color: Color(0xFF0088CC),
                   shape: BoxShape.circle,
                 ),
               ),

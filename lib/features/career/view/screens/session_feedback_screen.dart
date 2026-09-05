@@ -62,7 +62,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -87,7 +87,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                                     value: 0.78,
                                     strokeWidth: 9,
                                     backgroundColor: Colors.grey.shade100,
-                                    valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0284C7)),
+                                    valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0088CC)),
                                   ),
                                 ),
                                 Column(
@@ -132,7 +132,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +165,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
                           border: Border(
-                            left: const BorderSide(color: Color(0xFF0284C7), width: 4),
+                            left: const BorderSide(color: Color(0xFF0088CC), width: 4),
                             top: BorderSide(color: Colors.grey.shade100, width: 1.2),
                             right: BorderSide(color: Colors.grey.shade100, width: 1.2),
                             bottom: BorderSide(color: Colors.grey.shade100, width: 1.2),
@@ -176,7 +176,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                           children: [
                             Row(
                               children: const [
-                                Icon(Icons.check_circle_rounded, color: Color(0xFF0284C7), size: 18),
+                                Icon(Icons.check_circle_rounded, color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'What You Did Well',
@@ -190,13 +190,13 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                             ),
                             const SizedBox(height: 14),
 
-                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0284C7),
+                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0088CC),
                                 'Strong structural explanation of the algorithm before diving into the code.'),
                             const SizedBox(height: 10),
-                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0284C7),
+                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0088CC),
                                 'Clean code syntax and appropriate naming conventions throughout.'),
                             const SizedBox(height: 10),
-                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0284C7),
+                            _buildBulletItem(Icons.check_rounded, const Color(0xFF0088CC),
                                 'Excellent response to edge case probing for large data sets.'),
                           ],
                         ),
@@ -267,7 +267,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -299,9 +299,9 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE0F2FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFBAE6FD), width: 1),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -309,7 +309,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF0284C7),
+                                color: const Color(0xFF0088CC),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: const Text(
@@ -327,7 +327,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0369A1),
+                                color: Color(0xFF006699),
                               ),
                             ),
                             const SizedBox(height: 6),
@@ -335,7 +335,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                               'Based on your session, focusing on sub-problem identification in DP will boost your technical score by 15%.',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Color(0xFF0369A1),
+                                color: Color(0xFF006699),
                                 height: 1.4,
                               ),
                             ),
@@ -349,7 +349,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                                   Navigator.popUntil(context, (route) => route.isFirst);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF0284C7),
+                                  backgroundColor: const Color(0xFF0088CC),
                                   elevation: 0,
                                   minimumSize: Size.zero,
                                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -387,7 +387,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -448,7 +448,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
                                   Navigator.popUntil(context, (route) => route.isFirst);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF0284C7),
+                                  backgroundColor: const Color(0xFF0088CC),
                                   elevation: 0,
                                   minimumSize: Size.zero,
                                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -494,7 +494,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
             ),
             Text(
               '$val/$total',
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
             ),
           ],
         ),
@@ -505,7 +505,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
             value: val / total,
             minHeight: 6,
             backgroundColor: Colors.grey.shade100,
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0284C7)),
+            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0088CC)),
           ),
         ),
       ],
@@ -546,7 +546,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -561,7 +561,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('"Um"', style: TextStyle(fontSize: 11, color: Colors.grey.shade500)),
-              const Text('14', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0284C7))),
+              const Text('14', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0088CC))),
             ],
           ),
           const SizedBox(height: 6),
@@ -569,7 +569,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('"Like"', style: TextStyle(fontSize: 11, color: Colors.grey.shade500)),
-              const Text('8', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0284C7))),
+              const Text('8', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0088CC))),
             ],
           ),
         ],
@@ -583,7 +583,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -595,7 +595,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
           const SizedBox(height: 12),
           const Text(
             '135 WPM',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
           ),
           const SizedBox(height: 2),
           Text(
@@ -613,7 +613,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
-            color: const Color(0xFFE0F2FE),
+            color: const Color(0xFFE8F4FB),
             borderRadius: BorderRadius.circular(6),
           ),
           child: Text(
@@ -621,7 +621,7 @@ class _SessionFeedbackScreenState extends State<SessionFeedbackScreen> {
             style: const TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF0284C7),
+              color: Color(0xFF0088CC),
             ),
           ),
         ),

@@ -54,13 +54,13 @@ class WhatsHappeningListScreen extends ConsumerWidget {
             width: 88,
             height: 88,
             decoration: BoxDecoration(
-              color: const Color(0xFFEA580C).withValues(alpha: 0.08),
+              color: const Color(0xFF229ED9).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.insights_rounded,
               size: 42,
-              color: Color(0xFFEA580C),
+              color: Color(0xFF229ED9),
             ),
           ),
           const SizedBox(height: 20),

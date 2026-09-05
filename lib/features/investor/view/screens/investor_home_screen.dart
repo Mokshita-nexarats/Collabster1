@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,9 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../core/di/providers.dart';
 import '../../../../core/theme/investor_colors.dart';
-import '../../../auth/view/screens/profile_screen.dart';
 import '../../../auth/view/sign_in_screen.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
+import '../../../../shared/widgets/mode_drawer.dart';
+import '../../../../shared/widgets/mode_menu_bar.dart';
 import '../../model/funding_round_model.dart';
 import '../../viewmodel/investor_viewmodel.dart';
 import 'deal_flow_screen.dart';
@@ -31,6 +31,7 @@ class InvestorHomeScreen extends ConsumerStatefulWidget {
 
 class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
   int _selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String get _timeBasedGreeting {
     final hour = DateTime.now().hour;
@@ -52,7 +53,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
 
   void _onNavTap(int index) {
     if (index == 4) {
-      _showProfileSheet();
+      _openInvestorProfile();
       return;
     }
     setState(() => _selectedIndex = index);
@@ -139,7 +140,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     ctx,
                     icon: Icons.edit_note_rounded,
                     label: 'Post Update',
-                    color: const Color(0xFFEA580C),
+                    color: const Color(0xFF0088CC),
                     onTap: () {
                       Navigator.pop(ctx);
                       _showPostUpdateSheet(context);
@@ -149,7 +150,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     ctx,
                     icon: Icons.calendar_month_rounded,
                     label: 'Schedule Meet',
-                    color: const Color(0xFF0D9488),
+                    color: const Color(0xFF0088CC),
                     onTap: () {
                       Navigator.pop(ctx);
                       _showScheduleMeetingSheet(context);
@@ -172,7 +173,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     ctx,
                     icon: Icons.note_add_rounded,
                     label: 'Quick Note',
-                    color: const Color(0xFF7C3AED),
+                    color: const Color(0xFF229ED9),
                     onTap: () {
                       Navigator.pop(ctx);
                       _showQuickNoteSheet(context);
@@ -522,14 +523,14 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         height: 44,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                            colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFFEA580C).withValues(alpha: 0.3),
+                              color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             ),
@@ -578,7 +579,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                             label: Text(cat),
                             selected: isSel,
                             onSelected: (_) => setModalState(() => selectedCategory = cat),
-                            selectedColor: const Color(0xFFEA580C),
+                            selectedColor: const Color(0xFF0088CC),
                             backgroundColor: const Color(0xFFF9FAFB),
                             labelStyle: TextStyle(
                               color: isSel ? Colors.white : const Color(0xFF4B5563),
@@ -596,14 +597,14 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                   TextField(
                     controller: titleController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.title_rounded, color: Color(0xFFEA580C), size: 20),
+                      prefixIcon: const Icon(Icons.title_rounded, color: Color(0xFF0088CC), size: 20),
                       labelText: 'Headline',
                       hintText: 'e.g. Co-leading Series A round in AI Health',
                       filled: true,
                       fillColor: const Color(0xFFF9FAFB),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
                       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFEA580C), width: 1.5)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5)),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -611,14 +612,14 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     controller: contentController,
                     maxLines: 3,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.article_rounded, color: Color(0xFFEA580C), size: 20),
+                      prefixIcon: const Icon(Icons.article_rounded, color: Color(0xFF0088CC), size: 20),
                       labelText: 'Update Details',
                       hintText: 'Share market insights, thesis or milestone...',
                       filled: true,
                       fillColor: const Color(0xFFF9FAFB),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
                       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFEA580C), width: 1.5)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5)),
                     ),
                   ),
                   const SizedBox(height: 18),
@@ -627,12 +628,12 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     height: 50,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                        colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                       ),
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFFEA580C).withValues(alpha: 0.3),
+                          color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -644,7 +645,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Update published to Investor Network!'),
-                            backgroundColor: Color(0xFFEA580C),
+                            backgroundColor: Color(0xFF0088CC),
                             behavior: SnackBarBehavior.floating,
                           ),
                         );
@@ -709,14 +710,14 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         height: 44,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF0D9488), Color(0xFF14B8A6)],
+                            colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF0D9488).withValues(alpha: 0.3),
+                              color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             ),
@@ -765,7 +766,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                             label: Text(type),
                             selected: isSel,
                             onSelected: (_) => setModalState(() => selectedType = type),
-                            selectedColor: const Color(0xFF0D9488),
+                            selectedColor: const Color(0xFF0088CC),
                             backgroundColor: const Color(0xFFF9FAFB),
                             labelStyle: TextStyle(
                               color: isSel ? Colors.white : const Color(0xFF4B5563),
@@ -783,13 +784,13 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                   TextField(
                     controller: titleController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.subject_rounded, color: Color(0xFF0D9488), size: 20),
+                      prefixIcon: const Icon(Icons.subject_rounded, color: Color(0xFF0088CC), size: 20),
                       labelText: 'Subject',
                       filled: true,
                       fillColor: const Color(0xFFF9FAFB),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
                       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF0D9488), width: 1.5)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5)),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -803,7 +804,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     ],
                     onChanged: (_) {},
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.rocket_launch_rounded, color: Color(0xFF0D9488), size: 20),
+                      prefixIcon: const Icon(Icons.rocket_launch_rounded, color: Color(0xFF0088CC), size: 20),
                       labelText: 'Startup / Founder',
                       filled: true,
                       fillColor: const Color(0xFFF9FAFB),
@@ -823,15 +824,15 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                             label: Text(time),
                             selected: isSel,
                             onSelected: (_) => setModalState(() => selectedTime = time),
-                            selectedColor: const Color(0xFF0D9488).withValues(alpha: 0.15),
-                            checkmarkColor: const Color(0xFF0D9488),
+                            selectedColor: const Color(0xFF0088CC).withValues(alpha: 0.15),
+                            checkmarkColor: const Color(0xFF0088CC),
                             labelStyle: TextStyle(
-                              color: isSel ? const Color(0xFF0D9488) : const Color(0xFF4B5563),
+                              color: isSel ? const Color(0xFF0088CC) : const Color(0xFF4B5563),
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
                             ),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            side: BorderSide(color: isSel ? const Color(0xFF0D9488) : const Color(0xFFE5E7EB)),
+                            side: BorderSide(color: isSel ? const Color(0xFF0088CC) : const Color(0xFFE5E7EB)),
                           ),
                         );
                       }).toList(),
@@ -843,12 +844,12 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     height: 50,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF0D9488), Color(0xFF14B8A6)],
+                        colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                       ),
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF0D9488).withValues(alpha: 0.3),
+                          color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -860,7 +861,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Meeting scheduled! Calendar invite sent.'),
-                            backgroundColor: Color(0xFF0D9488),
+                            backgroundColor: Color(0xFF0088CC),
                             behavior: SnackBarBehavior.floating,
                           ),
                         );
@@ -925,14 +926,14 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         height: 44,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF7C3AED), Color(0xFF8B5CF6)],
+                            colors: [Color(0xFF229ED9), Color(0xFF229ED9)],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF7C3AED).withValues(alpha: 0.3),
+                              color: const Color(0xFF229ED9).withValues(alpha: 0.3),
                               blurRadius: 10,
                               offset: const Offset(0, 4),
                             ),
@@ -981,7 +982,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                             label: Text(tag),
                             selected: isSel,
                             onSelected: (_) => setModalState(() => selectedTag = tag),
-                            selectedColor: const Color(0xFF7C3AED),
+                            selectedColor: const Color(0xFF229ED9),
                             backgroundColor: const Color(0xFFF9FAFB),
                             labelStyle: TextStyle(
                               color: isSel ? Colors.white : const Color(0xFF4B5563),
@@ -1000,20 +1001,20 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     controller: noteController,
                     maxLines: 4,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.sticky_note_2_rounded, color: Color(0xFF7C3AED), size: 20),
+                      prefixIcon: const Icon(Icons.sticky_note_2_rounded, color: Color(0xFF229ED9), size: 20),
                       labelText: 'Note Content',
                       hintText: 'Valuation expectations at \$15M, tech IP verified, cap table audited...',
                       filled: true,
                       fillColor: const Color(0xFFF9FAFB),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
                       enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF7C3AED), width: 1.5)),
+                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: Color(0xFF229ED9), width: 1.5)),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      const Icon(Icons.push_pin_rounded, size: 18, color: Color(0xFF7C3AED)),
+                      const Icon(Icons.push_pin_rounded, size: 18, color: Color(0xFF229ED9)),
                       const SizedBox(width: 8),
                       const Text(
                         'Pin note to top of deal vault',
@@ -1022,7 +1023,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                       const Spacer(),
                       Switch(
                         value: pinToTop,
-                        activeColor: const Color(0xFF7C3AED),
+                        activeColor: const Color(0xFF229ED9),
                         onChanged: (val) => setModalState(() => pinToTop = val),
                       ),
                     ],
@@ -1033,12 +1034,12 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                     height: 50,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF7C3AED), Color(0xFF8B5CF6)],
+                        colors: [Color(0xFF229ED9), Color(0xFF229ED9)],
                       ),
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF7C3AED).withValues(alpha: 0.3),
+                          color: const Color(0xFF229ED9).withValues(alpha: 0.3),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -1050,7 +1051,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Private diligence note saved!'),
-                            backgroundColor: Color(0xFF7C3AED),
+                            backgroundColor: Color(0xFF229ED9),
                             behavior: SnackBarBehavior.floating,
                           ),
                         );
@@ -1283,7 +1284,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
         embedded: true,
         onViewPortfolio: () => _openTab(1),
       ),
-      const InvestorMessagesScreen(),
+      const InvestorMessagesScreen(embedded: true),
       InvestorProfileScreen(
         embedded: true,
         onGoHome: () => _openTab(0),
@@ -1291,7 +1292,9 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     ];
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: InvestorColors.goldBg,
+      drawer: _buildDrawer(),
       body: IndexedStack(index: _selectedIndex, children: pages),
       bottomNavigationBar: _InvestorNavBar(
         selectedIndex: _selectedIndex,
@@ -1394,191 +1397,103 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
-  void _showProfileSheet() {
-    final session = ref.read(authViewModelProvider).session;
-    final userName = session?.fullName ?? 'Investor';
-    final email = session?.email ?? '';
-    final roleLabel = session?.activeUserRole.label ?? 'Investor';
-    final photoPath = session?.profilePhotoPath ?? '';
-    final hasPhoto = photoPath.isNotEmpty && File(photoPath).existsSync();
-
-    String getInitials(String name) {
-      final parts = name.split(' ').where((p) => p.isNotEmpty).toList();
-      if (parts.length >= 2) return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
-      if (parts.isNotEmpty) return parts[0][0].toUpperCase();
-      return 'IN';
-    }
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      builder: (ctx) => SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE5E7EB),
-                      borderRadius: BorderRadius.circular(999),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: InvestorColors.goldSoft,
-                    backgroundImage: hasPhoto ? FileImage(File(photoPath)) : null,
-                    child: hasPhoto
-                        ? null
-                        : Text(
-                            getInitials(userName),
-                            style: const TextStyle(
-                              color: InvestorColors.goldDeep,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    userName,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                      color: InvestorColors.ink,
-                    ),
-                  ),
-                  if (email.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      email,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: InvestorColors.textMuted,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 2),
-                  Text(
-                    roleLabel,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: InvestorColors.textMuted,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  _sheetAction(
-                    Icons.person_outline_rounded,
-                    'View Account Profile',
-                    InvestorColors.goldDeep,
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ProfileScreen()),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.workspace_premium_rounded,
-                    'Investor Thesis Profile',
-                    InvestorColors.goldDeep,
-                    () {
-                      Navigator.pop(ctx);
-                      _openInvestorProfile();
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.swap_horiz_rounded,
-                    'Switch Tab',
-                    InvestorColors.blue,
-                    () {
-                      Navigator.pop(ctx);
-                      RoleSwitcherSheet.show(context);
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.logout_rounded,
-                    'Logout',
-                    InvestorColors.red,
-                    () async {
-                      final navigator = Navigator.of(context);
-                      Navigator.pop(ctx);
-                      await ref.read(authViewModelProvider.notifier).logout();
-                      if (!mounted) return;
-                      navigator.pushReplacement(
-                        MaterialPageRoute(builder: (_) => const SignInScreen()),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              ),
-            ),
+  Future<void> _logout() async {
+    Navigator.pop(context);
+    await ref.read(authViewModelProvider.notifier).logout();
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
     );
   }
 
-  Widget _sheetAction(IconData icon, String label, Color color, VoidCallback onTap) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.06),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: color.withValues(alpha: 0.15)),
-          ),
-          child: Row(
-            children: [
-              Icon(icon, color: color, size: 20),
-              const SizedBox(width: 12),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 14.5,
-                  fontWeight: FontWeight.w700,
-                  color: color,
-                ),
-              ),
-              const Spacer(),
-              Icon(Icons.chevron_right_rounded, color: color, size: 20),
-            ],
-          ),
+  Widget _buildDrawer() {
+    final session = ref.watch(authViewModelProvider).session;
+    return ModeDrawer(
+      userName: session?.fullName ?? 'Investor',
+      email: session?.email ?? '',
+      photoPath: session?.profilePhotoPath ?? '',
+      headerGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      avatarColor: InvestorColors.goldDeep,
+      items: [
+        ModeDrawerItem(
+          icon: Icons.add_circle_outline_rounded,
+          label: 'Create New',
+          onTap: () {
+            Navigator.pop(context);
+            _showCreateSheet();
+          },
         ),
-      ),
+        ModeDrawerItem(
+          icon: Icons.pie_chart_outline_rounded,
+          label: 'Portfolio',
+          onTap: () {
+            Navigator.pop(context);
+            _openTab(1);
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.show_chart_rounded,
+          label: 'Deal Flow',
+          onTap: () {
+            Navigator.pop(context);
+            _openTab(2);
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.notifications_none_rounded,
+          label: 'Notifications',
+          onTap: () {
+            Navigator.pop(context);
+            _openNotificationsScreen();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.person_outline_rounded,
+          label: 'My Profile',
+          onTap: () {
+            Navigator.pop(context);
+            _openInvestorProfile();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.alt_route_rounded,
+          label: 'Connect',
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    const ConnectScreen(modeTheme: 'investor'),
+              ),
+            );
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.swap_horiz_rounded,
+          label: 'Switch Tab',
+          onTap: () {
+            Navigator.pop(context);
+            RoleSwitcherSheet.show(context);
+          },
+        ),
+      ],
+      onLogout: _logout,
     );
   }
 
   Widget _buildHeaderRow() {
+    final hasUnread =
+        ref.watch(investorNotificationsViewModelProvider).unreadCount > 0;
     return Row(
       children: [
-        Container(
-          width: 46,
-          height: 46,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFFE9C04F), Color(0xFFD4A017)],
-            ),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.35), width: 1.5),
-          ),
-          child: const Icon(Icons.trending_up_rounded, color: Colors.white, size: 24),
+        ModeMenuButton(
+          onTap: () => _scaffoldKey.currentState?.openDrawer(),
         ),
-        const SizedBox(width: 12),
         const Expanded(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Investor Hub',
@@ -1591,34 +1506,36 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
             ],
           ),
         ),
-        // Notification bell matching other modes
+        const SizedBox(width: 10),
         GestureDetector(
           onTap: _openNotificationsScreen,
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(12),
+          child: Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Stack(
+              children: [
+                const Center(
+                  child: Icon(Icons.notifications_outlined, color: Colors.white, size: 22),
                 ),
-                child: const Icon(Icons.notifications_outlined, color: Colors.white, size: 21),
-              ),
-              Positioned(
-                right: 7,
-                top: 7,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: InvestorColors.red,
-                    shape: BoxShape.circle,
+                if (hasUnread)
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF87171),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
@@ -1675,7 +1592,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
       _HomeAction(
         icon: Icons.note_add_rounded,
         label: 'Notes',
-        color: const Color(0xFF7C3AED),
+        color: const Color(0xFF229ED9),
         onTap: () {
           Navigator.push(
             context,
@@ -1686,7 +1603,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
       _HomeAction(
         icon: Icons.edit_note_rounded,
         label: 'Posts',
-        color: const Color(0xFFEA580C),
+        color: const Color(0xFF0088CC),
         onTap: () {
           _showPostUpdateSheet(context);
         },
@@ -1694,7 +1611,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
       _HomeAction(
         icon: Icons.calendar_month_rounded,
         label: 'Meets',
-        color: const Color(0xFF0D9488),
+        color: const Color(0xFF0088CC),
         onTap: () {
           Navigator.push(
             context,
@@ -2392,218 +2309,23 @@ class _InvestorNavBar extends StatelessWidget {
   final ValueChanged<int> onTap;
   final VoidCallback onAddTap;
 
-  static const double _navBarHeight = 64;
-  static const double _fabSize = 56;
-  static const double _navBarTop = 14;
-  static const double _fabTop = -12;
-
   @override
   Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final totalHeight = _navBarTop + _navBarHeight + bottomInset + 8;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final navBg = isDark ? const Color(0xFF1A1D35) : Colors.white;
-    final navBorder = isDark ? const Color(0xFF2D3352) : InvestorColors.border;
-    final selectedColor = InvestorColors.goldDeep;
-    final unselectedColor = isDark ? const Color(0xFF64748B) : const Color(0xFF9CA3AF);
-    final shadowColor = isDark ? Colors.black : Colors.black.withValues(alpha: 0.08);
-
-    return SizedBox(
-      height: totalHeight,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Positioned(
-            top: _navBarTop,
-            left: 12,
-            right: 12,
-            bottom: 0,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: bottomInset),
-              child: CustomPaint(
-                painter: _InvestorNavPainter(
-                  fillColor: navBg,
-                  borderColor: navBorder,
-                  shadowColor: shadowColor,
-                ),
-                size: Size.infinite,
-                child: SizedBox(
-                  height: _navBarHeight,
-                  child: Row(
-                    children: [
-                      _navItem(0, Icons.home_outlined, Icons.home_rounded, 'Home', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      _navItem(1, Icons.pie_chart_outline_rounded, Icons.pie_chart_rounded, 'Portfolio', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      SizedBox(width: _fabSize + 12),
-                      _navItem(3, Icons.chat_bubble_outline_rounded, Icons.chat_bubble_rounded, 'Messages', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      _navItem(4, Icons.person_outline_rounded, Icons.person_rounded, 'Profile', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: _fabTop,
-            child: _addButton(),
-          ),
-        ],
-      ),
+    // Same flat menu-bar design as Community mode — Investor keeps its own
+    // gold accent, tabs and tap behavior (dark-mode aware).
+    return ModeMenuBar(
+      selectedIndex: selectedIndex,
+      onTap: onTap,
+      onFabTap: onAddTap,
+      selectedColor: InvestorColors.goldDeep,
+      fabGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      borderColor: InvestorColors.border,
+      items: const [
+        ModeMenuItem(index: 0, icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
+        ModeMenuItem(index: 1, icon: Icons.pie_chart_outline_rounded, activeIcon: Icons.pie_chart_rounded, label: 'Portfolio'),
+        ModeMenuItem(index: 3, icon: Icons.chat_bubble_outline_rounded, activeIcon: Icons.chat_bubble_rounded, label: 'Messages'),
+        ModeMenuItem(index: 4, icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
+      ],
     );
   }
-
-  Widget _addButton() {
-    return GestureDetector(
-      onTap: onAddTap,
-      child: Container(
-        width: _fabSize,
-        height: _fabSize,
-        decoration: BoxDecoration(
-          gradient: InvestorColors.goldGradient,
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: InvestorColors.goldDeep.withValues(alpha: 0.30),
-              blurRadius: 14,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.add_rounded, color: Colors.white, size: 28),
-      ),
-    );
-  }
-
-  Widget _navItem(int index, IconData icon, IconData activeIcon, String label, {
-    required Color selectedColor,
-    required Color unselectedColor,
-  }) {
-    final selected = selectedIndex == index;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => onTap(index),
-        behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              selected ? activeIcon : icon,
-              color: selected ? selectedColor : unselectedColor,
-              size: 24,
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: selected ? FontWeight.w800 : FontWeight.w500,
-                color: selected ? selectedColor : unselectedColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _InvestorNavPainter extends CustomPainter {
-  const _InvestorNavPainter({
-    required this.fillColor,
-    required this.borderColor,
-    required this.shadowColor,
-  });
-  final Color fillColor;
-  final Color borderColor;
-  final Color shadowColor;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (size.isEmpty) return;
-
-    final h = size.height;
-    final w = size.width;
-    final centerX = w / 2;
-    const cornerRadius = 28.0;
-    const fabRadius = 28.0;
-    const clearance = 5.0;
-    const notchR = fabRadius + clearance;
-    const notchW = notchR + 14;
-    const bottomArc = 2.5;
-
-    final path = Path()
-      // Top-left corner
-      ..moveTo(cornerRadius, 0)
-      // Top edge left — flat to notch entry
-      ..lineTo(centerX - notchW, 0)
-      // ── Deep U-shaped notch: wraps ~55% of FAB ──
-      // Left entry — tangent flows from horizontal into the U-descent
-      ..cubicTo(
-        centerX - notchW + 10, 0,
-        centerX - notchR * 1.1, notchR * 0.06,
-        centerX - notchR, notchR * 0.35,
-      )
-      // Left wall — follows FAB curvature downward
-      ..cubicTo(
-        centerX - notchR * 0.92, notchR * 0.6,
-        centerX - notchR * 0.75, notchR * 0.85,
-        centerX - notchR * 0.5, notchR * 0.98,
-      )
-      // Left bottom — smooth curve into U-base
-      ..cubicTo(
-        centerX - notchR * 0.28, notchR * 1.05,
-        centerX - notchR * 0.08, notchR * 1.1,
-        centerX, notchR * 1.1,
-      )
-      // Right bottom — mirror
-      ..cubicTo(
-        centerX + notchR * 0.08, notchR * 1.1,
-        centerX + notchR * 0.28, notchR * 1.05,
-        centerX + notchR * 0.5, notchR * 0.98,
-      )
-      // Right wall
-      ..cubicTo(
-        centerX + notchR * 0.75, notchR * 0.85,
-        centerX + notchR * 0.92, notchR * 0.6,
-        centerX + notchR, notchR * 0.35,
-      )
-      // Right entry — exit U
-      ..cubicTo(
-        centerX + notchR * 1.1, notchR * 0.06,
-        centerX + notchW - 10, 0,
-        centerX + notchW, 0,
-      )
-      // Top edge right
-      ..lineTo(w - cornerRadius, 0)
-      ..quadraticBezierTo(w, 0, w, cornerRadius)
-      // Right side
-      ..lineTo(w, h - bottomArc)
-      ..quadraticBezierTo(w, h, w - bottomArc, h)
-      // Bottom edge
-      ..lineTo(bottomArc, h)
-      ..quadraticBezierTo(0, h, 0, h - bottomArc)
-      // Left side
-      ..lineTo(0, cornerRadius)
-      ..quadraticBezierTo(0, 0, cornerRadius, 0)
-      ..close();
-
-    // Shadow
-    canvas.drawPath(
-      path.shift(const Offset(0, 3)),
-      Paint()..color = shadowColor,
-    );
-    // Fill
-    canvas.drawPath(path, Paint()..color = fillColor);
-    // Border
-    canvas.drawPath(
-      path,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..color = borderColor
-        ..strokeWidth = 1,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

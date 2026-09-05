@@ -4,7 +4,7 @@ class StartupColorHelper {
   static Color fromKey(String key) {
     switch (key) {
       case 'primary':
-        return const Color(0xFF5B21B6);
+        return const Color(0xFF0088CC);
       case 'live':
         return const Color(0xFF059669);
       case 'beta':
@@ -12,13 +12,13 @@ class StartupColorHelper {
       case 'draft':
         return const Color(0xFF6B7280);
       case 'founder':
-        return const Color(0xFF5B21B6);
+        return const Color(0xFF0088CC);
       case 'cofounder':
         return const Color(0xFF0D9488);
       case 'coreTeam':
         return const Color(0xFF2563EB);
       case 'indigo':
-        return const Color(0xFF4F46E5);
+        return const Color(0xFF229ED9);
       case 'teal':
         return const Color(0xFF0D9488);
       case 'amber':
@@ -26,13 +26,13 @@ class StartupColorHelper {
       case 'blue':
         return const Color(0xFF2563EB);
       case 'purple':
-        return const Color(0xFF8B5CF6);
+        return const Color(0xFF229ED9);
       case 'muted':
         return const Color(0xFF9CA3AF);
       case 'red':
         return const Color(0xFFDC2626);
       case 'cyan':
-        return const Color(0xFF0891B2);
+        return const Color(0xFF0088CC);
       case 'green':
         return const Color(0xFF059669);
       default:

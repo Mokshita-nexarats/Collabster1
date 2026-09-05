@@ -91,11 +91,11 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: const Color(0xFFEDE9FE),
+                  backgroundColor: const Color(0xFFE8F4FB),
                   child: Text(
                     member.initials,
                     style: const TextStyle(
-                      color: Color(0xFF5B21B6),
+                      color: Color(0xFF0088CC),
                       fontSize: 20,
                       fontWeight: FontWeight.w800,
                     ),
@@ -146,13 +146,13 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFF6F3FF),
+                color: const Color(0xFFF0F9FF),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Row(
                 children: [
                   const Icon(Icons.mail_outline,
-                      color: Color(0xFF5B21B6), size: 20),
+                      color: Color(0xFF0088CC), size: 20),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
@@ -184,7 +184,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       child: const Text(
                         'Copy',
                         style: TextStyle(
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                         ),
@@ -226,7 +226,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                     icon: const Icon(Icons.chat_bubble_rounded, size: 18),
                     label: const Text('Message'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -311,12 +311,12 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                         width: 42,
                         height: 42,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.person_add_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -338,7 +338,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       hintText: 'Full Name (e.g. Alex Morgan)',
                       prefixIcon: const Icon(Icons.person_outline),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -353,7 +353,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       hintText: 'Email Address (e.g. alex@company.com)',
                       prefixIcon: const Icon(Icons.mail_outline),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -367,7 +367,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       hintText: 'Role / Title (e.g. Lead Frontend Engineer)',
                       prefixIcon: const Icon(Icons.work_outline),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -381,7 +381,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       hintText: 'Department (e.g. Engineering / Tech)',
                       prefixIcon: const Icon(Icons.business_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -471,7 +471,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -501,11 +501,11 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
         duration: const Duration(milliseconds: 150),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFF5B21B6) : const Color(0xFFF6F3FF),
+          color: selected ? const Color(0xFF0088CC) : const Color(0xFFF0F9FF),
           borderRadius: BorderRadius.circular(999),
           border: Border.all(
             color:
-                selected ? const Color(0xFF5B21B6) : const Color(0xFFE5E7EB),
+                selected ? const Color(0xFF0088CC) : const Color(0xFFE5E7EB),
           ),
         ),
         child: Text(
@@ -557,7 +557,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
     ];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -567,9 +567,9 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4F46E5),
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF229ED9),
                   ],
                 ),
               ),
@@ -691,7 +691,7 @@ class _TeamCommandScreenState extends ConsumerState<TeamCommandScreen>
                       labelPadding:
                           const EdgeInsets.symmetric(horizontal: 16),
                       indicator: BoxDecoration(
-                        color: const Color(0xFF5B21B6),
+                        color: const Color(0xFF0088CC),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       indicatorSize: TabBarIndicatorSize.tab,
@@ -847,11 +847,11 @@ class _MemberCard extends StatelessWidget {
             onTap: onProfile,
             child: CircleAvatar(
               radius: 26,
-              backgroundColor: const Color(0xFFE8DBFF),
+              backgroundColor: const Color(0xFFE0F2FE),
               child: Text(
                 member.initials,
                 style: const TextStyle(
-                  color: Color(0xFF5B21B6),
+                  color: Color(0xFF0088CC),
                   fontWeight: FontWeight.w800,
                   fontSize: 14,
                 ),
@@ -949,11 +949,11 @@ class _MemberCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: isFollowing
-                        ? const Color(0xFFEDE9FE)
-                        : const Color(0xFF5B21B6),
+                        ? const Color(0xFFE8F4FB)
+                        : const Color(0xFF0088CC),
                     borderRadius: BorderRadius.circular(999),
                     border: isFollowing
-                        ? Border.all(color: const Color(0xFF7C3AED))
+                        ? Border.all(color: const Color(0xFF229ED9))
                         : null,
                   ),
                   child: Row(
@@ -963,7 +963,7 @@ class _MemberCard extends StatelessWidget {
                         const Icon(
                           Icons.check_rounded,
                           size: 12,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                         ),
                         const SizedBox(width: 3),
                       ],
@@ -971,7 +971,7 @@ class _MemberCard extends StatelessWidget {
                         isFollowing ? 'Following' : 'Follow',
                         style: TextStyle(
                           color: isFollowing
-                              ? const Color(0xFF5B21B6)
+                              ? const Color(0xFF0088CC)
                               : Colors.white,
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
@@ -1012,11 +1012,11 @@ class _SmallMemberTile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 22,
-              backgroundColor: const Color(0xFFE8DBFF),
+              backgroundColor: const Color(0xFFE0F2FE),
               child: Text(
                 initials,
                 style: const TextStyle(
-                  color: Color(0xFF5B21B6),
+                  color: Color(0xFF0088CC),
                   fontWeight: FontWeight.w800,
                   fontSize: 13,
                 ),

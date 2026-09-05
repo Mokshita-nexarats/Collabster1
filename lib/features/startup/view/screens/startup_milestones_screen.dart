@@ -11,7 +11,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
     final milestonesState = ref.watch(milestonesViewModelProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -20,7 +20,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF5B21B6), Color(0xFF7C3AED), Color(0xFF4338CA)],
+                  colors: [Color(0xFF0088CC), Color(0xFF229ED9), Color(0xFF0088CC)],
                 ),
               ),
               padding: EdgeInsets.only(
@@ -119,7 +119,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                   label: const Text('Add New Milestone', style: TextStyle(fontWeight: FontWeight.w700)),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
@@ -198,12 +198,12 @@ class StartupMilestonesScreen extends ConsumerWidget {
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.flag_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -266,7 +266,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF5B21B6), width: 1.5),
+                        borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                       ),
                     ),
                   ),
@@ -290,7 +290,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       return ChoiceChip(
                         label: Text(cat),
                         selected: isSelected,
-                        selectedColor: const Color(0xFF5B21B6),
+                        selectedColor: const Color(0xFF0088CC),
                         backgroundColor: const Color(0xFFF3F4F6),
                         labelStyle: TextStyle(
                           color: isSelected ? Colors.white : const Color(0xFF374151),
@@ -325,7 +325,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                         builder: (ctx, child) => Theme(
                           data: Theme.of(ctx).copyWith(
                             colorScheme: const ColorScheme.light(
-                              primary: Color(0xFF5B21B6),
+                              primary: Color(0xFF0088CC),
                               onPrimary: Colors.white,
                             ),
                           ),
@@ -357,7 +357,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF5B21B6), width: 1.5),
+                        borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                       ),
                     ),
                   ),
@@ -378,7 +378,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       final isSelected = st == selectedStatus;
                       final colors = {
                         'Upcoming': const Color(0xFF6B7280),
-                        'In Progress': const Color(0xFF5B21B6),
+                        'In Progress': const Color(0xFF0088CC),
                         'Completed': const Color(0xFF059669),
                       };
                       return Expanded(
@@ -431,7 +431,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(color: Color(0xFF5B21B6), width: 1.5),
+                        borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                       ),
                     ),
                   ),
@@ -489,7 +489,7 @@ class StartupMilestonesScreen extends ConsumerWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -521,7 +521,7 @@ class MilestoneItem extends StatelessWidget {
     final dotColor = milestone.completed
         ? const Color(0xFF059669)
         : milestone.active
-            ? const Color(0xFF5B21B6)
+            ? const Color(0xFF0088CC)
             : const Color(0xFFD1D5DB);
 
     return Row(
@@ -570,8 +570,8 @@ class MilestoneItem extends StatelessWidget {
                     if (milestone.active)
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(color: const Color(0xFFEDE9FE), borderRadius: BorderRadius.circular(999)),
-                        child: const Text('IN PROGRESS', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800, color: Color(0xFF5B21B6), letterSpacing: 0.6)),
+                        decoration: BoxDecoration(color: const Color(0xFFE8F4FB), borderRadius: BorderRadius.circular(999)),
+                        child: const Text('IN PROGRESS', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w800, color: Color(0xFF0088CC), letterSpacing: 0.6)),
                       ),
                   ],
                 ),

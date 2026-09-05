@@ -81,7 +81,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -100,7 +100,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                                   child: Container(
                                     padding: const EdgeInsets.all(4),
                                     decoration: const BoxDecoration(
-                                      color: Color(0xFF0284C7),
+                                      color: Color(0xFF0088CC),
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
@@ -129,7 +129,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFE0F2FE),
+                                color: const Color(0xFFE8F4FB),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
@@ -137,7 +137,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF0284C7),
+                                  color: Color(0xFF0088CC),
                                 ),
                               ),
                             ),
@@ -264,7 +264,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                             onTap: () => setState(() => _selectedSlotIndex = index),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: selected ? const Color(0xFF0284C7) : const Color(0xFFF0F9FF),
+                                color: selected ? const Color(0xFF0088CC) : const Color(0xFFF0F9FF),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               alignment: Alignment.center,
@@ -289,7 +289,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -329,21 +329,21 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                         decoration: BoxDecoration(
                           color: const Color(0xFFF0F9FF),
                           borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: const Color(0xFFBAE6FD), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: const [
-                                Icon(Icons.star_purple500_rounded, color: Color(0xFF0284C7), size: 16),
+                                Icon(Icons.star_purple500_rounded, color: Color(0xFF0088CC), size: 16),
                                 SizedBox(width: 6),
                                 Text(
                                   'PRO FEATURE',
                                   style: TextStyle(
                                     fontSize: 9,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0284C7),
+                                    color: Color(0xFF0088CC),
                                   ),
                                 ),
                               ],
@@ -429,7 +429,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         minimumSize: const Size(180, 48),
                         shape: RoundedRectangleBorder(
@@ -487,7 +487,7 @@ class _PeerBookingScreenState extends State<PeerBookingScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 4),
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFF0284C7) : Colors.white,
+          color: selected ? const Color(0xFF0088CC) : Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: selected ? Colors.transparent : Colors.grey.shade200,

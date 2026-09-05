@@ -6,6 +6,7 @@ class RegistrationViewModel extends StateNotifier<RegistrationState> {
   RegistrationViewModel() : super(const RegistrationState());
 
   void loadInitialData() {
+    if (state.members.isNotEmpty) return;
     state = state.copyWith(
       members: const [
         StartupMember(
@@ -20,6 +21,11 @@ class RegistrationViewModel extends StateNotifier<RegistrationState> {
           status: 'Invite Sent',
           initials: 'MZ',
         ),
+      ],
+      socialLinks: const [
+        SocialLink(platform: 'Website', url: ''),
+        SocialLink(platform: 'LinkedIn', url: ''),
+        SocialLink(platform: 'Product Hunt', url: ''),
       ],
     );
   }
@@ -42,6 +48,18 @@ class RegistrationViewModel extends StateNotifier<RegistrationState> {
 
   void selectVisibility(String visibility) {
     state = state.copyWith(selectedVisibility: visibility);
+  }
+
+  void selectSubIndustry(String value) {
+    state = state.copyWith(subIndustry: value);
+  }
+
+  void selectStartupType(String value) {
+    state = state.copyWith(startupType: value);
+  }
+
+  void selectBusinessModel(String value) {
+    state = state.copyWith(businessModel: value);
   }
 
   void toggleRaising(bool value) {
@@ -93,5 +111,34 @@ class RegistrationViewModel extends StateNotifier<RegistrationState> {
     );
     state = state.copyWith(members: [newMember, ...state.members]);
     return true;
+  }
+
+  void removeTeamMemberAt(int index) {
+    if (index < 0 || index >= state.members.length) return;
+    final updated = List<StartupMember>.from(state.members)..removeAt(index);
+    state = state.copyWith(members: updated);
+  }
+
+  void addSocialLink(String platform, String url) {
+    if (platform.trim().isEmpty || url.trim().isEmpty) return;
+    state = state.copyWith(
+      socialLinks: [
+        ...state.socialLinks,
+        SocialLink(platform: platform.trim(), url: url.trim()),
+      ],
+    );
+  }
+
+  void updateSocialLink(int index, {String? platform, String? url}) {
+    if (index < 0 || index >= state.socialLinks.length) return;
+    final updated = List<SocialLink>.from(state.socialLinks);
+    updated[index] = updated[index].copyWith(platform: platform, url: url);
+    state = state.copyWith(socialLinks: updated);
+  }
+
+  void removeSocialLinkAt(int index) {
+    if (index < 0 || index >= state.socialLinks.length) return;
+    final updated = List<SocialLink>.from(state.socialLinks)..removeAt(index);
+    state = state.copyWith(socialLinks: updated);
   }
 }

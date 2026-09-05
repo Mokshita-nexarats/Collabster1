@@ -17,9 +17,9 @@ class _MatchPeerScreenState extends State<MatchPeerScreen> {
   static const _bg = Color(0xFF0D0D1A);
   static const _surface = Color(0xFF1A1A2E);
   static const _surfaceAlt = Color(0xFF16213E);
-  static const _purple = Color(0xFF7C3AED);
-  static const _purpleLight = Color(0xFFEDE9FE);
-  static const _purpleSubtle = Color(0xFF2D1B69);
+  static const _purple = Color(0xFF229ED9);
+  static const _purpleLight = Color(0xFFE8F4FB);
+  static const _purpleSubtle = Color(0xFF0F172A);
   static const _textPrimary = Colors.white;
   static const _textSecondary = Color(0xFF9CA3AF);
   static const _green = Color(0xFF10B981);
@@ -137,7 +137,7 @@ class _MatchPeerScreenState extends State<MatchPeerScreen> {
                       decoration: BoxDecoration(
                         color: _purpleSubtle,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Color(0xFF7C3AED).withValues(alpha: 0.3), width: 1),
+                        border: Border.all(color: Color(0xFF229ED9).withValues(alpha: 0.3), width: 1),
                       ),
                       child: Row(
                         children: [
@@ -569,7 +569,7 @@ class _MatchPeerScreenState extends State<MatchPeerScreen> {
       decoration: BoxDecoration(
         color: _purpleSubtle,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Color(0xFF7C3AED).withValues(alpha: 0.4), width: 1),
+        border: Border.all(color: Color(0xFF229ED9).withValues(alpha: 0.4), width: 1),
       ),
       child: Text(
         label,

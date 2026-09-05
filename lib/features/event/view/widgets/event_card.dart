@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../model/event_model.dart';
 
-const _accent = Color(0xFF059669);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentBg = Color(0xFFEFF6FF);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
 const _borderColor = Color(0xFFE2E8F0);

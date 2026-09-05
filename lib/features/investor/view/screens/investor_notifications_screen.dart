@@ -64,11 +64,11 @@ class _InvestorNotificationsScreenState extends ConsumerState<InvestorNotificati
       case InvestorNotificationType.portfolio:
         return const Color(0xFF15803D);
       case InvestorNotificationType.meeting:
-        return const Color(0xFF7C3AED);
+        return const Color(0xFF229ED9);
       case InvestorNotificationType.market:
         return const Color(0xFF64748B);
       case InvestorNotificationType.system:
-        return const Color(0xFFEA580C);
+        return const Color(0xFF0088CC);
     }
   }
 

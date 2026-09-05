@@ -52,6 +52,11 @@ class AuthSession {
     this.startupFundingStage,
     this.startupCurrentlyRaising = false,
     this.startupVisibility,
+    this.startupTargetAmount,
+    this.startupRoundSize,
+    this.startupValuation,
+    this.startupFundingDeadline,
+    this.startupExistingInvestors,
     this.originalStartupName,
     this.originalStartupData,
     this.joinedStartupName,
@@ -106,6 +111,11 @@ class AuthSession {
   final String? startupFundingStage;
   final bool? startupCurrentlyRaising;
   final String? startupVisibility;
+  final String? startupTargetAmount;
+  final String? startupRoundSize;
+  final String? startupValuation;
+  final String? startupFundingDeadline;
+  final String? startupExistingInvestors;
   final String? originalStartupName;
   final Map<String, dynamic>? originalStartupData;
   final String? joinedStartupName;
@@ -170,6 +180,11 @@ class AuthSession {
     String? startupFundingStage,
     bool? startupCurrentlyRaising,
     String? startupVisibility,
+    String? startupTargetAmount,
+    String? startupRoundSize,
+    String? startupValuation,
+    String? startupFundingDeadline,
+    String? startupExistingInvestors,
     String? originalStartupName,
     Map<String, dynamic>? originalStartupData,
     String? joinedStartupName,
@@ -224,6 +239,11 @@ class AuthSession {
       startupFundingStage: startupFundingStage ?? this.startupFundingStage,
       startupCurrentlyRaising: startupCurrentlyRaising ?? this.startupCurrentlyRaising,
       startupVisibility: startupVisibility ?? this.startupVisibility,
+      startupTargetAmount: startupTargetAmount ?? this.startupTargetAmount,
+      startupRoundSize: startupRoundSize ?? this.startupRoundSize,
+      startupValuation: startupValuation ?? this.startupValuation,
+      startupFundingDeadline: startupFundingDeadline ?? this.startupFundingDeadline,
+      startupExistingInvestors: startupExistingInvestors ?? this.startupExistingInvestors,
       originalStartupName: originalStartupName ?? this.originalStartupName,
       originalStartupData: originalStartupData ?? this.originalStartupData,
       joinedStartupName: clearJoinedStartup ? null : (joinedStartupName ?? this.joinedStartupName),
@@ -280,6 +300,11 @@ class AuthSession {
       'startupFundingStage': startupFundingStage,
       'startupCurrentlyRaising': startupCurrentlyRaising,
       'startupVisibility': startupVisibility,
+      'startupTargetAmount': startupTargetAmount,
+      'startupRoundSize': startupRoundSize,
+      'startupValuation': startupValuation,
+      'startupFundingDeadline': startupFundingDeadline,
+      'startupExistingInvestors': startupExistingInvestors,
       'originalStartupName': originalStartupName,
       'originalStartupData': originalStartupData,
       'joinedStartupName': joinedStartupName,
@@ -342,6 +367,11 @@ class AuthSession {
       startupFundingStage: json['startupFundingStage'] as String?,
       startupCurrentlyRaising: json['startupCurrentlyRaising'] as bool?,
       startupVisibility: json['startupVisibility'] as String?,
+      startupTargetAmount: json['startupTargetAmount'] as String?,
+      startupRoundSize: json['startupRoundSize'] as String?,
+      startupValuation: json['startupValuation'] as String?,
+      startupFundingDeadline: json['startupFundingDeadline'] as String?,
+      startupExistingInvestors: json['startupExistingInvestors'] as String?,
       originalStartupName: json['originalStartupName'] as String?,
       originalStartupData: (json['originalStartupData'] as Map<String, dynamic>?)?.cast<String, dynamic>(),
       joinedStartupName: json['joinedStartupName'] as String?,

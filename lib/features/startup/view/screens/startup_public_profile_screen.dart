@@ -8,9 +8,9 @@ class StartupPublicProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F5FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF7F5FF),
+        backgroundColor: const Color(0xFFF0F9FF),
         elevation: 0,
         title: const Text(
           'Public Profile',
@@ -28,7 +28,7 @@ class StartupPublicProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(26),
-                  border: Border.all(color: const Color(0xFFD7D5E5)),
+                  border: Border.all(color: const Color(0xFFE2E8F0)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,10 +38,10 @@ class StartupPublicProfileScreen extends StatelessWidget {
                         width: 90,
                         height: 90,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE4DAFF),
+                          color: const Color(0xFFE0F2FE),
                           borderRadius: BorderRadius.circular(22),
                         ),
-                        child: const Icon(Icons.business, size: 42, color: Color(0xFF5B21B6)),
+                        child: const Icon(Icons.business, size: 42, color: Color(0xFF0088CC)),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -90,7 +90,7 @@ class StartupPublicProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(22),
-                  border: Border.all(color: const Color(0xFFD7D5E5)),
+                  border: Border.all(color: const Color(0xFFE2E8F0)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

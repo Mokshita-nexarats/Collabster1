@@ -162,11 +162,11 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF0284C7),
+                            color: Color(0xFF0088CC),
                           ),
                         ),
                         SizedBox(width: 4),
-                        Icon(Icons.open_in_new_rounded, size: 14, color: Color(0xFF0284C7)),
+                        Icon(Icons.open_in_new_rounded, size: 14, color: Color(0xFF0088CC)),
                       ],
                     ),
                   ),
@@ -228,7 +228,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                 shape: BoxShape.circle,
                 border: Border.all(color: const Color(0xFFE2E8F0)),
               ),
-              child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7), size: 20),
+              child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC), size: 20),
             ),
           )
         else
@@ -236,10 +236,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFFE0F2FE),
+              color: const Color(0xFFE8F4FB),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.explore_rounded, color: Color(0xFF0284C7), size: 22),
+            child: const Icon(Icons.explore_rounded, color: Color(0xFF0088CC), size: 22),
           ),
         const Spacer(),
         Container(
@@ -250,12 +250,12 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
             shape: BoxShape.circle,
             border: Border.all(color: const Color(0xFFE2E8F0)),
           ),
-          child: const Icon(Icons.notifications_outlined, color: Color(0xFF0284C7), size: 20),
+          child: const Icon(Icons.notifications_outlined, color: Color(0xFF0088CC), size: 20),
         ),
         const SizedBox(width: 10),
         CircleAvatar(
           radius: 20,
-          backgroundColor: const Color(0xFF0284C7),
+          backgroundColor: const Color(0xFF0088CC),
           child: const Text(
             'A',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
@@ -272,10 +272,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.06),
+            color: const Color(0xFF0088CC).withOpacity(0.06),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -321,10 +321,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.04),
+            color: const Color(0xFF0088CC).withOpacity(0.04),
             blurRadius: 14,
             offset: const Offset(0, 4),
           ),
@@ -337,10 +337,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
             width: 46,
             height: 46,
             decoration: BoxDecoration(
-              color: const Color(0xFFE0F2FE),
+              color: const Color(0xFFE8F4FB),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Icon(icon, color: const Color(0xFF0284C7), size: 24),
+            child: Icon(icon, color: const Color(0xFF0088CC), size: 24),
           ),
           const SizedBox(height: 16),
           Text(
@@ -369,7 +369,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF0284C7),
+                color: Color(0xFF0088CC),
               ),
             ),
           ),
@@ -395,10 +395,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.04),
+            color: const Color(0xFF0088CC).withOpacity(0.04),
             blurRadius: 14,
             offset: const Offset(0, 4),
           ),
@@ -417,7 +417,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   color: const Color(0xFFF1F5F9),
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: Icon(icon, color: const Color(0xFF0284C7), size: 24),
+                child: Icon(icon, color: const Color(0xFF0088CC), size: 24),
               ),
               const Spacer(),
               Container(
@@ -489,7 +489,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   onPressed: () => _toggleSave(title),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
-                      color: isSaved ? const Color(0xFF0284C7) : const Color(0xFFCBD5E1),
+                      color: isSaved ? const Color(0xFF0088CC) : const Color(0xFFCBD5E1),
                       width: 1.3,
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 12),
@@ -500,7 +500,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: isSaved ? const Color(0xFF0284C7) : const Color(0xFF475569),
+                      color: isSaved ? const Color(0xFF0088CC) : const Color(0xFF475569),
                     ),
                   ),
                 ),
@@ -523,7 +523,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0284C7),
+                    backgroundColor: const Color(0xFF0088CC),
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -550,7 +550,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFFF8FAFC),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -578,7 +578,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   decoration: BoxDecoration(
-                    color: selected ? const Color(0xFF0284C7) : const Color(0xFFE0F2FE),
+                    color: selected ? const Color(0xFF0088CC) : const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -586,7 +586,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: selected ? Colors.white : const Color(0xFF0284C7),
+                      color: selected ? Colors.white : const Color(0xFF0088CC),
                     ),
                   ),
                 ),
@@ -605,10 +605,10 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.04),
+            color: const Color(0xFF0088CC).withOpacity(0.04),
             blurRadius: 14,
             offset: const Offset(0, 4),
           ),
@@ -693,16 +693,16 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: const Color(0xFF0284C7).withOpacity(0.3),
+              color: const Color(0xFF0088CC).withOpacity(0.3),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFF0284C7), width: 1),
+              border: Border.all(color: const Color(0xFF0088CC), width: 1),
             ),
             child: const Text(
               'PREMIUM',
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w900,
-                color: Color(0xFF38BDF8),
+                color: Color(0xFF229ED9),
                 letterSpacing: 0.8,
               ),
             ),
@@ -744,7 +744,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                   ),
                 ),
                 SizedBox(width: 6),
-                Icon(Icons.bolt_rounded, color: Color(0xFF38BDF8), size: 18),
+                Icon(Icons.bolt_rounded, color: Color(0xFF229ED9), size: 18),
               ],
             ),
           ),
@@ -766,7 +766,7 @@ class _SalaryChartPainter extends CustomPainter {
       ..cubicTo(w * 0.85, h * 0.1, w * 0.95, h * 0.4, w, h * 0.3);
 
     final linePaint = Paint()
-      ..color = const Color(0xFF0284C7)
+      ..color = const Color(0xFF0088CC)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0
       ..strokeCap = StrokeCap.round;
@@ -775,7 +775,7 @@ class _SalaryChartPainter extends CustomPainter {
 
     // Draw marker dot
     final markerOffset = Offset(w * 0.75, h * 0.25);
-    final dotPaint = Paint()..color = const Color(0xFF0284C7);
+    final dotPaint = Paint()..color = const Color(0xFF0088CC);
     final bgDotPaint = Paint()..color = Colors.white;
 
     canvas.drawCircle(markerOffset, 6, bgDotPaint);
@@ -795,7 +795,7 @@ class _SalaryChartPainter extends CustomPainter {
       const Radius.circular(6),
     );
 
-    canvas.drawRRect(tooltipRRect, Paint()..color = const Color(0xFF0284C7));
+    canvas.drawRRect(tooltipRRect, Paint()..color = const Color(0xFF0088CC));
     textPainter.paint(
       canvas,
       Offset(w * 0.75 - textPainter.width / 2, h * 0.25 - 18 - textPainter.height / 2),

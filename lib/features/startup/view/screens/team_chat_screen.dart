@@ -140,7 +140,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                           width: 50,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFF6F3FF),
+                            color: const Color(0xFFF0F9FF),
                             borderRadius: BorderRadius.circular(14),
                           ),
                           alignment: Alignment.center,
@@ -191,7 +191,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
   Widget _actionBtn(IconData icon, String label, VoidCallback onTap,
       {bool isDestructive = false}) {
     final color =
-        isDestructive ? const Color(0xFFEF4444) : const Color(0xFF5B21B6);
+        isDestructive ? const Color(0xFFEF4444) : const Color(0xFF0088CC);
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -268,7 +268,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF7C3AED), Color(0xFF4C1D95)],
+            colors: [Color(0xFF229ED9), Color(0xFF006699)],
           ),
         ),
       ),
@@ -451,7 +451,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                       _showEmoji
                           ? Icons.keyboard_alt_outlined
                           : Icons.emoji_emotions_outlined,
-                      color: const Color(0xFF5B21B6),
+                      color: const Color(0xFF0088CC),
                       size: 24,
                     ),
                     onPressed: () {
@@ -467,7 +467,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                   // Attachment button
                   IconButton(
                     icon: const Icon(Icons.attach_file_rounded,
-                        color: Color(0xFF5B21B6), size: 22),
+                        color: Color(0xFF0088CC), size: 22),
                     onPressed: _pickFile,
                   ),
 
@@ -476,7 +476,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                     child: Container(
                       constraints: const BoxConstraints(maxHeight: 120),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF6F3FF),
+                        color: const Color(0xFFF0F9FF),
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: TextField(
@@ -510,13 +510,13 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [Color(0xFF7C3AED), Color(0xFF4C1D95)],
+                          colors: [Color(0xFF229ED9), Color(0xFF006699)],
                         ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
                             color:
-                                const Color(0xFF5B21B6).withValues(alpha: 0.4),
+                                const Color(0xFF0088CC).withValues(alpha: 0.4),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -596,7 +596,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 11),
                     decoration: BoxDecoration(
-                      color: isMe ? const Color(0xFF5B21B6) : Colors.white,
+                      color: isMe ? const Color(0xFF0088CC) : Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(18),
                         topRight: const Radius.circular(18),
@@ -606,7 +606,7 @@ class _TeamChatScreenState extends ConsumerState<TeamChatScreen>
                       boxShadow: [
                         BoxShadow(
                           color: (isMe
-                                  ? const Color(0xFF5B21B6)
+                                  ? const Color(0xFF0088CC)
                                   : Colors.black)
                               .withValues(alpha: isMe ? 0.25 : 0.05),
                           blurRadius: isMe ? 12 : 6,
@@ -782,7 +782,7 @@ class _BouncingDotState extends State<_BouncingDot>
           width: 8,
           height: 8,
           decoration: BoxDecoration(
-            color: const Color(0xFF5B21B6).withValues(alpha: 0.5),
+            color: const Color(0xFF0088CC).withValues(alpha: 0.5),
             shape: BoxShape.circle,
           ),
         ),

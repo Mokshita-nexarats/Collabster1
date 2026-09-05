@@ -9,8 +9,8 @@ import '../../../model/event_category_model.dart';
 import 'event_detail_screen.dart';
 
 // ─── Color Tokens (Event hub — light green / white) ───────────────
-const _accent = Color(0xFF059669);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentBg = Color(0xFFEFF6FF);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
 const _borderColor = Color(0xFFE2E8F0);
@@ -676,7 +676,7 @@ class _EventCreateScreenState extends ConsumerState<EventCreateScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF065F46), Color(0xFF0F766E)],
+          colors: [Color(0xFF006699), Color(0xFF0F766E)],
         ),
       ),
       child: Column(
@@ -1109,7 +1109,7 @@ class _ImageOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isDestructive ? const Color(0xFFDC2626) : const Color(0xFF059669);
+    final color = isDestructive ? const Color(0xFFDC2626) : const Color(0xFF0088CC);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Material(

@@ -1,11 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/bridge/bridge_models.dart';
 import '../../../../../core/bridge/view/connect_screen.dart';
 import '../../../../../core/di/providers.dart';
 import '../../../../../shared/widgets/role_switcher_sheet.dart';
+import '../../../../../shared/widgets/mode_drawer.dart';
+import '../../../../../shared/widgets/mode_menu_bar.dart';
 import '../../../../auth/view/screens/profile_screen.dart';
 import '../../../../auth/view/sign_in_screen.dart';
 import '../../../../inbox/view/inbox_screen.dart';
@@ -26,9 +26,9 @@ import 'workshops_screen.dart';
 const _bg = Color(0xFFF8FAFC);
 const _surface = Colors.white;
 const _card = Colors.white;
-const _accent = Color(0xFF059669);
-const _accentLight = Color(0xFF10B981);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentLight = Color(0xFF229ED9);
+const _accentBg = Color(0xFFEFF6FF);
 const _live = Color(0xFFFF3C5C);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
@@ -42,6 +42,7 @@ class EventHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _bottomNavIndex = 0;
   int _selectedDayIndex = 0;
   int _activityTabIndex = 0;
@@ -156,7 +157,9 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
     final liveNow = allEvents.where((e) => e.isOnline).toList();
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: _bg,
+      drawer: _buildDrawer(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -240,14 +243,98 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
               );
               if (mounted) setState(() => _bottomNavIndex = 0);
             case 4:
-              setState(() => _bottomNavIndex = 4);
-              _showProfileSheet();
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (mounted) setState(() => _bottomNavIndex = 0);
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
+              );
           }
         },
       ),
+    );
+  }
+
+  void _push(Widget page) {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => page),
+    );
+  }
+
+  Future<void> _logout() async {
+    Navigator.pop(context);
+    await ref.read(authViewModelProvider.notifier).logout();
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
+    );
+  }
+
+  Widget _buildDrawer() {
+    final session = ref.watch(authViewModelProvider).session;
+    return ModeDrawer(
+      userName: session?.fullName ?? 'Sarah',
+      email: session?.email ?? '',
+      photoPath: session?.profilePhotoPath ?? '',
+      headerGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      avatarColor: const Color(0xFF0088CC),
+      items: [
+        ModeDrawerItem(
+          icon: Icons.add_circle_outline_rounded,
+          label: 'New Event',
+          onTap: () {
+            Navigator.pop(context);
+            _openCreate();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.event_outlined,
+          label: 'All Events',
+          onTap: () {
+            Navigator.pop(context);
+            _openAllEvents();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.confirmation_number_outlined,
+          label: 'My Events',
+          onTap: () {
+            Navigator.pop(context);
+            _openMyEvents();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.chat_bubble_outline_rounded,
+          label: 'Messages',
+          onTap: () => _push(const InboxScreen()),
+        ),
+        ModeDrawerItem(
+          icon: Icons.notifications_none_rounded,
+          label: 'Notifications',
+          onTap: () => _push(const EventNotificationsScreen()),
+        ),
+        ModeDrawerItem(
+          icon: Icons.alt_route_rounded,
+          label: 'Connect',
+          onTap: () =>
+              _push(const ConnectScreen(modeTheme: 'event')),
+        ),
+        ModeDrawerItem(
+          icon: Icons.person_outline_rounded,
+          label: 'My Profile',
+          onTap: () => _push(const ProfileScreen()),
+        ),
+        ModeDrawerItem(
+          icon: Icons.swap_horiz_rounded,
+          label: 'Switch Tab',
+          onTap: () {
+            Navigator.pop(context);
+            RoleSwitcherSheet.show(context);
+          },
+        ),
+      ],
+      onLogout: _logout,
     );
   }
 
@@ -258,15 +345,12 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
     int totalCount,
     int liveCount,
   ) {
-    final notificationState = ref.watch(eventNotificationsViewModelProvider);
-    final unreadCount = notificationState.unreadCount;
-
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF065F46), Color(0xFF059669), Color(0xFF10B981)],
+          colors: [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)],
         ),
       ),
       child: SafeArea(
@@ -278,6 +362,11 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
             children: [
               Row(
                 children: [
+                  ModeMenuButton(
+                    onTap: () =>
+                        _scaffoldKey.currentState?.openDrawer(),
+                  ),
+                  const SizedBox(width: 10),
                   Container(
                     width: 42,
                     height: 42,
@@ -320,46 +409,6 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const EventNotificationsScreen(),
-                      ),
-                    ),
-                    child: Container(
-                      width: 38,
-                      height: 38,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Stack(
-                        children: [
-                          const Center(
-                            child: Icon(
-                              Icons.notifications_outlined,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ),
-                          if (unreadCount > 0)
-                            Positioned(
-                              top: 6,
-                              right: 6,
-                              child: Container(
-                                width: 8,
-                                height: 8,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFF87171),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(height: 16),
@@ -865,7 +914,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                       top: Radius.circular(18),
                     ),
                     gradient: LinearGradient(
-                      colors: [Color(0xFFECFDF5), Color(0xFFD1FAE5)],
+                      colors: [Color(0xFFEFF6FF), Color(0xFFD1FAE5)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -994,13 +1043,13 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEDE9FE),
+                  color: const Color(0xFFE8F4FB),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
                   '${opportunities.length + posts.length} items',
                   style: const TextStyle(
-                    color: Color(0xFF6D28D9),
+                    color: Color(0xFF0088CC),
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
                   ),
@@ -1062,7 +1111,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                               ? Icons.rocket_launch_rounded
                               : Icons.work_rounded,
                           color: isStartup
-                              ? const Color(0xFF6D28D9)
+                              ? const Color(0xFF0088CC)
                               : const Color(0xFF0284C7),
                           size: 18,
                         ),
@@ -1102,7 +1151,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                         ),
                         decoration: BoxDecoration(
                           color: isStartup
-                              ? const Color(0xFFEDE9FE)
+                              ? const Color(0xFFE8F4FB)
                               : const Color(0xFFE0F2FE),
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -1135,7 +1184,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                       width: 38,
                       height: 38,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFFF4E6),
+                        color: const Color(0xFFEFF6FF),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Icon(
@@ -1178,7 +1227,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFFF4E6),
+                        color: const Color(0xFFEFF6FF),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
@@ -1209,18 +1258,18 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
               icon: const Icon(
                 Icons.alt_route_rounded,
                 size: 17,
-                color: Color(0xFF6D28D9),
+                color: Color(0xFF0088CC),
               ),
               label: const Text(
                 'Open Connect Hub',
                 style: TextStyle(
-                  color: Color(0xFF6D28D9),
+                  color: Color(0xFF0088CC),
                   fontWeight: FontWeight.w700,
                   fontSize: 13.5,
                 ),
               ),
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Color(0xFF6D28D9), width: 1.3),
+                side: const BorderSide(color: Color(0xFF0088CC), width: 1.3),
                 padding: const EdgeInsets.symmetric(vertical: 13),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -1339,7 +1388,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                           top: Radius.circular(18),
                         ),
                         gradient: LinearGradient(
-                          colors: [Color(0xFF065F46), Color(0xFF0F766E)],
+                          colors: [Color(0xFF006699), Color(0xFF0F766E)],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -1429,177 +1478,6 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
     );
   }
 
-  void _showProfileSheet() {
-    final session = ref.read(authViewModelProvider).session;
-    final userName = session?.fullName ?? 'Member';
-    final email = session?.email ?? '';
-    final roleLabel = session?.activeUserRole.label ?? 'Member';
-    final photoPath = session?.profilePhotoPath ?? '';
-    final hasPhoto = photoPath.isNotEmpty && File(photoPath).existsSync();
-
-    String getInitials(String name) {
-      final parts = name.split(' ').where((p) => p.isNotEmpty).toList();
-      if (parts.length >= 2) {
-        return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
-      }
-      if (parts.isNotEmpty) return parts[0][0].toUpperCase();
-      return '?';
-    }
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      builder: (ctx) => SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE5E7EB),
-                      borderRadius: BorderRadius.circular(999),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: _accentBg,
-                    backgroundImage: hasPhoto
-                        ? FileImage(File(photoPath))
-                        : null,
-                    child: hasPhoto
-                        ? null
-                        : Text(
-                            getInitials(userName),
-                            style: const TextStyle(
-                              color: _accent,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    userName,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF12233D),
-                    ),
-                  ),
-                  if (email.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      email,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF6B7280),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 2),
-                  Text(
-                    roleLabel,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Color(0xFF6B7280),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  _sheetAction(
-                    Icons.person_outline_rounded,
-                    'View Profile',
-                    _accent,
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const ProfileScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.swap_horiz_rounded,
-                    'Switch Tab',
-                    _accent,
-                    () {
-                      Navigator.pop(ctx);
-                      RoleSwitcherSheet.show(context);
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.logout_rounded,
-                    'Logout',
-                    const Color(0xFFEF4444),
-                    () async {
-                      Navigator.pop(ctx);
-                      await ref.read(authViewModelProvider.notifier).logout();
-                      if (!mounted) return;
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => const SignInScreen()),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              ),
-            ),
-    );
-  }
-
-  Widget _sheetAction(
-    IconData icon,
-    String label,
-    Color color,
-    VoidCallback onTap,
-  ) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF9FAFB),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: const Color(0xFFE5E7EB)),
-          ),
-          child: Row(
-            children: [
-              Icon(icon, color: color, size: 22),
-              const SizedBox(width: 12),
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF12233D),
-                ),
-              ),
-              const Spacer(),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: Colors.grey.shade400,
-                size: 16,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
 }
 
 // ── Floating Notched Bottom Navigation Bar for Events Mode ──
@@ -1612,254 +1490,21 @@ class _BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTap;
 
-  static const double _navBarHeight = 64;
-  static const double _fabSize = 56;
-  static const double _navBarTop = 14;
-  static const double _fabTop = -12;
-
   @override
   Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final totalHeight = _navBarTop + _navBarHeight + bottomInset + 8;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final navBg = isDark ? const Color(0xFF1A1D35) : Colors.white;
-    final navBorder = isDark ? const Color(0xFF2D3352) : const Color(0xFFE2E4EA);
-    const selectedColor = Color(0xFF059669);
-    final unselectedColor = isDark ? const Color(0xFF64748B) : const Color(0xFF9CA3AF);
-    final shadowColor = isDark ? Colors.black : Colors.black.withValues(alpha: 0.08);
-
-    return SizedBox(
-      height: totalHeight,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Positioned(
-            top: _navBarTop,
-            left: 12,
-            right: 12,
-            bottom: 0,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: bottomInset),
-              child: CustomPaint(
-                painter: _SeamlessNavPainter(
-                  fillColor: navBg,
-                  borderColor: navBorder,
-                  shadowColor: shadowColor,
-                ),
-                size: Size.infinite,
-                child: SizedBox(
-                  height: _navBarHeight,
-                  child: Row(
-                    children: [
-                      _navItem(
-                        0,
-                        Icons.home_outlined,
-                        Icons.home_rounded,
-                        'Home',
-                        selectedColor: selectedColor,
-                        unselectedColor: unselectedColor,
-                      ),
-                      _navItem(
-                        1,
-                        Icons.explore_outlined,
-                        Icons.explore_rounded,
-                        'Explore',
-                        selectedColor: selectedColor,
-                        unselectedColor: unselectedColor,
-                      ),
-                      const SizedBox(width: _fabSize + 12),
-                      _navItem(
-                        3,
-                        Icons.chat_bubble_outline_rounded,
-                        Icons.chat_bubble_rounded,
-                        'Messages',
-                        selectedColor: selectedColor,
-                        unselectedColor: unselectedColor,
-                      ),
-                      _navItem(
-                        4,
-                        Icons.person_outline_rounded,
-                        Icons.person_rounded,
-                        'Profile',
-                        selectedColor: selectedColor,
-                        unselectedColor: unselectedColor,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: _fabTop,
-            child: _addButton(),
-          ),
-        ],
-      ),
+    // Same flat menu-bar design as Community mode — Event keeps its own
+    // green accent, tabs and tap behavior (dark-mode aware).
+    return ModeMenuBar(
+      selectedIndex: selectedIndex,
+      onTap: onTap,
+      selectedColor: const Color(0xFF0088CC),
+      fabGradient: const [Color(0xFF229ED9), Color(0xFF0088CC)],
+      items: const [
+        ModeMenuItem(index: 0, icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
+        ModeMenuItem(index: 1, icon: Icons.explore_outlined, activeIcon: Icons.explore_rounded, label: 'Explore'),
+        ModeMenuItem(index: 3, icon: Icons.chat_bubble_outline_rounded, activeIcon: Icons.chat_bubble_rounded, label: 'Messages'),
+        ModeMenuItem(index: 4, icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
+      ],
     );
-  }
-
-  Widget _navItem(
-    int index,
-    IconData icon,
-    IconData activeIcon,
-    String label, {
-    required Color selectedColor,
-    required Color unselectedColor,
-  }) {
-    final selected = selectedIndex == index;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => onTap(index),
-        behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              selected ? activeIcon : icon,
-              color: selected ? selectedColor : unselectedColor,
-              size: 23,
-            ),
-            const SizedBox(height: 3),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color: selected ? selectedColor : unselectedColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _addButton() {
-    return GestureDetector(
-      onTap: () => onTap(2),
-      child: Container(
-        width: _fabSize,
-        height: _fabSize,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF10B981), Color(0xFF059669)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF059669).withValues(alpha: 0.38),
-              blurRadius: 14,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.add_rounded, color: Colors.white, size: 30),
-      ),
-    );
-  }
-}
-
-class _SeamlessNavPainter extends CustomPainter {
-  const _SeamlessNavPainter({
-    required this.fillColor,
-    required this.borderColor,
-    required this.shadowColor,
-  });
-  final Color fillColor;
-  final Color borderColor;
-  final Color shadowColor;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (size.isEmpty) return;
-
-    final h = size.height;
-    final w = size.width;
-    final centerX = w / 2;
-    const cornerRadius = 28.0;
-    const fabRadius = 28.0;
-    const clearance = 5.0;
-    const notchR = fabRadius + clearance;
-    const notchW = notchR + 14;
-    const bottomArc = 2.5;
-
-    final path = Path()
-      ..moveTo(cornerRadius, 0)
-      ..lineTo(centerX - notchW, 0)
-      ..cubicTo(
-        centerX - notchW + 10, 0,
-        centerX - notchR * 1.1, notchR * 0.06,
-        centerX - notchR, notchR * 0.35,
-      )
-      ..cubicTo(
-        centerX - notchR * 0.92, notchR * 0.6,
-        centerX - notchR * 0.75, notchR * 0.85,
-        centerX - notchR * 0.5, notchR * 0.98,
-      )
-      ..cubicTo(
-        centerX - notchR * 0.28, notchR * 1.05,
-        centerX - 14, notchR * 1.06,
-        centerX, notchR * 1.06,
-      )
-      ..cubicTo(
-        centerX + 14, notchR * 1.06,
-        centerX + notchR * 0.28, notchR * 1.05,
-        centerX + notchR * 0.5, notchR * 0.98,
-      )
-      ..cubicTo(
-        centerX + notchR * 0.75, notchR * 0.85,
-        centerX + notchR * 0.92, notchR * 0.6,
-        centerX + notchR, notchR * 0.35,
-      )
-      ..cubicTo(
-        centerX + notchR * 1.1, notchR * 0.06,
-        centerX + notchW - 10, 0,
-        centerX + notchW, 0,
-      )
-      ..lineTo(w - cornerRadius, 0)
-      ..arcToPoint(
-        Offset(w, cornerRadius),
-        radius: const Radius.circular(cornerRadius),
-      )
-      ..lineTo(w, h - cornerRadius - bottomArc)
-      ..arcToPoint(
-        Offset(w - cornerRadius, h),
-        radius: const Radius.circular(cornerRadius),
-      )
-      ..lineTo(cornerRadius, h)
-      ..arcToPoint(
-        Offset(0, h - cornerRadius - bottomArc),
-        radius: const Radius.circular(cornerRadius),
-      )
-      ..lineTo(0, cornerRadius)
-      ..arcToPoint(
-        const Offset(cornerRadius, 0),
-        radius: const Radius.circular(cornerRadius),
-      )
-      ..close();
-
-    canvas.drawShadow(path, shadowColor, 8, false);
-
-    final fillPaint = Paint()
-      ..color = fillColor
-      ..style = PaintingStyle.fill;
-    canvas.drawPath(path, fillPaint);
-
-    final borderPaint = Paint()
-      ..color = borderColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-    canvas.drawPath(path, borderPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant _SeamlessNavPainter oldDelegate) {
-    return oldDelegate.fillColor != fillColor ||
-        oldDelegate.borderColor != borderColor ||
-        oldDelegate.shadowColor != shadowColor;
   }
 }

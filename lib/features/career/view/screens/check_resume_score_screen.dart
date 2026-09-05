@@ -23,7 +23,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Selected "Alex_Senior_Designer_Resume.pdf" for ATS Analysis!'),
-        backgroundColor: Color(0xFF0284C7),
+        backgroundColor: Color(0xFF0088CC),
       ),
     );
   }
@@ -41,7 +41,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7)),
+          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC)),
           onPressed: () {
             if (widget.onBack != null) {
               widget.onBack!();
@@ -60,14 +60,14 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0284C7)),
+            icon: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0088CC)),
             onPressed: () {},
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               radius: 16,
-              backgroundColor: const Color(0xFF0284C7),
+              backgroundColor: const Color(0xFF0088CC),
               child: Text(
                 userInitials,
                 style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
@@ -86,14 +86,14 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
               // 1. AI Resume Analysis Section Header
               Row(
                 children: const [
-                  Icon(Icons.auto_awesome_rounded, color: Color(0xFF0284C7), size: 18),
+                  Icon(Icons.auto_awesome_rounded, color: Color(0xFF0088CC), size: 18),
                   SizedBox(width: 6),
                   Text(
                     'AI Resume Analysis',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0284C7),
+                      color: Color(0xFF0088CC),
                     ),
                   ),
                 ],
@@ -119,12 +119,12 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: const Color(0xFF0284C7),
+                      color: const Color(0xFF0088CC),
                       width: 1.8,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF0284C7).withOpacity(0.04),
+                        color: const Color(0xFF0088CC).withOpacity(0.04),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       ),
@@ -136,12 +136,12 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                         width: 60,
                         height: 60,
                         decoration: const BoxDecoration(
-                          color: Color(0xFFE0F2FE),
+                          color: Color(0xFFE8F4FB),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           Icons.cloud_upload_rounded,
-                          color: Color(0xFF0284C7),
+                          color: Color(0xFF0088CC),
                           size: 30,
                         ),
                       ),
@@ -163,7 +163,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE0F2FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Text(
@@ -171,7 +171,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF0284C7),
+                            color: Color(0xFF0088CC),
                           ),
                         ),
                       ),
@@ -194,7 +194,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                   icon: const Icon(Icons.bar_chart_rounded, size: 20),
                   label: const Text('Check Score'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0284C7),
+                    backgroundColor: const Color(0xFF0088CC),
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -231,8 +231,8 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                           child: CircularProgressIndicator(
                             value: 0.85,
                             strokeWidth: 5,
-                            backgroundColor: const Color(0xFFE0F2FE),
-                            color: const Color(0xFF0284C7),
+                            backgroundColor: const Color(0xFFE8F4FB),
+                            color: const Color(0xFF0088CC),
                           ),
                         ),
                         const Text(
@@ -240,7 +240,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w900,
-                            color: Color(0xFF0284C7),
+                            color: Color(0xFF0088CC),
                           ),
                         ),
                       ],
@@ -280,9 +280,9 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE0F2FE),
+                  color: const Color(0xFFE8F4FB),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFBAE6FD)),
+                  border: Border.all(color: const Color(0xFFE8F4FB)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,7 +290,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF0284C7),
+                        color: const Color(0xFF0088CC),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text(
@@ -309,7 +309,7 @@ class _CheckResumeScoreScreenState extends ConsumerState<CheckResumeScoreScreen>
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF0369A1),
+                        color: Color(0xFF006699),
                         height: 1.4,
                       ),
                     ),

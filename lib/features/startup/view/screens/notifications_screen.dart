@@ -42,7 +42,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     final notificationsState = ref.watch(notificationsViewModelProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           _buildSliverAppBar(notificationsState),
@@ -60,7 +60,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     return SliverAppBar(
       pinned: true,
       centerTitle: true,
-      backgroundColor: const Color(0xFF5B21B6),
+      backgroundColor: const Color(0xFF0088CC),
       elevation: 0,
       leading: IconButton(
         icon: const Icon(
@@ -108,7 +108,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF7C3AED), Color(0xFF5B21B6)],
+            colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
           ),
         ),
       ),
@@ -118,7 +118,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   Widget _buildFilterChips(NotificationsState notificationsState) {
     return SliverToBoxAdapter(
       child: Container(
-        color: const Color(0xFFF6F3FF),
+        color: const Color(0xFFF0F9FF),
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +131,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF7C3AED),
+                    color: Color(0xFF229ED9),
                   ),
                 ),
               ),
@@ -173,17 +173,17 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF5B21B6) : Colors.white,
+          color: isSelected ? const Color(0xFF0088CC) : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected
-                ? const Color(0xFF5B21B6)
+                ? const Color(0xFF0088CC)
                 : const Color(0xFFE5E7EB),
           ),
           boxShadow: [
             if (isSelected)
               BoxShadow(
-                color: const Color(0xFF5B21B6).withValues(alpha: 0.2),
+                color: const Color(0xFF0088CC).withValues(alpha: 0.2),
                 blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
@@ -300,7 +300,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
           padding: const EdgeInsets.all(16),
           margin: EdgeInsets.only(bottom: isLast ? 0 : 8),
           decoration: BoxDecoration(
-            color: notification.isRead ? Colors.white : const Color(0xFFF5F3FF),
+            color: notification.isRead ? Colors.white : const Color(0xFFF0F9FF),
             borderRadius: BorderRadius.vertical(
               top: isFirst ? const Radius.circular(16) : Radius.zero,
               bottom: isLast ? const Radius.circular(16) : Radius.zero,
@@ -361,7 +361,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                 height: 8,
                 margin: const EdgeInsets.only(left: 8),
                 decoration: const BoxDecoration(
-                  color: Color(0xFF7C3AED),
+                  color: Color(0xFF229ED9),
                   shape: BoxShape.circle,
                 ),
               ),

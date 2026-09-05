@@ -39,7 +39,7 @@ class _StartupEventsScreenState extends State<StartupEventsScreen> {
       attendees: 120,
       description:
           'The premier gathering for healthcare innovators, founders building the future of autonomous medicine, and investors.',
-      color: const Color(0xFF6D28D9),
+      color: const Color(0xFF0088CC),
     ),
     _StartupEvent(
       title: 'Founder\'s Last Mile',
@@ -132,11 +132,11 @@ class _StartupEventsScreenState extends State<StartupEventsScreen> {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF6D28D9).withValues(alpha: 0.1),
+                          color: const Color(0xFF0088CC).withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(Icons.edit_calendar_rounded,
-                            color: Color(0xFF6D28D9), size: 22),
+                            color: Color(0xFF0088CC), size: 22),
                       ),
                       const SizedBox(width: 12),
                       const Text('Edit Event',
@@ -229,7 +229,7 @@ class _StartupEventsScreenState extends State<StartupEventsScreen> {
                           label: const Text('Save Changes',
                               style: TextStyle(fontWeight: FontWeight.w700)),
                           style: FilledButton.styleFrom(
-                            backgroundColor: const Color(0xFF6D28D9),
+                            backgroundColor: const Color(0xFF0088CC),
                             minimumSize: const Size.fromHeight(48),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
@@ -339,7 +339,7 @@ class _StartupEventsScreenState extends State<StartupEventsScreen> {
                         label: Text(filter),
                         selected: _filter == filter,
                         onSelected: (_) => setState(() => _filter = filter),
-                        selectedColor: const Color(0xFF6D28D9),
+                        selectedColor: const Color(0xFF0088CC),
                         labelStyle: TextStyle(
                           color: _filter == filter
                               ? Colors.white
@@ -458,11 +458,11 @@ class _StartupEventDetailsScreenState
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF6D28D9).withValues(alpha: 0.1),
+                            color: const Color(0xFF0088CC).withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Icon(Icons.how_to_reg_rounded,
-                              color: Color(0xFF6D28D9), size: 22),
+                              color: Color(0xFF0088CC), size: 22),
                         ),
                         const SizedBox(width: 12),
                         const Expanded(
@@ -499,13 +499,13 @@ class _StartupEventDetailsScreenState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF6D28D9).withValues(alpha: 0.07),
+                        color: const Color(0xFF0088CC).withValues(alpha: 0.07),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
                         children: [
                           const Icon(Icons.event_rounded,
-                              color: Color(0xFF6D28D9), size: 16),
+                              color: Color(0xFF0088CC), size: 16),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
@@ -513,7 +513,7 @@ class _StartupEventDetailsScreenState
                               style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,
-                                color: Color(0xFF6D28D9),
+                                color: Color(0xFF0088CC),
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -607,7 +607,7 @@ class _StartupEventDetailsScreenState
                         label: const Text('Confirm Registration',
                             style: TextStyle(fontWeight: FontWeight.w700)),
                         style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFF6D28D9),
+                          backgroundColor: const Color(0xFF0088CC),
                           minimumSize: const Size.fromHeight(52),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14)),
@@ -713,13 +713,13 @@ class _StartupEventDetailsScreenState
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               gradient: const LinearGradient(
-                colors: [Color(0xFFDCEBFF), Color(0xFFEDE9FE)],
+                colors: [Color(0xFFDCEBFF), Color(0xFFE8F4FB)],
               ),
             ),
             child: const Center(
               child: Icon(
                 Icons.location_on,
-                color: Color(0xFF6D28D9),
+                color: Color(0xFF0088CC),
                 size: 34,
               ),
             ),
@@ -757,7 +757,7 @@ class _StartupEventDetailsScreenState
               FilledButton(
                 onPressed: event.registered ? null : _register,
                 style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFF6D28D9),
+                  backgroundColor: const Color(0xFF0088CC),
                   minimumSize: const Size(154, 48),
                 ),
                 child: Text(event.registered ? 'Registered' : 'Register now'),
@@ -807,7 +807,7 @@ class _FeaturedEventCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [event.color, const Color(0xFF4C1D95)],
+          colors: [event.color, const Color(0xFF006699)],
         ),
         borderRadius: BorderRadius.circular(20),
       ),
@@ -841,7 +841,7 @@ class _FeaturedEventCard extends StatelessWidget {
           const Chip(
             label: Text('View event'),
             labelStyle: TextStyle(
-              color: Color(0xFF5B21B6),
+              color: Color(0xFF0088CC),
               fontWeight: FontWeight.w800,
             ),
             backgroundColor: Colors.white,
@@ -936,7 +936,7 @@ class _EventListCard extends StatelessWidget {
                 onPressed: onSave,
                 icon: Icon(
                   event.saved ? Icons.bookmark : Icons.bookmark_border,
-                  color: const Color(0xFF6D28D9),
+                  color: const Color(0xFF0088CC),
                 ),
               ),
             ],
@@ -1046,7 +1046,7 @@ class _DetailRow extends StatelessWidget {
             color: const Color(0xFFF0EAFE),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(icon, size: 17, color: const Color(0xFF6D28D9)),
+          child: Icon(icon, size: 17, color: const Color(0xFF0088CC)),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -1136,12 +1136,12 @@ class _CreateEventBottomSheetState extends State<_CreateEventBottomSheet> {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF3E8FF),
+                        color: const Color(0xFFE8F4FB),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: const Icon(
                         Icons.event_available_rounded,
-                        color: Color(0xFF6D28D9),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                     const SizedBox(width: 14),
@@ -1302,14 +1302,14 @@ class _CreateEventBottomSheetState extends State<_CreateEventBottomSheet> {
                           description: _descriptionController.text.trim().isEmpty
                               ? 'An event created by ${widget.startupName}.'
                               : _descriptionController.text.trim(),
-                          color: const Color(0xFF7C3AED),
+                          color: const Color(0xFF229ED9),
                         ),
                       );
                     },
                     icon: const Icon(Icons.add_circle_outline),
                     label: const Text('Create event', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                     style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xFF6D28D9),
+                      backgroundColor: const Color(0xFF0088CC),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -1381,7 +1381,7 @@ class _ComposerField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFF6D28D9), width: 1.5),
+              borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
             ),
           ),
         ),
@@ -1409,7 +1409,7 @@ class _ScheduleItem extends StatelessWidget {
             width: 16,
             height: 16,
             decoration: const BoxDecoration(
-              color: Color(0xFF6D28D9),
+              color: Color(0xFF0088CC),
               shape: BoxShape.circle,
             ),
           ),
@@ -1428,7 +1428,7 @@ class _ScheduleItem extends StatelessWidget {
                 time,
                 style: const TextStyle(
                   fontSize: 11,
-                  color: Color(0xFF6D28D9),
+                  color: Color(0xFF0088CC),
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -1468,7 +1468,7 @@ class _SectionTitle extends StatelessWidget {
           child: Text(
             action,
             style: const TextStyle(
-              color: Color(0xFF6D28D9),
+              color: Color(0xFF0088CC),
               fontSize: 12,
               fontWeight: FontWeight.w700,
             ),
@@ -1556,7 +1556,7 @@ class _RegField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFF6D28D9), width: 1.5),
+              borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

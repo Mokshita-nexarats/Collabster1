@@ -175,11 +175,11 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
       children: [
         CircleAvatar(
           radius: 22,
-          backgroundColor: const Color(0xFFEA580C).withValues(alpha: 0.12),
+          backgroundColor: const Color(0xFF229ED9).withValues(alpha: 0.12),
           child: Text(
             post.authorName.isNotEmpty ? post.authorName[0].toUpperCase() : 'A',
             style: const TextStyle(
-              color: Color(0xFFEA580C),
+              color: Color(0xFF229ED9),
               fontWeight: FontWeight.w800,
               fontSize: 16,
             ),
@@ -244,7 +244,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                 : Icons.thumb_up_outlined,
             label: '${post.likes}',
             color: post.isLiked
-                ? const Color(0xFFEA580C)
+                ? const Color(0xFF229ED9)
                 : Colors.grey.shade600,
             onTap: () =>
                 ref.read(postViewModelProvider.notifier).toggleLike(post.id),
@@ -353,14 +353,14 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
               height: 42,
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                  colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFEA580C).withValues(alpha: 0.3),
+                    color: const Color(0xFF229ED9).withValues(alpha: 0.3),
                     blurRadius: 8,
                     offset: const Offset(0, 3),
                   ),
@@ -407,13 +407,13 @@ class _CommentTile extends ConsumerWidget {
             children: [
               CircleAvatar(
                 radius: 16,
-                backgroundColor: const Color(0xFFEA580C).withValues(alpha: 0.1),
+                backgroundColor: const Color(0xFF229ED9).withValues(alpha: 0.1),
                 child: Text(
                   comment.authorName.isNotEmpty
                       ? comment.authorName[0].toUpperCase()
                       : '?',
                   style: const TextStyle(
-                    color: Color(0xFFEA580C),
+                    color: Color(0xFF229ED9),
                     fontWeight: FontWeight.w800,
                     fontSize: 12,
                   ),
@@ -448,7 +448,7 @@ class _CommentTile extends ConsumerWidget {
                     : Icons.favorite_border_rounded,
                 size: 17,
                 color: comment.isLiked
-                    ? const Color(0xFFEA580C)
+                    ? const Color(0xFF229ED9)
                     : Colors.grey.shade400,
               ),
             ],

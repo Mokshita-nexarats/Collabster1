@@ -54,13 +54,13 @@ class PostsListScreen extends ConsumerWidget {
             width: 88,
             height: 88,
             decoration: BoxDecoration(
-              color: const Color(0xFFEA580C).withValues(alpha: 0.08),
+              color: const Color(0xFF229ED9).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.article_outlined,
               size: 42,
-              color: Color(0xFFEA580C),
+              color: Color(0xFF229ED9),
             ),
           ),
           const SizedBox(height: 20),
@@ -92,14 +92,14 @@ class PostsListScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                  colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFEA580C).withValues(alpha: 0.3),
+                    color: const Color(0xFF229ED9).withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 5),
                   ),

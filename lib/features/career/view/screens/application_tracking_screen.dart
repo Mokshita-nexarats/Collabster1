@@ -55,7 +55,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                               showLine: true,
                               title: 'Interview Scheduled',
                               sub: 'Status: Ready for Interview',
-                              subColor: const Color(0xFF0284C7),
+                              subColor: const Color(0xFF0088CC),
                             ),
                             _buildTimelineStep(
                               isCompleted: false,
@@ -117,7 +117,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                         width: double.infinity,
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0284C7),
+                          color: const Color(0xFF0088CC),
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Column(
@@ -186,14 +186,14 @@ class ApplicationTrackingScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: const [
-                                Icon(Icons.people_outline_rounded, color: Color(0xFF0284C7), size: 18),
+                                Icon(Icons.people_outline_rounded, color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'Your Interviewers',
@@ -231,7 +231,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Icon(Icons.lightbulb_outline_rounded, color: Color(0xFF0284C7), size: 18),
+                                  const Icon(Icons.lightbulb_outline_rounded, color: Color(0xFF0088CC), size: 18),
                                   const SizedBox(width: 10),
                                   Expanded(
                                     child: Column(
@@ -242,7 +242,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0284C7),
+                                            color: Color(0xFF0088CC),
                                           ),
                                         ),
                                         SizedBox(height: 4),
@@ -295,7 +295,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                 height: 22,
                 decoration: BoxDecoration(
                   color: isCompleted
-                      ? const Color(0xFF0284C7)
+                      ? const Color(0xFF0088CC)
                       : isActive
                           ? Colors.white
                           : Colors.white,
@@ -304,7 +304,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                     color: isCompleted
                         ? Colors.transparent
                         : isActive
-                            ? const Color(0xFF0284C7)
+                            ? const Color(0xFF0088CC)
                             : Colors.grey.shade300,
                     width: isActive ? 5.5 : 1.5,
                   ),
@@ -317,7 +317,7 @@ class ApplicationTrackingScreen extends StatelessWidget {
                 Expanded(
                   child: Container(
                     width: 2,
-                    color: isCompleted ? const Color(0xFF0284C7) : Colors.grey.shade300,
+                    color: isCompleted ? const Color(0xFF0088CC) : Colors.grey.shade300,
                   ),
                 ),
             ],

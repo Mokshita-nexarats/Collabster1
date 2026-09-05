@@ -10,9 +10,9 @@ import 'my_events_screen.dart';
 const _bg = Color(0xFFF8FAFC);
 const _surface = Colors.white;
 const _card = Colors.white;
-const _accent = Color(0xFF059669);
-const _accentLight = Color(0xFF10B981);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentLight = Color(0xFF229ED9);
+const _accentBg = Color(0xFFEFF6FF);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
 const _borderColor = Color(0xFFE2E8F0);
@@ -59,7 +59,7 @@ class _MeetupsScreenState extends ConsumerState<MeetupsScreen> {
       'locationIcon': Icons.location_on_outlined,
       'tags': ['Free Snacks', 'Networking', 'Co-Founders'],
       'isLive': true,
-      'gradient': [Color(0xFF3B1F7A), Color(0xFF1A0A2E)],
+      'gradient': [Color(0xFF3B1F7A), Color(0xFF0F172A)],
       'icon': Icons.groups_rounded,
       'iconColor': Color(0xFFD8B4FE),
     },

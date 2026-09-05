@@ -163,7 +163,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                       color: selected ? AppColors.primary : Colors.white,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                        color: selected ? AppColors.primary : const Color(0xFFBAE6FD),
+                        color: selected ? AppColors.primary : const Color(0xFFE8F4FB),
                         width: 1.3,
                       ),
                     ),
@@ -172,7 +172,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: selected ? Colors.white : const Color(0xFF0369A1),
+                        color: selected ? Colors.white : const Color(0xFF006699),
                       ),
                     ),
                   ),
@@ -317,7 +317,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -366,7 +366,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFE0F2FE),
+                              color: const Color(0xFFE8F4FB),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Text(
@@ -374,7 +374,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0369A1),
+                                color: Color(0xFF006699),
                                 letterSpacing: 0.2,
                               ),
                             ),
@@ -405,7 +405,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE0F2FE),
+                  color: const Color(0xFFE8F4FB),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
@@ -413,7 +413,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                   style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF0369A1),
+                    color: Color(0xFF006699),
                   ),
                 ),
               ),
@@ -451,7 +451,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                 width: 38,
                 height: 38,
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFBAE6FD)),
+                  border: Border.all(color: const Color(0xFFE8F4FB)),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: const Icon(Icons.bookmark_border_rounded, size: 18, color: AppColors.primary),
@@ -570,7 +570,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -664,10 +664,10 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: const BoxDecoration(
-              color: Color(0xFFE0F2FE),
+              color: Color(0xFFE8F4FB),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0284C7), size: 28),
+            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0088CC), size: 28),
           ),
           const SizedBox(height: 12),
           const Text(

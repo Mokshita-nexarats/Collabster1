@@ -14,7 +14,7 @@ class FundraisingViewModel extends StateNotifier<FundraisingState> {
           amount: '\$350K',
           meetingIn: 'Meeting Tomorrow',
           initials: 'HV',
-          colorKey: '0xFF4F46E5',
+          colorKey: '0xFF229ED9',
           leadPartner: 'Anish Srivastava',
           email: 'anish@horizonvc.com',
           notes: 'Interested in B2B AI & Cloud Infrastructure platforms.',

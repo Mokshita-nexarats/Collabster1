@@ -1,10 +1,8 @@
 import 'dart:math' as math;
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-import '../../../core/theme/app_assets.dart';
 import '../../../shared/utils/dashboard_router.dart';
 import '../../../core/di/providers.dart';
 import '../../../shared/utils/app_snackbar.dart';
@@ -174,55 +172,27 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Stack(
-          children: [
-            // Background image
-            Positioned.fill(
-              child: Image.asset(
-                AppAssets.landingBg,
-                fit: BoxFit.cover,
-              ),
-            ),
-
-            // Gradient Overlay to enhance text contrast and legibility
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0.70),
-                      Colors.black.withOpacity(0.40),
-                      Colors.black.withOpacity(0.80),
-                    ],
-                    stops: const [0.0, 0.5, 1.0],
-                  ),
-                ),
-              ),
-            ),
-
-            // Content
-            SafeArea(
-              child: Column(
+        backgroundColor: const Color(0xFFF8FAFC),
+        body: SafeArea(
+          child: Column(
+            children: [
+              // App Bar / Back arrow (only show if we can pop)
+              Row(
                 children: [
-                  // App Bar / Back arrow (only show if we can pop)
-                  Row(
-                    children: [
-                      if (Navigator.of(context).canPop())
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0, top: 8.0),
-                          child: IconButton(
-                            onPressed: () => Navigator.pop(context),
-                            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                            style: IconButton.styleFrom(
-                              backgroundColor: Colors.white10,
-                              foregroundColor: Colors.white,
-                            ),
-                          ),
+                  if (Navigator.of(context).canPop())
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12.0, top: 8.0),
+                      child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                        style: IconButton.styleFrom(
+                          backgroundColor: const Color(0xFFE2E8F0),
+                          foregroundColor: const Color(0xFF0F172A),
                         ),
-                    ],
-                  ),
+                      ),
+                    ),
+                ],
+              ),
 
                   // Scrollable Area
                   Expanded(
@@ -244,15 +214,8 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                                  color: Color(0xFF0F172A),
                                   letterSpacing: -0.5,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black54,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
                                 ),
                               ),
                             ],
@@ -266,39 +229,35 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 14,
-                              color: Colors.white70,
+                              color: Color(0xFF64748B),
                               fontWeight: FontWeight.w500,
                               letterSpacing: 0.2,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black54,
-                                  offset: Offset(0, 2),
-                                  blurRadius: 8,
-                                ),
-                              ],
                             ),
                           ),
 
                           const SizedBox(height: 32),
 
-                          // Glassmorphic Input Card with Backdrop Blur
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(28),
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                              child: Container(
-                                padding: const EdgeInsets.all(24),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF0F0B30).withOpacity(0.80),
-                                  borderRadius: BorderRadius.circular(28),
-                                  border: Border.all(
-                                    color: const Color(0xFF8B6FFF).withOpacity(0.35),
-                                    width: 1.5,
-                                  ),
+                          // Clean professional input card
+                          Container(
+                            padding: const EdgeInsets.all(24),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: const Color(0xFFE2E8F0),
+                                width: 1.2,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 6),
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                                  children: [
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
                                     // Tabs
                                     Row(
                                       children: [
@@ -312,7 +271,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                                   style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w700,
-                                                    color: _isSignInTab ? Colors.white : Colors.white54,
+                                                    color: _isSignInTab ? const Color(0xFF0F172A) : const Color(0xFF94A3B8),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 8),
@@ -320,7 +279,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                                   height: 2,
                                                   width: 56,
                                                   decoration: BoxDecoration(
-                                                    color: _isSignInTab ? const Color(0xFFB5A4FF) : Colors.transparent,
+                                                    color: _isSignInTab ? const Color(0xFF0088CC) : Colors.transparent,
                                                     borderRadius: BorderRadius.circular(1),
                                                   ),
                                                 ),
@@ -338,7 +297,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                                   style: TextStyle(
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w700,
-                                                    color: !_isSignInTab ? Colors.white : Colors.white54,
+                                                    color: !_isSignInTab ? const Color(0xFF0F172A) : const Color(0xFF94A3B8),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 8),
@@ -346,7 +305,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                                   height: 2,
                                                   width: 56,
                                                   decoration: BoxDecoration(
-                                                    color: !_isSignInTab ? const Color(0xFFB5A4FF) : Colors.transparent,
+                                                    color: !_isSignInTab ? const Color(0xFF0088CC) : Colors.transparent,
                                                     borderRadius: BorderRadius.circular(1),
                                                   ),
                                                 ),
@@ -364,8 +323,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                                   ],
                                 ),
                               ),
-                            ),
-                          ),
 
                           const SizedBox(height: 20),
 
@@ -383,7 +340,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                               child: const Text(
                                 'Continue as Guest',
                                 style: TextStyle(
-                                  color: Color(0xFFC7B9FF),
+                                  color: Color(0xFF0088CC),
                                   fontSize: 14,
                                   decoration: TextDecoration.underline,
                                   fontWeight: FontWeight.w600,
@@ -398,8 +355,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 ],
               ),
             ),
-          ],
-        ),
       ),
     );
   }
@@ -412,12 +367,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Email/Username Input
         TextFormField(
           controller: _loginEmailController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Email or Username',
-            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFF0088CC)),
           ),
         ),
 
@@ -426,17 +381,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Password Input
         TextFormField(
           controller: _loginPasswordController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           obscureText: _obscureLoginPassword,
           textInputAction: TextInputAction.done,
           onFieldSubmitted: (_) => _handleSignIn(),
           decoration: _buildInputDecoration(
             hintText: 'Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
             suffixIcon: IconButton(
               icon: Icon(
                 _obscureLoginPassword ? Icons.visibility_off : Icons.visibility,
-                color: Colors.white70,
+                color: const Color(0xFF94A3B8),
               ),
               onPressed: () => setState(() => _obscureLoginPassword = !_obscureLoginPassword),
             ),
@@ -458,7 +413,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             child: const Text(
               'Forgot Password?',
               style: TextStyle(
-                color: Color(0xFFB5A4FF),
+                color: Color(0xFF0088CC),
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
               ),
@@ -474,11 +429,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             gradient: const LinearGradient(
-              colors: [Color(0xFF5B61F6), Color(0xFF4F46E5)],
+              colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF5B61F6).withOpacity(0.35),
+                color: const Color(0xFF0088CC).withOpacity(0.35),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
               ),
@@ -509,15 +464,15 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Divider
         Row(
           children: [
-            Expanded(child: Divider(color: Colors.white.withOpacity(0.12), thickness: 1)),
+            Expanded(child: Divider(color: const Color(0xFFE2E8F0), thickness: 1)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'or continue with',
-                style: TextStyle(color: Colors.white.withOpacity(0.60), fontSize: 13, fontWeight: FontWeight.w600),
+                style: TextStyle(color: const Color(0xFF94A3B8), fontSize: 13, fontWeight: FontWeight.w600),
               ),
             ),
-            Expanded(child: Divider(color: Colors.white.withOpacity(0.12), thickness: 1)),
+            Expanded(child: Divider(color: const Color(0xFFE2E8F0), thickness: 1)),
           ],
         ),
 
@@ -553,12 +508,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             onTap: () => setState(() => _isSignInTab = false),
             child: RichText(
               text: const TextSpan(
-                style: TextStyle(fontSize: 14, color: Colors.white70, letterSpacing: 0.2),
+                style: TextStyle(fontSize: 14, color: Color(0xFF475569), letterSpacing: 0.2),
                 children: [
                   TextSpan(text: "Don't have an account? "),
                   TextSpan(
                     text: 'Sign Up',
-                    style: TextStyle(color: Color(0xFFB5A4FF), fontWeight: FontWeight.w700),
+                    style: TextStyle(color: Color(0xFF0088CC), fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
@@ -577,13 +532,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Full Name
         TextFormField(
           controller: _signUpFullNameController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           keyboardType: TextInputType.name,
           textCapitalization: TextCapitalization.words,
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Full Name',
-            prefixIcon: const Icon(Icons.person_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.person_outline_rounded, color: Color(0xFF0088CC)),
           ),
         ),
 
@@ -592,12 +547,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Email Address
         TextFormField(
           controller: _signUpEmailController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Email Address',
-            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFF0088CC)),
           ),
         ),
 
@@ -611,10 +566,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
               width: 84,
               height: 56,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.25),
+                color: const Color(0xFFF1F5F9),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: const Color(0xFF8B6FFF).withOpacity(0.25),
+                  color: const Color(0xFF229ED9).withOpacity(0.25),
                   width: 1.2,
                 ),
               ),
@@ -623,7 +578,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 children: [
                   Text('🇮🇳', style: TextStyle(fontSize: 18)),
                   SizedBox(width: 4),
-                  Text('+91', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700)),
+                  Text('+91', style: TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.w700)),
                 ],
               ),
             ),
@@ -631,12 +586,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             Expanded(
               child: TextFormField(
                 controller: _signUpPhoneController,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+                style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
                 decoration: _buildInputDecoration(
                   hintText: 'Phone Number',
-                  prefixIcon: const Icon(Icons.phone_outlined, color: Color(0xFFB5A4FF)),
+                  prefixIcon: const Icon(Icons.phone_outlined, color: Color(0xFF0088CC)),
                 ),
               ),
             ),
@@ -648,16 +603,16 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Password
         TextFormField(
           controller: _signUpPasswordController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           obscureText: _obscureSignUpPassword,
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
             suffixIcon: IconButton(
               icon: Icon(
                 _obscureSignUpPassword ? Icons.visibility_off : Icons.visibility,
-                color: Colors.white70,
+                color: const Color(0xFF94A3B8),
               ),
               onPressed: () => setState(() => _obscureSignUpPassword = !_obscureSignUpPassword),
             ),
@@ -669,17 +624,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Confirm Password
         TextFormField(
           controller: _signUpConfirmPasswordController,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16),
           obscureText: _obscureSignUpConfirmPassword,
           textInputAction: TextInputAction.done,
           onFieldSubmitted: (_) => _handleSignUpSubmit(),
           decoration: _buildInputDecoration(
             hintText: 'Confirm Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFFB5A4FF)),
+            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
             suffixIcon: IconButton(
               icon: Icon(
                 _obscureSignUpConfirmPassword ? Icons.visibility_off : Icons.visibility,
-                color: Colors.white70,
+                color: const Color(0xFF94A3B8),
               ),
               onPressed: () => setState(() => _obscureSignUpConfirmPassword = !_obscureSignUpConfirmPassword),
             ),
@@ -694,11 +649,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             gradient: const LinearGradient(
-              colors: [Color(0xFF5B61F6), Color(0xFF4F46E5)],
+              colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF5B61F6).withOpacity(0.35),
+                color: const Color(0xFF0088CC).withOpacity(0.35),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
               ),
@@ -726,12 +681,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             onTap: () => setState(() => _isSignInTab = true),
             child: RichText(
               text: const TextSpan(
-                style: TextStyle(fontSize: 14, color: Colors.white70, letterSpacing: 0.2),
+                style: TextStyle(fontSize: 14, color: Color(0xFF475569), letterSpacing: 0.2),
                 children: [
                   TextSpan(text: 'Already have an account? '),
                   TextSpan(
                     text: 'Sign In',
-                    style: TextStyle(color: Color(0xFFB5A4FF), fontWeight: FontWeight.w700),
+                    style: TextStyle(color: Color(0xFF0088CC), fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
@@ -750,23 +705,23 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   }) {
     return InputDecoration(
       hintText: hintText,
-      hintStyle: const TextStyle(color: Colors.white60, fontSize: 15, fontWeight: FontWeight.w500),
+      hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 15, fontWeight: FontWeight.w500),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
       filled: true,
-      fillColor: Colors.black.withOpacity(0.25),
+      fillColor: const Color(0xFFF1F5F9),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(
-          color: const Color(0xFF8B6FFF).withOpacity(0.25),
+          color: const Color(0xFF229ED9).withOpacity(0.25),
           width: 1.2,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(
-          color: Color(0xFFB5A4FF),
+          color: Color(0xFF0088CC),
           width: 1.8,
         ),
       ),
@@ -799,10 +754,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         width: 64,
         height: 56,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.04),
+          color: const Color(0xFFF8FAFC),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: const Color(0xFF8B6FFF).withOpacity(0.20),
+            color: const Color(0xFF229ED9).withOpacity(0.20),
             width: 1.2,
           ),
         ),
@@ -812,7 +767,6 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             width: 24,
             height: 24,
             fit: BoxFit.contain,
-            color: logoUrl.contains('github') ? Colors.white : null,
             errorBuilder: (_, __, ___) => _buildSocialFallback(type),
           ),
         ),
@@ -911,22 +865,22 @@ class CollabsterLogoPainter extends CustomPainter {
 
     // Paints
     final orbitPaint = Paint()
-      ..color = const Color(0xFF8B6FFF)
+      ..color = const Color(0xFF229ED9)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0;
 
     final bodyPaint = Paint()
-      ..color = Colors.white
+      ..color = const Color(0xFF0088CC)
       ..style = PaintingStyle.stroke
       ..strokeWidth = radius * 0.35
       ..strokeCap = StrokeCap.round;
 
     final spherePaint = Paint()
-      ..color = const Color(0xFF8B6FFF)
+      ..color = const Color(0xFF229ED9)
       ..style = PaintingStyle.fill;
 
     final glowPaint = Paint()
-      ..color = const Color(0xFF8B6FFF).withOpacity(0.3)
+      ..color = const Color(0xFF229ED9).withOpacity(0.3)
       ..style = PaintingStyle.fill
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
 

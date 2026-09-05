@@ -63,12 +63,12 @@ class InvestorDetailScreen extends ConsumerWidget {
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.event_available_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -126,12 +126,12 @@ class InvestorDetailScreen extends ConsumerWidget {
                               horizontal: 14, vertical: 7),
                           decoration: BoxDecoration(
                             color: selected
-                                ? const Color(0xFF5B21B6)
-                                : const Color(0xFFF6F3FF),
+                                ? const Color(0xFF0088CC)
+                                : const Color(0xFFF0F9FF),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
                               color: selected
-                                  ? const Color(0xFF5B21B6)
+                                  ? const Color(0xFF0088CC)
                                   : const Color(0xFFE5E7EB),
                             ),
                           ),
@@ -173,12 +173,12 @@ class InvestorDetailScreen extends ConsumerWidget {
                               horizontal: 14, vertical: 7),
                           decoration: BoxDecoration(
                             color: selected
-                                ? const Color(0xFF5B21B6)
-                                : const Color(0xFFF6F3FF),
+                                ? const Color(0xFF0088CC)
+                                : const Color(0xFFF0F9FF),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
                               color: selected
-                                  ? const Color(0xFF5B21B6)
+                                  ? const Color(0xFF0088CC)
                                   : const Color(0xFFE5E7EB),
                             ),
                           ),
@@ -203,7 +203,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                       hintText: 'Meeting Agenda & Topic',
                       prefixIcon: const Icon(Icons.notes_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -249,7 +249,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -318,12 +318,12 @@ class InvestorDetailScreen extends ConsumerWidget {
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.send_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -373,12 +373,12 @@ class InvestorDetailScreen extends ConsumerWidget {
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             color: selected
-                                ? const Color(0xFFEDE9FE)
+                                ? const Color(0xFFE8F4FB)
                                 : const Color(0xFFF9FAFB),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color: selected
-                                  ? const Color(0xFF5B21B6)
+                                  ? const Color(0xFF0088CC)
                                   : const Color(0xFFE5E7EB),
                             ),
                           ),
@@ -387,7 +387,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                               Icon(
                                 Icons.picture_as_pdf_outlined,
                                 color: selected
-                                    ? const Color(0xFF5B21B6)
+                                    ? const Color(0xFF0088CC)
                                     : const Color(0xFF6B7280),
                                 size: 22,
                               ),
@@ -399,7 +399,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                                     fontSize: 13.5,
                                     fontWeight: FontWeight.w700,
                                     color: selected
-                                        ? const Color(0xFF5B21B6)
+                                        ? const Color(0xFF0088CC)
                                         : const Color(0xFF12233D),
                                   ),
                                 ),
@@ -424,7 +424,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                     decoration: InputDecoration(
                       hintText: 'Personalized Cover Note',
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -460,7 +460,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -493,7 +493,7 @@ class InvestorDetailScreen extends ConsumerWidget {
         'Evaluating product-market fit and recurring revenue traction for Series A round.';
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // Header Banner
@@ -505,8 +505,8 @@ class InvestorDetailScreen extends ConsumerWidget {
                   end: Alignment.bottomRight,
                   colors: [
                     StartupColorHelper.fromKey(currentInvestor.colorKey),
-                    const Color(0xFF5B21B6),
-                    const Color(0xFF4338CA),
+                    const Color(0xFF0088CC),
+                    const Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -669,7 +669,7 @@ class InvestorDetailScreen extends ConsumerWidget {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF5B21B6),
+                          backgroundColor: const Color(0xFF0088CC),
                           foregroundColor: Colors.white,
                           minimumSize: const Size.fromHeight(48),
                           shape: RoundedRectangleBorder(
@@ -695,9 +695,9 @@ class InvestorDetailScreen extends ConsumerWidget {
                           ),
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: const Color(0xFF5B21B6),
+                          foregroundColor: const Color(0xFF0088CC),
                           side: const BorderSide(
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             width: 1.5,
                           ),
                           minimumSize: const Size.fromHeight(48),
@@ -740,13 +740,13 @@ class InvestorDetailScreen extends ConsumerWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 4),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFEDE9FE),
+                              color: const Color(0xFFE8F4FB),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Text(
                               'Copy',
                               style: TextStyle(
-                                color: Color(0xFF5B21B6),
+                                color: Color(0xFF0088CC),
                                 fontSize: 11,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -809,7 +809,7 @@ class InvestorDetailScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: const Color(0xFF5B21B6), size: 20),
+              Icon(icon, color: const Color(0xFF0088CC), size: 20),
               const SizedBox(width: 10),
               Text(
                 title,

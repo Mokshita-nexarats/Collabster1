@@ -204,7 +204,7 @@ class _StartupInfoScreenState extends ConsumerState<StartupInfoScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF4A0E8F), Color(0xFF6D28D9), Color(0xFF5B21B6)],
+                  colors: [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF0088CC)],
                 ),
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
               ),
@@ -422,12 +422,12 @@ class _StartupInfoScreenState extends ConsumerState<StartupInfoScreen> {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: const Color(0xFF6D28D9).withValues(alpha: 0.35),
+                                      color: const Color(0xFF0088CC).withValues(alpha: 0.35),
                                       width: 2.5,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: const Color(0xFF6D28D9).withValues(alpha: 0.15),
+                                        color: const Color(0xFF0088CC).withValues(alpha: 0.15),
                                         blurRadius: 16,
                                         offset: const Offset(0, 4),
                                       ),
@@ -446,7 +446,7 @@ class _StartupInfoScreenState extends ConsumerState<StartupInfoScreen> {
                                       : const Icon(
                                           Icons.person_rounded,
                                           size: 44,
-                                          color: Color(0xFF6D28D9),
+                                          color: Color(0xFF0088CC),
                                         ),
                                 ),
                                 // Camera badge
@@ -458,7 +458,7 @@ class _StartupInfoScreenState extends ConsumerState<StartupInfoScreen> {
                                     child: Container(
                                       padding: const EdgeInsets.all(7),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFF6D28D9),
+                                        color: const Color(0xFF0088CC),
                                         shape: BoxShape.circle,
                                         border: Border.all(color: Colors.white, width: 2),
                                         boxShadow: [

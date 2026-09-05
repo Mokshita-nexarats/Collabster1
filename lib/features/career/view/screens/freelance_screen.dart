@@ -22,8 +22,8 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
       company: 'Nebula Fintech',
       timeAgo: '1 day ago',
       badge: 'REMOTE',
-      badgeFg: Color(0xFF0369A1),
-      badgeBg: Color(0xFFE0F2FE),
+      badgeFg: Color(0xFF006699),
+      badgeBg: Color(0xFFE8F4FB),
       budget: '\$45 - \$60 / hr',
       duration: '3 Months',
       tags: ['Figma', 'UI Design', 'Fintech'],
@@ -34,8 +34,8 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
       company: 'CloudScale AI',
       timeAgo: '4 hours ago',
       badge: 'HYBRID',
-      badgeFg: Color(0xFF0369A1),
-      badgeBg: Color(0xFFE0F2FE),
+      badgeFg: Color(0xFF006699),
+      badgeBg: Color(0xFFE8F4FB),
       budget: '\$80 - \$110 / hr',
       duration: '6 Months',
       tags: ['React.js', 'Tailwind', 'GraphQL'],
@@ -46,8 +46,8 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
       company: 'SecureNet',
       timeAgo: '2 days ago',
       badge: 'REMOTE',
-      badgeFg: Color(0xFF0369A1),
-      badgeBg: Color(0xFFE0F2FE),
+      badgeFg: Color(0xFF006699),
+      badgeBg: Color(0xFFE8F4FB),
       budget: '\$50 - \$70 / hr',
       duration: 'Short-term',
       tags: ['API Docs', 'Cybersecurity'],
@@ -176,7 +176,7 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
                       color: selected ? AppColors.primary : Colors.white,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                        color: selected ? AppColors.primary : const Color(0xFFBAE6FD),
+                        color: selected ? AppColors.primary : const Color(0xFFE8F4FB),
                         width: 1.3,
                       ),
                     ),
@@ -185,7 +185,7 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: selected ? Colors.white : const Color(0xFF0369A1),
+                        color: selected ? Colors.white : const Color(0xFF006699),
                       ),
                     ),
                   ),
@@ -299,7 +299,7 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -487,7 +487,7 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xFFBAE6FD)),
+                  border: Border.all(color: const Color(0xFFE8F4FB)),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Icon(Icons.bookmark_border_rounded, size: 18, color: AppColors.primary),
@@ -511,7 +511,7 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         children: [
@@ -602,10 +602,10 @@ class _FreelanceScreenState extends State<FreelanceScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: const BoxDecoration(
-              color: Color(0xFFE0F2FE),
+              color: Color(0xFFE8F4FB),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0284C7), size: 28),
+            child: const Icon(Icons.search_off_rounded, color: Color(0xFF0088CC), size: 28),
           ),
           const SizedBox(height: 12),
           const Text(

@@ -14,12 +14,12 @@ class JoinStartupStatusScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F5FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF7F5FF),
+        backgroundColor: const Color(0xFFF0F9FF),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF5B21B6)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF0088CC)),
           onPressed: () => Navigator.pop(context),
         ),
         automaticallyImplyLeading: false,
@@ -35,13 +35,13 @@ class JoinStartupStatusScreen extends ConsumerWidget {
                   width: 82,
                   height: 82,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE8DBFF),
+                    color: const Color(0xFFE0F2FE),
                     borderRadius: BorderRadius.circular(22),
                   ),
                   child: const Icon(
                     Icons.verified_rounded,
                     size: 44,
-                    color: Color(0xFF5B21B6),
+                    color: Color(0xFF0088CC),
                   ),
                 ),
               ),
@@ -64,7 +64,7 @@ class JoinStartupStatusScreen extends ConsumerWidget {
                     value: 0.82,
                     backgroundColor: Color(0xFFE9DCF9),
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      Color(0xFF5B21B6),
+                      Color(0xFF0088CC),
                     ),
                   ),
                 ),
@@ -124,7 +124,7 @@ class JoinStartupStatusScreen extends ConsumerWidget {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
                     elevation: 0,
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -211,8 +211,8 @@ class JoinStartupStatusScreen extends ConsumerWidget {
 
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
-                    foregroundColor: const Color(0xFF5B21B6),
-                    side: const BorderSide(color: Color(0xFF5B21B6)),
+                    foregroundColor: const Color(0xFF0088CC),
+                    side: const BorderSide(color: Color(0xFF0088CC)),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -240,12 +240,12 @@ class JoinStartupStatusScreen extends ConsumerWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFD7D5E5)),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: const Color(0xFF5B21B6), size: 28),
+          Icon(icon, color: const Color(0xFF0088CC), size: 28),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -283,7 +283,7 @@ class JoinStartupStatusScreen extends ConsumerWidget {
     bool active = false,
   }) {
     final color = completed || active
-        ? const Color(0xFF5B21B6)
+        ? const Color(0xFF0088CC)
         : const Color(0xFFD1CFE0);
 
     return Padding(

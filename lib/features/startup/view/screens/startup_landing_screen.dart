@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/di/providers.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../auth/view/secondary_goal_screen.dart';
-import 'join_startup_screen.dart';
+import 'company_type_screen.dart';
 import 'startup_dashboard_screen.dart';
-import 'startup_registration_flow_screen.dart';
+import 'startup_registration_intro_screen.dart';
 
 class StartupLandingScreen extends ConsumerWidget {
   const StartupLandingScreen({super.key, this.selectedRole = 'Startup'});
@@ -23,7 +23,7 @@ class StartupLandingScreen extends ConsumerWidget {
             : null;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F1FA),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -52,7 +52,7 @@ class StartupLandingScreen extends ConsumerWidget {
                                 }
                               },
                               icon: const Icon(Icons.arrow_back_rounded),
-                              color: const Color(0xFF6B21D9),
+                              color: const Color(0xFF0088CC),
                               style: IconButton.styleFrom(
                                 backgroundColor: Colors.transparent,
                               ),
@@ -62,7 +62,7 @@ class StartupLandingScreen extends ConsumerWidget {
                         const Divider(
                           height: 1,
                           thickness: 1,
-                          color: Color(0xFFD8D0EA),
+                          color: Color(0xFFBAE6FD),
                         ),
                         const SizedBox(height: 24),
                         const Text(
@@ -84,7 +84,7 @@ class StartupLandingScreen extends ConsumerWidget {
                             fontSize: 34,
                             height: 1.05,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF6B21D9),
+                            color: Color(0xFF0088CC),
                             letterSpacing: -0.6,
                           ),
                         ),
@@ -127,23 +127,24 @@ class StartupLandingScreen extends ConsumerWidget {
                         ],
                         _StartupActionCard(
                           icon: Icons.rocket_launch_rounded,
-                          iconBackground: const Color(0xFFE9DDFF),
+                          iconBackground: const Color(0xFFE0F2FE),
                           title: 'Create Startup',
                           description:
                               'Build your startup profile, invite your team, showcase your products, raise funding and grow your company.',
                           buttonLabel: 'Create Startup',
                           buttonIcon: Icons.arrow_forward_rounded,
                           buttonFilled: existingStartupName == null,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => StartupRegistrationFlowScreen(
-                                  selectedRole: selectedRole,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      StartupRegistrationIntroScreen(
+                                    selectedRole: selectedRole,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
                         ),
                         const SizedBox(height: 12),
                         _StartupActionCard(
@@ -158,7 +159,7 @@ class StartupLandingScreen extends ConsumerWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const JoinStartupScreen(),
+                                builder: (context) => const CompanyTypeScreen(),
                               ),
                             );
                           },
@@ -204,7 +205,7 @@ class _StartupActionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFD8D0EA)),
+        border: Border.all(color: const Color(0xFFBAE6FD)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x09000000),
@@ -223,7 +224,7 @@ class _StartupActionCard extends StatelessWidget {
               color: iconBackground,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(icon, size: 30, color: const Color(0xFF6B21D9)),
+            child: Icon(icon, size: 30, color: const Color(0xFF0088CC)),
           ),
           const SizedBox(height: 16),
           Text(
@@ -278,7 +279,7 @@ class _StartupActionCard extends StatelessWidget {
                     style: OutlinedButton.styleFrom(
                       minimumSize: const Size.fromHeight(42),
                       foregroundColor: AppColors.primary,
-                      side: const BorderSide(color: Color(0xFFB9AEDC)),
+                      side: const BorderSide(color: Color(0xFF0284C7)),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(999),
                       ),

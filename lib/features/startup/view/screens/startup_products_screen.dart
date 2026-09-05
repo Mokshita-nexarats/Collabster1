@@ -109,12 +109,12 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF7C3AED).withValues(alpha: 0.1),
+                          color: const Color(0xFF229ED9).withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Icon(
                           isEditing ? Icons.edit_rounded : Icons.inventory_2_rounded,
-                          color: const Color(0xFF7C3AED),
+                          color: const Color(0xFF229ED9),
                           size: 22,
                         ),
                       ),
@@ -156,7 +156,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                     label: 'Status',
                     items: statuses,
                     selected: selectedStatus,
-                    accentColor: const Color(0xFF7C3AED),
+                    accentColor: const Color(0xFF229ED9),
                     onSelect: (s) => setModalState(() => selectedStatus = s),
                   ),
                   const SizedBox(height: 14),
@@ -164,7 +164,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                     label: 'Category',
                     items: categories,
                     selected: selectedCategory,
-                    accentColor: const Color(0xFF5B21B6),
+                    accentColor: const Color(0xFF0088CC),
                     onSelect: (s) => setModalState(() => selectedCategory = s),
                   ),
                   const SizedBox(height: 20),
@@ -206,7 +206,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF7C3AED),
+                        backgroundColor: const Color(0xFF229ED9),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -270,7 +270,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
         hintText: hint,
         prefixIcon: Icon(icon),
         filled: true,
-        fillColor: const Color(0xFFF6F3FF),
+        fillColor: const Color(0xFFF0F9FF),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -360,8 +360,8 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF6D28D9).withValues(alpha: 0.85),
-                    const Color(0xFF4338CA),
+                    const Color(0xFF0088CC).withValues(alpha: 0.85),
+                    const Color(0xFF0088CC),
                   ],
                 ),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
@@ -468,11 +468,11 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                           _vertDivider(),
                           _statBlock(Icons.bookmark_outline,
                               _formatK(product.saves), 'Saves',
-                              const Color(0xFF7C3AED)),
+                              const Color(0xFF229ED9)),
                           _vertDivider(),
                           _statBlock(Icons.download_outlined,
                               _formatK(product.downloads), 'Downloads',
-                              const Color(0xFF0891B2)),
+                              const Color(0xFF0088CC)),
                         ],
                       ),
                     ),
@@ -491,7 +491,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                               _showEditSheet(product, index);
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF7C3AED),
+                              backgroundColor: const Color(0xFF229ED9),
                               foregroundColor: Colors.white,
                               minimumSize: const Size.fromHeight(48),
                               shape: RoundedRectangleBorder(
@@ -615,7 +615,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
     final totalDownloads = productsState.products.fold<int>(0, (sum, p) => sum + p.downloads);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -625,9 +625,9 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4338CA),
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -681,7 +681,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                       const SizedBox(width: 8),
                       _headerChip(Icons.download_outlined,
                           '${_formatK(totalDownloads)} Downloads',
-                          const Color(0xFF0891B2)),
+                          const Color(0xFF0088CC)),
                     ],
                   ),
                   const SizedBox(height: 14),
@@ -732,7 +732,7 @@ class _StartupProductsScreenState extends ConsumerState<StartupProductsScreen> {
                           child: const Text(
                             'Tap + to add your first product',
                             style: TextStyle(
-                                color: Color(0xFF7C3AED),
+                                color: Color(0xFF229ED9),
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -831,8 +831,8 @@ class _ProductCard extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    const Color(0xFF6D28D9).withValues(alpha: 0.8),
-                    const Color(0xFF4338CA),
+                    const Color(0xFF0088CC).withValues(alpha: 0.8),
+                    const Color(0xFF0088CC),
                   ],
                 ),
                 borderRadius:
@@ -931,7 +931,7 @@ class _ProductCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 14, vertical: 6),
                           decoration: BoxDecoration(
-                            border: Border.all(color: const Color(0xFF7C3AED)),
+                            border: Border.all(color: const Color(0xFF229ED9)),
                             borderRadius: BorderRadius.circular(999),
                           ),
                           child: const Text(
@@ -939,7 +939,7 @@ class _ProductCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF7C3AED),
+                              color: Color(0xFF229ED9),
                             ),
                           ),
                         ),

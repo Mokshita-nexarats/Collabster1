@@ -57,7 +57,7 @@ class ActivityItem {
       case ActivityType.eventCreated:
         return const Color(0xFF2563EB);
       case ActivityType.postLiked:
-        return const Color(0xFFEA580C);
+        return const Color(0xFF229ED9);
       case ActivityType.memberJoined:
       case ActivityType.communityJoined:
         return const Color(0xFF059669);

@@ -1,3 +1,10 @@
+export 'view/screens/basic_information_screen.dart';
+export 'view/screens/company_type_screen.dart';
+export 'view/screens/founder_owner_details_screen.dart';
+export 'view/screens/pan_gst_details_screen.dart';
+export 'view/screens/partnership_details_screen.dart';
+export 'view/screens/review_your_details_screen.dart';
+export 'view/screens/upload_documents_screen.dart';
 export 'view/screens/join_startup_screen.dart';
 export 'view/screens/join_startup_status_screen.dart';
 export 'view/screens/join_startup_verification_screen.dart';
