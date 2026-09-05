@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../enums/app_enums.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/di/providers.dart';
+import '../../features/home/view/home_dashboard_screen.dart';
 import '../utils/dashboard_router.dart';
 
 class RoleSwitcherSheet extends ConsumerWidget {
@@ -55,7 +56,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
             child: Row(
               children: [
                 Text(
-                  'Switch Role',
+                  'Switch Tab',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
@@ -85,6 +86,13 @@ class RoleSwitcherSheet extends ConsumerWidget {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               children: [
+                // ─── Feed shortcut (always shown) ───
+                _FeedTile(
+                  onTap: () => _navigateToFeed(context, ref),
+                ),
+                const SizedBox(height: 16),
+                Container(height: 1, color: const Color(0xFFF3F4F6)),
+                const SizedBox(height: 16),
                 if (userRoles.isNotEmpty) ...[
                   const Text(
                     'YOUR ROLES',
@@ -115,9 +123,9 @@ class RoleSwitcherSheet extends ConsumerWidget {
                       .toSet();
 
                   final addableRoles = UserRole.values.where((role) {
-                    if (userRoles.contains(role)) return false; 
-                    if (role.isStartupRole) return true;        
-                    return !ownedLabels.contains(role.label);   
+                    if (userRoles.contains(role)) return false;
+                    if (role.isStartupRole) return true;
+                    return !ownedLabels.contains(role.label);
                   }).toList();
 
                   if (addableRoles.isEmpty) return const SizedBox.shrink();
@@ -162,7 +170,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Could not switch role. Please try again.'),
+          content: Text('Could not switch tab. Please try again.'),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -193,6 +201,21 @@ class RoleSwitcherSheet extends ConsumerWidget {
     if (!context.mounted) return;
 
     _replaceWithDashboard(context, ref);
+  }
+
+  Future<void> _navigateToFeed(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(authViewModelProvider.notifier).switchRole(UserRole.other);
+    } catch (_) {}
+    if (!context.mounted) return;
+    Navigator.of(context).pop(); // close sheet
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!context.mounted) return;
+      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const HomeDashboardScreen()),
+        (_) => false,
+      );
+    });
   }
 
   void _replaceWithDashboard(BuildContext context, WidgetRef ref) {
@@ -390,6 +413,98 @@ class _RoleAddTile extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Feed shortcut tile — always shown at the top of the Switch Tab sheet
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _FeedTile extends StatelessWidget {
+  const _FeedTile({required this.onTap});
+
+  final VoidCallback onTap;
+
+  static const _kPurple = Color(0xFF4338CA);
+  static const _kPurpleLight = Color(0xFFEEF2FF);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: _kPurpleLight,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: _kPurple, width: 2),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF4338CA), Color(0xFF7C3AED)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.dynamic_feed_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Feed',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: _kPurple,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'View your social feed & updates',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  color: _kPurple,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'Go →',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -21,8 +21,10 @@ extension UserRoleIcons on UserRole {
         return Icons.campaign_rounded;
       case UserRole.serviceProvider:
         return Icons.build_rounded;
+      case UserRole.learner:
+        return Icons.auto_stories_rounded;
       case UserRole.other:
-        return Icons.diamond_rounded;
+        return Icons.dynamic_feed_rounded;
     }
   }
 
@@ -46,8 +48,10 @@ extension UserRoleIcons on UserRole {
         return const Color(0xFFF43F5E);
       case UserRole.serviceProvider:
         return const Color(0xFF0EA5E9);
+      case UserRole.learner:
+        return const Color(0xFF8B5CF6);
       case UserRole.other:
-        return const Color(0xFF6B7280);
+        return const Color(0xFF4338CA);
     }
   }
 }
@@ -59,10 +63,11 @@ enum UserRole {
   company('Startup', 'Managing a company'),
   investor('Investor', 'Investing in opportunities'),
   creator('Community', 'Creating content and value'),
-  mentor('Career', 'Guiding and mentoring others'),
+  mentor('Mentor', 'Guiding and mentoring others'),
   influencer('Community', 'Inspiring and influencing people'),
   serviceProvider('Event', 'Offering professional services'),
-  other('Other', 'Something else');
+  learner('Learn', 'Upskilling and continuous learning'),
+  other('Feed', 'Explore community feed & updates');
 
   const UserRole(this.label, this.description);
 
@@ -80,13 +85,16 @@ enum UserRole {
         return 'Investor Hub';
       case UserRole.student:
       case UserRole.professional:
-      case UserRole.mentor:
         return 'Career Hub';
+      case UserRole.mentor:
+        return 'Mentor Hub';
       case UserRole.creator:
       case UserRole.influencer:
         return 'Community Hub';
       case UserRole.serviceProvider:
         return 'Event Hub';
+      case UserRole.learner:
+        return 'Learn Hub';
       case UserRole.other:
         return 'Collabster';
     }

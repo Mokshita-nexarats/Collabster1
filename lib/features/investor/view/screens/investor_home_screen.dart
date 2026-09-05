@@ -1507,7 +1507,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
                   const SizedBox(height: 8),
                   _sheetAction(
                     Icons.swap_horiz_rounded,
-                    'Switch Role',
+                    'Switch Tab',
                     InvestorColors.blue,
                     () {
                       Navigator.pop(ctx);

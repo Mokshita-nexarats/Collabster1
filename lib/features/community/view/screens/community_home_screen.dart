@@ -699,7 +699,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                   const SizedBox(height: 8),
                   _sheetAction(
                     Icons.swap_horiz_rounded,
-                    'Switch Role',
+                    'Switch Tab',
                     const Color(0xFFEA580C),
                     () {
                       Navigator.pop(ctx);
@@ -2419,7 +2419,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
               Icons.swap_horiz_rounded,
               color: Color(0xFFEA580C),
             ),
-            title: const Text('Switch Role'),
+            title: const Text('Switch Tab'),
             onTap: () {
               Navigator.pop(context);
               RoleSwitcherSheet.show(context);

@@ -415,7 +415,7 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                   Icon(Icons.swap_horiz_rounded, size: 16, color: Colors.white),
                                   SizedBox(width: 4),
                                   Text(
-                                    'Switch Role',
+                                    'Switch Tab',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11.5,
@@ -947,7 +947,7 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                         const Divider(height: 1, color: InvestorColors.border),
                         _settingsActionTile(
                           icon: Icons.swap_horiz_rounded,
-                          title: 'Switch Role',
+                          title: 'Switch Tab',
                           color: InvestorColors.blue,
                           onTap: () => RoleSwitcherSheet.show(context),
                         ),

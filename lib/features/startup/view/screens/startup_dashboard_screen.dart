@@ -1413,7 +1413,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                   const SizedBox(height: 8),
                   _sheetAction(
                     Icons.swap_horiz_rounded,
-                    'Switch Role',
+                    'Switch Tab',
                     const Color(0xFF5B21B6),
                     () {
                       Navigator.pop(ctx);

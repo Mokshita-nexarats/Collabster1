@@ -9,6 +9,8 @@ import '../../features/community/view/screens/community_home_screen.dart';
 import '../../features/career/view/screens/career_dashboard_screen.dart';
 import '../../features/startup/view/screens/startup_landing_screen.dart';
 import '../../features/event/view/screens/events/event_home_screen.dart';
+import '../../features/learn/view/screens/learn_dashboard_screen.dart';
+import '../../features/mentor/view/screens/mentor_dashboard_screen.dart';
 
 Widget buildDashboardForRole(AuthSession session) {
   final activeRole = session.activeUserRole;
@@ -22,13 +24,16 @@ Widget buildDashboardForRole(AuthSession session) {
       return const InvestorHomeScreen();
     case UserRole.student:
     case UserRole.professional:
-    case UserRole.mentor:
       return const CareerDashboardScreen();
+    case UserRole.mentor:
+      return const MentorDashboardScreen();
     case UserRole.creator:
     case UserRole.influencer:
       return const CommunityHomeScreen();
     case UserRole.serviceProvider:
       return const EventHomeScreen();
+    case UserRole.learner:
+      return const LearnDashboardScreen();
     case UserRole.other:
       return const HomeDashboardScreen();
     default:

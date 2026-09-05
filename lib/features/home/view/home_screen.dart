@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.swap_horiz),
-            tooltip: 'Switch Role',
+            tooltip: 'Switch Tab',
             onPressed: () => RoleSwitcherSheet.show(context),
           ),
           IconButton(
@@ -80,7 +80,7 @@ class HomeScreen extends ConsumerWidget {
                 child: OutlinedButton.icon(
                   onPressed: () => RoleSwitcherSheet.show(context),
                   icon: const Icon(Icons.swap_horiz, size: 20),
-                  label: const Text('Switch Role'),
+                  label: const Text('Switch Tab'),
                 ),
               ),
             ],

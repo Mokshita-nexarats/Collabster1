@@ -12,4 +12,5 @@ class AppAssets {
 
   /// General images directory
   static const String imagesDir = 'assets/images/';
+  static const String landingBg = 'assets/images/landing_bg.jpg';
 }

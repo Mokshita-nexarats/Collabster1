@@ -870,7 +870,7 @@ class _CareerDashboardScreenState extends ConsumerState<CareerDashboardScreen> {
                     Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
                   }),
                   const SizedBox(height: 8),
-                  _sheetAction(Icons.swap_horiz_rounded, 'Switch Role', const Color(0xFF0284C7), () {
+                  _sheetAction(Icons.swap_horiz_rounded, 'Switch Tab', const Color(0xFF0284C7), () {
                     Navigator.pop(ctx);
                     RoleSwitcherSheet.show(context);
                   }),

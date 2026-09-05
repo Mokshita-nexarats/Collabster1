@@ -1538,7 +1538,7 @@ class _EventHomeScreenState extends ConsumerState<EventHomeScreen> {
                   const SizedBox(height: 8),
                   _sheetAction(
                     Icons.swap_horiz_rounded,
-                    'Switch Role',
+                    'Switch Tab',
                     _accent,
                     () {
                       Navigator.pop(ctx);

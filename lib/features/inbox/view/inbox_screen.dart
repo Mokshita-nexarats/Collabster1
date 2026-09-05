@@ -37,13 +37,13 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: const Color(0xFFF8F9FC),
       appBar: AppBar(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF1E293B)),
+          icon: const Icon(Icons.arrow_back_rounded, color: const Color(0xFF111827)),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -51,14 +51,14 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF1E293B),
+            color: Color(0xFF111827),
           ),
         ),
         bottom: TabBar(
           controller: _tabController,
-          indicatorColor: const Color(0xFF0284C7),
-          labelColor: const Color(0xFF0284C7),
-          unselectedLabelColor: Colors.grey,
+          indicatorColor: const Color(0xFF4338CA),
+          labelColor: const Color(0xFF4338CA),
+          unselectedLabelColor: const Color(0xFF6B7280),
           tabs: const [
             Tab(text: 'Chats'),
             Tab(text: 'Requests'),
@@ -139,17 +139,17 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
       ),
       child: ListTile(
         onTap: onTap,
         leading: CircleAvatar(
           radius: 22,
           backgroundColor:
-              isRoom ? const Color(0xFF0284C7) : const Color(0xFFF1F5F9),
+              isRoom ? const Color(0xFF4338CA) : Colors.white,
           child: Icon(
             isRoom ? Icons.forum_rounded : Icons.person_outline_rounded,
-            color: isRoom ? Colors.white : const Color(0xFF475569),
+            color: isRoom ? Colors.white : const Color(0xFF6B7280),
             size: 20,
           ),
         ),
@@ -160,14 +160,14 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           style: const TextStyle(
             fontSize: 14.5,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF0F172A),
+            color: Color(0xFF111827),
           ),
         ),
         subtitle: Text(
           subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+          style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
         ),
         trailing: unread > 0
             ? Container(
@@ -205,31 +205,31 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE2E8F0)),
-            ),
-            child: const Column(
-              children: [
-                Icon(Icons.check_circle_outline_rounded,
-                    size: 42, color: Color(0xFF10B981)),
-                SizedBox(height: 12),
-                Text(
-                  'All caught up!',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF0F172A),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFFE5E7EB)),
+              ),
+              child: const Column(
+                children: [
+                  Icon(Icons.check_circle_outline_rounded,
+                      size: 42, color: Color(0xFF4338CA)),
+                  SizedBox(height: 12),
+                  Text(
+                    'All caught up!',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF111827),
+                    ),
                   ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'No pending connection requests right now.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
-                ),
-              ],
-            ),
+                  SizedBox(height: 4),
+                  Text(
+                    'No pending connection requests right now.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: Color(0xFF6B7280)),
+                  ),
+                ],
+              ),
           )
         else
           ...requests.map(
@@ -239,20 +239,20 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFFE2E8F0)),
+                border: Border.all(color: const Color(0xFFE5E7EB)),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
                     radius: 22,
-                    backgroundColor: const Color(0xFFEEF2FF),
+                    backgroundColor: const Color(0xFFF8F9FC),
                     child: Text(
                       r.initials,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w800,
-                        color: Color(0xFF4F46E5),
+                        color: Color(0xFF4338CA),
                       ),
                     ),
                   ),
@@ -269,7 +269,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                                 style: const TextStyle(
                                   fontSize: 14.5,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xFF0F172A),
+                                  color: Color(0xFF111827),
                                 ),
                               ),
                             ),
@@ -287,18 +287,18 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                           r.role,
                           style: TextStyle(
                             fontSize: 12,
-                            color: Colors.grey.shade500,
+                            color: Colors.grey.shade600,
                           ),
                         ),
                         if (r.note.isNotEmpty) ...[
                           const SizedBox(height: 6),
                           Text(
                             r.note,
-                            style: const TextStyle(
-                              fontSize: 12.5,
-                              color: Color(0xFF475569),
-                              height: 1.4,
-                            ),
+style: TextStyle(
+                                fontSize: 12.5,
+                                color: Colors.grey.shade600,
+                                height: 1.4,
+                              ),
                           ),
                         ],
                         const SizedBox(height: 10),
@@ -311,9 +311,9 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                                     .ignore(r.name),
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(
-                                    color: Color(0xFFE2E8F0),
+                                    color: Color(0xFFE5E7EB),
                                   ),
-                                  foregroundColor: const Color(0xFF64748B),
+                                  foregroundColor: const Color(0xFF6B728B),
                                   minimumSize: const Size(0, 36),
                                   padding: EdgeInsets.zero,
                                   shape: RoundedRectangleBorder(
@@ -330,7 +330,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                                     .read(requestsViewModelProvider.notifier)
                                     .accept(r.name),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF0284C7),
+                                  backgroundColor: const Color(0xFF4338CA),
                                   foregroundColor: Colors.white,
                                   minimumSize: const Size(0, 36),
                                   padding: EdgeInsets.zero,
@@ -364,7 +364,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           fontSize: 12,
           fontWeight: FontWeight.w800,
           letterSpacing: 0.8,
-          color: Color(0xFF64748B),
+          color: Color(0xFF6B7280),
         ),
       ),
     );
