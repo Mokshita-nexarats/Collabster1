@@ -70,13 +70,13 @@ class _EventsListScreenState extends ConsumerState<EventsListScreen> {
             width: 88,
             height: 88,
             decoration: BoxDecoration(
-              color: const Color(0xFF059669).withValues(alpha: 0.08),
+              color: const Color(0xFF0088CC).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.event_outlined,
               size: 42,
-              color: Color(0xFF059669),
+              color: Color(0xFF0088CC),
             ),
           ),
           const SizedBox(height: 20),
@@ -108,14 +108,14 @@ class _EventsListScreenState extends ConsumerState<EventsListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFF059669), Color(0xFF10B981)],
+                  colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF059669).withValues(alpha: 0.3),
+                    color: const Color(0xFF0088CC).withValues(alpha: 0.3),
                     blurRadius: 12,
                     offset: const Offset(0, 5),
                   ),
@@ -199,10 +199,10 @@ class _EventCard extends StatelessWidget {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF059669).withValues(alpha: 0.08),
+                  color: const Color(0xFF0088CC).withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: const Color(0xFF059669).withValues(alpha: 0.2),
+                    color: const Color(0xFF0088CC).withValues(alpha: 0.2),
                   ),
                 ),
                 child: Text(
@@ -210,7 +210,7 @@ class _EventCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF059669),
+                    color: Color(0xFF0088CC),
                   ),
                 ),
               ),
@@ -305,7 +305,7 @@ class _EventCard extends StatelessWidget {
                 child: _MetaChip(
                   icon: Icons.calendar_today_outlined,
                   label: _formatDate(event.startDate),
-                  color: const Color(0xFF059669),
+                  color: const Color(0xFF0088CC),
                 ),
               ),
               const SizedBox(width: 10),
@@ -315,7 +315,7 @@ class _EventCard extends StatelessWidget {
                       ? Icons.videocam_outlined
                       : Icons.location_on_outlined,
                   label: event.location,
-                  color: const Color(0xFF059669),
+                  color: const Color(0xFF0088CC),
                 ),
               ),
             ],
@@ -331,7 +331,7 @@ class _EventCard extends StatelessWidget {
               CircleAvatar(
                 radius: 14,
                 backgroundColor: const Color(
-                  0xFF059669,
+                  0xFF0088CC,
                 ).withValues(alpha: 0.12),
                 child: Text(
                   event.organizerName.isNotEmpty
@@ -340,7 +340,7 @@ class _EventCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF059669),
+                    color: Color(0xFF0088CC),
                   ),
                 ),
               ),

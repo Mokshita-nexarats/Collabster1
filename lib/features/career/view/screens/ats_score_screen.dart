@@ -24,7 +24,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7)),
+          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC)),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -37,14 +37,14 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0284C7)),
+            icon: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0088CC)),
             onPressed: () {},
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               radius: 16,
-              backgroundColor: const Color(0xFF0284C7),
+              backgroundColor: const Color(0xFF0088CC),
               child: Text(
                 userInitials,
                 style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
@@ -73,14 +73,14 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Downloading ATS Optimized Resume PDF...'),
-                            backgroundColor: Color(0xFF0284C7),
+                            backgroundColor: Color(0xFF0088CC),
                           ),
                         );
                       },
                       icon: const Icon(Icons.download_rounded, size: 18),
                       label: const Text('Download PDF'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -93,11 +93,11 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE0F2FE),
+                      color: const Color(0xFFE8F4FB),
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.edit_outlined, color: Color(0xFF0284C7), size: 20),
+                      icon: const Icon(Icons.edit_outlined, color: Color(0xFF0088CC), size: 20),
                       onPressed: () {},
                     ),
                   ),
@@ -119,14 +119,14 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.auto_awesome_rounded, color: Color(0xFF0284C7), size: 14),
+                      Icon(Icons.auto_awesome_rounded, color: Color(0xFF0088CC), size: 14),
                       SizedBox(width: 4),
                       Text(
                         'Powered by AI',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF0284C7),
+                          color: Color(0xFF0088CC),
                         ),
                       ),
                     ],
@@ -142,10 +142,10 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(22),
-                  border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+                  border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF0284C7).withOpacity(0.04),
+                      color: const Color(0xFF0088CC).withOpacity(0.04),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -163,8 +163,8 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                           child: CircularProgressIndicator(
                             value: 0.85,
                             strokeWidth: 8,
-                            backgroundColor: const Color(0xFFE0F2FE),
-                            color: const Color(0xFF0284C7),
+                            backgroundColor: const Color(0xFFE8F4FB),
+                            color: const Color(0xFF0088CC),
                           ),
                         ),
                         Column(
@@ -175,7 +175,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w900,
-                                color: Color(0xFF0284C7),
+                                color: Color(0xFF0088CC),
                               ),
                             ),
                             Text(
@@ -228,21 +228,21 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                           MaterialPageRoute(builder: (_) => const ResumeUpgradeScreen()),
                         );
                       },
-                      icon: const Icon(Icons.lock_outline_rounded, size: 16, color: Color(0xFF0284C7)),
+                      icon: const Icon(Icons.lock_outline_rounded, size: 16, color: Color(0xFF0088CC)),
                       label: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('Review & Enhance', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0284C7))),
+                          const Text('Review & Enhance', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0088CC))),
                           const SizedBox(width: 8),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                            decoration: const BoxDecoration(color: Color(0xFF0284C7), borderRadius: BorderRadius.all(Radius.circular(6))),
+                            decoration: const BoxDecoration(color: Color(0xFF0088CC), borderRadius: BorderRadius.all(Radius.circular(6))),
                             child: const Text('PRO', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w900, color: Colors.white)),
                           ),
                         ],
                       ),
                       style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFF0284C7), width: 1.5),
+                        side: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
@@ -270,7 +270,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                           },
                           child: const Text(
                             'Upgrade to Pro >',
-                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
                           ),
                         ),
                       ],
@@ -292,10 +292,10 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.04),
+            color: const Color(0xFF0088CC).withOpacity(0.04),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -316,7 +316,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -334,7 +334,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
               ),
               CircleAvatar(
                 radius: 22,
-                backgroundColor: const Color(0xFF0284C7),
+                backgroundColor: const Color(0xFF0088CC),
                 child: Text(
                   initials,
                   style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
@@ -363,7 +363,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF0284C7),
+              color: Color(0xFF0088CC),
               letterSpacing: 0.8,
             ),
           ),
@@ -394,7 +394,7 @@ class _ATSScoreScreenState extends ConsumerState<ATSScoreScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: const Color(0xFF0284C7), size: 20),
+          Icon(icon, color: const Color(0xFF0088CC), size: 20),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -427,12 +427,12 @@ class _SkillTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: const Color(0xFFE0F2FE),
+        color: const Color(0xFFE8F4FB),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         label,
-        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF0284C7)),
+        style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF0088CC)),
       ),
     );
   }

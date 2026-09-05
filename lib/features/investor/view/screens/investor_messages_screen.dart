@@ -8,7 +8,11 @@ import 'cross_conversation_chat_screen.dart';
 
 /// Investor Messages screen - cross-mode chats with founders, co-investors & advisors
 class InvestorMessagesScreen extends ConsumerStatefulWidget {
-  const InvestorMessagesScreen({super.key});
+  const InvestorMessagesScreen({super.key, this.embedded = false});
+
+  /// When true the screen is shown inside the home tab stack, so no back
+  /// arrow is rendered (tapping it would pop the dashboard = black screen).
+  final bool embedded;
 
   @override
   ConsumerState<InvestorMessagesScreen> createState() => _InvestorMessagesScreenState();
@@ -67,18 +71,29 @@ class _InvestorMessagesScreenState extends ConsumerState<InvestorMessagesScreen>
                     children: [
                       Row(
                         children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Container(
+                          if (widget.embedded)
+                            Container(
                               width: 42,
                               height: 42,
                               decoration: BoxDecoration(
                                 color: Colors.white.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 21),
+                              child: const Icon(Icons.forum_rounded, color: Colors.white, size: 21),
+                            )
+                          else
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: Container(
+                                width: 42,
+                                height: 42,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.15),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.arrow_back_rounded, color: Colors.white, size: 21),
+                              ),
                             ),
-                          ),
                           const SizedBox(width: 12),
                           const Expanded(
                             child: Column(

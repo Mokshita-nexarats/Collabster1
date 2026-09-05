@@ -31,7 +31,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
       'name': 'ALEXANDER JOHN',
       'role': 'Software Engineer',
       'hasSidebar': true,
-      'sidebarColor': const Color(0xFF0369A1),
+      'sidebarColor': const Color(0xFF006699),
     },
     {
       'title': 'Minimal Elegance',
@@ -114,7 +114,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7), size: 20),
+                      child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC), size: 20),
                     ),
                   ),
                   GestureDetector(
@@ -134,7 +134,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.help_outline_rounded, color: Color(0xFF0284C7), size: 20),
+                      child: const Icon(Icons.help_outline_rounded, color: Color(0xFF0088CC), size: 20),
                     ),
                   ),
                 ],
@@ -177,17 +177,17 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                     width: 72,
                     height: 72,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE0F2FE),
+                      color: const Color(0xFFE8F4FB),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Stack(
                       alignment: Alignment.center,
                       children: const [
-                        Icon(Icons.folder_open_rounded, color: Color(0xFF0284C7), size: 42),
+                        Icon(Icons.folder_open_rounded, color: Color(0xFF0088CC), size: 42),
                         Positioned(
                           top: 8,
                           right: 8,
-                          child: Icon(Icons.auto_awesome_rounded, color: Color(0xFF38BDF8), size: 16),
+                          child: Icon(Icons.auto_awesome_rounded, color: Color(0xFF229ED9), size: 16),
                         ),
                       ],
                     ),
@@ -210,10 +210,10 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                         margin: const EdgeInsets.only(right: 8),
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                         decoration: BoxDecoration(
-                          color: isSelected ? const Color(0xFF0284C7) : Colors.white,
+                          color: isSelected ? const Color(0xFF0088CC) : Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: isSelected ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+                            color: isSelected ? const Color(0xFF0088CC) : const Color(0xFFE2E8F0),
                             width: 1.2,
                           ),
                         ),
@@ -267,7 +267,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                 decoration: BoxDecoration(
                   color: const Color(0xFFF0F9FF),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFBAE6FD), width: 1.2),
+                  border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,10 +276,10 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE0F2FE),
+                        color: const Color(0xFFE8F4FB),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Icon(Icons.shield_outlined, color: Color(0xFF0284C7), size: 22),
+                      child: const Icon(Icons.shield_outlined, color: Color(0xFF0088CC), size: 22),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -344,10 +344,10 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                             style: TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF0284C7),
+                              color: Color(0xFF0088CC),
                             ),
                           ),
-                          Icon(Icons.chevron_right_rounded, size: 14, color: Color(0xFF0284C7)),
+                          Icon(Icons.chevron_right_rounded, size: 14, color: Color(0xFF0088CC)),
                         ],
                       ),
                     ),
@@ -373,7 +373,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: isSelected ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+          color: isSelected ? const Color(0xFF0088CC) : const Color(0xFFE2E8F0),
           width: isSelected ? 1.8 : 1.0,
         ),
         boxShadow: [
@@ -434,7 +434,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                                 height: 32,
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(
-                                    colors: [Color(0xFF0284C7), Color(0xFFEC4899)],
+                                    colors: [Color(0xFF0088CC), Color(0xFFEC4899)],
                                   ),
                                 ),
                               ),
@@ -458,13 +458,13 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                                   const SizedBox(height: 6),
                                   Container(height: 1.5, width: double.infinity, color: const Color(0xFFE2E8F0)),
                                   const SizedBox(height: 6),
-                                  Container(height: 3, width: 34, color: const Color(0xFF0284C7)),
+                                  Container(height: 3, width: 34, color: const Color(0xFF0088CC)),
                                   const SizedBox(height: 4),
                                   Container(height: 2, width: double.infinity, color: const Color(0xFFF1F5F9)),
                                   const SizedBox(height: 3),
                                   Container(height: 2, width: 50, color: const Color(0xFFF1F5F9)),
                                   const SizedBox(height: 8),
-                                  Container(height: 3, width: 40, color: const Color(0xFF0284C7)),
+                                  Container(height: 3, width: 40, color: const Color(0xFF0088CC)),
                                   const SizedBox(height: 4),
                                   Container(height: 2, width: double.infinity, color: const Color(0xFFF1F5F9)),
                                   const SizedBox(height: 3),
@@ -483,7 +483,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                     const Positioned(
                       top: 6,
                       right: 6,
-                      child: Icon(Icons.check_circle_rounded, color: Color(0xFF0284C7), size: 20),
+                      child: Icon(Icons.check_circle_rounded, color: Color(0xFF0088CC), size: 20),
                     ),
                 ],
               ),
@@ -510,7 +510,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE0F2FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -518,7 +518,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                     style: const TextStyle(
                       fontSize: 8,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0284C7),
+                      color: Color(0xFF0088CC),
                     ),
                   ),
                 ),
@@ -547,7 +547,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Selected "${t['title']}" template! Opening builder...'),
-                              backgroundColor: const Color(0xFF0284C7),
+                              backgroundColor: const Color(0xFF0088CC),
                             ),
                           );
                           Navigator.push(
@@ -556,7 +556,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0284C7),
+                          backgroundColor: const Color(0xFF0088CC),
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -575,7 +575,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text('Selected "${t['title']}" template! Opening builder...'),
-                              backgroundColor: const Color(0xFF0284C7),
+                              backgroundColor: const Color(0xFF0088CC),
                             ),
                           );
                           Navigator.push(
@@ -584,7 +584,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           );
                         },
                         style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Color(0xFF0284C7), width: 1.2),
+                          side: const BorderSide(color: Color(0xFF0088CC), width: 1.2),
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
@@ -593,7 +593,7 @@ class _ProfessionalTemplatesScreenState extends State<ProfessionalTemplatesScree
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0284C7),
+                            color: Color(0xFF0088CC),
                           ),
                         ),
                       ),

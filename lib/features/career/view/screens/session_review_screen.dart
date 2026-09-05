@@ -73,7 +73,7 @@ class SessionReviewScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 32,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF0369A1),
+                                      color: Color(0xFF006699),
                                     ),
                                   ),
                                   Text(
@@ -128,14 +128,14 @@ class SessionReviewScreen extends StatelessWidget {
                             Row(
                               children: const [
                                 Icon(Icons.check_circle_outline_rounded,
-                                    color: Color(0xFF2E7D32), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'What You Mastered',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF2E7D32),
+                                    color: Color(0xFF0088CC),
                                   ),
                                 ),
                               ],
@@ -143,11 +143,11 @@ class SessionReviewScreen extends StatelessWidget {
                             const SizedBox(height: 12),
                             _buildBulletItem(
                                 'Excellent code syntax with proper variable naming.',
-                                const Color(0xFF1B5E20)),
+                                const Color(0xFF006699)),
                             const SizedBox(height: 8),
                             _buildBulletItem(
                                 'Clear definition of the core problem situation.',
-                                const Color(0xFF1B5E20)),
+                                const Color(0xFF006699)),
                           ],
                         ),
                       ),
@@ -167,14 +167,14 @@ class SessionReviewScreen extends StatelessWidget {
                             Row(
                               children: const [
                                 Icon(Icons.lightbulb_outline_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'Areas to Improve',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0284C7),
+                                    color: Color(0xFF0088CC),
                                   ),
                                 ),
                               ],
@@ -182,11 +182,11 @@ class SessionReviewScreen extends StatelessWidget {
                             const SizedBox(height: 12),
                             _buildBulletItem(
                                 'Did not state the final outcome or metric in your STAR response.',
-                                const Color(0xFF0369A1)),
+                                const Color(0xFF006699)),
                             const SizedBox(height: 8),
                             _buildBulletItem(
                                 'Edge cases failed for negative integers during simulation.',
-                                const Color(0xFF0369A1)),
+                                const Color(0xFF006699)),
                           ],
                         ),
                       ),
@@ -199,7 +199,7 @@ class SessionReviewScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,21 +218,21 @@ class SessionReviewScreen extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFE0F2FE),
+                                color: const Color(0xFFE8F4FB),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [
                                   Icon(Icons.speed_rounded,
-                                      color: Color(0xFF0284C7), size: 14),
+                                      color: Color(0xFF0088CC), size: 14),
                                   SizedBox(width: 6),
                                   Text(
                                     '135 WPM (Perfect Pacing)',
                                     style: TextStyle(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF0284C7),
+                                      color: Color(0xFF0088CC),
                                     ),
                                   ),
                                 ],
@@ -266,7 +266,7 @@ class SessionReviewScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Icon(Icons.bar_chart_rounded,
-                                    color: Color(0xFF0284C7), size: 14),
+                                    color: Color(0xFF0088CC), size: 14),
                               ],
                             ),
                             const SizedBox(height: 12),
@@ -298,7 +298,7 @@ class SessionReviewScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +351,7 @@ class SessionReviewScreen extends StatelessWidget {
                                     label: 'Memory',
                                     value: '14MB',
                                     sub: 'Optimized',
-                                    subColor: Color(0xFF0284C7),
+                                    subColor: Color(0xFF0088CC),
                                   ),
                                 ),
                               ],
@@ -377,16 +377,16 @@ class SessionReviewScreen extends StatelessWidget {
                       child: OutlinedButton.icon(
                         onPressed: () => Navigator.pop(context),
                         icon: const Icon(Icons.refresh_rounded,
-                            color: Color(0xFF0284C7), size: 18),
+                            color: Color(0xFF0088CC), size: 18),
                         label: const Text(
                           'Retake Session',
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF0284C7)),
+                              color: Color(0xFF0088CC)),
                         ),
                         style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Color(0xFFBAE6FD), width: 1.5),
+                          side: const BorderSide(color: Color(0xFFE8F4FB), width: 1.5),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -405,7 +405,7 @@ class SessionReviewScreen extends StatelessWidget {
                               context, (route) => route.isFirst);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0284C7),
+                          backgroundColor: const Color(0xFF0088CC),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
@@ -451,7 +451,7 @@ class SessionReviewScreen extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0284C7),
+                color: Color(0xFF0088CC),
               ),
             ),
           ],
@@ -462,8 +462,8 @@ class SessionReviewScreen extends StatelessWidget {
           child: LinearProgressIndicator(
             value: val,
             minHeight: 6,
-            backgroundColor: const Color(0xFFE0F2FE),
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0284C7)),
+            backgroundColor: const Color(0xFFE8F4FB),
+            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0088CC)),
           ),
         ),
       ],
@@ -507,7 +507,7 @@ class SessionReviewScreen extends StatelessWidget {
       height: height,
       margin: const EdgeInsets.symmetric(horizontal: 2.5),
       decoration: BoxDecoration(
-        color: const Color(0xFF0284C7).withOpacity(0.8),
+        color: const Color(0xFF0088CC).withOpacity(0.8),
         borderRadius: BorderRadius.circular(10),
       ),
     );
@@ -547,7 +547,7 @@ class _ReviewGaugePainter extends CustomPainter {
 
     // Background track
     final bgPaint = Paint()
-      ..color = const Color(0xFFE0F2FE)
+      ..color = const Color(0xFFE8F4FB)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -556,7 +556,7 @@ class _ReviewGaugePainter extends CustomPainter {
 
     // Progress track
     final fgPaint = Paint()
-      ..color = const Color(0xFF0284C7)
+      ..color = const Color(0xFF0088CC)
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
@@ -595,7 +595,7 @@ class _CountBox extends StatelessWidget {
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF0369A1),
+              color: Color(0xFF006699),
             ),
           ),
           const SizedBox(height: 2),
@@ -652,7 +652,7 @@ class _ExecutionStatCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF0369A1),
+              color: Color(0xFF006699),
             ),
           ),
           const SizedBox(height: 2),

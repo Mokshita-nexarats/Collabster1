@@ -17,8 +17,8 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
   final FocusNode _contentFocus = FocusNode();
   String _selectedCommunity = 'Flutter Developers';
 
-  static const _accent = Color(0xFFEA580C);
-  static const _accentLight = Color(0xFFF97316);
+  static const _accent = Color(0xFF229ED9);
+  static const _accentLight = Color(0xFF0088CC);
 
   final List<String> _communities = const [
     'Flutter Developers',
@@ -32,7 +32,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
     _PostTypeOption(
       icon: Icons.forum_rounded,
       label: 'Discussion',
-      color: Color(0xFFEA580C),
+      color: Color(0xFF229ED9),
     ),
     _PostTypeOption(
       icon: Icons.help_outline_rounded,
@@ -648,12 +648,12 @@ class _CommunityPickerSheet extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? const Color(0xFFEA580C).withValues(alpha: 0.06)
+                      ? const Color(0xFF229ED9).withValues(alpha: 0.06)
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: isSelected
-                        ? const Color(0xFFEA580C).withValues(alpha: 0.2)
+                        ? const Color(0xFF229ED9).withValues(alpha: 0.2)
                         : Colors.transparent,
                   ),
                 ),
@@ -666,12 +666,12 @@ class _CommunityPickerSheet extends StatelessWidget {
                         gradient: LinearGradient(
                           colors: [
                             Color.lerp(
-                              const Color(0xFFEA580C),
+                              const Color(0xFF229ED9),
                               const Color(0xFF7C3AED),
                               communities.indexOf(c) / communities.length,
                             )!,
                             Color.lerp(
-                              const Color(0xFFF97316),
+                              const Color(0xFF0088CC),
                               const Color(0xFFA78BFA),
                               communities.indexOf(c) / communities.length,
                             )!,
@@ -706,7 +706,7 @@ class _CommunityPickerSheet extends StatelessWidget {
                     if (isSelected)
                       const Icon(
                         Icons.check_circle_rounded,
-                        color: Color(0xFFEA580C),
+                        color: Color(0xFF229ED9),
                         size: 22,
                       )
                     else

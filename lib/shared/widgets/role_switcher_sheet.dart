@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../enums/app_enums.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/di/providers.dart';
+import '../../features/auth/model/auth_session.dart';
 import '../../features/home/view/home_dashboard_screen.dart';
 import '../utils/dashboard_router.dart';
 
@@ -85,12 +86,15 @@ class RoleSwitcherSheet extends ConsumerWidget {
           Flexible(
             child: ListView(
               shrinkWrap: true,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, MediaQuery.of(context).viewPadding.bottom),
+              padding: EdgeInsets.fromLTRB(
+                20,
+                0,
+                20,
+                MediaQuery.of(context).viewPadding.bottom,
+              ),
               children: [
                 // ─── Feed shortcut (always shown) ───
-                _FeedTile(
-                  onTap: () => _navigateToFeed(context, ref),
-                ),
+                _FeedTile(onTap: () => _navigateToFeed(context, ref)),
                 const SizedBox(height: 16),
                 Container(height: 1, color: const Color(0xFFF3F4F6)),
                 const SizedBox(height: 16),
@@ -116,50 +120,83 @@ class RoleSwitcherSheet extends ConsumerWidget {
                         deduped.putIfAbsent(r.label, () => r);
                       }
                     }
-                    return deduped.values.map((role) => _RoleTile(
-                          role: role,
-                          isActive: role.label == currentRole.label,
-                          onTap: () => _switchAndNavigate(context, ref, role),
-                        ));
+                    return deduped.values.map(
+                      (role) => _RoleTile(
+                        role: role,
+                        isActive: role.label == currentRole.label,
+                        onTap: () => _switchAndNavigate(context, ref, role),
+                      ),
+                    );
                   }(),
                   const SizedBox(height: 16),
-                  Container(
-                    height: 1,
-                    color: const Color(0xFFF3F4F6),
-                  ),
+                  Container(height: 1, color: const Color(0xFFF3F4F6)),
                   const SizedBox(height: 16),
                 ],
-                Builder(builder: (context) {
-                  final ownedLabels = userRoles.map((r) => r.label).toSet();
-                  final seenAddable = <String>{};
-                  final addableRoles = UserRole.values.where((role) {
-                    if (userRoles.contains(role)) return false;
-                    if (ownedLabels.contains(role.label)) return false;
-                    return seenAddable.add(role.label);
-                  }).toList();
+                if (_hasTwoStartups(session)) ...[
+                  const Text(
+                    'YOUR STARTUPS',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textSecondary,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _StartupTile(
+                    name: session.originalStartupName!,
+                    subtitle: 'Created startup',
+                    isActive:
+                        session.startupName == session.originalStartupName,
+                    onTap: () =>
+                        _switchStartupAndNavigate(context, ref, joined: false),
+                  ),
+                  _StartupTile(
+                    name: session.joinedStartupName!,
+                    subtitle: 'Joined startup',
+                    isActive: session.startupName == session.joinedStartupName,
+                    onTap: () =>
+                        _switchStartupAndNavigate(context, ref, joined: true),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(height: 1, color: const Color(0xFFF3F4F6)),
+                  const SizedBox(height: 16),
+                ],
+                Builder(
+                  builder: (context) {
+                    final ownedLabels = userRoles.map((r) => r.label).toSet();
+                    final seenAddable = <String>{};
+                    final addableRoles = UserRole.values.where((role) {
+                      if (userRoles.contains(role)) return false;
+                      if (ownedLabels.contains(role.label)) return false;
+                      return seenAddable.add(role.label);
+                    }).toList();
 
-                  if (addableRoles.isEmpty) return const SizedBox.shrink();
+                    if (addableRoles.isEmpty) return const SizedBox.shrink();
 
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'ADD NEW ROLE',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textSecondary,
-                          letterSpacing: 1.0,
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'ADD NEW ROLE',
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textSecondary,
+                            letterSpacing: 1.0,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      ...addableRoles.map((role) => _RoleAddTile(
+                        const SizedBox(height: 10),
+                        ...addableRoles.map(
+                          (role) => _RoleAddTile(
                             role: role,
                             onTap: () => _addAndNavigate(context, ref, role),
-                          )),
-                    ],
-                  );
-                }),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
                 const SizedBox(height: 20),
               ],
             ),
@@ -167,6 +204,29 @@ class RoleSwitcherSheet extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  bool _hasTwoStartups(AuthSession session) {
+    final own = session.originalStartupName?.trim();
+    final joined = session.joinedStartupName?.trim();
+    return own != null &&
+        own.isNotEmpty &&
+        joined != null &&
+        joined.isNotEmpty &&
+        own != joined;
+  }
+
+  Future<void> _switchStartupAndNavigate(
+    BuildContext context,
+    WidgetRef ref, {
+    required bool joined,
+  }) async {
+    await ref
+        .read(authViewModelProvider.notifier)
+        .switchStartup(joined: joined);
+    if (!context.mounted) return;
+    Navigator.pop(context);
+    _replaceWithDashboard(context, ref);
   }
 
   Future<void> _switchAndNavigate(
@@ -241,6 +301,98 @@ class RoleSwitcherSheet extends ConsumerWidget {
         (_) => false,
       );
     });
+  }
+}
+
+class _StartupTile extends StatelessWidget {
+  const _StartupTile({
+    required this.name,
+    required this.subtitle,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  final String name;
+  final String subtitle;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    const skyBlue = Color(0xFF0284C7);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: isActive ? null : onTap,
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: isActive ? const Color(0xFFE0F2FE) : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isActive ? skyBlue : const Color(0xFFE5E7EB),
+                width: isActive ? 2 : 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: isActive
+                        ? skyBlue.withValues(alpha: 0.15)
+                        : const Color(0xFFF0F9FF),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(
+                    Icons.business_rounded,
+                    color: isActive ? skyBlue : AppColors.textSecondary,
+                    size: 22,
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: isActive ? skyBlue : const Color(0xFF12233D),
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  isActive
+                      ? Icons.check_circle_rounded
+                      : Icons.arrow_forward_ios_rounded,
+                  color: isActive ? skyBlue : Colors.grey.shade400,
+                  size: isActive ? 22 : 16,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -345,10 +497,7 @@ class _RoleTile extends StatelessWidget {
 }
 
 class _RoleAddTile extends StatelessWidget {
-  const _RoleAddTile({
-    required this.role,
-    required this.onTap,
-  });
+  const _RoleAddTile({required this.role, required this.onTap});
 
   final UserRole role;
   final VoidCallback onTap;
@@ -500,7 +649,10 @@ class _FeedTile extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   color: _kPurple,
                   borderRadius: BorderRadius.circular(20),

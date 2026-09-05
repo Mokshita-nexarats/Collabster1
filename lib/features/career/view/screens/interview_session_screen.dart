@@ -77,7 +77,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF0284C7),
+                              color: Color(0xFF0088CC),
                             ),
                           ),
                         ),
@@ -91,14 +91,14 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF0284C7),
+                                color: const Color(0xFF0088CC),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Row(
@@ -134,13 +134,13 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                 setState(() => _hintRevealed = !_hintRevealed);
                               },
                               icon: Icon(Icons.lightbulb_outline_rounded,
-                                  color: const Color(0xFF0284C7), size: 16),
+                                  color: const Color(0xFF0088CC), size: 16),
                               label: Text(
                                 _hintRevealed ? 'Hide Hint' : 'Reveal Hint',
                                 style: const TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0284C7)),
+                                    color: Color(0xFF0088CC)),
                               ),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFF0F9FF),
@@ -181,7 +181,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                         decoration: BoxDecoration(
                           color: const Color(0xFFF0F9FF),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(16),
@@ -192,7 +192,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                 // Left sky blue accent line
                                 Container(
                                   width: 4,
-                                  color: const Color(0xFF0284C7),
+                                  color: const Color(0xFF0088CC),
                                 ),
                                 Expanded(
                                   child: Padding(
@@ -201,7 +201,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         const Icon(Icons.lightbulb_outline_rounded,
-                                            color: Color(0xFF0284C7), size: 20),
+                                            color: Color(0xFF0088CC), size: 20),
                                         const SizedBox(width: 12),
                                         Expanded(
                                           child: Column(
@@ -245,7 +245,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,20 +253,20 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                             Row(
                               children: const [
                                 Icon(Icons.bar_chart_rounded,
-                                    color: Color(0xFF0284C7), size: 18),
+                                    color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'Live Feedback',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0284C7),
+                                    color: Color(0xFF0088CC),
                                   ),
                                 ),
                                 Spacer(),
                                 CircleAvatar(
                                   radius: 4,
-                                  backgroundColor: Color(0xFF0284C7),
+                                  backgroundColor: Color(0xFF0088CC),
                                 ),
                               ],
                             ),
@@ -312,14 +312,14 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   Icon(Icons.arrow_circle_right_outlined,
-                                      color: Color(0xFF0284C7), size: 16),
+                                      color: Color(0xFF0088CC), size: 16),
                                   SizedBox(width: 8),
                                   Expanded(
                                     child: Text(
                                       "Next: Try to emphasize your specific Actions. What steps did you take to resolve the tension?",
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Color(0xFF0284C7),
+                                        color: Color(0xFF0088CC),
                                         height: 1.4,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -367,7 +367,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: const Icon(Icons.mic_none_rounded,
-                                      color: Color(0xFF0284C7), size: 16),
+                                      color: Color(0xFF0088CC), size: 16),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -419,7 +419,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                                     MaterialPageRoute(builder: (_) => const SessionReviewScreen()),
                                   );
                                 },
-                                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0284C7)),
+                                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0088CC)),
                                 child: const Text('Submit', style: TextStyle(color: Colors.white)),
                               ),
                             ],
@@ -427,16 +427,16 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                         );
                       },
                       icon: const Icon(Icons.stop_circle_outlined,
-                          color: Color(0xFF0284C7), size: 18),
+                          color: Color(0xFF0088CC), size: 18),
                       label: const Text(
                         'Stop & Submit',
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF0284C7)),
+                            color: Color(0xFF0088CC)),
                       ),
                       style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFFBAE6FD), width: 1.5),
+                        side: const BorderSide(color: Color(0xFFE8F4FB), width: 1.5),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -467,7 +467,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -490,7 +490,7 @@ class _InterviewSessionScreenState extends State<InterviewSessionScreen> {
       height: height,
       margin: const EdgeInsets.symmetric(horizontal: 2),
       decoration: BoxDecoration(
-        color: const Color(0xFF38BDF8).withValues(alpha: 0.85),
+        color: const Color(0xFF229ED9).withValues(alpha: 0.85),
         borderRadius: BorderRadius.circular(10),
       ),
     );

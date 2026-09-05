@@ -37,7 +37,7 @@ class TrendingPostsScreen extends ConsumerWidget {
               children: [
                 const Icon(
                   Icons.local_fire_department_rounded,
-                  color: Color(0xFFEA580C),
+                  color: Color(0xFF229ED9),
                   size: 18,
                 ),
                 const SizedBox(width: 4),
@@ -46,7 +46,7 @@ class TrendingPostsScreen extends ConsumerWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFFEA580C),
+                    color: Color(0xFF229ED9),
                   ),
                 ),
               ],
@@ -77,8 +77,8 @@ class TrendingPostsScreen extends ConsumerWidget {
                               decoration: BoxDecoration(
                                 gradient: const LinearGradient(
                                   colors: [
-                                    Color(0xFFEA580C),
-                                    Color(0xFFF97316),
+                                    Color(0xFF229ED9),
+                                    Color(0xFF0088CC),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -87,7 +87,7 @@ class TrendingPostsScreen extends ConsumerWidget {
                                 boxShadow: [
                                   BoxShadow(
                                     color: const Color(
-                                      0xFFEA580C,
+                                      0xFF229ED9,
                                     ).withValues(alpha: 0.3),
                                     blurRadius: 6,
                                     offset: const Offset(0, 2),
@@ -134,13 +134,13 @@ class TrendingPostsScreen extends ConsumerWidget {
             width: 88,
             height: 88,
             decoration: BoxDecoration(
-              color: const Color(0xFFEA580C).withValues(alpha: 0.08),
+              color: const Color(0xFF229ED9).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.local_fire_department_rounded,
               size: 42,
-              color: Color(0xFFEA580C),
+              color: Color(0xFF229ED9),
             ),
           ),
           const SizedBox(height: 20),

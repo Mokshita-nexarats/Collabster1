@@ -14,7 +14,7 @@ class CommunityNotificationsViewModel extends StateNotifier<CommunityNotificatio
         subtitle: 'Priya Sharma: "Just shipped a new feature using Flutter and Riverpod!"',
         type: CommunityNotificationType.post,
         iconName: 'article_outline',
-        iconColor: 0xFFEA580C,
+        iconColor: 0xFF229ED9,
         iconBg: 0xFFFFF2E7,
         createdAt: now.subtract(const Duration(minutes: 15)),
         deepLink: '/community/posts/flutter-riverpod-feature',

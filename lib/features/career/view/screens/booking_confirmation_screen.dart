@@ -125,7 +125,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +159,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                                   const SizedBox(height: 12),
                                   Row(
                                     children: const [
-                                      Icon(Icons.download_rounded, color: Color(0xFF0284C7), size: 14),
+                                      Icon(Icons.download_rounded, color: Color(0xFF0088CC), size: 14),
                                       SizedBox(width: 6),
                                       Expanded(
                                         child: Text(
@@ -167,7 +167,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                                           style: TextStyle(
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xFF0284C7),
+                                            color: Color(0xFF0088CC),
                                             decoration: TextDecoration.underline,
                                           ),
                                         ),
@@ -189,7 +189,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +200,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                                 color: const Color(0xFFF0F9FF),
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: const Icon(Icons.help_outline_rounded, color: Color(0xFF0284C7), size: 20),
+                              child: const Icon(Icons.help_outline_rounded, color: Color(0xFF0088CC), size: 20),
                             ),
                             const SizedBox(width: 14),
                             Expanded(
@@ -239,14 +239,14 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                         decoration: BoxDecoration(
                           color: const Color(0xFFF0F9FF).withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: const [
-                                Icon(Icons.check_circle_outline_rounded, color: Color(0xFF0284C7), size: 18),
+                                Icon(Icons.check_circle_outline_rounded, color: Color(0xFF0088CC), size: 18),
                                 SizedBox(width: 8),
                                 Text(
                                   'Hardware Prep',
@@ -318,7 +318,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                   ),
@@ -340,7 +340,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF0284C7),
+                            backgroundColor: const Color(0xFF0088CC),
                             elevation: 0,
                             minimumSize: const Size(180, 48),
                             shape: RoundedRectangleBorder(
@@ -415,7 +415,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: const Color(0xFF0284C7), size: 18),
+            Icon(icon, color: const Color(0xFF0088CC), size: 18),
             const SizedBox(width: 8),
             Text(
               label,
@@ -440,7 +440,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
           width: 5,
           height: 5,
           decoration: const BoxDecoration(
-            color: Color(0xFF0284C7),
+            color: Color(0xFF0088CC),
             shape: BoxShape.circle,
           ),
         ),
@@ -462,7 +462,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE0F2FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text(
@@ -470,7 +470,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                     style: TextStyle(
                       fontSize: 7,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0369A1),
+                      color: Color(0xFF006699),
                     ),
                   ),
                 ),
@@ -488,7 +488,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
         Checkbox(
           value: value,
           onChanged: onChanged,
-          activeColor: const Color(0xFF0284C7),
+          activeColor: const Color(0xFF0088CC),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),

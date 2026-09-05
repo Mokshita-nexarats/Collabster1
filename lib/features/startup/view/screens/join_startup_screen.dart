@@ -65,7 +65,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
 
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // Header gradient
@@ -76,9 +76,9 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF4A0E8F),
-                    Color(0xFF6D28D9),
-                    Color(0xFF5B21B6),
+                    Color(0xFF006699),
+                    Color(0xFF0088CC),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -267,7 +267,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
                         child: Text(
                           _showAll ? 'Show Less' : 'View All (${filtered.length})',
                           style: const TextStyle(
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             fontWeight: FontWeight.w700,
                             fontSize: 13,
                           ),
@@ -351,7 +351,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(54),
                     elevation: 0,
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     disabledBackgroundColor: const Color(0xFF9CA3AF),
                     shape: RoundedRectangleBorder(
@@ -394,16 +394,16 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFFEDE9FE) : Colors.white,
+          color: selected ? const Color(0xFFE8F4FB) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: selected ? const Color(0xFF5B21B6) : const Color(0xFFE5E7EB),
+            color: selected ? const Color(0xFF0088CC) : const Color(0xFFE5E7EB),
             width: selected ? 1.5 : 1,
           ),
           boxShadow: [
             BoxShadow(
               color: selected
-                  ? const Color(0xFF5B21B6).withValues(alpha: 0.1)
+                  ? const Color(0xFF0088CC).withValues(alpha: 0.1)
                   : Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 3),
@@ -420,13 +420,13 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
                   height: 36,
                   decoration: BoxDecoration(
                     color: selected
-                        ? const Color(0xFF5B21B6).withValues(alpha: 0.15)
+                        ? const Color(0xFF0088CC).withValues(alpha: 0.15)
                         : const Color(0xFFF3F4F6),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
                     icon,
-                    color: selected ? const Color(0xFF5B21B6) : const Color(0xFF6B7280),
+                    color: selected ? const Color(0xFF0088CC) : const Color(0xFF6B7280),
                     size: 18,
                   ),
                 ),
@@ -434,7 +434,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
                 if (selected)
                   const Icon(
                     Icons.check_circle_rounded,
-                    color: Color(0xFF5B21B6),
+                    color: Color(0xFF0088CC),
                     size: 18,
                   ),
               ],
@@ -445,7 +445,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: selected ? const Color(0xFF5B21B6) : const Color(0xFF12233D),
+                color: selected ? const Color(0xFF0088CC) : const Color(0xFF12233D),
               ),
             ),
             const SizedBox(height: 2),
@@ -453,7 +453,7 @@ class _JoinStartupScreenState extends ConsumerState<JoinStartupScreen> {
               subtitle,
               style: TextStyle(
                 fontSize: 11,
-                color: selected ? const Color(0xFF7C3AED).withValues(alpha: 0.7) : const Color(0xFF9CA3AF),
+                color: selected ? const Color(0xFF229ED9).withValues(alpha: 0.7) : const Color(0xFF9CA3AF),
               ),
             ),
           ],
@@ -484,16 +484,16 @@ class _StartupCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 14),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFEDE9FE) : Colors.white,
+          color: isSelected ? const Color(0xFFE8F4FB) : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? const Color(0xFF5B21B6) : Colors.transparent,
+            color: isSelected ? const Color(0xFF0088CC) : Colors.transparent,
             width: isSelected ? 1.5 : 0,
           ),
           boxShadow: [
             BoxShadow(
               color: isSelected
-                  ? const Color(0xFF5B21B6).withValues(alpha: 0.1)
+                  ? const Color(0xFF0088CC).withValues(alpha: 0.1)
                   : Colors.black.withValues(alpha: 0.03),
               blurRadius: 14,
               offset: const Offset(0, 5),
@@ -510,7 +510,7 @@ class _StartupCard extends StatelessWidget {
                   height: 52,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF6D28D9), Color(0xFF5B21B6)],
+                      colors: [Color(0xFF0088CC), Color(0xFF0088CC)],
                     ),
                     borderRadius: BorderRadius.circular(14),
                   ),
@@ -544,14 +544,14 @@ class _StartupCard extends StatelessWidget {
                         const Icon(
                           Icons.verified_rounded,
                           size: 16,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                         ),
                         if (isSelected) ...[
                           const SizedBox(width: 4),
                           const Icon(
                             Icons.check_circle_rounded,
                             size: 16,
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                           ),
                         ],
                         ],
@@ -573,13 +573,13 @@ class _StartupCard extends StatelessWidget {
                     vertical: 5,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEDE9FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
                     startup.stage,
                     style: const TextStyle(
-                      color: Color(0xFF5B21B6),
+                      color: Color(0xFF0088CC),
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
                     ),
@@ -642,7 +642,7 @@ class _StartupCard extends StatelessWidget {
                       horizontal: 18,
                       vertical: 10,
                     ),
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

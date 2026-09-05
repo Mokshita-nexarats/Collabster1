@@ -142,12 +142,12 @@ class _JoinStartupVerificationScreenState
         padding: const EdgeInsets.all(14),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: const Color(0xFF5B21B6).withValues(alpha: 0.07),
+          color: const Color(0xFF0088CC).withValues(alpha: 0.07),
           borderRadius: BorderRadius.circular(14),
         ),
         child: Row(
           children: [
-            Icon(icon, color: const Color(0xFF5B21B6), size: 22),
+            Icon(icon, color: const Color(0xFF0088CC), size: 22),
             const SizedBox(width: 14),
             Text(label, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
           ],
@@ -159,12 +159,12 @@ class _JoinStartupVerificationScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F5FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF7F5FF),
+        backgroundColor: const Color(0xFFF0F9FF),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF5B21B6)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF0088CC)),
           onPressed: () => Navigator.pop(context),
         ),
         automaticallyImplyLeading: false,
@@ -301,7 +301,7 @@ class _JoinStartupVerificationScreenState
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(54),
                     elevation: 0,
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -335,7 +335,7 @@ class _JoinStartupVerificationScreenState
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFD7D5E5)),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -347,10 +347,10 @@ class _JoinStartupVerificationScreenState
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE8DBFF),
+                  color: const Color(0xFFE0F2FE),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(icon, color: const Color(0xFF5B21B6), size: 22),
+                child: Icon(icon, color: const Color(0xFF0088CC), size: 22),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -406,7 +406,7 @@ class _JoinStartupVerificationScreenState
                         fontWeight: FontWeight.w700,
                         color: optional
                             ? const Color(0xFF8C8FA0)
-                            : const Color(0xFF5B21B6),
+                            : const Color(0xFF0088CC),
                       ),
                     ),
                   ],
@@ -419,8 +419,8 @@ class _JoinStartupVerificationScreenState
             onPressed: onPressed,
             style: OutlinedButton.styleFrom(
               minimumSize: const Size.fromHeight(46),
-              foregroundColor: const Color(0xFF5B21B6),
-              side: const BorderSide(color: Color(0xFF5B21B6)),
+              foregroundColor: const Color(0xFF0088CC),
+              side: const BorderSide(color: Color(0xFF0088CC)),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14),
               ),

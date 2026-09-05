@@ -91,8 +91,8 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                         name: 'Alex Rivera',
                         role: 'Behavioral Interviewing',
                         badgeText: 'Starts in 2 days',
-                        badgeColor: const Color(0xFFFFEDD5),
-                        badgeTextColor: const Color(0xFFEA580C),
+                        badgeColor: const Color(0xFFE8F4FB),
+                        badgeTextColor: const Color(0xFF0088CC),
                         hasDot: false,
                         dateTime: 'July 26, 2:30 PM',
                         isLobbyActive: false,
@@ -118,7 +118,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0284C7),
+                                color: Color(0xFF0088CC),
                               ),
                             ),
                           ),
@@ -209,7 +209,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,7 +294,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                       Navigator.push(context, MaterialPageRoute(builder: (_) => const InterviewDetailsScreen()));
                     } : null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0284C7),
+                      backgroundColor: const Color(0xFF0088CC),
                       disabledBackgroundColor: const Color(0xFFE2E8F0),
                       elevation: 0,
                       minimumSize: Size.zero,
@@ -329,7 +329,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                   ),
@@ -357,7 +357,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Row(
         children: [
@@ -407,7 +407,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
             ),
           ),
           if (hasPlayIcon) ...[
-            const Icon(Icons.play_circle_outline_rounded, color: Color(0xFF0284C7), size: 22),
+            const Icon(Icons.play_circle_outline_rounded, color: Color(0xFF0088CC), size: 22),
             const SizedBox(width: 12),
           ],
           SizedBox(
@@ -431,7 +431,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0284C7),
+                  color: Color(0xFF0088CC),
                 ),
               ),
             ),
@@ -452,7 +452,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         children: [
@@ -517,7 +517,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
               style: const TextStyle(
                 fontSize: 8,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0284C7),
+                color: Color(0xFF0088CC),
               ),
             ),
           ),
@@ -532,7 +532,7 @@ class _BookedSessionsScreenState extends ConsumerState<BookedSessionsScreen> {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => const PeerBookingScreen()));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF0284C7),
+                backgroundColor: const Color(0xFF0088CC),
                 elevation: 0,
                 minimumSize: Size.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,

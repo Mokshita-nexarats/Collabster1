@@ -155,7 +155,7 @@ class _InvestorMeetingsScreenState extends State<InvestorMeetingsScreen> {
                               Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF0D9488).withValues(alpha: 0.12),
+                                  color: const Color(0xFF0088CC).withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
@@ -163,7 +163,7 @@ class _InvestorMeetingsScreenState extends State<InvestorMeetingsScreen> {
                                   style: const TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w800,
-                                    color: Color(0xFF0D9488),
+                                    color: Color(0xFF0088CC),
                                   ),
                                 ),
                               ),
@@ -220,11 +220,11 @@ class _InvestorMeetingsScreenState extends State<InvestorMeetingsScreen> {
                           const SizedBox(height: 6),
                           Row(
                             children: [
-                              const Icon(Icons.schedule_rounded, size: 15, color: Color(0xFF0D9488)),
+                              const Icon(Icons.schedule_rounded, size: 15, color: Color(0xFF0088CC)),
                               const SizedBox(width: 4),
                               Text(
                                 meet.time,
-                                style: const TextStyle(fontSize: 12.5, color: Color(0xFF0D9488), fontWeight: FontWeight.w700),
+                                style: const TextStyle(fontSize: 12.5, color: Color(0xFF0088CC), fontWeight: FontWeight.w700),
                               ),
                             ],
                           ),
@@ -236,12 +236,12 @@ class _InvestorMeetingsScreenState extends State<InvestorMeetingsScreen> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text('Joining ${meet.startup} meeting room...'),
-                                    backgroundColor: const Color(0xFF0D9488),
+                                    backgroundColor: const Color(0xFF0088CC),
                                   ),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: meet.isLive ? const Color(0xFF0D9488) : InvestorColors.goldDeep,
+                                backgroundColor: meet.isLive ? const Color(0xFF0088CC) : InvestorColors.goldDeep,
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                 padding: const EdgeInsets.symmetric(vertical: 11),

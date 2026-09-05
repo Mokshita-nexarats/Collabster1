@@ -5,7 +5,7 @@ import '../../../view/widgets/event_card.dart';
 import 'event_detail_screen.dart';
 
 const _bg = Color(0xFFF8FAFC);
-const _accent = Color(0xFF059669);
+const _accent = Color(0xFF0088CC);
 const _textPrimary = Color(0xFF0F172A);
 
 class MyEventsScreen extends ConsumerWidget {
@@ -108,7 +108,7 @@ class MyEventsScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFF059669), Color(0xFF10B981)],
+                  colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),

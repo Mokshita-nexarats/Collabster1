@@ -52,7 +52,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Successfully uploaded "$fileName"! Reflecting in My Resume...'),
-        backgroundColor: const Color(0xFF0284C7),
+        backgroundColor: const Color(0xFF0088CC),
         action: SnackBarAction(
           label: 'OPEN MY RESUME',
           textColor: Colors.white,
@@ -104,7 +104,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
               const SizedBox(height: 16),
               Row(
                 children: [
-                  const Icon(Icons.folder_open_rounded, color: Color(0xFF0284C7)),
+                  const Icon(Icons.folder_open_rounded, color: Color(0xFF0088CC)),
                   const SizedBox(width: 8),
                   const Text(
                     'Device File Manager',
@@ -140,10 +140,10 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                       width: 42,
                       height: 42,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE0F2FE),
+                        color: const Color(0xFFE8F4FB),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0284C7), size: 22),
+                      child: const Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0088CC), size: 22),
                     ),
                     title: Text(
                       name,
@@ -156,7 +156,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                         _simulateUpload(name, size, score, skills);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
@@ -182,7 +182,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Row(
           children: const [
-            Icon(Icons.add_circle_outline_rounded, color: Color(0xFF0284C7)),
+            Icon(Icons.add_circle_outline_rounded, color: Color(0xFF0088CC)),
             SizedBox(width: 8),
             Text('Add Skill to Resume', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ],
@@ -200,7 +200,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFF0284C7), width: 1.5),
+                  borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                 ),
               ),
             ),
@@ -211,8 +211,8 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
               spacing: 6,
               runSpacing: 6,
               children: suggestions.map((s) => ActionChip(
-                label: Text(s, style: const TextStyle(fontSize: 11, color: Color(0xFF0284C7))),
-                backgroundColor: const Color(0xFFE0F2FE),
+                label: Text(s, style: const TextStyle(fontSize: 11, color: Color(0xFF0088CC))),
+                backgroundColor: const Color(0xFFE8F4FB),
                 onPressed: () => controller.text = s,
               )).toList(),
             ),
@@ -225,7 +225,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF0284C7),
+              backgroundColor: const Color(0xFF0088CC),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
             onPressed: () {
@@ -259,7 +259,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7)),
+          icon: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC)),
           onPressed: () {
             if (widget.onBack != null) {
               widget.onBack!();
@@ -287,14 +287,14 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF0284C7), Color(0xFF0EA5E9)],
+                    colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF0284C7).withOpacity(0.25),
+                      color: const Color(0xFF0088CC).withOpacity(0.25),
                       blurRadius: 14,
                       offset: const Offset(0, 5),
                     ),
@@ -337,7 +337,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: const Color(0xFF0284C7),
+                      color: const Color(0xFF0088CC),
                       width: 1.8,
                     ),
                     boxShadow: [
@@ -354,12 +354,12 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                         width: 60,
                         height: 60,
                         decoration: const BoxDecoration(
-                          color: Color(0xFFE0F2FE),
+                          color: Color(0xFFE8F4FB),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           Icons.folder_special_rounded,
-                          color: Color(0xFF0284C7),
+                          color: Color(0xFF0088CC),
                           size: 30,
                         ),
                       ),
@@ -383,7 +383,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                         icon: const Icon(Icons.folder_open_rounded, size: 18),
                         label: const Text('Open File Manager'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0284C7),
+                          backgroundColor: const Color(0xFF0088CC),
                           elevation: 0,
                           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -402,31 +402,31 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFFBAE6FD)),
+                    border: Border.all(color: const Color(0xFFE8F4FB)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.sync_rounded, color: Color(0xFF0284C7), size: 20),
+                          const Icon(Icons.sync_rounded, color: Color(0xFF0088CC), size: 20),
                           const SizedBox(width: 8),
                           const Text(
                             'Parsing & Uploading to My Resume...',
-                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
                           ),
                           const Spacer(),
                           Text(
                             '${(_uploadProgress * 100).toInt()}%',
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
                           ),
                         ],
                       ),
                       const SizedBox(height: 10),
                       LinearProgressIndicator(
                         value: _uploadProgress,
-                        backgroundColor: const Color(0xFFE0F2FE),
-                        color: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFFE8F4FB),
+                        color: const Color(0xFF0088CC),
                         borderRadius: BorderRadius.circular(10),
                         minHeight: 6,
                       ),
@@ -461,10 +461,10 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                           width: 44,
                           height: 44,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFE0F2FE),
+                            color: const Color(0xFFE8F4FB),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0284C7), size: 24),
+                          child: const Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0088CC), size: 24),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
@@ -516,13 +516,13 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                                 SnackBar(content: Text('Viewing preview for "$displayFileName"...')),
                               );
                             },
-                            icon: const Icon(Icons.picture_as_pdf_outlined, size: 16, color: Color(0xFF0284C7)),
+                            icon: const Icon(Icons.picture_as_pdf_outlined, size: 16, color: Color(0xFF0088CC)),
                             label: const Text(
                               'View Document',
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
                             ),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFFBAE6FD)),
+                              side: const BorderSide(color: Color(0xFFE8F4FB)),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             ),
                           ),
@@ -537,7 +537,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                               style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF0284C7),
+                              backgroundColor: const Color(0xFF0088CC),
                               elevation: 0,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             ),
@@ -565,10 +565,10 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+                  border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF0284C7).withOpacity(0.04),
+                      color: const Color(0xFF0088CC).withOpacity(0.04),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -582,7 +582,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                           width: 54,
                           height: 54,
                           decoration: const BoxDecoration(
-                            color: Color(0xFFE0F2FE),
+                            color: Color(0xFFE8F4FB),
                             shape: BoxShape.circle,
                           ),
                           child: Center(
@@ -591,7 +591,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w900,
-                                color: Color(0xFF0284C7),
+                                color: Color(0xFF0088CC),
                               ),
                             ),
                           ),
@@ -638,7 +638,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF0284C7),
+                          backgroundColor: const Color(0xFF0088CC),
                           elevation: 0,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
@@ -669,7 +669,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                   ),
@@ -691,10 +691,10 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                     return Chip(
                       label: Text(
                         skill,
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF0284C7)),
+                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF0088CC)),
                       ),
-                      backgroundColor: const Color(0xFFE0F2FE),
-                      side: const BorderSide(color: Color(0xFFBAE6FD)),
+                      backgroundColor: const Color(0xFFE8F4FB),
+                      side: const BorderSide(color: Color(0xFFE8F4FB)),
                     );
                   }).toList(),
                 ),
@@ -712,7 +712,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0284C7),
+                    backgroundColor: const Color(0xFF0088CC),
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -735,7 +735,7 @@ class _UploadResumeScreenState extends ConsumerState<UploadResumeScreen> {
       children: [
         Text(
           value,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
         ),
         const SizedBox(height: 2),
         Text(

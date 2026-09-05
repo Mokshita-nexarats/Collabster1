@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/di/providers.dart';
@@ -7,7 +8,6 @@ import '../../../../core/theme/investor_colors.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
 import '../../../auth/view/screens/profile_screen.dart';
 import '../../../auth/view/sign_in_screen.dart';
-import 'investor_notifications_screen.dart';
 
 /// Investor's own profile — rich identity, interactive preferences, stats and settings.
 class InvestorProfileScreen extends ConsumerStatefulWidget {
@@ -348,7 +348,7 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                           const SizedBox(width: 12),
                           const Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   'My Investor Hub',
@@ -365,67 +365,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_) => const InvestorNotificationsScreen()),
-                              );
-                            },
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Container(
-                                  width: 38,
-                                  height: 38,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha: 0.15),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: const Icon(Icons.notifications_outlined, color: Colors.white, size: 20),
-                                ),
-                                Positioned(
-                                  right: 6,
-                                  top: 6,
-                                  child: Container(
-                                    width: 7,
-                                    height: 7,
-                                    decoration: const BoxDecoration(
-                                      color: InvestorColors.red,
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          GestureDetector(
-                            onTap: () => RoleSwitcherSheet.show(context),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.18),
-                                borderRadius: BorderRadius.circular(999),
-                                border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.swap_horiz_rounded, size: 16, color: Colors.white),
-                                  SizedBox(width: 4),
-                                  Text(
-                                    'Switch Tab',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          const SizedBox(width: 12),
+                          // Balance spacer so the title stays truly centered
+                          const SizedBox(width: 42),
                         ],
                       ),
                       const SizedBox(height: 22),
@@ -535,6 +477,22 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                                           ),
                                         ),
                                       ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    _headerAction(
+                                      Icons.share_outlined,
+                                      'Share profile',
+                                      () => _shareProfile(userName),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    _headerAction(
+                                      Icons.edit_outlined,
+                                      'Edit thesis',
+                                      _showEditPreferencesSheet,
+                                    ),
                                   ],
                                 ),
                               ],
@@ -743,6 +701,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                      ],
                     ),
                     child: Column(
                       children: [
@@ -811,6 +772,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -849,7 +813,13 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                         const SizedBox(height: 16),
                         const Divider(height: 1, color: InvestorColors.border),
                         const SizedBox(height: 16),
-                        ...state.investments.take(3).map(
+                        if (state.investments.isEmpty)
+                          const Text(
+                            'No investments yet — deals you close will appear here.',
+                            style: TextStyle(fontSize: 12.5, color: InvestorColors.textMuted),
+                          )
+                        else
+                          ...state.investments.take(3).map(
                               (inv) => Padding(
                                 padding: const EdgeInsets.only(bottom: 12),
                                 child: Row(
@@ -919,6 +889,9 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: InvestorColors.border),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x0A000000), blurRadius: 12, offset: Offset(0, 4)),
+                      ],
                     ),
                     child: Column(
                       children: [
@@ -1013,10 +986,11 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
   Widget _headerStatCell(String value, String label) {
     return Expanded(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             value,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 17,
@@ -1026,6 +1000,7 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
           const SizedBox(height: 2),
           Text(
             label,
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white.withValues(alpha: 0.65),
               fontSize: 8.5,
@@ -1034,6 +1009,47 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _headerAction(IconData icon, String label, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.18),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: Colors.white, size: 15),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _shareProfile(String userName) {
+    Clipboard.setData(
+      ClipboardData(text: 'Check out $userName — Investor on Collabster!'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Profile link copied to clipboard'),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
@@ -1048,33 +1064,42 @@ class _InvestorProfileScreenState extends ConsumerState<InvestorProfileScreen> {
   }
 
   Widget _buildRangeVisualizer(RangeValues values) {
-    final factorStart = (values.start - 10000) / (1000000 - 10000);
-    final factorEnd = (values.end - 10000) / (1000000 - 10000);
+    const min = 10000.0;
+    const max = 1000000.0;
+    final startF = ((values.start - min) / (max - min)).clamp(0.0, 1.0);
+    final endF = ((values.end - min) / (max - min)).clamp(0.0, 1.0);
 
-    return Container(
-      height: 10,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: InvestorColors.goldBg,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: InvestorColors.goldLight),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            left: factorStart * 280, // approximate visual representation
-            right: (1 - factorEnd) * 280,
-            top: 0,
-            bottom: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: InvestorColors.goldShimmer,
-                borderRadius: BorderRadius.circular(999),
-              ),
-            ),
+    // LayoutBuilder keeps the fill proportional on every screen width
+    // (the old build used a hardcoded 280px width and mis-rendered).
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        return Container(
+          height: 10,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: InvestorColors.goldBg,
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(color: InvestorColors.goldLight),
           ),
-        ],
-      ),
+          child: Stack(
+            children: [
+              Positioned(
+                left: startF * w,
+                width: (endF - startF) * w,
+                top: 0,
+                bottom: 0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: InvestorColors.goldShimmer,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 

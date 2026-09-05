@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class StartupColors {
   StartupColors._();
 
-  static const Color founder = Color(0xFF5B21B6);
+  static const Color founder = Color(0xFF0088CC);
   static const Color cofounder = Color(0xFF0D9488);
   static const Color coreTeam = Color(0xFF2563EB);
   static const Color live = Color(0xFF059669);

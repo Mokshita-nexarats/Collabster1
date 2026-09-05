@@ -6,8 +6,8 @@ import '../../../model/event_notification_state.dart';
 import '../../../model/notification_model.dart';
 import 'event_home_screen.dart';
 
-const _accent = Color(0xFF059669);
-const _accentLight = Color(0xFF10B981);
+const _accent = Color(0xFF0088CC);
+const _accentLight = Color(0xFF229ED9);
 const _bg = Color(0xFFF8FAFC);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
@@ -59,7 +59,7 @@ class _EventNotificationsScreenState extends ConsumerState<EventNotificationsScr
   Color _getColorForType(EventNotificationType type) {
     switch (type) {
       case EventNotificationType.reminder:
-        return const Color(0xFF059669);
+        return const Color(0xFF0088CC);
       case EventNotificationType.registration:
         return const Color(0xFF166534);
       case EventNotificationType.update:
@@ -69,14 +69,14 @@ class _EventNotificationsScreenState extends ConsumerState<EventNotificationsScr
       case EventNotificationType.cancellation:
         return const Color(0xFFE11D48);
       case EventNotificationType.system:
-        return const Color(0xFF7C3AED);
+        return const Color(0xFF229ED9);
     }
   }
 
   Color _getBgForType(EventNotificationType type) {
     switch (type) {
       case EventNotificationType.reminder:
-        return const Color(0xFFECFDF5);
+        return const Color(0xFFEFF6FF);
       case EventNotificationType.registration:
         return const Color(0xFFDCFCE7);
       case EventNotificationType.update:
@@ -86,7 +86,7 @@ class _EventNotificationsScreenState extends ConsumerState<EventNotificationsScr
       case EventNotificationType.cancellation:
         return const Color(0xFFFFE4E6);
       case EventNotificationType.system:
-        return const Color(0xFFF5F3FF);
+        return const Color(0xFFF0F9FF);
     }
   }
 

@@ -17,7 +17,7 @@ class AttendeeChip extends StatelessWidget {
         height: radius * 2,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color(0xFF10B981), Color(0xFF059669)],
+            colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

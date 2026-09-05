@@ -243,7 +243,7 @@ class _MessageBubble extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: message.isMine
                     ? const LinearGradient(
-                        colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                        colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
                       )
                     : const LinearGradient(
                         colors: [Color(0xFFFFFFFF), Color(0xFFFDFDFD)],
@@ -392,12 +392,12 @@ class _MessageInputBar extends StatelessWidget {
               padding: const EdgeInsets.all(11),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [Color(0xFFEA580C), Color(0xFFF97316)],
+                  colors: [Color(0xFF229ED9), Color(0xFF0088CC)],
                 ),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFF97316).withValues(alpha: 0.35),
+                    color: const Color(0xFF0088CC).withValues(alpha: 0.35),
                     blurRadius: 10,
                     offset: const Offset(0, 3),
                   ),

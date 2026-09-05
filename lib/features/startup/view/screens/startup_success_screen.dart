@@ -15,6 +15,7 @@ class StartupSuccessScreen extends ConsumerWidget {
     this.tagline = '',
     this.country = '',
     this.city = '',
+    this.legalStructure = '',
   });
 
   final String startupName;
@@ -25,244 +26,394 @@ class StartupSuccessScreen extends ConsumerWidget {
   final String tagline;
   final String country;
   final String city;
+  final String legalStructure;
+
+  String _orDash(String v) => v.trim().isEmpty ? '—' : v.trim();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final jurisdictionParts = [
+      city.trim(),
+      country.trim(),
+    ].where((s) => s.isNotEmpty).toList();
+    final jurisdiction =
+        jurisdictionParts.isEmpty ? '—' : jurisdictionParts.join(', ');
+
+    void openDashboard({bool replace = true}) {
+      final route = MaterialPageRoute(
+        builder: (context) => StartupDashboardScreen(startupName: startupName),
+      );
+      if (replace) {
+        Navigator.of(context).pushReplacement(route);
+      } else {
+        Navigator.of(context).push(route);
+      }
+    }
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F5FF),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF7F5FF),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF5B21B6)),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-          child: Column(
-            children: [
-              const SizedBox(height: 4),
-              Container(
-                width: 132,
-                height: 132,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFE6DBFF),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.verified_rounded, size: 78, color: Color(0xFF5B21B6)),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Congratulations!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 38,
-                  height: 1.1,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF12233D),
-                ),
-              ),
-              const SizedBox(height: 14),
-              const Text(
-                'Your startup has been successfully created. You are ready to build, launch, and grow.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.55,
-                  color: Color(0xFF5D6472),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(26),
-                  border: Border.all(color: const Color(0xFFD7D5E5)),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x08000000),
-                      blurRadius: 18,
-                      offset: Offset(0, 8),
-                    ),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 55, 20, 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 74,
-                          height: 74,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE7EFFF),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: const Icon(Icons.business, color: Color(0xFF5B21B6), size: 34),
+                    Container(
+                      width: 65,
+                      height: 65,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF4CAF50),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.rocket_launch,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Your company is ready to\nlaunch.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        height: 1.2,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF12233D),
+                      ),
+                    ),
+                    const SizedBox(height: 13),
+                    const Text(
+                      'All steps completed successfully.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF0284C7),
+                      ),
+                    ),
+                    const SizedBox(height: 34),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(17),
+                        border: Border.all(
+                          color: const Color(0xFFBAE6FD),
                         ),
-                        const SizedBox(width: 14),
-                        Expanded(
-                          child: Column(
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                startupName,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
-                                  color: Color(0xFF12233D),
+                              Container(
+                                width: 46,
+                                height: 46,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE0F2FE),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: const Icon(
+                                  Icons.business,
+                                  color: Color(0xFF0284C7),
+                                  size: 25,
                                 ),
                               ),
-                              const SizedBox(height: 6),
-                              Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: [
-                                  _badge('STATUS: ACTIVE'),
-                                  _badge(selectedRole.toUpperCase()),
-                                ],
+                              const SizedBox(width: 13),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      startupName,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w800,
+                                        color: Color(0xFF12233D),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      _orDash(legalStructure),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFF5D6472),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 7),
+                                    Text(
+                                      _orDash(stage),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xFF5D6472),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 9,
+                                  vertical: 5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE7F8EA),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.check_circle,
+                                      size: 14,
+                                      color: Color(0xFF4CAF50),
+                                    ),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      'Verified',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Color(0xFF2E7D32),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 18),
-                    const Text(
-                      'PROFILE COMPLETION',
-                      style: TextStyle(
-                        fontSize: 11,
-                        letterSpacing: 1.2,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF6E7280),
+                          const SizedBox(height: 25),
+                          const Divider(
+                            color: Color(0xFFBAE6FD),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _CompanyInfo(
+                                  title: 'Industry',
+                                  value: _orDash(industry),
+                                ),
+                              ),
+                              Expanded(
+                                child: _CompanyInfo(
+                                  title: 'Jurisdiction',
+                                  value: jurisdiction,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(99),
-                            child: LinearProgressIndicator(
-                              value: completion / 100,
-                              minHeight: 10,
-                              backgroundColor: const Color(0xFFD7E4FF),
-                              valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF5B21B6)),
-                            ),
-                          ),
+                    const SizedBox(height: 34),
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'NEXT STEPS',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF0284C7),
                         ),
-                        const SizedBox(width: 12),
-                        Text(
-                          '$completion%',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xFF5B21B6),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Complete your documentation to reach 100% and unlock investor matching.',
-                      style: TextStyle(
-                        fontSize: 13,
-                        height: 1.4,
-                        color: Colors.grey.shade700,
                       ),
+                    ),
+                    const SizedBox(height: 13),
+                    _nextStep(
+                      icon: Icons.grid_view_rounded,
+                      title: 'Manage your company',
+                      onTap: () => openDashboard(replace: false),
+                    ),
+                    const SizedBox(height: 9),
+                    _nextStep(
+                      icon: Icons.group_add_outlined,
+                      title: 'Hire talent',
+                      onTap: () => openDashboard(replace: false),
+                    ),
+                    const SizedBox(height: 9),
+                    _nextStep(
+                      icon: Icons.event_available_outlined,
+                      title: 'Connect with investors',
+                      onTap: () => openDashboard(replace: false),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                 child: ElevatedButton(
-                  onPressed: () async {
-                    final navigator = Navigator.of(context);
-                    navigator.pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => StartupDashboardScreen(startupName: startupName),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(56),
-                    backgroundColor: const Color(0xFF5B21B6),
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Go to Dashboard', style: TextStyle(fontWeight: FontWeight.w700)),
-                      SizedBox(width: 10),
-                      Icon(Icons.dashboard_outlined),
-                    ],
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(
+                    color: Color(0xFFBAE6FD),
                   ),
                 ),
               ),
-              const SizedBox(height: 14),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StartupPublicProfileScreen(startupName: startupName),
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton.icon(
+                      onPressed: () => openDashboard(),
+                      icon: const Icon(
+                        Icons.rocket_launch_outlined,
+                        size: 18,
                       ),
-                    );
-                  },
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(56),
-                    foregroundColor: const Color(0xFF5B21B6),
-                    side: const BorderSide(color: Color(0xFFB7A5EB)),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      label: const Text(
+                        'Launch Company Workspace',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0284C7),
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('View Public Profile', style: TextStyle(fontWeight: FontWeight.w700)),
-                      SizedBox(width: 10),
-                      Icon(Icons.open_in_new),
-                    ],
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                StartupPublicProfileScreen(
+                              startupName: startupName,
+                            ),
+                          ),
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF25283A),
+                        side: const BorderSide(
+                          color: Color(0xFFBAE6FD),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text(
+                        'View Public Profile',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _badge(String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE3E8FF),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 0.8,
-          color: Color(0xFF4C55A4),
+  Widget _nextStep({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(11),
+          border: Border.all(
+            color: const Color(0xFFBAE6FD),
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: Color(0xFFE0F2FE),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                icon,
+                color: const Color(0xFF0284C7),
+                size: 21,
+              ),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF172033),
+                ),
+              ),
+            ),
+            const Icon(
+              Icons.chevron_right,
+              color: Color(0xFF5D6472),
+              size: 24,
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _CompanyInfo extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const _CompanyInfo({
+    required this.title,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 13,
+            color: Color(0xFF5D6472),
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF172033),
+          ),
+        ),
+      ],
     );
   }
 }

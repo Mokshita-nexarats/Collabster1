@@ -29,12 +29,12 @@ class _StartupPostsFeedScreenState
   }
 
   static const Map<String, _CategoryChip> _categories = {
-    'All': _CategoryChip(color: Color(0xFF5B21B6), icon: Icons.grid_view_rounded),
-    'Company News': _CategoryChip(color: Color(0xFF5B21B6), icon: Icons.campaign_rounded),
+    'All': _CategoryChip(color: Color(0xFF0088CC), icon: Icons.grid_view_rounded),
+    'Company News': _CategoryChip(color: Color(0xFF0088CC), icon: Icons.campaign_rounded),
     'Product Launch': _CategoryChip(color: Color(0xFF2563EB), icon: Icons.rocket_launch_rounded),
     'Milestone': _CategoryChip(color: Color(0xFFD97706), icon: Icons.emoji_events_rounded),
     'Team Update': _CategoryChip(color: Color(0xFF059669), icon: Icons.group_add_rounded),
-    'Fundraising': _CategoryChip(color: Color(0xFF0891B2), icon: Icons.trending_up_rounded),
+    'Fundraising': _CategoryChip(color: Color(0xFF0088CC), icon: Icons.trending_up_rounded),
     'Hiring': _CategoryChip(color: Color(0xFFE11D48), icon: Icons.work_rounded),
   };
 
@@ -49,7 +49,7 @@ class _StartupPostsFeedScreenState
     final posts = session?.posts ?? [];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: Column(
         children: [
           _buildHeader(context),
@@ -72,7 +72,7 @@ class _StartupPostsFeedScreenState
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF4A0E8F), Color(0xFF6D28D9)],
+          colors: [Color(0xFF006699), Color(0xFF0088CC)],
         ),
       ),
       child: Row(
@@ -207,12 +207,12 @@ class _StartupPostsFeedScreenState
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: const Color(0xFF5B21B6).withValues(alpha: 0.08),
+              color: const Color(0xFF0088CC).withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.post_add_rounded,
-              color: Color(0xFF5B21B6),
+              color: Color(0xFF0088CC),
               size: 36,
             ),
           ),
@@ -316,7 +316,7 @@ class _StartupPostsFeedScreenState
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF5B21B6),
+                  color: const Color(0xFF0088CC),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Text(
@@ -372,7 +372,7 @@ class _StartupPostsFeedScreenState
                         ),
                         child: const Icon(
                           Icons.forum_rounded,
-                          color: Color(0xFF4F46E5),
+                          color: Color(0xFF229ED9),
                           size: 18,
                         ),
                       ),
@@ -428,11 +428,11 @@ class _PostCard extends StatelessWidget {
   final StartupPost post;
 
   static const Map<String, _PostTypeStyle> _typeStyles = {
-    'Company News': _PostTypeStyle(color: Color(0xFF5B21B6), icon: Icons.campaign_rounded),
+    'Company News': _PostTypeStyle(color: Color(0xFF0088CC), icon: Icons.campaign_rounded),
     'Product Launch': _PostTypeStyle(color: Color(0xFF2563EB), icon: Icons.rocket_launch_rounded),
     'Milestone': _PostTypeStyle(color: Color(0xFFD97706), icon: Icons.emoji_events_rounded),
     'Team Update': _PostTypeStyle(color: Color(0xFF059669), icon: Icons.group_add_rounded),
-    'Fundraising': _PostTypeStyle(color: Color(0xFF0891B2), icon: Icons.trending_up_rounded),
+    'Fundraising': _PostTypeStyle(color: Color(0xFF0088CC), icon: Icons.trending_up_rounded),
     'Hiring': _PostTypeStyle(color: Color(0xFFE11D48), icon: Icons.work_rounded),
   };
 

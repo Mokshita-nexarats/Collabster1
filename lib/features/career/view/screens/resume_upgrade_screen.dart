@@ -41,13 +41,13 @@ class ResumeUpgradeScreen extends StatelessWidget {
                     width: 72,
                     height: 72,
                     decoration: const BoxDecoration(
-                      color: Color(0xFFE0F2FE),
+                      color: Color(0xFFE8F4FB),
                       shape: BoxShape.circle,
                     ),
                     child: const Center(
                       child: CircleAvatar(
                         radius: 28,
-                        backgroundColor: Color(0xFF0284C7),
+                        backgroundColor: Color(0xFF0088CC),
                         child: Icon(
                           Icons.check_rounded,
                           color: Colors.white,
@@ -88,7 +88,7 @@ class ResumeUpgradeScreen extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                          color: const Color(0xFFE0F2FE), width: 1.2),
+                          color: const Color(0xFFE8F4FB), width: 1.2),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.01),
@@ -138,7 +138,7 @@ class ResumeUpgradeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0284C7),
+                        backgroundColor: const Color(0xFF0088CC),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -227,7 +227,7 @@ class ResumeUpgradeScreen extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: const Color(0xFF0284C7).withOpacity(opacity),
+        color: const Color(0xFF0088CC).withOpacity(opacity),
         shape: BoxShape.circle,
       ),
     );
@@ -278,14 +278,14 @@ class _FeatureTag extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFF0F9FF),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFBAE6FD), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Text(
         label,
         style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Color(0xFF0284C7),
+          color: Color(0xFF0088CC),
         ),
       ),
     );

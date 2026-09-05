@@ -37,7 +37,7 @@ class _NetworkStartupProfileScreenState
     final accent = widget.accent;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // ── Header ────────────────────────────────────────────────────

@@ -5,9 +5,9 @@ import 'workshop_payment_screen.dart';
 const _bg = Color(0xFFF8FAFC);
 const _surface = Colors.white;
 const _card = Colors.white;
-const _accent = Color(0xFF059669);
-const _accentLight = Color(0xFF10B981);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentLight = Color(0xFF229ED9);
+const _accentBg = Color(0xFFEFF6FF);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
 const _borderColor = Color(0xFFE2E8F0);
@@ -191,7 +191,7 @@ class _WorkshopRegistrationScreenState
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF1A0A2E), Color(0xFF2D1B69), Color(0xFF4C1D95)],
+          colors: [Color(0xFF0F172A), Color(0xFF0F172A), Color(0xFF006699)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

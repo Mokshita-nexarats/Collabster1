@@ -62,7 +62,7 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
       role: 'Founder & CEO',
       company: 'CodeCraft Labs',
       initials: 'VS',
-      color: Color(0xFF5B21B6),
+      color: Color(0xFF0088CC),
       mutualConnections: 4,
     ),
     const _NetworkPerson(
@@ -102,7 +102,7 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
       role: 'UX Designer',
       company: 'PixelCraft',
       initials: 'DI',
-      color: Color(0xFF0891B2),
+      color: Color(0xFF0088CC),
       mutualConnections: 6,
     ),
   ];
@@ -130,8 +130,8 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
     final roleParts = request.role.split(' • ');
     final accent = switch (request.category) {
       'Investor' => const Color(0xFFD97706),
-      'Founder' => const Color(0xFF5B21B6),
-      'Mentor' => const Color(0xFF0891B2),
+      'Founder' => const Color(0xFF0088CC),
+      'Mentor' => const Color(0xFF0088CC),
       _ => const Color(0xFF059669),
     };
 
@@ -203,14 +203,14 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
     final state = ref.watch(requestsViewModelProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // ── App Bar ────────────────────────────────────────────────────
           SliverAppBar(
             pinned: true,
             centerTitle: true,
-            backgroundColor: const Color(0xFF5B21B6),
+            backgroundColor: const Color(0xFF0088CC),
             elevation: 0,
             leading: IconButton(
               icon: const Icon(
@@ -234,7 +234,7 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF7C3AED), Color(0xFF4C1D95)],
+                  colors: [Color(0xFF229ED9), Color(0xFF006699)],
                 ),
               ),
             ),
@@ -307,7 +307,7 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
                   _statCard(
                     '${state.connected}',
                     'Connections',
-                    const Color(0xFF5B21B6),
+                    const Color(0xFF0088CC),
                     Icons.people_rounded,
                     null,
                   ),
@@ -489,9 +489,9 @@ class _StartupNetworkScreenState extends ConsumerState<StartupNetworkScreen> {
 
   // ── Suggested startup card ─────────────────────────────────────────────────
   static const List<Color> _startupColors = [
-    Color(0xFF5B21B6),
+    Color(0xFF0088CC),
     Color(0xFF059669),
-    Color(0xFF0891B2),
+    Color(0xFF0088CC),
     Color(0xFFD97706),
   ];
 

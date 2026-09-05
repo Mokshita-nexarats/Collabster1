@@ -32,13 +32,13 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
     final state = ref.watch(requestsViewModelProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
             centerTitle: true,
-            backgroundColor: const Color(0xFF5B21B6),
+            backgroundColor: const Color(0xFF0088CC),
             elevation: 0,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios_new_rounded,
@@ -79,7 +79,7 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF7C3AED), Color(0xFF4C1D95)],
+                  colors: [Color(0xFF229ED9), Color(0xFF006699)],
                 ),
               ),
             ),
@@ -103,7 +103,7 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _statItem('${state.pendingCount}', 'Pending',
-                      const Color(0xFF5B21B6)),
+                      const Color(0xFF0088CC)),
                   _statDivider(),
                   _statItem('${state.connected}', 'Connected',
                       const Color(0xFF10B981)),
@@ -139,13 +139,13 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
                           width: 72,
                           height: 72,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF5B21B6)
+                            color: const Color(0xFF0088CC)
                                 .withValues(alpha: 0.08),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
                             Icons.mark_email_read_rounded,
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             size: 36,
                           ),
                         ),
@@ -217,18 +217,18 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
         margin: const EdgeInsets.only(right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFF5B21B6) : Colors.white,
+          color: selected ? const Color(0xFF0088CC) : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: selected
-                ? const Color(0xFF5B21B6)
+                ? const Color(0xFF0088CC)
                 : const Color(0xFFE5E7EB),
           ),
           boxShadow: selected
               ? [
                   BoxShadow(
                     color:
-                        const Color(0xFF5B21B6).withValues(alpha: 0.25),
+                        const Color(0xFF0088CC).withValues(alpha: 0.25),
                     blurRadius: 8,
                     offset: const Offset(0, 3),
                   ),
@@ -271,11 +271,11 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
             children: [
               CircleAvatar(
                 radius: 24,
-                backgroundColor: const Color(0xFFEDE9FE),
+                backgroundColor: const Color(0xFFE8F4FB),
                 child: Text(
                   req.initials,
                   style: const TextStyle(
-                    color: Color(0xFF5B21B6),
+                    color: Color(0xFF0088CC),
                     fontWeight: FontWeight.w900,
                     fontSize: 15,
                   ),
@@ -370,7 +370,7 @@ class _StartupRequestsScreenState extends ConsumerState<StartupRequestsScreen> {
                   label: const Text('Accept',
                       style: TextStyle(fontWeight: FontWeight.w800)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     minimumSize: const Size.fromHeight(42),
                     elevation: 0,

@@ -108,7 +108,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                               text: 'alex.j@example.com',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0284C7),
+                                color: Color(0xFF0088CC),
                               ),
                             ),
                             TextSpan(text: '. You can track your application status in your dashboard.'),
@@ -129,7 +129,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                                     context, (route) => route.isFirst);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF0284C7),
+                                backgroundColor: const Color(0xFF0088CC),
                                 elevation: 0,
                                 minimumSize: Size.zero,
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -157,7 +157,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                                 );
                               },
                               style: OutlinedButton.styleFrom(
-                                side: const BorderSide(color: Color(0xFF0284C7), width: 1.2),
+                                side: const BorderSide(color: Color(0xFF0088CC), width: 1.2),
                                 minimumSize: Size.zero,
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -170,7 +170,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF0284C7),
+                                  color: Color(0xFF0088CC),
                                 ),
                               ),
                             ),
@@ -186,7 +186,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +236,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                         width: double.infinity,
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0284C7),
+                          color: const Color(0xFF0088CC),
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Column(
@@ -302,12 +302,12 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF0284C7),
+                                        color: Color(0xFF0088CC),
                                       ),
                                     ),
                                     SizedBox(width: 6),
                                     Icon(Icons.arrow_forward_rounded,
-                                        color: Color(0xFF0284C7), size: 16),
+                                        color: Color(0xFF0088CC), size: 16),
                                   ],
                                 ),
                               ),
@@ -375,11 +375,11 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: const BoxDecoration(
-                                color: Color(0xFFE0F2FE),
+                                color: Color(0xFFE8F4FB),
                                 shape: BoxShape.circle,
                               ),
                               child: const Icon(Icons.trending_up_rounded,
-                                  color: Color(0xFF0284C7), size: 18),
+                                  color: Color(0xFF0088CC), size: 18),
                             ),
                             const SizedBox(width: 10),
                             Expanded(
@@ -409,7 +409,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                               style: TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF0284C7),
+                                color: Color(0xFF0088CC),
                               ),
                             ),
                           ],
@@ -538,7 +538,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -593,7 +593,7 @@ class _ApplicationSuccessScreenState extends State<ApplicationSuccessScreen> {
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0284C7),
+                  color: Color(0xFF0088CC),
                 ),
               ),
             ),

@@ -27,7 +27,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -37,9 +37,9 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4338CA),
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -268,7 +268,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                         child: const Text(
                           'View All',
                           style: TextStyle(
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -313,7 +313,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                         label: const Text(
                           'Add Material',
                           style: TextStyle(
-                            color: Color(0xFF5B21B6),
+                            color: Color(0xFF0088CC),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -379,14 +379,14 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: task.isUrgent
                         ? const Color(0xFFFEF3C7)
-                        : const Color(0xFFEDE9FE),
+                        : const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
                     StartupColorHelper.iconFromKey(task.iconKey),
                     color: task.isUrgent
                         ? const Color(0xFFF59E0B)
-                        : const Color(0xFF5B21B6),
+                        : const Color(0xFF0088CC),
                     size: 22,
                   ),
                 ),
@@ -419,7 +419,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFF6F3FF),
+                color: const Color(0xFFF0F9FF),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Text(
@@ -454,7 +454,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                     icon: const Icon(Icons.check_circle_outline, size: 18),
                     label: const Text('Mark Completed'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -504,12 +504,12 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEDE9FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: const Icon(
                     Icons.picture_as_pdf_rounded,
-                    color: Color(0xFF5B21B6),
+                    color: Color(0xFF0088CC),
                     size: 26,
                   ),
                 ),
@@ -543,9 +543,9 @@ class FundraisingDashboardScreen extends ConsumerWidget {
               height: 160,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: const Color(0xFFF6F3FF),
+                color: const Color(0xFFF0F9FF),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFFEDE9FE)),
+                border: Border.all(color: const Color(0xFFE8F4FB)),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -553,7 +553,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   const Icon(
                     Icons.picture_as_pdf_outlined,
                     size: 40,
-                    color: Color(0xFF5B21B6),
+                    color: Color(0xFF0088CC),
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -592,7 +592,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                     icon: const Icon(Icons.download_rounded, size: 18),
                     label: const Text('Download'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -617,8 +617,8 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                     icon: const Icon(Icons.share_outlined, size: 18),
                     label: const Text('Share Link'),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF5B21B6),
-                      side: const BorderSide(color: Color(0xFF5B21B6)),
+                      foregroundColor: const Color(0xFF0088CC),
+                      side: const BorderSide(color: Color(0xFF0088CC)),
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -699,12 +699,12 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                     width: 42,
                     height: 42,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFEDE9FE),
+                      color: const Color(0xFFE8F4FB),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(
                       Icons.note_add_rounded,
-                      color: Color(0xFF5B21B6),
+                      color: Color(0xFF0088CC),
                       size: 22,
                     ),
                   ),
@@ -726,7 +726,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   hintText: 'Document Name (e.g. Cap Table Q3.pdf)',
                   prefixIcon: const Icon(Icons.picture_as_pdf_outlined),
                   filled: true,
-                  fillColor: const Color(0xFFF6F3FF),
+                  fillColor: const Color(0xFFF0F9FF),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -740,7 +740,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   hintText: 'File Size (e.g. 1.8 MB)',
                   prefixIcon: const Icon(Icons.data_usage_outlined),
                   filled: true,
-                  fillColor: const Color(0xFFF6F3FF),
+                  fillColor: const Color(0xFFF0F9FF),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide.none,
@@ -779,7 +779,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                   ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
@@ -841,12 +841,12 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                         width: 42,
                         height: 42,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.person_add_alt_1_outlined,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -871,7 +871,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                           'Fund / Investor Name (e.g. Sequoia Capital)',
                       prefixIcon: const Icon(Icons.business_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -887,7 +887,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                       hintText: 'Target Check Size (e.g. \$500K)',
                       prefixIcon: const Icon(Icons.attach_money_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -904,7 +904,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                           'Lead Partner Name (e.g. Anish Srivastava)',
                       prefixIcon: const Icon(Icons.person_outline),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -921,7 +921,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                       hintText: 'Partner Email (e.g. anish@sequoia.com)',
                       prefixIcon: const Icon(Icons.mail_outline),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -937,7 +937,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                       hintText: 'Investment Focus & Notes',
                       prefixIcon: const Icon(Icons.notes_outlined),
                       filled: true,
-                      fillColor: const Color(0xFFF6F3FF),
+                      fillColor: const Color(0xFFF0F9FF),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide.none,
@@ -1090,7 +1090,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
                       ),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -1121,11 +1121,11 @@ class FundraisingDashboardScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         decoration: BoxDecoration(
           color:
-              selected ? const Color(0xFF5B21B6) : const Color(0xFFF6F3FF),
+              selected ? const Color(0xFF0088CC) : const Color(0xFFF0F9FF),
           borderRadius: BorderRadius.circular(999),
           border: Border.all(
             color:
-                selected ? const Color(0xFF5B21B6) : const Color(0xFFE5E7EB),
+                selected ? const Color(0xFF0088CC) : const Color(0xFFE5E7EB),
           ),
         ),
         child: Text(
@@ -1196,14 +1196,14 @@ class FundraisingDashboardScreen extends ConsumerWidget {
             decoration: BoxDecoration(
               color: isUrgent
                   ? const Color(0xFFFEF3C7)
-                  : const Color(0xFFEDE9FE),
+                  : const Color(0xFFE8F4FB),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
               icon,
               color: isUrgent
                   ? const Color(0xFFF59E0B)
-                  : const Color(0xFF5B21B6),
+                  : const Color(0xFF0088CC),
               size: 22,
             ),
           ),
@@ -1236,11 +1236,11 @@ class FundraisingDashboardScreen extends ConsumerWidget {
               side: BorderSide(
                 color: isUrgent
                     ? const Color(0xFFF59E0B)
-                    : const Color(0xFF5B21B6),
+                    : const Color(0xFF0088CC),
               ),
               foregroundColor: isUrgent
                   ? const Color(0xFFF59E0B)
-                  : const Color(0xFF5B21B6),
+                  : const Color(0xFF0088CC),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(999),
               ),
@@ -1279,7 +1279,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, color: const Color(0xFF5B21B6), size: 28),
+            Icon(icon, color: const Color(0xFF0088CC), size: 28),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -1306,7 +1306,7 @@ class FundraisingDashboardScreen extends ConsumerWidget {
               child: Text(
                 action,
                 style: const TextStyle(
-                  color: Color(0xFF5B21B6),
+                  color: Color(0xFF0088CC),
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
                 ),
@@ -1398,8 +1398,8 @@ class _InvestorOpportunityCard extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 minimumSize: const Size(0, 36),
-                foregroundColor: const Color(0xFF5B21B6),
-                side: const BorderSide(color: Color(0xFF5B21B6)),
+                foregroundColor: const Color(0xFF0088CC),
+                side: const BorderSide(color: Color(0xFF0088CC)),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(999),
                 ),

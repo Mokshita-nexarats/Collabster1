@@ -1,10 +1,11 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/di/providers.dart';
 import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../shared/utils/app_snackbar.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
+import '../../../../shared/widgets/mode_drawer.dart';
+import '../../../../shared/widgets/mode_menu_bar.dart';
 import '../../model/startup_models.dart';
 import '../../viewmodel/startup_dashboard_state.dart';
 import '../../../auth/view/sign_in_screen.dart';
@@ -12,7 +13,6 @@ import '../../../auth/view/screens/profile_screen.dart';
 import 'fundraising_dashboard_screen.dart';
 import 'hiring_command_screen.dart';
 import 'investor_pipeline_screen.dart';
-import 'join_startup_screen.dart';
 import 'messages_inbox_screen.dart';
 import 'startup_analytics_screen.dart';
 import 'startup_documents_screen.dart';
@@ -38,6 +38,7 @@ class StartupDashboardScreen extends ConsumerStatefulWidget {
 
 class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
     with TickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late final AnimationController _fadeController;
   late final Animation<double> _fadeAnim;
   StartupDashboardState get _state => ref.read(startupDashboardViewModelProvider);
@@ -111,24 +112,18 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
     }
   }
 
-  String get _profileInitials {
-    final words = _state.ownerName.trim().split(RegExp(r'\s+'));
-    if (words.isEmpty || words.first.isEmpty) return 'U';
-    return words.take(2).map((word) => word[0]).join().toUpperCase();
-  }
-
   bool get _isDark => Theme.of(context).brightness == Brightness.dark;
-  Color get _bgColor => _isDark ? const Color(0xFF0F1123) : const Color(0xFFF6F3FF);
+  Color get _bgColor => _isDark ? const Color(0xFF0F1123) : const Color(0xFFF0F9FF);
 
   @override
   Widget build(BuildContext context) {
     ref.watch(startupDashboardViewModelProvider);
-    final session = ref.watch(authViewModelProvider).session;
-    final logoPath = session?.startupLogoPath ?? '';
-    final hasStartupLogo = logoPath.isNotEmpty && File(logoPath).existsSync();
+    final hasUnread = ref.watch(notificationsViewModelProvider).hasUnread;
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: _bgColor,
+      drawer: _buildDrawer(),
       body: FadeTransition(
         opacity: _fadeAnim,
         child: CustomScrollView(
@@ -141,9 +136,9 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFF4A0E8F),
-                      Color(0xFF6D28D9),
-                      Color(0xFF5B21B6),
+                      Color(0xFF006699),
+                      Color(0xFF0088CC),
+                      Color(0xFF0088CC),
                     ],
                   ),
                 ),
@@ -157,46 +152,16 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                         // Top row
                         Row(
                           children: [
-                            Container(
-                              width: 46,
-                              height: 46,
-                              decoration: BoxDecoration(
-                                gradient: hasStartupLogo
-                                    ? null
-                                    : const LinearGradient(
-                                        colors: [
-                                          Color(0xFF7C3AED),
-                                          Color(0xFF5B21B6),
-                                        ],
-                                      ),
-                                borderRadius: BorderRadius.circular(14),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.3),
-                                  width: 1.5,
-                                ),
-                              ),
-                              child: hasStartupLogo
-                                  ? ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Image.file(
-                                        File(logoPath),
-                                        width: 46,
-                                        height: 46,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )
-                                  : const Icon(
-                                      Icons.rocket_launch_rounded,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
+                            ModeMenuButton(
+                              onTap: () => _scaffoldKey.currentState
+                                  ?.openDrawer(),
                             ),
-                            const SizedBox(width: 12),
                             Expanded(
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Flexible(
                                         child: Text(
@@ -222,6 +187,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                     Text(
                                       _state.tagline,
                                       maxLines: 2,
+                                      textAlign: TextAlign.center,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white.withValues(
@@ -236,6 +202,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                   Wrap(
                                     spacing: 6,
                                     runSpacing: 6,
+                                    alignment: WrapAlignment.center,
                                     children: [
                                       if (_state.industry.isNotEmpty)
                                         _tagChip(_state.industry),
@@ -250,7 +217,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                             ),
                             const SizedBox(width: 10),
                             GestureDetector(
-                              onTap: () => _openNotifications(),
+                              onTap: _openNotifications,
                               child: Container(
                                 width: 42,
                                 height: 42,
@@ -267,23 +234,23 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                         size: 22,
                                       ),
                                     ),
-                                    Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: Container(
-                                        width: 8,
-                                        height: 8,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFF87171),
-                                          shape: BoxShape.circle,
+                                    if (hasUnread)
+                                      Positioned(
+                                        top: 8,
+                                        right: 8,
+                                        child: Container(
+                                          width: 8,
+                                          height: 8,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xFFF87171),
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
                                       ),
-                                    ),
                                   ],
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                         const SizedBox(height: 20),
@@ -446,13 +413,13 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [Color(0xFF5B21B6), Color(0xFF7C3AED)],
+                          colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                         ),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
                             color: const Color(
-                              0xFF5B21B6,
+                              0xFF0088CC,
                             ).withValues(alpha: 0.25),
                             blurRadius: 16,
                             offset: const Offset(0, 6),
@@ -532,7 +499,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                 Text(
                                   'Explore AI Recommendations',
                                   style: TextStyle(
-                                    color: Color(0xFF5B21B6),
+                                    color: Color(0xFF0088CC),
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -540,7 +507,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                 SizedBox(width: 6),
                                 Icon(
                                   Icons.chevron_right,
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   size: 18,
                                 ),
                               ],
@@ -599,7 +566,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
       },
       {
         'icon': Icons.person_add_alt_1_rounded,
-        'color': const Color(0xFF7C3AED),
+        'color': const Color(0xFF229ED9),
         'title': 'Talent Acquisition Bot',
         'description':
             'Based on Q4 roadmap goals, AI suggests adding a Senior Flutter Lead.',
@@ -668,7 +635,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
         },
         {
           'icon': Icons.person_add_alt_1_rounded,
-          'color': const Color(0xFF7C3AED),
+          'color': const Color(0xFF229ED9),
           'title': 'Talent Acquisition Bot',
           'description': legalScore >= 82
               ? 'Legal readiness at $legalScore%. AI suggests hiring a compliance lead for enterprise deals.'
@@ -726,7 +693,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                       height: 44,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [Color(0xFF5B21B6), Color(0xFF7C3AED)],
+                          colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
                         ),
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -815,7 +782,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                             gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Color(0xFF5B21B6), Color(0xFF4338CA)],
+                              colors: [Color(0xFF0088CC), Color(0xFF0088CC)],
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -960,7 +927,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                                 ? null
                                 : () => runAnalysis(setModalState),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF5B21B6),
+                              backgroundColor: const Color(0xFF0088CC),
                               foregroundColor: Colors.white,
                               disabledBackgroundColor: const Color(0xFF9CA3AF),
                               disabledForegroundColor: Colors.white70,
@@ -1300,10 +1267,89 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
         );
         break;
       case 4:
-        ref.read(startupDashboardViewModelProvider.notifier).selectNav(4);
-        _showProfileSheet();
+        Navigator.push(
+          context,
+          _smoothRoute(const ProfileScreen()),
+        );
         break;
     }
+  }
+
+  void _pushSmooth(Widget page) {
+    Navigator.pop(context);
+    Navigator.push(context, _smoothRoute(page));
+  }
+
+  Future<void> _logout() async {
+    Navigator.pop(context);
+    await ref.read(authViewModelProvider.notifier).logout();
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
+    );
+  }
+
+  Widget _buildDrawer() {
+    final session = ref.watch(authViewModelProvider).session;
+    return ModeDrawer(
+      userName: session?.fullName ?? widget.startupName,
+      email: session?.email ?? '',
+      photoPath: session?.profilePhotoPath ?? '',
+      headerGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      avatarColor: const Color(0xFF0088CC),
+      items: [
+        ModeDrawerItem(
+          icon: Icons.add_circle_outline_rounded,
+          label: 'Create New',
+          onTap: () {
+            Navigator.pop(context);
+            _showCreateSheet();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.people_outline_rounded,
+          label: 'Network',
+          onTap: () => _pushSmooth(
+            StartupNetworkScreen(startupName: widget.startupName),
+          ),
+        ),
+        ModeDrawerItem(
+          icon: Icons.chat_bubble_outline_rounded,
+          label: 'Messages',
+          onTap: () => _pushSmooth(
+            MessagesInboxScreen(startupName: widget.startupName),
+          ),
+        ),
+        ModeDrawerItem(
+          icon: Icons.notifications_none_rounded,
+          label: 'Notifications',
+          onTap: () {
+            Navigator.pop(context);
+            _openNotifications();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.alt_route_rounded,
+          label: 'Connect',
+          onTap: () => _pushSmooth(const ConnectScreen()),
+        ),
+        ModeDrawerItem(
+          icon: Icons.person_outline_rounded,
+          label: 'My Profile',
+          onTap: () => _pushSmooth(const ProfileScreen()),
+        ),
+        ModeDrawerItem(
+          icon: Icons.swap_horiz_rounded,
+          label: 'Switch Tab',
+          onTap: () {
+            Navigator.pop(context);
+            RoleSwitcherSheet.show(context);
+          },
+        ),
+      ],
+      onLogout: _logout,
+    );
   }
 
   void _showSnack(String msg, {bool isError = false}) {
@@ -1318,268 +1364,6 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
     Navigator.push(
       context,
       _smoothRoute(NotificationsScreen(startupName: widget.startupName)),
-    );
-  }
-
-  void _showProfileSheet() {
-    final photoPath = _state.profilePhotoPath;
-    final hasPhoto = photoPath.isNotEmpty && File(photoPath).existsSync();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final sheetBg = isDark ? const Color(0xFF1A1D35) : Colors.white;
-    final handleColor = isDark ? const Color(0xFF2D3352) : const Color(0xFFE5E7EB);
-    final textColor = isDark ? const Color(0xFFF1F5F9) : const Color(0xFF12233D);
-    final subtitleColor = isDark ? const Color(0xFF94A3B8) : const Color(0xFF6B7280);
-    final session = ref.read(authViewModelProvider).session;
-    final roleLabel = session?.activeUserRole.label ?? 'Member';
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: sheetBg,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      builder: (ctx) => SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(20, 12, 20, MediaQuery.of(ctx).viewPadding.bottom + 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Center(
-                    child: Container(
-                      width: 40,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: handleColor,
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: const Color(0xFFEDE9FE),
-                    backgroundImage: hasPhoto ? FileImage(File(photoPath)) : null,
-                    child: hasPhoto
-                        ? null
-                        : Text(
-                            _profileInitials,
-                            style: const TextStyle(
-                              color: Color(0xFF5B21B6),
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    _state.ownerName.isEmpty ? 'Your profile' : _state.ownerName,
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                      color: textColor,
-                    ),
-                  ),
-                  if (_state.email.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      _state.email,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: subtitleColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 2),
-                  Text(roleLabel, style: TextStyle(fontSize: 13, color: subtitleColor)),
-                  const SizedBox(height: 14),
-                  _sheetAction(
-                    Icons.person_outline_rounded,
-                    'View Profile',
-                    const Color(0xFF5B21B6),
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(context, _smoothRoute(const ProfileScreen()));
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.swap_horiz_rounded,
-                    'Switch Tab',
-                    const Color(0xFF5B21B6),
-                    () {
-                      Navigator.pop(ctx);
-                      RoleSwitcherSheet.show(context);
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  _sheetAction(
-                    Icons.apartment_rounded,
-                    'Join Another Startup',
-                    const Color(0xFF5B21B6),
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(context, _smoothRoute(const JoinStartupScreen()));
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  // ── Dynamic switch buttons (only when relevant) ───────────
-                  Consumer(
-                    builder: (context, ref, _) {
-                      final session = ref.watch(authViewModelProvider).session;
-                      final originalName = session?.originalStartupName;
-                      final joinedName = session?.joinedStartupName;
-
-                      final showSwitchToOwn = originalName != null &&
-                          originalName.isNotEmpty &&
-                          session?.startupName != originalName;
-
-                      final showSwitchToJoined = joinedName != null &&
-                          joinedName.isNotEmpty &&
-                          session?.startupName != joinedName;
-
-                      if (!showSwitchToOwn && !showSwitchToJoined) {
-                        return const SizedBox.shrink();
-                      }
-
-                      return Column(
-                        children: [
-                          if (showSwitchToOwn) ...[
-                            _sheetAction(
-                              Icons.swap_horizontal_circle_outlined,
-                              'Switch to $originalName',
-                              const Color(0xFF5B21B6),
-                              () async {
-                                Navigator.pop(ctx);
-                                final data = session?.originalStartupData;
-                                await ref.read(authViewModelProvider.notifier).updateStartupData(
-                                  startupName: originalName,
-                                  industry: data?['startupIndustry'] as String?,
-                                  stage: data?['startupStage'] as String?,
-                                  tagline: data?['startupTagline'] as String?,
-                                  country: data?['startupCountry'] as String?,
-                                  city: data?['startupCity'] as String?,
-                                  description: data?['startupDescription'] as String?,
-                                  problem: data?['startupProblem'] as String?,
-                                  solution: data?['startupSolution'] as String?,
-                                  mission: data?['startupMission'] as String?,
-                                  vision: data?['startupVision'] as String?,
-                                  website: data?['startupWebsite'] as String?,
-                                  incorporationDate: data?['startupIncorporationDate'] as String?,
-                                  founderName: data?['startupFounderName'] as String?,
-                                  founderDesignation: data?['startupFounderDesignation'] as String?,
-                                  founderEmail: data?['startupFounderEmail'] as String?,
-                                  founderPhone: data?['startupFounderPhone'] as String?,
-                                  founderLinkedin: data?['startupFounderLinkedin'] as String?,
-                                  founderBio: data?['startupFounderBio'] as String?,
-                                  socialWebsite: data?['startupSocialWebsite'] as String?,
-                                  socialLinkedin: data?['startupSocialLinkedin'] as String?,
-                                  socialProductHunt: data?['startupSocialProductHunt'] as String?,
-                                  useOfFunds: data?['startupUseOfFunds'] as String?,
-                                  teamSize: data?['startupTeamSize'] as String?,
-                                  fundingStage: data?['startupFundingStage'] as String?,
-                                  currentlyRaising: data?['startupCurrentlyRaising'] as bool?,
-                                  visibility: data?['startupVisibility'] as String?,
-                                  originalStartupName: originalName,
-                                  originalStartupData: data,
-                                );
-                                if (!context.mounted) return;
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => StartupDashboardScreen(startupName: originalName),
-                                  ),
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                          ],
-                          if (showSwitchToJoined) ...[
-                            _sheetAction(
-                              Icons.apartment_rounded,
-                              'Switch to $joinedName',
-                              const Color(0xFF0891B2),
-                              () async {
-                                Navigator.pop(ctx);
-                                final data = session?.joinedStartupData;
-                                await ref.read(authViewModelProvider.notifier).updateStartupData(
-                                  startupName: joinedName,
-                                  industry: data?['startupIndustry'] as String?,
-                                  stage: data?['startupStage'] as String?,
-                                  tagline: data?['startupTagline'] as String?,
-                                  city: data?['startupCity'] as String?,
-                                  originalStartupName: originalName,
-                                  originalStartupData: session?.originalStartupData,
-                                  joinedStartupName: joinedName,
-                                  joinedStartupData: data,
-                                );
-                                if (!context.mounted) return;
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => StartupDashboardScreen(startupName: joinedName),
-                                  ),
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                          ],
-                        ],
-                      );
-                    },
-                  ),
-                  _sheetAction(
-                    Icons.logout_rounded,
-                    'Sign Out',
-                    const Color(0xFFDC2626),
-                    () async {
-                      final nav = Navigator.of(context);
-                      Navigator.pop(ctx);
-                      await ref.read(authViewModelProvider.notifier).logout();
-                      if (!mounted) return;
-                      nav.pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (_) => const SignInScreen()),
-                        (_) => false,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-    ).then((_) {
-      if (mounted) ref.read(startupDashboardViewModelProvider.notifier).selectNav(0);
-    });
-  }
-
-
-  Widget _sheetAction(
-    IconData icon,
-    String label,
-    Color color,
-    VoidCallback onTap,
-  ) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: color.withValues(alpha: 0.2)),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, color: color),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: TextStyle(
-                color: color,
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -1697,7 +1481,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                     ctx,
                     icon: Icons.inventory_2_rounded,
                     label: 'Add Product',
-                    color: const Color(0xFF7C3AED),
+                    color: const Color(0xFF229ED9),
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -1712,7 +1496,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                     ctx,
                     icon: Icons.event_rounded,
                     label: 'Create Event',
-                    color: const Color(0xFF0891B2),
+                    color: const Color(0xFF0088CC),
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -1727,7 +1511,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
                     ctx,
                     icon: Icons.post_add_rounded,
                     label: 'Add Post',
-                    color: const Color(0xFF5B21B6),
+                    color: const Color(0xFF0088CC),
                     onTap: () async {
                       final post = await Navigator.push<StartupPost>(
                         context,
@@ -1921,7 +1705,7 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
               ctx,
               Icons.info_outline_rounded,
               'Startup Info',
-              const Color(0xFF4A0E8F),
+              const Color(0xFF006699),
               () => Navigator.push(context, _smoothRoute(const StartupInfoScreen())),
             ),
           ],
@@ -2063,7 +1847,7 @@ class _SectionHeader extends StatelessWidget {
             child: const Text(
               'View All',
               style: TextStyle(
-                color: Color(0xFF5B21B6),
+                color: Color(0xFF0088CC),
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
               ),
@@ -2092,13 +1876,13 @@ class _QuickActionsGrid extends StatelessWidget {
       _QuickAction(
         icon: Icons.info_outline_rounded,
         label: 'Startup Info',
-        color: const Color(0xFF5B21B6),
+        color: const Color(0xFF0088CC),
         onTap: () => Navigator.push(context, _smoothRoute(const StartupInfoScreen())),
       ),
       _QuickAction(
         icon: Icons.post_add_outlined,
         label: 'Posts',
-        color: const Color(0xFF5B21B6),
+        color: const Color(0xFF0088CC),
         onTap: () => Navigator.push(context, _smoothRoute(StartupPostsFeedScreen(startupName: startupName))),
       ),
       _QuickAction(
@@ -2122,13 +1906,13 @@ class _QuickActionsGrid extends StatelessWidget {
       _QuickAction(
         icon: Icons.inventory_2_outlined,
         label: 'Products',
-        color: const Color(0xFF7C3AED),
+        color: const Color(0xFF229ED9),
         onTap: () => Navigator.push(context, _smoothRoute(StartupProductsScreen(startupName: startupName))),
       ),
       _QuickAction(
         icon: Icons.event_outlined,
         label: 'Event',
-        color: const Color(0xFF0891B2),
+        color: const Color(0xFF0088CC),
         onTap: () => Navigator.push(context, _smoothRoute(StartupEventsScreen(startupName: startupName))),
       ),
       _QuickAction(
@@ -2140,7 +1924,7 @@ class _QuickActionsGrid extends StatelessWidget {
       _QuickAction(
         icon: Icons.analytics_outlined,
         label: 'Analytics',
-        color: const Color(0xFF0891B2),
+        color: const Color(0xFF0088CC),
         onTap: () => Navigator.push(context, _smoothRoute(const StartupAnalyticsScreen())),
       ),
       _QuickAction(
@@ -2158,13 +1942,13 @@ class _QuickActionsGrid extends StatelessWidget {
       _QuickAction(
         icon: Icons.mark_email_unread_outlined,
         label: 'Requests',
-        color: const Color(0xFF8B5CF6),
+        color: const Color(0xFF229ED9),
         onTap: () => Navigator.push(context, _smoothRoute(StartupRequestsScreen(startupName: startupName))),
       ),
       _QuickAction(
         icon: Icons.alt_route_rounded,
         label: 'Connect',
-        color: const Color(0xFF4F46E5),
+        color: const Color(0xFF229ED9),
         onTap: () => Navigator.push(context, _smoothRoute(const ConnectScreen())),
       ),
     ];
@@ -2265,252 +2049,21 @@ class _BottomNavBar extends StatelessWidget {
   final ValueChanged<int> onTap;
   final int messagesUnread;
 
-  static const double _navBarHeight = 64;
-  static const double _fabSize = 56;
-  static const double _navBarTop = 14;
-  static const double _fabTop = -12;
-
   @override
   Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.paddingOf(context).bottom;
-    final totalHeight = _navBarTop + _navBarHeight + bottomInset + 8;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final navBg = isDark ? const Color(0xFF1A1D35) : Colors.white;
-    final navBorder = isDark ? const Color(0xFF2D3352) : const Color(0xFFE2E4EA);
-    final selectedColor = const Color(0xFF5B21B6);
-    final unselectedColor = isDark ? const Color(0xFF64748B) : const Color(0xFF9CA3AF);
-    final shadowColor = isDark ? Colors.black : Colors.black.withValues(alpha: 0.08);
-
-    return SizedBox(
-      height: totalHeight,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Positioned(
-            top: _navBarTop,
-            left: 12,
-            right: 12,
-            bottom: 0,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: bottomInset),
-              child: CustomPaint(
-                painter: _SeamlessNavPainter(
-                  fillColor: navBg,
-                  borderColor: navBorder,
-                  shadowColor: shadowColor,
-                ),
-                size: Size.infinite,
-                child: SizedBox(
-                  height: _navBarHeight,
-                  child: Row(
-                    children: [
-                      _navItem(0, Icons.home_outlined, Icons.home_rounded, 'Home', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      _navItem(1, Icons.people_outline, Icons.people_rounded, 'Network', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      SizedBox(width: _fabSize + 12),
-                      _navItem(3, Icons.chat_bubble_outline, Icons.chat_bubble_rounded, 'Messages', badge: messagesUnread, selectedColor: selectedColor, unselectedColor: unselectedColor),
-                      _navItem(4, Icons.person_outline, Icons.person, 'Profile', selectedColor: selectedColor, unselectedColor: unselectedColor),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: _fabTop,
-            child: _addButton(),
-          ),
-        ],
-      ),
+    // Same flat menu-bar design as Community mode — Startup keeps its own
+    // violet accent, tabs, badge and tap behavior (dark-mode aware).
+    return ModeMenuBar(
+      selectedIndex: selectedIndex,
+      onTap: onTap,
+      selectedColor: const Color(0xFF0088CC),
+      fabGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      items: [
+        const ModeMenuItem(index: 0, icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
+        const ModeMenuItem(index: 1, icon: Icons.people_outline, activeIcon: Icons.people_rounded, label: 'Network'),
+        ModeMenuItem(index: 3, icon: Icons.chat_bubble_outline, activeIcon: Icons.chat_bubble_rounded, label: 'Messages', badge: messagesUnread),
+        const ModeMenuItem(index: 4, icon: Icons.person_outline, activeIcon: Icons.person, label: 'Profile'),
+      ],
     );
   }
-
-  Widget _navItem(int index, IconData icon, IconData activeIcon, String label, {
-    int badge = 0,
-    required Color selectedColor,
-    required Color unselectedColor,
-  }) {
-    final selected = selectedIndex == index;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => onTap(index),
-        behavior: HitTestBehavior.opaque,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Icon(
-                  selected ? activeIcon : icon,
-                  color: selected ? selectedColor : unselectedColor,
-                  size: 24,
-                ),
-                if (badge > 0)
-                  Positioned(
-                    right: -6,
-                    top: -4,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEF4444),
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.white, width: 1.5),
-                      ),
-                      child: Text(
-                        badge > 9 ? '9+' : '$badge',
-                        style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w800),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                color: selected ? selectedColor : unselectedColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _addButton() {
-    return GestureDetector(
-      onTap: () => onTap(2),
-      child: Container(
-        width: _fabSize,
-        height: _fabSize,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF5B21B6), Color(0xFF7C3AED)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFF5B21B6).withValues(alpha: 0.30),
-              blurRadius: 14,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: const Icon(Icons.add_rounded, color: Colors.white, size: 28),
-      ),
-    );
-  }
-}
-
-class _SeamlessNavPainter extends CustomPainter {
-  const _SeamlessNavPainter({
-    required this.fillColor,
-    required this.borderColor,
-    required this.shadowColor,
-  });
-  final Color fillColor;
-  final Color borderColor;
-  final Color shadowColor;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (size.isEmpty) return;
-
-    final h = size.height;
-    final w = size.width;
-    final centerX = w / 2;
-    const cornerRadius = 28.0;
-    const fabRadius = 28.0;
-    const clearance = 5.0;
-    const notchR = fabRadius + clearance;
-    const notchW = notchR + 14;
-    const bottomArc = 2.5;
-
-    final path = Path()
-      // Top-left corner
-      ..moveTo(cornerRadius, 0)
-      // Top edge left — flat to notch entry
-      ..lineTo(centerX - notchW, 0)
-      // ── Deep U-shaped notch: wraps ~55% of FAB ──
-      // Left entry — tangent flows from horizontal into the U-descent
-      ..cubicTo(
-        centerX - notchW + 10, 0,
-        centerX - notchR * 1.1, notchR * 0.06,
-        centerX - notchR, notchR * 0.35,
-      )
-      // Left wall — follows FAB curvature downward
-      ..cubicTo(
-        centerX - notchR * 0.92, notchR * 0.6,
-        centerX - notchR * 0.75, notchR * 0.85,
-        centerX - notchR * 0.5, notchR * 0.98,
-      )
-      // Left bottom — smooth curve into U-base
-      ..cubicTo(
-        centerX - notchR * 0.28, notchR * 1.05,
-        centerX - 14, notchR * 1.06,
-        centerX, notchR * 1.06,
-      )
-      // Right bottom — mirror of left bottom
-      ..cubicTo(
-        centerX + 14, notchR * 1.06,
-        centerX + notchR * 0.28, notchR * 1.05,
-        centerX + notchR * 0.5, notchR * 0.98,
-      )
-      // Right wall — follows FAB curvature upward
-      ..cubicTo(
-        centerX + notchR * 0.75, notchR * 0.85,
-        centerX + notchR * 0.92, notchR * 0.6,
-        centerX + notchR, notchR * 0.35,
-      )
-      // Right exit — tangent flows from U-ascent into horizontal
-      ..cubicTo(
-        centerX + notchR * 1.1, notchR * 0.06,
-        centerX + notchW - 10, 0,
-        centerX + notchW, 0,
-      )
-      // Top edge right — flat surface
-      ..lineTo(w - cornerRadius, 0)
-      // Top-right corner
-      ..arcToPoint(Offset(w, cornerRadius), radius: Radius.circular(cornerRadius))
-      // Right edge
-      ..lineTo(w, h - cornerRadius)
-      // Bottom-right corner
-      ..arcToPoint(Offset(w - cornerRadius, h), radius: Radius.circular(cornerRadius))
-      // Bottom edge — subtle upward arc
-      ..quadraticBezierTo(centerX, h - bottomArc, cornerRadius, h)
-      // Bottom-left corner
-      ..arcToPoint(Offset(0, h - cornerRadius), radius: Radius.circular(cornerRadius))
-      // Left edge
-      ..lineTo(0, cornerRadius)
-      // Top-left corner
-      ..arcToPoint(Offset(cornerRadius, 0), radius: Radius.circular(cornerRadius))
-      ..close();
-
-    // Premium shadow
-    canvas.drawShadow(path, shadowColor, 24, true);
-    canvas.drawShadow(path, shadowColor.withValues(alpha: 0.5), 6, true);
-
-    // Fill
-    canvas.drawPath(path, Paint()..style = PaintingStyle.fill..color = fillColor);
-
-    // Border — consistent 1px
-    canvas.drawPath(
-      path,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.0
-        ..color = borderColor,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _SeamlessNavPainter oldDelegate) =>
-      oldDelegate.fillColor != fillColor ||
-      oldDelegate.borderColor != borderColor ||
-      oldDelegate.shadowColor != shadowColor;
 }

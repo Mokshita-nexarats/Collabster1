@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 class InvestorColors {
   InvestorColors._();
 
-  // ─── Gold core ───────────────────────────────────────────────────────────
-  static const Color gold = Color(0xFFD4A017);
-  static const Color goldPrimary = Color(0xFFC99910);
-  static const Color goldDeep = Color(0xFF9C7A0C);
-  static const Color goldDark = Color(0xFF7A5C06);
-  static const Color goldLight = Color(0xFFF5E7B8);
-  static const Color goldSoft = Color(0xFFFFF6DC);
-  static const Color goldMist = Color(0xFFFFF9EC);
-  static const Color goldBg = Color(0xFFFFFCF4);
+  // ─── Gold core (sky-blue scale, matching Community mode) ───────────────
+  static const Color gold = Color(0xFF229ED9);
+  static const Color goldPrimary = Color(0xFF0088CC);
+  static const Color goldDeep = Color(0xFF006699);
+  static const Color goldDark = Color(0xFF006699);
+  static const Color goldLight = Color(0xFFBAE6FD);
+  static const Color goldSoft = Color(0xFFE8F4FB);
+  static const Color goldMist = Color(0xFFF0F9FF);
+  static const Color goldBg = Color(0xFFF8FAFC);
 
-  // ─── Neutrals (warm whites) ──────────────────────────────────────────────
-  static const Color ink = Color(0xFF2A2010);
-  static const Color inkSoft = Color(0xFF57492E);
-  static const Color textMuted = Color(0xFF8A7A56);
-  static const Color border = Color(0xFFF0E6C8);
+  // ─── Neutrals (cool whites) ──────────────────────────────────────────────
+  static const Color ink = Color(0xFF0F172A);
+  static const Color inkSoft = Color(0xFF334155);
+  static const Color textMuted = Color(0xFF64748B);
+  static const Color border = Color(0xFFE2E8F0);
   static const Color card = Colors.white;
 
   // ─── Accents for charts / tags ────────────────────────────────────────────
@@ -28,45 +28,45 @@ class InvestorColors {
   static const Color redSoft = Color(0xFFFDEBEB);
   static const Color blue = Color(0xFF2563EB);
   static const Color blueSoft = Color(0xFFE8F0FE);
-  static const Color purple = Color(0xFF7C3AED);
-  static const Color purpleSoft = Color(0xFFF1EAFE);
-  static const Color orange = Color(0xFFEA580C);
-  static const Color orangeSoft = Color(0xFFFFF2E7);
-  static const Color teal = Color(0xFF0F766E);
-  static const Color tealSoft = Color(0xFFE6F5F3);
+  static const Color purple = Color(0xFF229ED9);
+  static const Color purpleSoft = Color(0xFFE8F4FB);
+  static const Color orange = Color(0xFF0088CC);
+  static const Color orangeSoft = Color(0xFFE8F4FB);
+  static const Color teal = Color(0xFF0088CC);
+  static const Color tealSoft = Color(0xFFE8F4FB);
 
   // ─── Gradients ────────────────────────────────────────────────────────────
   static const LinearGradient goldGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFFC99910), Color(0xFFE9C04F)],
+    colors: [Color(0xFF0088CC), Color(0xFF229ED9)],
   );
 
   static const LinearGradient headerGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF8B6914), Color(0xFFC99910), Color(0xFFE3B548)],
+    colors: [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)],
   );
 
   static const LinearGradient goldShimmer = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFFC99910), Color(0xFFF0C75C)],
+    colors: [Color(0xFF0088CC), Color(0xFF7DD3FC)],
   );
 
   static const LinearGradient heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF7A5C06), Color(0xFFB8860B), Color(0xFFD4A017)],
+    colors: [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)],
   );
 
   static const List<Color> chartPalette = [
-    Color(0xFFD4A017),
+    Color(0xFF229ED9),
     Color(0xFF0E9F6E),
     Color(0xFF2563EB),
-    Color(0xFF7C3AED),
-    Color(0xFFEA580C),
-    Color(0xFF0F766E),
+    Color(0xFF006699),
+    Color(0xFF38BDF8),
+    Color(0xFF0088CC),
   ];
 
   static const Map<String, Color> _colorKeys = {

@@ -12,6 +12,10 @@ class RegistrationState {
     this.yearsOfExperience = 5,
     this.selectedSkills = const {'Leadership', 'AI', 'Product'},
     this.members = const [],
+    this.socialLinks = const [],
+    this.subIndustry = '',
+    this.startupType = '',
+    this.businessModel = '',
   });
 
   static const int totalSteps = 8;
@@ -26,6 +30,10 @@ class RegistrationState {
   final double yearsOfExperience;
   final Set<String> selectedSkills;
   final List<StartupMember> members;
+  final List<SocialLink> socialLinks;
+  final String subIndustry;
+  final String startupType;
+  final String businessModel;
 
   double get progress => (currentStep + 1) / totalSteps;
 
@@ -67,6 +75,10 @@ class RegistrationState {
     double? yearsOfExperience,
     Set<String>? selectedSkills,
     List<StartupMember>? members,
+    List<SocialLink>? socialLinks,
+    String? subIndustry,
+    String? startupType,
+    String? businessModel,
   }) {
     return RegistrationState(
       currentStep: currentStep ?? this.currentStep,
@@ -79,6 +91,10 @@ class RegistrationState {
       yearsOfExperience: yearsOfExperience ?? this.yearsOfExperience,
       selectedSkills: selectedSkills ?? this.selectedSkills,
       members: members ?? this.members,
+      socialLinks: socialLinks ?? this.socialLinks,
+      subIndustry: subIndustry ?? this.subIndustry,
+      startupType: startupType ?? this.startupType,
+      businessModel: businessModel ?? this.businessModel,
     );
   }
 }

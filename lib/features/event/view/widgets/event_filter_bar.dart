@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const _accent = Color(0xFF059669);
+const _accent = Color(0xFF0088CC);
 
 /// Horizontal scrollable filter chips for the Event hub.
 class EventFilterBar extends StatelessWidget {

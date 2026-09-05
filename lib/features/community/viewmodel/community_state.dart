@@ -22,16 +22,45 @@ class CommunityState {
   final int unreadCount;
 
   List<MyCommunityItem> get filteredMyCommunities {
-    if (selectedCategoryId == 'all') return myCommunities;
-    return myCommunities
-        .where((c) => c.categoryId == selectedCategoryId)
-        .toList();
+    var list = myCommunities;
+    if (selectedCategoryId != 'all') {
+      list = list.where((c) => c.categoryId == selectedCategoryId).toList();
+    }
+    final q = searchQuery.trim().toLowerCase();
+    if (q.isNotEmpty) {
+      list = list
+          .where((c) =>
+              c.title.toLowerCase().contains(q) ||
+              c.memberCount.toLowerCase().contains(q))
+          .toList();
+    }
+    return list;
   }
 
   List<RecommendedCommunityItem> get filteredRecommended {
-    if (selectedCategoryId == 'all') return recommendedCommunities;
-    return recommendedCommunities
-        .where((c) => c.categoryId == selectedCategoryId)
+    var list = recommendedCommunities;
+    if (selectedCategoryId != 'all') {
+      list = list.where((c) => c.categoryId == selectedCategoryId).toList();
+    }
+    final q = searchQuery.trim().toLowerCase();
+    if (q.isNotEmpty) {
+      list = list
+          .where((c) =>
+              c.title.toLowerCase().contains(q) ||
+              c.memberCount.toLowerCase().contains(q) ||
+              c.tag.toLowerCase().contains(q))
+          .toList();
+    }
+    return list;
+  }
+
+  List<WhatsHappeningItem> get filteredWhatsHappening {
+    final q = searchQuery.trim().toLowerCase();
+    if (q.isEmpty) return whatsHappening;
+    return whatsHappening
+        .where((w) =>
+            w.title.toLowerCase().contains(q) ||
+            w.subtitle.toLowerCase().contains(q))
         .toList();
   }
 

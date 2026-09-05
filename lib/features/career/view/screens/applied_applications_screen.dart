@@ -113,7 +113,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: _selectedTab == 0
-                                        ? const Color(0xFF0284C7)
+                                        ? const Color(0xFF0088CC)
                                         : Colors.transparent,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -137,7 +137,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: _selectedTab == 1
-                                        ? const Color(0xFF0284C7)
+                                        ? const Color(0xFF0088CC)
                                         : Colors.transparent,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -230,7 +230,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,7 +249,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF0284C7),
+              color: Color(0xFF0088CC),
             ),
           ),
         ],
@@ -277,7 +277,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -313,7 +313,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                 ),
                 Icon(
                   Icons.chat_bubble_outline_rounded,
-                  color: isActive ? const Color(0xFF0284C7) : Colors.grey.shade400,
+                  color: isActive ? const Color(0xFF0088CC) : Colors.grey.shade400,
                   size: 20,
                 ),
               ],
@@ -365,7 +365,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                         })
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isActive ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+                  backgroundColor: isActive ? const Color(0xFF0088CC) : const Color(0xFFE2E8F0),
                   disabledBackgroundColor: const Color(0xFFE2E8F0),
                   elevation: 0,
                   minimumSize: Size.zero,
@@ -402,7 +402,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                     : null,
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(
-                    color: isActive ? const Color(0xFF0284C7) : Colors.grey.shade200,
+                    color: isActive ? const Color(0xFF0088CC) : Colors.grey.shade200,
                     width: 1.2,
                   ),
                   minimumSize: Size.zero,
@@ -416,7 +416,7 @@ class _AppliedApplicationsScreenState extends ConsumerState<AppliedApplicationsS
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: isActive ? const Color(0xFF0284C7) : Colors.grey.shade400,
+                    color: isActive ? const Color(0xFF0088CC) : Colors.grey.shade400,
                   ),
                 ),
               ),

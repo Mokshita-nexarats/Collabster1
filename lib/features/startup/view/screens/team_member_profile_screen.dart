@@ -28,7 +28,7 @@ class TeamMemberProfileScreen extends ConsumerWidget {
     final isFollowing = currentMember.isFollowing;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -38,9 +38,9 @@ class TeamMemberProfileScreen extends ConsumerWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF4A0E8F),
-                    Color(0xFF6D28D9),
-                    Color(0xFF5B21B6),
+                    Color(0xFF006699),
+                    Color(0xFF0088CC),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -124,11 +124,11 @@ class TeamMemberProfileScreen extends ConsumerWidget {
                               ],
                             ),
                             child: CircleAvatar(
-                              backgroundColor: const Color(0xFFEDE9FE),
+                              backgroundColor: const Color(0xFFE8F4FB),
                               child: Text(
                                 member.initials,
                                 style: const TextStyle(
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   fontSize: 34,
                                   fontWeight: FontWeight.w900,
                                 ),
@@ -304,13 +304,13 @@ class TeamMemberProfileScreen extends ConsumerWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 4),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFEDE9FE),
+                              color: const Color(0xFFE8F4FB),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Text(
                               'Copy',
                               style: TextStyle(
-                                color: Color(0xFF5B21B6),
+                                color: Color(0xFF0088CC),
                                 fontSize: 11,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -439,7 +439,7 @@ class TeamMemberProfileScreen extends ConsumerWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: const Color(0xFF5B21B6), size: 20),
+              Icon(icon, color: const Color(0xFF0088CC), size: 20),
               const SizedBox(width: 10),
               Text(
                 title,
@@ -503,14 +503,14 @@ class _SkillTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
-        color: const Color(0xFFF6F3FF),
+        color: const Color(0xFFF0F9FF),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFEDE9FE)),
+        border: Border.all(color: const Color(0xFFE8F4FB)),
       ),
       child: Text(
         label,
         style: const TextStyle(
-          color: Color(0xFF5B21B6),
+          color: Color(0xFF0088CC),
           fontSize: 12,
           fontWeight: FontWeight.w700,
         ),
@@ -543,7 +543,7 @@ class _TimelineItem extends StatelessWidget {
               width: 10,
               height: 10,
               decoration: const BoxDecoration(
-                color: Color(0xFF5B21B6),
+                color: Color(0xFF0088CC),
                 shape: BoxShape.circle,
               ),
             ),

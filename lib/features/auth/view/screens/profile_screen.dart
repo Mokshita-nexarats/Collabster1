@@ -20,43 +20,43 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   List<Color> _getHeaderGradient(UserRole role) {
     if (role.isStartupRole) {
-      return const [Color(0xFF4C1D95), Color(0xFF5B21B6), Color(0xFF6B21D9)]; // Violet for Startup
+      return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Startup
     }
     switch (role) {
       case UserRole.investor:
-        return const [Color(0xFF785412), Color(0xFFB48316), Color(0xFFD4A017)]; // Golden Yellow for Investor
+        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Investor
       case UserRole.student:
       case UserRole.professional:
       case UserRole.mentor:
-        return const [Color(0xFF0369A1), Color(0xFF0284C7), Color(0xFF0EA5E9)]; // Sky Blue for Career
+        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Career
       case UserRole.creator:
       case UserRole.influencer:
-        return const [Color(0xFFC2410C), Color(0xFFEA580C), Color(0xFFF97316)]; // Orange for Community
+        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Community
       case UserRole.serviceProvider:
-        return const [Color(0xFF064E3B), Color(0xFF059669), Color(0xFF10B981)]; // Green for Event
+        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Event
       default:
-        return const [Color(0xFF4C1D95), Color(0xFF5B21B6), Color(0xFF6B21D9)];
+        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)];
     }
   }
 
   Color _getPrimaryAccentColor(UserRole role) {
     if (role.isStartupRole) {
-      return const Color(0xFF6B21D9);
+      return const Color(0xFF0088CC);
     }
     switch (role) {
       case UserRole.investor:
-        return const Color(0xFFD4A017);
+        return const Color(0xFF0088CC);
       case UserRole.student:
       case UserRole.professional:
       case UserRole.mentor:
-        return const Color(0xFF0284C7); // Sky Blue for Career
+        return const Color(0xFF0088CC); // Sky blue for Career
       case UserRole.creator:
       case UserRole.influencer:
-        return const Color(0xFFF97316); // Orange for Community
+        return const Color(0xFF0088CC); // Sky blue for Community
       case UserRole.serviceProvider:
-        return const Color(0xFF059669);
+        return const Color(0xFF0088CC);
       default:
-        return const Color(0xFF6B21D9);
+        return const Color(0xFF0088CC);
     }
   }
 
@@ -689,7 +689,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       applicationIcon: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [AppColors.primary, Color(0xFFF97316)]),
+          gradient: const LinearGradient(colors: [AppColors.primary, Color(0xFF229ED9)]),
           borderRadius: BorderRadius.circular(12),
         ),
         child: const Icon(Icons.rocket_launch_rounded, color: Colors.white, size: 24),

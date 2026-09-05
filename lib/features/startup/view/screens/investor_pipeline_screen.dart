@@ -125,11 +125,11 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(Icons.event_available_rounded,
-                            color: Color(0xFF5B21B6), size: 22),
+                            color: Color(0xFF0088CC), size: 22),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -173,7 +173,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                       return ChoiceChip(
                         label: Text(slot),
                         selected: isSelected,
-                        selectedColor: const Color(0xFF5B21B6),
+                        selectedColor: const Color(0xFF0088CC),
                         labelStyle: TextStyle(
                           color: isSelected ? Colors.white : const Color(0xFF374151),
                           fontWeight: FontWeight.w600,
@@ -198,7 +198,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                         child: ChoiceChip(
                           label: Text(fmt),
                           selected: isSelected,
-                          selectedColor: const Color(0xFF5B21B6),
+                          selectedColor: const Color(0xFF0088CC),
                           labelStyle: TextStyle(
                             color: isSelected ? Colors.white : const Color(0xFF374151),
                             fontWeight: FontWeight.w600,
@@ -233,14 +233,14 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                           SnackBar(
                             content: Text(
                                 'Meeting scheduled with $name for $selectedSlot ($format)!'),
-                            backgroundColor: const Color(0xFF5B21B6),
+                            backgroundColor: const Color(0xFF0088CC),
                             behavior: SnackBarBehavior.floating,
                           ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
@@ -319,11 +319,11 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEDE9FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(Icons.download_rounded,
-                      color: Color(0xFF5B21B6), size: 22),
+                      color: Color(0xFF0088CC), size: 22),
                 ),
                 const SizedBox(width: 12),
                 const Expanded(
@@ -352,7 +352,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
             Row(
               children: [
                 _exportStatCard(
-                    '${allInvestors.length}', 'Total', const Color(0xFF5B21B6)),
+                    '${allInvestors.length}', 'Total', const Color(0xFF0088CC)),
                 const SizedBox(width: 10),
                 _exportStatCard(
                     '${state.pipelineInvestors.length}',
@@ -457,7 +457,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(52),
-                  backgroundColor: const Color(0xFF5B21B6),
+                  backgroundColor: const Color(0xFF0088CC),
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -522,10 +522,10 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
     final activeCount = pipelineState.pipelineInvestors.length + 15;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _showAddInvestorSheet,
-        backgroundColor: const Color(0xFF5B21B6),
+        backgroundColor: const Color(0xFF0088CC),
         icon: const Icon(Icons.add, color: Colors.white),
         label: const Text('Add Investor',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
@@ -539,9 +539,9 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF5B21B6),
-                    Color(0xFF7C3AED),
-                    Color(0xFF4338CA),
+                    Color(0xFF0088CC),
+                    Color(0xFF229ED9),
+                    Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -701,7 +701,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                     child: TabBar(
                       controller: _tabController,
                       indicator: BoxDecoration(
-                          color: const Color(0xFF5B21B6),
+                          color: const Color(0xFF0088CC),
                           borderRadius: BorderRadius.circular(10)),
                       indicatorSize: TabBarIndicatorSize.tab,
                       labelColor: Colors.white,
@@ -746,7 +746,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                             setState(() => _showAllPriority = !_showAllPriority),
                         child: Text(
                           _showAllPriority ? 'Show Less' : 'View All',
-                          style: const TextStyle(color: Color(0xFF5B21B6)),
+                          style: const TextStyle(color: Color(0xFF0088CC)),
                         ),
                       ),
                     ],
@@ -856,14 +856,14 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
           children: [
             Text(count,
                 style: TextStyle(
-                    color: isSelected ? const Color(0xFF5B21B6) : Colors.white,
+                    color: isSelected ? const Color(0xFF0088CC) : Colors.white,
                     fontWeight: FontWeight.w800,
                     fontSize: 13)),
             const SizedBox(width: 6),
             Text(label,
                 style: TextStyle(
                     color: isSelected
-                        ? const Color(0xFF5B21B6)
+                        ? const Color(0xFF0088CC)
                         : Colors.white70,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.normal,
                     fontSize: 11)),
@@ -879,7 +879,7 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-            colors: [Color(0xFFF0EBFF), Color(0xFFEDE9FE)]),
+            colors: [Color(0xFFF0EBFF), Color(0xFFE8F4FB)]),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFFDDD6FE)),
       ),
@@ -890,11 +890,11 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
               CircleAvatar(
                 radius: 22,
                 backgroundColor:
-                    const Color(0xFF5B21B6).withValues(alpha: 0.12),
+                    const Color(0xFF0088CC).withValues(alpha: 0.12),
                 child: Text(
                     name.length >= 2 ? name.substring(0, 2).toUpperCase() : 'HV',
                     style: const TextStyle(
-                        color: Color(0xFF5B21B6), fontWeight: FontWeight.w800)),
+                        color: Color(0xFF0088CC), fontWeight: FontWeight.w800)),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -913,13 +913,13 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
                     Row(
                       children: [
                         const Icon(Icons.access_time,
-                            size: 12, color: Color(0xFF5B21B6)),
+                            size: 12, color: Color(0xFF0088CC)),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text('NEXT STEP: $nextStep',
                               style: const TextStyle(
                                   fontSize: 10,
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   fontWeight: FontWeight.w700),
                               overflow: TextOverflow.ellipsis),
                         ),
@@ -938,8 +938,8 @@ class _InvestorPipelineScreenState extends ConsumerState<InvestorPipelineScreen>
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 minimumSize: const Size(0, 36),
-                side: const BorderSide(color: Color(0xFF5B21B6)),
-                foregroundColor: const Color(0xFF5B21B6),
+                side: const BorderSide(color: Color(0xFF0088CC)),
+                foregroundColor: const Color(0xFF0088CC),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(999)),
               ),
@@ -1008,7 +1008,7 @@ class _InvestorCard extends StatelessWidget {
               onPressed: onTap,
               child: const Text('View Profile',
                   style: TextStyle(
-                      color: Color(0xFF5B21B6),
+                      color: Color(0xFF0088CC),
                       fontSize: 12,
                       fontWeight: FontWeight.w700)),
             ),
@@ -1090,11 +1090,11 @@ class _AddInvestorBottomSheetState extends State<_AddInvestorBottomSheet> {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEDE9FE),
+                        color: const Color(0xFFE8F4FB),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: const Icon(Icons.account_balance_wallet_outlined,
-                          color: Color(0xFF5B21B6)),
+                          color: Color(0xFF0088CC)),
                     ),
                     const SizedBox(width: 14),
                     const Expanded(
@@ -1254,7 +1254,7 @@ class _AddInvestorBottomSheetState extends State<_AddInvestorBottomSheet> {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w700)),
                     style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
@@ -1298,7 +1298,7 @@ class _AddInvestorBottomSheetState extends State<_AddInvestorBottomSheet> {
                 borderSide: const BorderSide(color: Color(0xFFE5E7EB))),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: Color(0xFF5B21B6), width: 1.5)),
+                borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.5)),
           ),
         ),
       ],
@@ -1427,11 +1427,11 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                   Container(
                     width: 40, height: 40,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFEDE9FE),
+                      color: const Color(0xFFE8F4FB),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(Icons.edit_note_rounded,
-                        color: Color(0xFF5B21B6), size: 20),
+                        color: Color(0xFF0088CC), size: 20),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -1467,7 +1467,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(
-                        color: Color(0xFF5B21B6), width: 1.5),
+                        color: Color(0xFF0088CC), width: 1.5),
                   ),
                 ),
               ),
@@ -1481,7 +1481,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
@@ -1521,7 +1521,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
     ];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           // ── Header ────────────────────────────────────────────────────────
@@ -1533,8 +1533,8 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                   end: Alignment.bottomRight,
                   colors: [
                     StartupColorHelper.fromKey(inv.colorKey),
-                    const Color(0xFF5B21B6),
-                    const Color(0xFF4338CA),
+                    const Color(0xFF0088CC),
+                    const Color(0xFF0088CC),
                   ],
                 ),
               ),
@@ -1682,12 +1682,12 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(tag,
                             style: const TextStyle(
-                                color: Color(0xFF5B21B6),
+                                color: Color(0xFF0088CC),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12)),
                       );
@@ -1752,12 +1752,12 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEDE9FE),
+                        color: const Color(0xFFE8F4FB),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text('+ Add Note',
                           style: TextStyle(
-                              color: Color(0xFF5B21B6),
+                              color: Color(0xFF0088CC),
                               fontWeight: FontWeight.w700,
                               fontSize: 12)),
                     ),
@@ -1783,7 +1783,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(52),
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -1803,9 +1803,9 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
                         onPressed: _toggleSave,
                         style: OutlinedButton.styleFrom(
                           minimumSize: const Size.fromHeight(48),
-                          foregroundColor: const Color(0xFF5B21B6),
+                          foregroundColor: const Color(0xFF0088CC),
                           side: const BorderSide(
-                              color: Color(0xFF5B21B6)),
+                              color: Color(0xFF0088CC)),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14)),
                         ),
@@ -1861,7 +1861,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: const Color(0xFF5B21B6), size: 22),
+            Icon(icon, color: const Color(0xFF0088CC), size: 22),
             const SizedBox(height: 4),
             Text(value,
                 style: const TextStyle(
@@ -1902,7 +1902,7 @@ class _InvestorProfileScreenState extends ConsumerState<_InvestorProfileScreen> 
           children: [
             Row(
               children: [
-                Icon(icon, size: 18, color: const Color(0xFF5B21B6)),
+                Icon(icon, size: 18, color: const Color(0xFF0088CC)),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(title,

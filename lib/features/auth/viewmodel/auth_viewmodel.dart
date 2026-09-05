@@ -48,9 +48,7 @@ class AuthViewModel extends StateNotifier<AuthState> {
       return 'Email or password does not match the saved account.';
     }
 
-    await _repository.saveSession(
-      session.copyWith(onboardingComplete: true),
-    );
+    await _repository.saveSession(session.copyWith(onboardingComplete: true));
     await _repository.markOnboardingComplete();
 
     state = state.copyWith(
@@ -85,9 +83,77 @@ class AuthViewModel extends StateNotifier<AuthState> {
 
     await _repository.updateSession((current) {
       if (current == null) return null;
+      return current.copyWith(activeRole: newRole.name, roles: currentRoles);
+    });
+
+    final updated = await _repository.readSession();
+    if (updated != null) {
+      state = state.copyWith(session: updated);
+    }
+  }
+
+  Future<void> switchStartup({required bool joined}) async {
+    final currentSession = state.session;
+    if (currentSession == null) return;
+
+    final startupName = joined
+        ? currentSession.joinedStartupName
+        : currentSession.originalStartupName;
+    final startupData = joined
+        ? currentSession.joinedStartupData
+        : currentSession.originalStartupData;
+    if (startupName == null || startupName.trim().isEmpty) return;
+
+    final startupRole = currentSession.userRoles.firstWhere(
+      (role) => role.isStartupRole,
+      orElse: () => UserRole.company,
+    );
+    final roles = currentSession.userRoles.map((role) => role.name).toList();
+    if (!roles.contains(startupRole.name)) roles.add(startupRole.name);
+
+    String value(String key) => startupData?[key] as String? ?? '';
+
+    await _repository.updateSession((current) {
+      if (current == null) return null;
       return current.copyWith(
-        activeRole: newRole.name,
-        roles: currentRoles,
+        activeRole: startupRole.name,
+        roles: roles,
+        startupName: startupName.trim(),
+        startupIndustry: value('startupIndustry'),
+        startupStage: value('startupStage'),
+        startupTagline: value('startupTagline'),
+        startupLogoPath: value('startupLogoPath'),
+        startupCoverPath: value('startupCoverPath'),
+        startupCountry: value('startupCountry'),
+        startupCity: value('startupCity'),
+        startupDescription: value('startupDescription'),
+        startupProblem: value('startupProblem'),
+        startupSolution: value('startupSolution'),
+        startupMission: value('startupMission'),
+        startupVision: value('startupVision'),
+        startupWebsite: value('startupWebsite'),
+        startupIncorporationDate: value('startupIncorporationDate'),
+        startupFounderPhotoPath: value('startupFounderPhotoPath'),
+        startupFounderName: value('startupFounderName'),
+        startupFounderDesignation: value('startupFounderDesignation'),
+        startupFounderEmail: value('startupFounderEmail'),
+        startupFounderPhone: value('startupFounderPhone'),
+        startupFounderLinkedin: value('startupFounderLinkedin'),
+        startupFounderBio: value('startupFounderBio'),
+        startupSocialWebsite: value('startupSocialWebsite'),
+        startupSocialLinkedin: value('startupSocialLinkedin'),
+        startupSocialProductHunt: value('startupSocialProductHunt'),
+        startupUseOfFunds: value('startupUseOfFunds'),
+        startupTeamSize: value('startupTeamSize'),
+        startupFundingStage: value('startupFundingStage'),
+        startupCurrentlyRaising:
+            startupData?['startupCurrentlyRaising'] as bool?,
+        startupVisibility: value('startupVisibility'),
+        startupTargetAmount: value('startupTargetAmount'),
+        startupRoundSize: value('startupRoundSize'),
+        startupValuation: value('startupValuation'),
+        startupFundingDeadline: value('startupFundingDeadline'),
+        startupExistingInvestors: value('startupExistingInvestors'),
       );
     });
 
@@ -110,9 +176,7 @@ class AuthViewModel extends StateNotifier<AuthState> {
 
     await _repository.updateSession((current) {
       if (current == null) return null;
-      return current.copyWith(
-        roles: currentRoles,
-      );
+      return current.copyWith(roles: currentRoles);
     });
 
     final updated = await _repository.readSession();
@@ -152,6 +216,11 @@ class AuthViewModel extends StateNotifier<AuthState> {
     String? fundingStage,
     bool? currentlyRaising,
     String? visibility,
+    String? targetAmount,
+    String? roundSize,
+    String? valuation,
+    String? fundingDeadline,
+    String? existingInvestors,
     String? originalStartupName,
     Map<String, dynamic>? originalStartupData,
     String? joinedStartupName,
@@ -191,6 +260,11 @@ class AuthViewModel extends StateNotifier<AuthState> {
         startupFundingStage: fundingStage,
         startupCurrentlyRaising: currentlyRaising,
         startupVisibility: visibility,
+        startupTargetAmount: targetAmount,
+        startupRoundSize: roundSize,
+        startupValuation: valuation,
+        startupFundingDeadline: fundingDeadline,
+        startupExistingInvestors: existingInvestors,
         originalStartupName: originalStartupName,
         originalStartupData: originalStartupData,
         joinedStartupName: joinedStartupName,
@@ -203,7 +277,6 @@ class AuthViewModel extends StateNotifier<AuthState> {
       state = state.copyWith(session: updated);
     }
   }
-
 
   Future<void> addPost(StartupPost post) async {
     final currentSession = state.session;

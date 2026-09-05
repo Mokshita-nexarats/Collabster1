@@ -6,9 +6,9 @@ import '../../../../../core/di/providers.dart';
 const _bg = Color(0xFFF8FAFC);
 const _surface = Colors.white;
 const _card = Colors.white;
-const _accent = Color(0xFF059669);
-const _accentLight = Color(0xFF10B981);
-const _accentBg = Color(0xFFECFDF5);
+const _accent = Color(0xFF0088CC);
+const _accentLight = Color(0xFF229ED9);
+const _accentBg = Color(0xFFEFF6FF);
 const _textPrimary = Color(0xFF0F172A);
 const _textSecondary = Color(0xFF64748B);
 const _borderColor = Color(0xFFE2E8F0);
@@ -36,7 +36,7 @@ class _HackathonRegistrationScreenState extends ConsumerState<HackathonRegistrat
   String _selectedYear = '2024';
 
   final List<Map<String, dynamic>> _teammates = [
-    {'name': 'Alex Rivera', 'phone': '+91 87369 63456', 'isLeader': true, 'status': 'verified', 'initial': 'A', 'color': Color(0xFF7C3AED)},
+    {'name': 'Alex Rivera', 'phone': '+91 87369 63456', 'isLeader': true, 'status': 'verified', 'initial': 'A', 'color': Color(0xFF229ED9)},
     {'name': 'Sarah Jenkins', 'phone': '+91 87369 63456', 'isLeader': false, 'status': 'pending', 'initial': 'S', 'color': Color(0xFF22C55E)},
   ];
 
@@ -105,7 +105,7 @@ class _HackathonRegistrationScreenState extends ConsumerState<HackathonRegistrat
           'isLeader': false,
           'status': 'pending',
           'initial': name[0].toUpperCase(),
-          'color': const Color(0xFF10B981),
+          'color': const Color(0xFF229ED9),
         });
       });
     }
@@ -817,7 +817,7 @@ class _HackathonRegistrationScreenState extends ConsumerState<HackathonRegistrat
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Registration submitted successfully! 🎉'),
-              backgroundColor: Color(0xFF7C3AED),
+              backgroundColor: Color(0xFF229ED9),
             ),
           );
           Navigator.pop(context);

@@ -40,7 +40,7 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF0284C7),
+                      color: const Color(0xFF0088CC),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -102,7 +102,7 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+                          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
                         ),
                         child: Column(
                           children: [
@@ -262,7 +262,7 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
               child: Container(
                 padding: const EdgeInsets.all(5),
                 decoration: const BoxDecoration(
-                  color: Color(0xFF0284C7),
+                  color: Color(0xFF0088CC),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(micIcon, color: Colors.white, size: 12),
@@ -298,14 +298,14 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, color: selected ? const Color(0xFF0284C7) : Colors.grey.shade400, size: 14),
+                Icon(icon, color: selected ? const Color(0xFF0088CC) : Colors.grey.shade400, size: 14),
                 const SizedBox(width: 6),
                 Text(
                   label,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: selected ? const Color(0xFF0284C7) : Colors.grey.shade500,
+                    color: selected ? const Color(0xFF0088CC) : Colors.grey.shade500,
                   ),
                 ),
               ],
@@ -313,7 +313,7 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
             const SizedBox(height: 12),
             Container(
               height: 2,
-              color: selected ? const Color(0xFF0284C7) : Colors.transparent,
+              color: selected ? const Color(0xFF0088CC) : Colors.transparent,
             ),
           ],
         ),
@@ -341,7 +341,7 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
           SizedBox(height: 4),
           Text(
             '    hash_map = {}',
-            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF38BDF8)),
+            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF229ED9)),
           ),
           SizedBox(height: 12),
           Text(
@@ -361,12 +361,12 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
           SizedBox(height: 4),
           Text(
             '            return [hash_map[diff], i]',
-            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF38BDF8)),
+            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF229ED9)),
           ),
           SizedBox(height: 4),
           Text(
             '        hash_map[n] = i',
-            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF38BDF8)),
+            style: TextStyle(fontFamily: 'monospace', fontSize: 12, color: Color(0xFF229ED9)),
           ),
           SizedBox(height: 12),
           Text(
@@ -410,13 +410,13 @@ class _LiveSessionScreenState extends State<LiveSessionScreen> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: isActive ? const Color(0xFFE0F2FE) : Colors.grey.shade100,
+          color: isActive ? const Color(0xFFE8F4FB) : Colors.grey.shade100,
           shape: BoxShape.circle,
         ),
         alignment: Alignment.center,
         child: Icon(
           icon,
-          color: isActive ? const Color(0xFF0284C7) : Colors.grey.shade500,
+          color: isActive ? const Color(0xFF0088CC) : Colors.grey.shade500,
           size: 20,
         ),
       ),

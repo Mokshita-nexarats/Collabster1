@@ -86,10 +86,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                         margin: const EdgeInsets.only(right: 8),
                         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                         decoration: BoxDecoration(
-                          color: selected ? const Color(0xFF0284C7) : Colors.white,
+                          color: selected ? const Color(0xFF0088CC) : Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: selected ? const Color(0xFF0284C7) : const Color(0xFFE2E8F0),
+                            color: selected ? const Color(0xFF0088CC) : const Color(0xFFE2E8F0),
                             width: 1.2,
                           ),
                         ),
@@ -156,7 +156,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                   ),
@@ -205,7 +205,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
               shape: BoxShape.circle,
               border: Border.all(color: const Color(0xFFE2E8F0)),
             ),
-            child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0284C7), size: 20),
+            child: const Icon(Icons.arrow_back_rounded, color: Color(0xFF0088CC), size: 20),
           ),
         ),
         const Spacer(),
@@ -217,7 +217,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
             shape: BoxShape.circle,
             border: Border.all(color: const Color(0xFFE2E8F0)),
           ),
-          child: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0284C7), size: 20),
+          child: const Icon(Icons.notifications_none_rounded, color: Color(0xFF0088CC), size: 20),
         ),
       ],
     );
@@ -230,10 +230,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE0F2FE), width: 1.5),
+        border: Border.all(color: const Color(0xFFE8F4FB), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0284C7).withOpacity(0.04),
+            color: const Color(0xFF0088CC).withOpacity(0.04),
             blurRadius: 14,
             offset: const Offset(0, 4),
           ),
@@ -247,11 +247,11 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
             width: 60,
             height: 76,
             decoration: BoxDecoration(
-              color: const Color(0xFFE0F2FE),
+              color: const Color(0xFFE8F4FB),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFBAE6FD)),
+              border: Border.all(color: const Color(0xFFE8F4FB)),
             ),
-            child: const Icon(Icons.description_rounded, color: Color(0xFF0284C7), size: 30),
+            child: const Icon(Icons.description_rounded, color: Color(0xFF0088CC), size: 30),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -280,7 +280,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                       style: TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF0284C7),
+                        color: Color(0xFF0088CC),
                       ),
                     ),
                   ],
@@ -291,8 +291,8 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                   child: const LinearProgressIndicator(
                     value: 0.82,
                     minHeight: 6,
-                    backgroundColor: Color(0xFFE0F2FE),
-                    color: Color(0xFF0284C7),
+                    backgroundColor: Color(0xFFE8F4FB),
+                    color: Color(0xFF0088CC),
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -306,7 +306,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0284C7),
+                      backgroundColor: const Color(0xFF0088CC),
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -378,10 +378,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+          border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF0284C7).withOpacity(0.04),
+              color: const Color(0xFF0088CC).withOpacity(0.04),
               blurRadius: 10,
               offset: const Offset(0, 3),
             ),
@@ -393,10 +393,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
               width: 38,
               height: 38,
               decoration: BoxDecoration(
-                color: const Color(0xFFE0F2FE),
+                color: const Color(0xFFE8F4FB),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: const Color(0xFF0284C7), size: 20),
+              child: Icon(icon, color: const Color(0xFF0088CC), size: 20),
             ),
             const SizedBox(height: 10),
             Text(
@@ -443,10 +443,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: const Color(0xFFE0F2FE), width: 1.2),
+              border: Border.all(color: const Color(0xFFE8F4FB), width: 1.2),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF0284C7).withOpacity(0.04),
+                  color: const Color(0xFF0088CC).withOpacity(0.04),
                   blurRadius: 10,
                   offset: const Offset(0, 3),
                 ),
@@ -466,7 +466,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                   child: Stack(
                     children: [
                       const Center(
-                        child: Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0284C7), size: 40),
+                        child: Icon(Icons.picture_as_pdf_rounded, color: Color(0xFF0088CC), size: 40),
                       ),
                       Positioned(
                         bottom: 8,
@@ -474,7 +474,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF0284C7),
+                            color: const Color(0xFF0088CC),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -527,7 +527,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE0F2FE)),
+              border: Border.all(color: const Color(0xFFE8F4FB)),
             ),
             child: Row(
               children: [
@@ -535,10 +535,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE0F2FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.description_outlined, color: Color(0xFF0284C7), size: 20),
+                  child: const Icon(Icons.description_outlined, color: Color(0xFF0088CC), size: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -555,12 +555,12 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE0F2FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: const Text(
                           'Review',
-                          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Color(0xFF0284C7)),
+                          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Color(0xFF0088CC)),
                         ),
                       ),
                     ],
@@ -577,7 +577,7 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE0F2FE)),
+              border: Border.all(color: const Color(0xFFE8F4FB)),
             ),
             child: Row(
               children: [
@@ -585,10 +585,10 @@ class _ResumeScreenState extends ConsumerState<ResumeScreen> {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE0F2FE),
+                    color: const Color(0xFFE8F4FB),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(Icons.edit_note_rounded, color: Color(0xFF0284C7), size: 20),
+                  child: const Icon(Icons.edit_note_rounded, color: Color(0xFF0088CC), size: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(

@@ -150,14 +150,14 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Opening "${doc.name}" preview...'),
-                          backgroundColor: const Color(0xFF5B21B6),
+                          backgroundColor: const Color(0xFF0088CC),
                           behavior: SnackBarBehavior.floating,
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(48),
-                      backgroundColor: const Color(0xFF5B21B6),
+                      backgroundColor: const Color(0xFF0088CC),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
@@ -182,8 +182,8 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                   },
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(0, 48),
-                    foregroundColor: const Color(0xFF5B21B6),
-                    side: const BorderSide(color: Color(0xFF5B21B6)),
+                    foregroundColor: const Color(0xFF0088CC),
+                    side: const BorderSide(color: Color(0xFF0088CC)),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
@@ -262,12 +262,12 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FE),
+                          color: const Color(0xFFE8F4FB),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
                           Icons.upload_file_rounded,
-                          color: Color(0xFF5B21B6),
+                          color: Color(0xFF0088CC),
                           size: 22,
                         ),
                       ),
@@ -331,7 +331,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide:
-                            const BorderSide(color: Color(0xFF5B21B6), width: 1.5),
+                            const BorderSide(color: Color(0xFF0088CC), width: 1.5),
                       ),
                     ),
                   ),
@@ -353,7 +353,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       return ChoiceChip(
                         label: Text(cat),
                         selected: isSelected,
-                        selectedColor: const Color(0xFF5B21B6),
+                        selectedColor: const Color(0xFF0088CC),
                         backgroundColor: const Color(0xFFF3F4F6),
                         labelStyle: TextStyle(
                           color: isSelected
@@ -384,7 +384,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       return ChoiceChip(
                         label: Text(t),
                         selected: isSelected,
-                        selectedColor: const Color(0xFF5B21B6),
+                        selectedColor: const Color(0xFF0088CC),
                         backgroundColor: const Color(0xFFF3F4F6),
                         labelStyle: TextStyle(
                           color: isSelected
@@ -454,12 +454,12 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       decoration: BoxDecoration(
                         color: currentAttachedFileName != null
                             ? const Color(0xFFECFDF5)
-                            : const Color(0xFFEDE9FE).withValues(alpha: 0.4),
+                            : const Color(0xFFE8F4FB).withValues(alpha: 0.4),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
                           color: currentAttachedFileName != null
                               ? const Color(0xFF059669)
-                              : const Color(0xFF5B21B6).withValues(alpha: 0.3),
+                              : const Color(0xFF0088CC).withValues(alpha: 0.3),
                           style: BorderStyle.solid,
                         ),
                       ),
@@ -471,7 +471,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                                 : Icons.cloud_upload_outlined,
                             color: currentAttachedFileName != null
                                 ? const Color(0xFF059669)
-                                : const Color(0xFF5B21B6),
+                                : const Color(0xFF0088CC),
                             size: 34,
                           ),
                           const SizedBox(height: 8),
@@ -483,7 +483,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                               fontWeight: FontWeight.w700,
                               color: currentAttachedFileName != null
                                   ? const Color(0xFF059669)
-                                  : const Color(0xFF5B21B6),
+                                  : const Color(0xFF0088CC),
                               fontSize: 13,
                             ),
                           ),
@@ -570,7 +570,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(52),
-                        backgroundColor: const Color(0xFF5B21B6),
+                        backgroundColor: const Color(0xFF0088CC),
                         foregroundColor: Colors.white,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -712,7 +712,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
     final isFiltering = documentsState.isFiltering;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F3FF),
+      backgroundColor: const Color(0xFFF0F9FF),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -721,7 +721,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF5B21B6), Color(0xFF7C3AED), Color(0xFF4338CA)],
+                  colors: [Color(0xFF0088CC), Color(0xFF229ED9), Color(0xFF0088CC)],
                 ),
               ),
               padding: EdgeInsets.only(
@@ -808,7 +808,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                               .setSelectedCategory('All'),
                           child: const Text('Clear Filter',
                               style: TextStyle(
-                                  color: Color(0xFF5B21B6),
+                                  color: Color(0xFF0088CC),
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700)),
                         ),
@@ -824,7 +824,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                     childAspectRatio: 1.2,
                     children: [
                       _catChip(Icons.monetization_on_outlined, 'Fundraising',
-                          const Color(0xFF5B21B6), documentsState.selectedCategory),
+                          const Color(0xFF0088CC), documentsState.selectedCategory),
                       _catChip(Icons.gavel_outlined, 'Legal',
                           const Color(0xFFDC2626), documentsState.selectedCategory),
                       _catChip(Icons.inventory_2_outlined, 'Product',
@@ -847,7 +847,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                                 fontWeight: FontWeight.w800,
                                 color: Color(0xFF12233D))),
                         SizedBox(width: 8),
-                        Icon(Icons.push_pin, size: 16, color: Color(0xFF5B21B6)),
+                        Icon(Icons.push_pin, size: 16, color: Color(0xFF0088CC)),
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -950,7 +950,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                       style: TextStyle(fontWeight: FontWeight.w700)),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
-                    backgroundColor: const Color(0xFF5B21B6),
+                    backgroundColor: const Color(0xFF0088CC),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14)),
@@ -975,10 +975,10 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFEDE9FE) : Colors.white,
+          color: isSelected ? const Color(0xFFE8F4FB) : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? const Color(0xFF5B21B6) : Colors.transparent,
+            color: isSelected ? const Color(0xFF0088CC) : Colors.transparent,
             width: 1.5,
           ),
           boxShadow: const [
@@ -1004,7 +1004,7 @@ class _StartupDocumentsScreenState extends ConsumerState<StartupDocumentsScreen>
                 fontSize: 11,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w700,
                 color: isSelected
-                    ? const Color(0xFF5B21B6)
+                    ? const Color(0xFF0088CC)
                     : const Color(0xFF374151),
               ),
             ),
@@ -1080,7 +1080,7 @@ class _DocCard extends StatelessWidget {
               ),
             ),
             if (pinned)
-              const Icon(Icons.push_pin, size: 16, color: Color(0xFF5B21B6)),
+              const Icon(Icons.push_pin, size: 16, color: Color(0xFF0088CC)),
             PopupMenuButton<String>(
               icon: const Icon(Icons.more_vert,
                   color: Color(0xFF9CA3AF), size: 20),

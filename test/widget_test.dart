@@ -103,7 +103,9 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(
-      const MaterialApp(home: StartupRequestsScreen(startupName: 'Orbit Labs')),
+      const ProviderScope(
+        child: MaterialApp(home: StartupRequestsScreen(startupName: 'Orbit Labs')),
+      ),
     );
     await tester.tap(find.text('Accept').first);
     await tester.pumpAndSettle();

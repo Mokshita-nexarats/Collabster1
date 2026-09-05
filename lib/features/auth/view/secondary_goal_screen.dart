@@ -4,12 +4,14 @@ import '../../../core/theme/app_colors.dart';
 import '../../../shared/enums/app_enums.dart';
 import '../../../shared/utils/dashboard_router.dart';
 import '../../../core/di/providers.dart';
+import '../../home/view/home_screen.dart';
 
 class SecondaryGoalScreen extends ConsumerStatefulWidget {
   const SecondaryGoalScreen({super.key});
 
   @override
-  ConsumerState<SecondaryGoalScreen> createState() => _SecondaryGoalScreenState();
+  ConsumerState<SecondaryGoalScreen> createState() =>
+      _SecondaryGoalScreenState();
 }
 
 class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
@@ -69,8 +71,23 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
 
     Navigator.pushReplacement(
       context,
+      MaterialPageRoute(builder: (context) => buildDashboardForRole(session)),
+    );
+  }
+
+  void _goBack() {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+      return;
+    }
+
+    final session = ref.read(authViewModelProvider).session;
+    Navigator.pushReplacement(
+      context,
       MaterialPageRoute(
-        builder: (context) => buildDashboardForRole(session),
+        builder: (_) => session == null
+            ? const HomeScreen()
+            : buildDashboardForRole(session),
       ),
     );
   }
@@ -109,7 +126,7 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
                         alignment: Alignment.centerLeft,
                         child: IconButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            _goBack();
                           },
                           icon: const Icon(Icons.arrow_back_rounded),
                           style: IconButton.styleFrom(
@@ -291,8 +308,9 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
                                     height: 44,
                                     decoration: BoxDecoration(
                                       color: isSelected
-                                          ? const Color(0xFF5B21B6)
-                                              .withValues(alpha: 0.12)
+                                          ? const Color(
+                                              0xFF5B21B6,
+                                            ).withValues(alpha: 0.12)
                                           : const Color(0xFFF3F4F6),
                                       borderRadius: BorderRadius.circular(12),
                                     ),

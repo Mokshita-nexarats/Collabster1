@@ -482,7 +482,7 @@ class _PortfolioScreenState extends ConsumerState<PortfolioScreen> {
         'activeDeal': 'Aura Bio-Health Seed',
         'allocation': '\$800K Allocation',
         'members': '28 LPs',
-        'color': const Color(0xFF0D9488),
+        'color': const Color(0xFF0088CC),
       },
       {
         'name': 'FinTech Pioneers Network',
