@@ -5,6 +5,7 @@ import '../../features/auth/model/auth_session.dart';
 import '../../features/home/view/home_screen.dart';
 import '../../features/home/view/home_dashboard_screen.dart';
 import '../../features/investor/view/screens/investor_home_screen.dart';
+import '../../features/investor/view/screens/investor_verification_flow_screen.dart';
 import '../../features/community/view/screens/community_home_screen.dart';
 import '../../features/career/view/screens/career_dashboard_screen.dart';
 import '../../features/startup/view/screens/startup_landing_screen.dart';
@@ -21,7 +22,9 @@ Widget buildDashboardForRole(AuthSession session) {
 
   switch (activeRole) {
     case UserRole.investor:
-      return const InvestorHomeScreen();
+      return session.investorVerificationComplete
+          ? const InvestorHomeScreen()
+          : const InvestorVerificationFlowScreen();
     case UserRole.student:
     case UserRole.professional:
       return const CareerDashboardScreen();

@@ -258,6 +258,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
   ) async {
     try {
       await ref.read(authViewModelProvider.notifier).addRole(role);
+      await ref.read(authViewModelProvider.notifier).switchRole(role);
     } catch (_) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

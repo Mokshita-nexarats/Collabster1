@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 import '../../../shared/utils/dashboard_router.dart';
 import '../../../core/di/providers.dart';
 import '../../../shared/utils/app_snackbar.dart';
@@ -25,16 +24,20 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
 
   // Sign In Controllers
   final TextEditingController _loginEmailController = TextEditingController();
-  final TextEditingController _loginPasswordController = TextEditingController();
+  final TextEditingController _loginPasswordController =
+      TextEditingController();
   bool _obscureLoginPassword = true;
   bool _isSigningIn = false;
 
   // Sign Up Controllers
-  final TextEditingController _signUpFullNameController = TextEditingController();
+  final TextEditingController _signUpFullNameController =
+      TextEditingController();
   final TextEditingController _signUpEmailController = TextEditingController();
   final TextEditingController _signUpPhoneController = TextEditingController();
-  final TextEditingController _signUpPasswordController = TextEditingController();
-  final TextEditingController _signUpConfirmPasswordController = TextEditingController();
+  final TextEditingController _signUpPasswordController =
+      TextEditingController();
+  final TextEditingController _signUpConfirmPasswordController =
+      TextEditingController();
   bool _obscureSignUpPassword = true;
   bool _obscureSignUpConfirmPassword = true;
 
@@ -71,10 +74,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
 
     try {
       final authVM = ref.read(authViewModelProvider.notifier);
-      final errorMsg = await authVM.signIn(
-        email: email,
-        password: password,
-      );
+      final errorMsg = await authVM.signIn(email: email, password: password);
 
       if (errorMsg != null) {
         if (!mounted) return;
@@ -194,167 +194,184 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 ],
               ),
 
-                  // Scrollable Area
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+              // Scrollable Area
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: 12),
+
+                      // Logo and App Name
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 12),
-
-                          // Logo and App Name
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CollabsterLogo(size: 38),
-                              const SizedBox(width: 10),
-                              const Text(
-                                'CollobSter',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0xFF0F172A),
-                                  letterSpacing: -0.5,
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          const SizedBox(height: 12),
-
-                          // Tagline
+                          const CollabsterLogo(size: 38),
+                          const SizedBox(width: 10),
                           const Text(
-                            'Collaborate. Learn. Build. Grow Together.',
-                            textAlign: TextAlign.center,
+                            'CollobSter',
                             style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF64748B),
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.2,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF0F172A),
+                              letterSpacing: -0.5,
                             ),
                           ),
+                        ],
+                      ),
 
-                          const SizedBox(height: 32),
+                      const SizedBox(height: 12),
 
-                          // Clean professional input card
-                          Container(
-                            padding: const EdgeInsets.all(24),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: const Color(0xFFE2E8F0),
-                                width: 1.2,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.05),
-                                  blurRadius: 16,
-                                  offset: const Offset(0, 6),
-                                ),
-                              ],
+                      // Tagline
+                      const Text(
+                        'Collaborate. Learn. Build. Grow Together.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF64748B),
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
+
+                      const SizedBox(height: 32),
+
+                      // Clean professional input card
+                      Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: const Color(0xFFE2E8F0),
+                            width: 1.2,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            // Tabs
+                            Row(
                               children: [
-                                    // Tabs
-                                    Row(
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () =>
+                                        setState(() => _isSignInTab = true),
+                                    child: Column(
                                       children: [
-                                        Expanded(
-                                          child: GestureDetector(
-                                            onTap: () => setState(() => _isSignInTab = true),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Sign In',
-                                                  style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w700,
-                                                    color: _isSignInTab ? const Color(0xFF0F172A) : const Color(0xFF94A3B8),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Container(
-                                                  height: 2,
-                                                  width: 56,
-                                                  decoration: BoxDecoration(
-                                                    color: _isSignInTab ? const Color(0xFF0088CC) : Colors.transparent,
-                                                    borderRadius: BorderRadius.circular(1),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                        Text(
+                                          'Sign In',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700,
+                                            color: _isSignInTab
+                                                ? const Color(0xFF0F172A)
+                                                : const Color(0xFF94A3B8),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: GestureDetector(
-                                            onTap: () => setState(() => _isSignInTab = false),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Sign Up',
-                                                  style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w700,
-                                                    color: !_isSignInTab ? const Color(0xFF0F172A) : const Color(0xFF94A3B8),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 8),
-                                                Container(
-                                                  height: 2,
-                                                  width: 56,
-                                                  decoration: BoxDecoration(
-                                                    color: !_isSignInTab ? const Color(0xFF0088CC) : Colors.transparent,
-                                                    borderRadius: BorderRadius.circular(1),
-                                                  ),
-                                                ),
-                                              ],
+                                        const SizedBox(height: 8),
+                                        Container(
+                                          height: 2,
+                                          width: 56,
+                                          decoration: BoxDecoration(
+                                            color: _isSignInTab
+                                                ? const Color(0xFF0088CC)
+                                                : Colors.transparent,
+                                            borderRadius: BorderRadius.circular(
+                                              1,
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-
-                                    const SizedBox(height: 28),
-
-                                    // Animated Tab Forms
-                                    _isSignInTab ? _buildSignInForm() : _buildSignUpForm(),
-                                  ],
-                                ),
-                              ),
-
-                          const SizedBox(height: 20),
-
-                          // Guest Link
-                          Center(
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const GuestExploreScreen(),
                                   ),
-                                );
-                              },
-                              child: const Text(
-                                'Continue as Guest',
-                                style: TextStyle(
-                                  color: Color(0xFF0088CC),
-                                  fontSize: 14,
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.w600,
                                 ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () =>
+                                        setState(() => _isSignInTab = false),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w700,
+                                            color: !_isSignInTab
+                                                ? const Color(0xFF0F172A)
+                                                : const Color(0xFF94A3B8),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Container(
+                                          height: 2,
+                                          width: 56,
+                                          decoration: BoxDecoration(
+                                            color: !_isSignInTab
+                                                ? const Color(0xFF0088CC)
+                                                : Colors.transparent,
+                                            borderRadius: BorderRadius.circular(
+                                              1,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 28),
+
+                            // Animated Tab Forms
+                            _isSignInTab
+                                ? _buildSignInForm()
+                                : _buildSignUpForm(),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Guest Link
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const GuestExploreScreen(),
                               ),
+                            );
+                          },
+                          child: const Text(
+                            'Continue as Guest',
+                            style: TextStyle(
+                              color: Color(0xFF0088CC),
+                              fontSize: 14,
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -372,7 +389,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Email or Username',
-            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.mail_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
           ),
         ),
 
@@ -387,13 +407,18 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           onFieldSubmitted: (_) => _handleSignIn(),
           decoration: _buildInputDecoration(
             hintText: 'Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.lock_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
             suffixIcon: IconButton(
               icon: Icon(
                 _obscureLoginPassword ? Icons.visibility_off : Icons.visibility,
                 color: const Color(0xFF94A3B8),
               ),
-              onPressed: () => setState(() => _obscureLoginPassword = !_obscureLoginPassword),
+              onPressed: () => setState(
+                () => _obscureLoginPassword = !_obscureLoginPassword,
+              ),
             ),
           ),
         ),
@@ -407,7 +432,9 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+                MaterialPageRoute(
+                  builder: (context) => const ForgotPasswordScreen(),
+                ),
               );
             },
             child: const Text(
@@ -444,17 +471,26 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent,
               shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
             child: _isSigningIn
                 ? const SizedBox(
                     height: 20,
                     width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.white,
+                    ),
                   )
                 : const Text(
                     'Sign In',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
                   ),
           ),
         ),
@@ -464,15 +500,23 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
         // Divider
         Row(
           children: [
-            Expanded(child: Divider(color: const Color(0xFFE2E8F0), thickness: 1)),
+            Expanded(
+              child: Divider(color: const Color(0xFFE2E8F0), thickness: 1),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'or continue with',
-                style: TextStyle(color: const Color(0xFF94A3B8), fontSize: 13, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                  color: const Color(0xFF94A3B8),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            Expanded(child: Divider(color: const Color(0xFFE2E8F0), thickness: 1)),
+            Expanded(
+              child: Divider(color: const Color(0xFFE2E8F0), thickness: 1),
+            ),
           ],
         ),
 
@@ -483,17 +527,20 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _buildSocialButton(
-              logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png',
+              logoUrl:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png',
               type: 'google',
               onTap: () => _showUnavailable('Google sign-in'),
             ),
             _buildSocialButton(
-              logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png',
+              logoUrl:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png',
               type: 'github',
               onTap: () => _showUnavailable('GitHub sign-in'),
             ),
             _buildSocialButton(
-              logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/1024px-LinkedIn_logo_initials.png',
+              logoUrl:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/1024px-LinkedIn_logo_initials.png',
               type: 'linkedin',
               onTap: () => _showUnavailable('LinkedIn sign-in'),
             ),
@@ -508,12 +555,19 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             onTap: () => setState(() => _isSignInTab = false),
             child: RichText(
               text: const TextSpan(
-                style: TextStyle(fontSize: 14, color: Color(0xFF475569), letterSpacing: 0.2),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF475569),
+                  letterSpacing: 0.2,
+                ),
                 children: [
                   TextSpan(text: "Don't have an account? "),
                   TextSpan(
                     text: 'Sign Up',
-                    style: TextStyle(color: Color(0xFF0088CC), fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                      color: Color(0xFF0088CC),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -538,7 +592,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Full Name',
-            prefixIcon: const Icon(Icons.person_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.person_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
           ),
         ),
 
@@ -552,7 +609,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Email Address',
-            prefixIcon: const Icon(Icons.mail_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.mail_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
           ),
         ),
 
@@ -578,7 +638,14 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 children: [
                   Text('🇮🇳', style: TextStyle(fontSize: 18)),
                   SizedBox(width: 4),
-                  Text('+91', style: TextStyle(color: Color(0xFF0F172A), fontSize: 14, fontWeight: FontWeight.w700)),
+                  Text(
+                    '+91',
+                    style: TextStyle(
+                      color: Color(0xFF0F172A),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -591,7 +658,10 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                 textInputAction: TextInputAction.next,
                 decoration: _buildInputDecoration(
                   hintText: 'Phone Number',
-                  prefixIcon: const Icon(Icons.phone_outlined, color: Color(0xFF0088CC)),
+                  prefixIcon: const Icon(
+                    Icons.phone_outlined,
+                    color: Color(0xFF0088CC),
+                  ),
                 ),
               ),
             ),
@@ -608,13 +678,20 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           textInputAction: TextInputAction.next,
           decoration: _buildInputDecoration(
             hintText: 'Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.lock_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
             suffixIcon: IconButton(
               icon: Icon(
-                _obscureSignUpPassword ? Icons.visibility_off : Icons.visibility,
+                _obscureSignUpPassword
+                    ? Icons.visibility_off
+                    : Icons.visibility,
                 color: const Color(0xFF94A3B8),
               ),
-              onPressed: () => setState(() => _obscureSignUpPassword = !_obscureSignUpPassword),
+              onPressed: () => setState(
+                () => _obscureSignUpPassword = !_obscureSignUpPassword,
+              ),
             ),
           ),
         ),
@@ -630,20 +707,28 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           onFieldSubmitted: (_) => _handleSignUpSubmit(),
           decoration: _buildInputDecoration(
             hintText: 'Confirm Password',
-            prefixIcon: const Icon(Icons.lock_outline_rounded, color: Color(0xFF0088CC)),
+            prefixIcon: const Icon(
+              Icons.lock_outline_rounded,
+              color: Color(0xFF0088CC),
+            ),
             suffixIcon: IconButton(
               icon: Icon(
-                _obscureSignUpConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                _obscureSignUpConfirmPassword
+                    ? Icons.visibility_off
+                    : Icons.visibility,
                 color: const Color(0xFF94A3B8),
               ),
-              onPressed: () => setState(() => _obscureSignUpConfirmPassword = !_obscureSignUpConfirmPassword),
+              onPressed: () => setState(
+                () => _obscureSignUpConfirmPassword =
+                    !_obscureSignUpConfirmPassword,
+              ),
             ),
           ),
         ),
 
         const SizedBox(height: 24),
 
-        // Sign Up / Continue Button
+        // Continue to role selection after account details are validated.
         Container(
           height: 56,
           decoration: BoxDecoration(
@@ -664,11 +749,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent,
               shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
             child: const Text(
-              'Sign Up',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Colors.white),
+              'Continue',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -681,12 +772,19 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
             onTap: () => setState(() => _isSignInTab = true),
             child: RichText(
               text: const TextSpan(
-                style: TextStyle(fontSize: 14, color: Color(0xFF475569), letterSpacing: 0.2),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xFF475569),
+                  letterSpacing: 0.2,
+                ),
                 children: [
                   TextSpan(text: 'Already have an account? '),
                   TextSpan(
                     text: 'Sign In',
-                    style: TextStyle(color: Color(0xFF0088CC), fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                      color: Color(0xFF0088CC),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -705,7 +803,11 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
   }) {
     return InputDecoration(
       hintText: hintText,
-      hintStyle: const TextStyle(color: Color(0xFF94A3B8), fontSize: 15, fontWeight: FontWeight.w500),
+      hintStyle: const TextStyle(
+        color: Color(0xFF94A3B8),
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      ),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
       filled: true,
@@ -720,24 +822,15 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: const BorderSide(
-          color: Color(0xFF0088CC),
-          width: 1.8,
-        ),
+        borderSide: const BorderSide(color: Color(0xFF0088CC), width: 1.8),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: const BorderSide(
-          color: Colors.redAccent,
-          width: 1,
-        ),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: const BorderSide(
-          color: Colors.redAccent,
-          width: 1.5,
-        ),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
       ),
     );
   }
@@ -898,7 +991,10 @@ class CollabsterLogoPainter extends CustomPainter {
     canvas.restore();
 
     // 2. Draw white planet body ('C')
-    final bodyRect = Rect.fromCircle(center: Offset(cx, cy), radius: radius * 0.8);
+    final bodyRect = Rect.fromCircle(
+      center: Offset(cx, cy),
+      radius: radius * 0.8,
+    );
     canvas.drawArc(bodyRect, 0.25 * math.pi, 1.5 * math.pi, false, bodyPaint);
 
     // 3. Draw the satellite planet

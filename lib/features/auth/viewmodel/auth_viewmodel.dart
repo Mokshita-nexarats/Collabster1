@@ -185,6 +185,40 @@ class AuthViewModel extends StateNotifier<AuthState> {
     }
   }
 
+  Future<void> updateInvestorVerification({
+    required String fullName,
+    required String email,
+    required String phone,
+    required List<String> sectors,
+    required List<String> stages,
+    required String investorType,
+    required List<String> coInvestments,
+    required bool documentsSubmitted,
+    required bool consultationComplete,
+    required bool verificationComplete,
+  }) async {
+    await _repository.updateSession((current) {
+      if (current == null) return null;
+      return current.copyWith(
+        fullName: fullName,
+        email: email,
+        phone: phone,
+        investorSectors: sectors,
+        investorStages: stages,
+        investorType: investorType,
+        investorCoInvestments: coInvestments,
+        investorDocumentsSubmitted: documentsSubmitted,
+        investorConsultationComplete: consultationComplete,
+        investorVerificationComplete: verificationComplete,
+      );
+    });
+
+    final updated = await _repository.readSession();
+    if (updated != null) {
+      state = state.copyWith(session: updated);
+    }
+  }
+
   Future<void> updateStartupData({
     required String startupName,
     String? industry,
@@ -289,6 +323,68 @@ class AuthViewModel extends StateNotifier<AuthState> {
       return current.copyWith(posts: updatedPosts);
     });
 
+    final updated = await _repository.readSession();
+    if (updated != null) {
+      state = state.copyWith(session: updated);
+    }
+  }
+
+  Future<void> updateIdeaPhaseData(Map<String, dynamic> data) async {
+    await _repository.updateSession((current) {
+      if (current == null) return null;
+      final profile = Map<String, dynamic>.from(data);
+      final id = profile['id']?.toString().trim();
+      final profileId = id == null || id.isEmpty
+          ? 'idea-${DateTime.now().microsecondsSinceEpoch}'
+          : id;
+      profile['id'] = profileId;
+
+      // Keep a pre-list profile created by earlier app versions available.
+      final profiles = current.ideaPhaseProfiles
+          .map((item) => Map<String, dynamic>.from(item))
+          .toList();
+      if (profiles.isEmpty && current.ideaPhaseData != null) {
+        final legacy = Map<String, dynamic>.from(current.ideaPhaseData!);
+        legacy['id'] = legacy['id']?.toString().trim().isNotEmpty == true
+            ? legacy['id']
+            : 'idea-legacy';
+        profiles.add(legacy);
+      }
+
+      final index = profiles.indexWhere(
+        (item) => item['id']?.toString() == profileId,
+      );
+      if (index == -1) {
+        profiles.insert(0, profile);
+      } else {
+        profiles[index] = profile;
+      }
+
+      return current.copyWith(
+        ideaPhaseData: profile,
+        ideaPhaseProfiles: profiles,
+        activeIdeaPhaseId: profileId,
+      );
+    });
+    final updated = await _repository.readSession();
+    if (updated != null) {
+      state = state.copyWith(session: updated);
+    }
+  }
+
+  Future<void> switchIdeaPhaseProfile(String profileId) async {
+    await _repository.updateSession((current) {
+      if (current == null) return null;
+      final profile = current.ideaPhaseProfiles.firstWhere(
+        (item) => item['id']?.toString() == profileId,
+        orElse: () => current.activeIdeaPhaseData ?? const {},
+      );
+      if (profile.isEmpty) return current;
+      return current.copyWith(
+        ideaPhaseData: profile,
+        activeIdeaPhaseId: profileId,
+      );
+    });
     final updated = await _repository.readSession();
     if (updated != null) {
       state = state.copyWith(session: updated);

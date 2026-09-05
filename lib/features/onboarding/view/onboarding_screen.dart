@@ -41,50 +41,70 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     super.initState();
 
     _fadeCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1800));
+      vsync: this,
+      duration: const Duration(milliseconds: 1800),
+    );
     _slideCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1400));
+      vsync: this,
+      duration: const Duration(milliseconds: 1400),
+    );
     _pulseCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2200))
-      ..repeat(reverse: true);
+      vsync: this,
+      duration: const Duration(milliseconds: 2200),
+    )..repeat(reverse: true);
     _shimmerCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 3000))
-      ..repeat();
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    )..repeat();
 
     _logoFade = CurvedAnimation(
-        parent: _fadeCtrl,
-        curve: const Interval(0.0, 0.45, curve: Curves.easeOut));
+      parent: _fadeCtrl,
+      curve: const Interval(0.0, 0.45, curve: Curves.easeOut),
+    );
     _taglineFade = CurvedAnimation(
-        parent: _fadeCtrl,
-        curve: const Interval(0.3, 0.65, curve: Curves.easeOut));
+      parent: _fadeCtrl,
+      curve: const Interval(0.3, 0.65, curve: Curves.easeOut),
+    );
     _featureFade = CurvedAnimation(
-        parent: _fadeCtrl,
-        curve: const Interval(0.5, 0.80, curve: Curves.easeOut));
+      parent: _fadeCtrl,
+      curve: const Interval(0.5, 0.80, curve: Curves.easeOut),
+    );
     _btnFade = CurvedAnimation(
-        parent: _fadeCtrl,
-        curve: const Interval(0.70, 1.0, curve: Curves.easeOut));
+      parent: _fadeCtrl,
+      curve: const Interval(0.70, 1.0, curve: Curves.easeOut),
+    );
 
-    _logoSlide = Tween<Offset>(
-            begin: const Offset(0, -0.4), end: Offset.zero)
-        .animate(CurvedAnimation(
+    _logoSlide = Tween<Offset>(begin: const Offset(0, -0.4), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
             parent: _slideCtrl,
-            curve: const Interval(0.0, 0.5, curve: Curves.easeOutCubic)));
-    _featureSlide = Tween<Offset>(
-            begin: const Offset(0, 0.3), end: Offset.zero)
-        .animate(CurvedAnimation(
+            curve: const Interval(0.0, 0.5, curve: Curves.easeOutCubic),
+          ),
+        );
+    _featureSlide = Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
             parent: _slideCtrl,
-            curve: const Interval(0.4, 0.8, curve: Curves.easeOutCubic)));
-    _btnSlide = Tween<Offset>(
-            begin: const Offset(0, 0.5), end: Offset.zero)
-        .animate(CurvedAnimation(
+            curve: const Interval(0.4, 0.8, curve: Curves.easeOutCubic),
+          ),
+        );
+    _btnSlide = Tween<Offset>(begin: const Offset(0, 0.5), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
             parent: _slideCtrl,
-            curve: const Interval(0.6, 1.0, curve: Curves.easeOutCubic)));
+            curve: const Interval(0.6, 1.0, curve: Curves.easeOutCubic),
+          ),
+        );
 
-    _pulse = Tween<double>(begin: 0.95, end: 1.05).animate(
-        CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
+    _pulse = Tween<double>(
+      begin: 0.95,
+      end: 1.05,
+    ).animate(CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
 
-    _shimmer = Tween<double>(begin: -2.0, end: 2.0).animate(
-        CurvedAnimation(parent: _shimmerCtrl, curve: Curves.linear));
+    _shimmer = Tween<double>(
+      begin: -2.0,
+      end: 2.0,
+    ).animate(CurvedAnimation(parent: _shimmerCtrl, curve: Curves.linear));
 
     // Kick off entrance
     _fadeCtrl.forward();
@@ -148,10 +168,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   void _navigateToSignIn() {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (_, animation, __) => FadeTransition(
-          opacity: animation,
-          child: const SignInScreen(),
-        ),
+        pageBuilder: (_, animation, __) =>
+            FadeTransition(opacity: animation, child: const SignInScreen()),
         transitionDuration: const Duration(milliseconds: 600),
       ),
     );
@@ -168,10 +186,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         children: [
           // ── Background image ─────────────────────────────────────────
           Positioned.fill(
-            child: Image.asset(
-              AppAssets.landingBg,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(AppAssets.landingBg, fit: BoxFit.cover),
           ),
 
           // ── Deep gradient overlay ────────────────────────────────────
@@ -263,10 +278,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   const Spacer(flex: 2),
 
                   // ── Hero tagline ──────────────────────────────────────
-                  FadeTransition(
-                    opacity: _taglineFade,
-                    child: _buildTagline(),
-                  ),
+                  FadeTransition(opacity: _taglineFade, child: _buildTagline()),
 
                   const SizedBox(height: 28),
 
@@ -279,15 +291,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     ),
                   ),
 
-                  const Spacer(flex: 3),
+                  const Spacer(flex: 2),
 
-                  // ── Glassmorphism stats bar ───────────────────────────
-                  FadeTransition(
-                    opacity: _featureFade,
-                    child: _buildStatsBar(),
-                  ),
-
-                  const SizedBox(height: 28),
+                  const SizedBox(height: 36),
 
                   // ── CTA button ────────────────────────────────────────
                   FadeTransition(
@@ -301,10 +307,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   const SizedBox(height: 18),
 
                   // ── Sign in link ──────────────────────────────────────
-                  FadeTransition(
-                    opacity: _btnFade,
-                    child: _buildSignInLink(),
-                  ),
+                  FadeTransition(opacity: _btnFade, child: _buildSignInLink()),
 
                   const SizedBox(height: 24),
                 ],
@@ -331,8 +334,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF7C3AED)
-                      .withOpacity(0.35 * _pulse.value),
+                  color: const Color(
+                    0xFF7C3AED,
+                  ).withOpacity(0.35 * _pulse.value),
                   blurRadius: 32 * _pulse.value,
                   spreadRadius: 4,
                 ),
@@ -349,10 +353,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       width: 1.5,
                     ),
                   ),
-                  child: Image.asset(
-                    AppAssets.appLogo,
-                    fit: BoxFit.contain,
-                  ),
+                  child: Image.asset(AppAssets.appLogo, fit: BoxFit.contain),
                 ),
               ),
             ),
@@ -396,9 +397,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           decoration: BoxDecoration(
             color: const Color(0xFF7C3AED).withOpacity(0.25),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: const Color(0xFF7C3AED).withOpacity(0.4),
-            ),
+            border: Border.all(color: const Color(0xFF7C3AED).withOpacity(0.4)),
           ),
           child: const Text(
             'Connecting Builders & Dreamers',
@@ -486,10 +485,18 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   Widget _buildFeaturePills() {
     final features = [
-      _Feature(Icons.rocket_launch_rounded, 'Startups', const Color(0xFF818CF8)),
+      _Feature(
+        Icons.rocket_launch_rounded,
+        'Startups',
+        const Color(0xFF818CF8),
+      ),
       _Feature(Icons.trending_up_rounded, 'Investors', const Color(0xFF34D399)),
       _Feature(Icons.school_outlined, 'Learn', const Color(0xFFFBBF24)),
-      _Feature(Icons.people_outline_rounded, 'Network', const Color(0xFFF472B6)),
+      _Feature(
+        Icons.people_outline_rounded,
+        'Network',
+        const Color(0xFFF472B6),
+      ),
       _Feature(Icons.work_outline_rounded, 'Careers', const Color(0xFF60A5FA)),
       _Feature(Icons.event_outlined, 'Events', const Color(0xFFA78BFA)),
     ];
@@ -498,73 +505,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       spacing: 10,
       runSpacing: 10,
       alignment: WrapAlignment.center,
-      children: features
-          .map((f) => _FeaturePill(feature: f))
-          .toList(),
-    );
-  }
-
-  // ── Stats bar ──────────────────────────────────────────────────────────────
-
-  Widget _buildStatsBar() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.08),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.white.withOpacity(0.14)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _statItem('50K+', 'Members'),
-              _verticalDivider(),
-              _statItem('2K+', 'Startups'),
-              _verticalDivider(),
-              _statItem('500+', 'Investors'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _statItem(String value, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            letterSpacing: -0.5,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 11,
-            color: Colors.white.withOpacity(0.6),
-            fontWeight: FontWeight.w500,
-            letterSpacing: 0.3,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _verticalDivider() {
-    return Container(
-      width: 1,
-      height: 36,
-      color: Colors.white.withOpacity(0.15),
+      children: features.map((f) => _FeaturePill(feature: f)).toList(),
     );
   }
 
@@ -585,8 +526,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF7C3AED)
-                  .withOpacity(0.30 + 0.15 * (_pulse.value - 0.95) / 0.1),
+              color: const Color(
+                0xFF7C3AED,
+              ).withOpacity(0.30 + 0.15 * (_pulse.value - 0.95) / 0.1),
               blurRadius: 24,
               offset: const Offset(0, 8),
               spreadRadius: 0,
@@ -845,7 +787,10 @@ class CollabsterLogoPainter extends CustomPainter {
     canvas.drawArc(rect, math.pi, math.pi, false, orbitPaint);
     canvas.restore();
 
-    final bodyRect = Rect.fromCircle(center: Offset(cx, cy), radius: radius * 0.8);
+    final bodyRect = Rect.fromCircle(
+      center: Offset(cx, cy),
+      radius: radius * 0.8,
+    );
     canvas.drawArc(bodyRect, 0.25 * math.pi, 1.5 * math.pi, false, bodyPaint);
 
     final sphereCenter = Offset(cx + radius * 0.8, cy - radius * 0.05);

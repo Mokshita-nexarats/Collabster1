@@ -2,10 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../core/di/providers.dart';
 import '../../career/view/screens/notifications_screen.dart';
-import '../../inbox/view/inbox_screen.dart';
 import 'comments_sheet.dart';
 import 'share_sheet.dart';
 import 'main_drawer.dart';
@@ -133,8 +131,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
 
   // ── helpers ────────────────────────────────────────────────────────────────
 
-  String _firstName(String full) =>
-      full.split(RegExp(r'\s+')).first;
+  String _firstName(String full) => full.split(RegExp(r'\s+')).first;
 
   // ── build ──────────────────────────────────────────────────────────────────
 
@@ -224,20 +221,6 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
               ),
             ),
           ),
-          // Mail / Messages
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute(builder: (_) => const InboxScreen()),
-              );
-            },
-            behavior: HitTestBehavior.opaque,
-            child: Padding(
-              padding: const EdgeInsets.all(6),
-              child: Icon(Icons.mail_outline_rounded, size: 24, color: _kPurple),
-            ),
-          ),
-          const SizedBox(width: 4),
           // Notification with badge
           GestureDetector(
             onTap: () {
@@ -251,7 +234,11 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  const Icon(Icons.notifications_none_rounded, size: 26, color: _kTextDark),
+                  const Icon(
+                    Icons.notifications_none_rounded,
+                    size: 26,
+                    color: _kTextDark,
+                  ),
                   Positioned(
                     top: 0,
                     right: 0,
@@ -269,17 +256,6 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _iconBtn(IconData icon, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.all(6),
-        child: Icon(icon, size: 24, color: _kTextDark),
       ),
     );
   }
@@ -348,7 +324,11 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
         child: Row(
           children: [
             const SizedBox(width: 12),
-            const Icon(Icons.search_rounded, size: 18, color: Color(0xFF9CA3AF)),
+            const Icon(
+              Icons.search_rounded,
+              size: 18,
+              color: Color(0xFF9CA3AF),
+            ),
             const SizedBox(width: 8),
             Expanded(
               child: TextField(
@@ -356,8 +336,13 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                 style: const TextStyle(fontSize: 13.5, color: _kTextDark),
                 decoration: const InputDecoration(
                   hintText: 'Search navigation...',
-                  hintStyle: TextStyle(color: Color(0xFF9CA3AF), fontSize: 13.5),
+                  hintStyle: TextStyle(
+                    color: Color(0xFF9CA3AF),
+                    fontSize: 13.5,
+                  ),
                   border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
                   isDense: true,
                   contentPadding: EdgeInsets.zero,
                 ),
@@ -411,21 +396,24 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                 height: 180,
                 margin: const EdgeInsets.only(bottom: 10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(0)),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(0),
+                  ),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [_kPurpleLight, _kPurpleSoft, _kPurple.withValues(alpha: 0.15)],
+                    colors: [
+                      _kPurpleLight,
+                      _kPurpleSoft,
+                      _kPurple.withValues(alpha: 0.15),
+                    ],
                   ),
                 ),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     // Decorative phone mockup illustration
-                    Positioned(
-                      right: 24,
-                      child: _PhoneMockup(color: _kPurple),
-                    ),
+                    Positioned(right: 24, child: _PhoneMockup(color: _kPurple)),
                     Positioned(
                       left: 20,
                       child: Column(
@@ -449,7 +437,10 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                     Positioned(
                       bottom: 18,
                       left: 18,
-                      child: _mockStat(Icons.pie_chart_rounded, const Color(0xFF7C3AED)),
+                      child: _mockStat(
+                        Icons.pie_chart_rounded,
+                        const Color(0xFF7C3AED),
+                      ),
                     ),
                   ],
                 ),
@@ -465,9 +456,13 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                 const Spacer(),
                 // Post button
                 GestureDetector(
-                  onTap: () => _showComposerSheet(hasPhoto, photoPath, userName),
+                  onTap: () =>
+                      _showComposerSheet(hasPhoto, photoPath, userName),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: _kPurple,
                       borderRadius: BorderRadius.circular(8),
@@ -519,9 +514,14 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
             isScrollable: false,
             labelColor: _kPurple,
             unselectedLabelColor: _kTextMid,
-            labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-            unselectedLabelStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            labelStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
+            unselectedLabelStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
             indicatorColor: _kPurple,
             indicatorWeight: 2.5,
             dividerColor: _kBorder,
@@ -577,7 +577,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                       MaterialPageRoute(
                         builder: (_) => UserProfileScreen(
                           name: post.authorName,
-                          handle: '@${post.authorName.toLowerCase().replaceAll(' ', '_')}',
+                          handle:
+                              '@${post.authorName.toLowerCase().replaceAll(' ', '_')}',
                           role: rolePart,
                           avatarColor: post.authorColor,
                           initials: post.authorInitials,
@@ -621,7 +622,11 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                   onTap: () => _showPostOptions(post),
                   child: const Padding(
                     padding: EdgeInsets.all(4),
-                    child: Icon(Icons.more_horiz_rounded, size: 20, color: _kTextMid),
+                    child: Icon(
+                      Icons.more_horiz_rounded,
+                      size: 20,
+                      color: _kTextMid,
+                    ),
                   ),
                 ),
               ],
@@ -662,8 +667,9 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
           if (post.hasImage) ...[
             const SizedBox(height: 10),
             ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(bottom: Radius.circular(0)),
+              borderRadius: const BorderRadius.vertical(
+                bottom: Radius.circular(0),
+              ),
               child: Container(
                 height: 180,
                 width: double.infinity,
@@ -682,10 +688,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                   alignment: Alignment.center,
                   children: [
                     // Decorative phone mockup illustration
-                    Positioned(
-                      right: 24,
-                      child: _PhoneMockup(color: _kPurple),
-                    ),
+                    Positioned(right: 24, child: _PhoneMockup(color: _kPurple)),
                     Positioned(
                       left: 20,
                       child: Column(
@@ -709,7 +712,10 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                     Positioned(
                       bottom: 18,
                       left: 18,
-                      child: _mockStat(Icons.pie_chart_rounded, const Color(0xFF7C3AED)),
+                      child: _mockStat(
+                        Icons.pie_chart_rounded,
+                        const Color(0xFF7C3AED),
+                      ),
                     ),
                   ],
                 ),
@@ -741,7 +747,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                   icon: Icons.chat_bubble_outline_rounded,
                   label: _formatCount(post.comments),
                   color: _kTextMid,
-                  onTap: () => CommentsSheet.show(context, commentCount: post.comments),
+                  onTap: () =>
+                      CommentsSheet.show(context, commentCount: post.comments),
                 ),
                 const Spacer(),
                 GestureDetector(
@@ -858,9 +865,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(ctx).viewInsets.bottom,
-        ),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -888,7 +893,9 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                     _buildAvatar(
                       hasPhoto: hasPhoto,
                       photoPath: photoPath,
-                      initials: userName.isNotEmpty ? userName[0].toUpperCase() : '?',
+                      initials: userName.isNotEmpty
+                          ? userName[0].toUpperCase()
+                          : '?',
                       radius: 20,
                       color: _kPurple,
                     ),
@@ -902,7 +909,10 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                         style: const TextStyle(fontSize: 14, color: _kTextDark),
                         decoration: const InputDecoration(
                           hintText: "What's on your mind?",
-                          hintStyle: TextStyle(color: Color(0xFF9CA3AF), fontSize: 14),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF9CA3AF),
+                            fontSize: 14,
+                          ),
                           border: InputBorder.none,
                         ),
                       ),
@@ -925,7 +935,9 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 10),
+                          horizontal: 24,
+                          vertical: 10,
+                        ),
                         decoration: BoxDecoration(
                           color: _kPurple,
                           borderRadius: BorderRadius.circular(10),
@@ -978,9 +990,22 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
                 ),
               ),
               const SizedBox(height: 16),
-              _optionTile(Icons.bookmark_outline_rounded, 'Save post', () => Navigator.pop(ctx)),
-              _optionTile(Icons.person_remove_outlined, 'Unfollow ${post.authorName}', () => Navigator.pop(ctx)),
-              _optionTile(Icons.flag_outlined, 'Report post', () => Navigator.pop(ctx), danger: true),
+              _optionTile(
+                Icons.bookmark_outline_rounded,
+                'Save post',
+                () => Navigator.pop(ctx),
+              ),
+              _optionTile(
+                Icons.person_remove_outlined,
+                'Unfollow ${post.authorName}',
+                () => Navigator.pop(ctx),
+              ),
+              _optionTile(
+                Icons.flag_outlined,
+                'Report post',
+                () => Navigator.pop(ctx),
+                danger: true,
+              ),
             ],
           ),
         ),
@@ -988,14 +1013,24 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
     );
   }
 
-  Widget _optionTile(IconData icon, String label, VoidCallback onTap,
-      {bool danger = false}) {
+  Widget _optionTile(
+    IconData icon,
+    String label,
+    VoidCallback onTap, {
+    bool danger = false,
+  }) {
     final color = danger ? const Color(0xFFEF4444) : _kTextDark;
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon, color: color, size: 22),
-      title:
-          Text(label, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: color)),
+      title: Text(
+        label,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: color,
+        ),
+      ),
       onTap: onTap,
     );
   }
@@ -1030,10 +1065,7 @@ class _FeedPost {
     required this.likedByMe,
   });
 
-  _FeedPost copyWith({
-    int? likes,
-    bool? likedByMe,
-  }) {
+  _FeedPost copyWith({int? likes, bool? likedByMe}) {
     return _FeedPost(
       authorName: authorName,
       authorSub: authorSub,
