@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../features/career/view/screens/internships_screen.dart';
-import '../../../features/career/view/screens/jobs_screen.dart';
 import '../../../features/community/view/screens/posts_list_screen.dart';
-import '../../../features/event/model/event_model.dart';
-import '../../../features/event/view/screens/events/event_detail_screen.dart';
 import '../../../features/startup/view/screens/investor_pipeline_screen.dart';
 import '../../../features/startup/view/screens/startup_posts_feed_screen.dart';
 import '../../../features/investor/view/screens/deal_flow_screen.dart';
@@ -33,33 +29,20 @@ class ConnectTheme {
     if (modeKey.isEmpty && role != null) {
       if (role.isStartupRole) {
         modeKey = 'startup';
-      } else if (role == UserRole.student || role == UserRole.professional || role == UserRole.mentor) {
-        modeKey = 'career';
       } else if (role == UserRole.creator || role == UserRole.influencer) {
         modeKey = 'community';
-      } else if (role == UserRole.serviceProvider) {
-        modeKey = 'event';
       } else if (role == UserRole.investor) {
         modeKey = 'investor';
+      } else {
+        modeKey = 'startup';
       }
     }
 
     switch (modeKey) {
-      case 'career':
-        return const ConnectTheme(
-          gradientColors: [Color(0xFF1E3A8A), Color(0xFF2563EB), Color(0xFF3B82F6)],
-          primaryColor: Color(0xFF2563EB),
-        );
       case 'community':
         return const ConnectTheme(
           gradientColors: [Color(0xFF9A3412), Color(0xFFEA580C), Color(0xFFF97316)],
           primaryColor: Color(0xFFEA580C),
-        );
-      case 'event':
-      case 'events':
-        return const ConnectTheme(
-          gradientColors: [Color(0xFF065F46), Color(0xFF059669), Color(0xFF10B981)],
-          primaryColor: Color(0xFF059669),
         );
       case 'investor':
         return const ConnectTheme(
@@ -76,9 +59,9 @@ class ConnectTheme {
   }
 }
 
-/// The Connection Bridge hub: one feed across every mode.
-/// Aggregates Startup hiring, Career jobs, Community & Startup posts,
-/// Event hub events and Investor connections — each tagged with its source.
+/// The Connection Bridge hub: one feed across Startup, Community & Investor.
+/// Aggregates Startup hiring, Community & Startup posts,
+/// and Investor connections — each tagged with its source.
 class ConnectScreen extends ConsumerStatefulWidget {
   const ConnectScreen({super.key, this.modeTheme});
   final String? modeTheme;
@@ -90,7 +73,7 @@ class ConnectScreen extends ConsumerStatefulWidget {
 class _ConnectScreenState extends ConsumerState<ConnectScreen> {
   int _tabIndex = 0;
 
-  static const _allTabs = ['All', 'Opportunities', 'Posts', 'Events', 'Investors', 'Deals', 'Notifications'];
+  static const _allTabs = ['All', 'Opportunities', 'Posts', 'Investors', 'Deals', 'Notifications'];
 
   ConnectTheme get _theme {
     final session = ref.watch(authViewModelProvider).session;
@@ -99,7 +82,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
 
   List<String> get _visibleTabs {
     final session = ref.read(authViewModelProvider).session;
-    final activeRole = session?.activeUserRole ?? UserRole.professional;
+    final activeRole = session?.activeUserRole ?? UserRole.other;
     final showInvestorDeals = activeRole.isStartupRole || activeRole == UserRole.investor;
 
     if (showInvestorDeals) {
@@ -202,7 +185,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           ),
           const SizedBox(height: 14),
           const Text(
-            'One feed across Startup, Career, Community, Events & Investors',
+            'One feed across Startup, Community & Investors',
             style: TextStyle(
               color: Colors.white70,
               fontSize: 12.5,
@@ -214,9 +197,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _statChip(Icons.rocket_launch_rounded, '${state.startupCount}', 'Startup'),
-              _statChip(Icons.work_rounded, '${state.careerCount}', 'Career'),
               _statChip(Icons.forum_rounded, '${state.communityCount}', 'Community'),
-              _statChip(Icons.event_rounded, '${state.eventCount}', 'Events'),
               _statChip(Icons.trending_up_rounded, '${state.investors.length}', 'Investors'),
               _statChip(Icons.notifications_rounded, '${state.unreadNotifications}', 'Alerts'),
             ],
@@ -310,7 +291,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
       if (showAll || opportunities.isNotEmpty) {
         items.add(_sectionHeader(
           'Opportunities',
-          'Startup hiring + Career board',
+          'Startup hiring roles',
           onViewAll: () => _openTabByName('Opportunities'),
         ));
         if (opportunities.isEmpty) {
@@ -333,22 +314,6 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           items.add(_emptyRow('No posts yet — create one from Startup or Community'));
         } else {
           items.addAll(posts.take(6).map(_buildPostCard));
-        }
-      }
-    }
-
-    if (showAll || selectedTab == 'Events') {
-      final events = state.events;
-      if (showAll || events.isNotEmpty) {
-        items.add(_sectionHeader(
-          'Events',
-          'From the Event hub',
-          onViewAll: () => _openTabByName('Events'),
-        ));
-        if (events.isEmpty) {
-          items.add(_emptyRow('No events scheduled yet'));
-        } else {
-          items.addAll(events.take(4).map(_buildEventCard));
         }
       }
     }
@@ -479,16 +444,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
   Widget _buildOpportunityCard(BridgeOpportunity opp) {
     final isStartup = opp.fromStartup;
     return _card(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => opp.kind == 'internship'
-                ? const InternshipsScreen()
-                : const JobsScreen(),
-          ),
-        );
-      },
+      onTap: () {},
       child: Row(
         children: [
           Container(
@@ -530,7 +486,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
             ),
           ),
           const SizedBox(width: 8),
-          _sourceBadge(isStartup ? 'STARTUP' : 'CAREER', isStartup),
+          _sourceBadge('STARTUP', true),
           const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -615,72 +571,6 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           ),
           const SizedBox(width: 8),
           _sourceBadge(isStartup ? 'STARTUP' : 'COMMUNITY', isStartup),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildEventCard(BridgeEvent event) {
-    return _card(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => EventDetailScreen(
-              event: Event(
-                id: event.id,
-                title: event.title,
-                description: event.description,
-                location: event.location,
-                startDate: event.startDate,
-                endDate: event.startDate,
-                organizerName: event.sourceLabel,
-                category: event.category,
-                attendeeCount: event.attendeeCount,
-                isOnline: event.isOnline,
-              ),
-            ),
-          ),
-        );
-      },
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFFECFDF5),
-              borderRadius: BorderRadius.circular(11),
-            ),
-            child: const Icon(Icons.event_rounded, color: Color(0xFF059669), size: 20),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  event.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: _textPrimary,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  '${event.category} • ${event.location} • ${event.attendeeCount} going',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: _textSecondary, fontSize: 11.5),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          _sourceBadge('EVENT', false),
         ],
       ),
     );
@@ -852,9 +742,7 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
     final isUnread = !notification.isRead;
     final sourceColors = {
       'startup': const Color(0xFF6D28D9),
-      'career': const Color(0xFF0284C7),
       'community': const Color(0xFFEA580C),
-      'event': const Color(0xFF059669),
       'investor': const Color(0xFFF59E0B),
     };
     final color = sourceColors[notification.source] ?? _textPrimary;
@@ -944,12 +832,6 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
         return Icons.settings_rounded;
       case 'post':
         return Icons.article_rounded;
-      case 'event':
-        return Icons.event_rounded;
-      case 'job':
-        return Icons.work_rounded;
-      case 'interview':
-        return Icons.videocam_rounded;
       default:
         return Icons.notifications_rounded;
     }

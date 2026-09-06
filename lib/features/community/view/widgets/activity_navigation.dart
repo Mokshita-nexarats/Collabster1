@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/di/providers.dart';
-import '../../../event/view/screens/event_home_screen.dart';
 import '../../model/activity_model.dart';
 import '../../model/post_model.dart';
 import '../screens/communities_list_screen.dart';
@@ -27,7 +26,7 @@ void openActivityItem(
     case ActivityType.eventCreated:
       Navigator.of(
         context,
-      ).push(MaterialPageRoute(builder: (_) => const EventsListScreen()));
+      ).push(MaterialPageRoute(builder: (_) => const RoomsListScreen()));
       break;
     case ActivityType.roomCreated:
       Navigator.of(

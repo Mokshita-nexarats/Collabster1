@@ -814,7 +814,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   Widget _buildRoleSelectionStep(SignUpState state) {
-    // Deduplicate by label — one card per label prevents 2× Startup / 2× Career / 2× Community
+    // Deduplicate by label — one card per label prevents duplicate Startup / Community tiles
     final rolesByLabel = <String, UserRole>{};
     for (final role in UserRole.values) {
       rolesByLabel.putIfAbsent(role.label, () => role);

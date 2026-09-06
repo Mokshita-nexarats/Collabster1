@@ -6,12 +6,6 @@ import '../../features/auth/viewmodel/auth_viewmodel.dart';
 import '../../features/auth/viewmodel/auth_state.dart';
 import '../../features/auth/viewmodel/sign_up_viewmodel.dart';
 import '../../features/auth/viewmodel/sign_up_state.dart';
-import '../../features/career/model/career_notification_state.dart';
-import '../../features/career/viewmodel/career_notifications_viewmodel.dart';
-import '../../features/career/viewmodel/career_viewmodel.dart';
-import '../../features/career/viewmodel/career_state.dart';
-import '../../features/career/viewmodel/job_application_viewmodel.dart';
-import '../../features/career/viewmodel/job_application_state.dart';
 import '../../features/community/model/community_notification_state.dart';
 import '../../features/community/viewmodel/community_notifications_viewmodel.dart';
 import '../../features/community/viewmodel/community_viewmodel.dart';
@@ -22,14 +16,6 @@ import '../../features/community/viewmodel/activity_viewmodel.dart';
 import '../../features/community/viewmodel/activity_state.dart';
 import '../../features/community/viewmodel/message_viewmodel.dart';
 import '../../features/community/viewmodel/message_state.dart';
-import '../../features/event/model/event_notification_state.dart';
-import '../../features/event/repository/event_repository_impl.dart';
-import '../../features/event/repository/i_event_repository.dart';
-import '../../features/event/viewmodel/event_viewmodel.dart';
-import '../../features/event/viewmodel/event_state.dart';
-import '../../features/event/viewmodel/event_create_viewmodel.dart';
-import '../../features/event/viewmodel/event_create_state.dart';
-import '../../features/event/viewmodel/event_notifications_viewmodel.dart';
 import '../../features/investor/model/cross_conversation_state.dart';
 import '../../features/investor/viewmodel/cross_conversation_viewmodel.dart';
 import '../../features/investor/model/investor_notification_state.dart';
@@ -167,24 +153,6 @@ final startupDashboardViewModelProvider =
 });
 
 // ---------------------------------------------------------------------------
-// Career Feature ViewModels
-// ---------------------------------------------------------------------------
-final careerViewModelProvider =
-    StateNotifierProvider<CareerViewModel, CareerState>((ref) {
-  return CareerViewModel();
-});
-
-final jobApplicationViewModelProvider =
-    StateNotifierProvider<JobApplicationViewModel, JobApplicationState>((ref) {
-  return JobApplicationViewModel();
-});
-
-final careerNotificationsViewModelProvider =
-    StateNotifierProvider<CareerNotificationsViewModel, CareerNotificationState>((ref) {
-  return CareerNotificationsViewModel();
-});
-
-// ---------------------------------------------------------------------------
 // Community Feature ViewModels
 // ---------------------------------------------------------------------------
 final communityViewModelProvider =
@@ -213,28 +181,6 @@ final communityNotificationsViewModelProvider =
 });
 
 // ---------------------------------------------------------------------------
-// Event Feature ViewModels
-// ---------------------------------------------------------------------------
-final eventRepositoryProvider = Provider<IEventRepository>((ref) {
-  return EventRepositoryImpl();
-});
-
-final eventViewModelProvider =
-    StateNotifierProvider<EventViewModel, EventState>((ref) {
-  return EventViewModel(ref.read(eventRepositoryProvider));
-});
-
-final eventCreateViewModelProvider =
-    StateNotifierProvider<EventCreateViewModel, EventCreateState>((ref) {
-  return EventCreateViewModel();
-});
-
-final eventNotificationsViewModelProvider =
-    StateNotifierProvider<EventNotificationsViewModel, EventNotificationState>((ref) {
-  return EventNotificationsViewModel();
-});
-
-// ---------------------------------------------------------------------------
 // Investor Feature ViewModels
 // ---------------------------------------------------------------------------
 final investorViewModelProvider =
@@ -258,14 +204,12 @@ final crossConversationViewModelProvider =
 });
 
 // ---------------------------------------------------------------------------
-// Connection Bridge — aggregates every mode (Startup, Career, Community,
-// Event, Investor) into unified cross-mode feeds.
+// Connection Bridge — aggregates Startup, Community, Investor + Feed
+// into unified cross-mode feeds.
 // ---------------------------------------------------------------------------
 final bridgeViewModelProvider =
     StateNotifierProvider<BridgeViewModel, BridgeState>((ref) {
   return BridgeViewModel(
-    eventViewModel: ref.read(eventViewModelProvider.notifier),
-    careerViewModel: ref.read(careerViewModelProvider.notifier),
     hiringViewModel: ref.read(hiringViewModelProvider.notifier),
     postViewModel: ref.read(postViewModelProvider.notifier),
     investorPipelineViewModel:
@@ -273,9 +217,7 @@ final bridgeViewModelProvider =
     investorViewModel: ref.read(investorViewModelProvider.notifier),
     fundraisingViewModel: ref.read(fundraisingViewModelProvider.notifier),
     startupNotificationsViewModel: ref.read(notificationsViewModelProvider.notifier),
-    careerNotificationsViewModel: ref.read(careerNotificationsViewModelProvider.notifier),
     communityNotificationsViewModel: ref.read(communityNotificationsViewModelProvider.notifier),
-    eventNotificationsViewModel: ref.read(eventNotificationsViewModelProvider.notifier),
     investorNotificationsViewModel: ref.read(investorNotificationsViewModelProvider.notifier),
     crossConversationViewModel: ref.read(crossConversationViewModelProvider.notifier),
     authViewModel: ref.read(authViewModelProvider.notifier),

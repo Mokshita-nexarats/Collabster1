@@ -19,45 +19,12 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   List<Color> _getHeaderGradient(UserRole role) {
-    if (role.isStartupRole) {
-      return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Startup
-    }
-    switch (role) {
-      case UserRole.investor:
-        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Investor
-      case UserRole.student:
-      case UserRole.professional:
-      case UserRole.mentor:
-        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Career
-      case UserRole.creator:
-      case UserRole.influencer:
-        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Community
-      case UserRole.serviceProvider:
-        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)]; // Sky blue for Event
-      default:
-        return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)];
-    }
+    // Single brand gradient for Startup / Investor / Community / Feed.
+    return const [Color(0xFF006699), Color(0xFF0088CC), Color(0xFF229ED9)];
   }
 
   Color _getPrimaryAccentColor(UserRole role) {
-    if (role.isStartupRole) {
-      return const Color(0xFF0088CC);
-    }
-    switch (role) {
-      case UserRole.investor:
-        return const Color(0xFF0088CC);
-      case UserRole.student:
-      case UserRole.professional:
-      case UserRole.mentor:
-        return const Color(0xFF0088CC); // Sky blue for Career
-      case UserRole.creator:
-      case UserRole.influencer:
-        return const Color(0xFF0088CC); // Sky blue for Community
-      case UserRole.serviceProvider:
-        return const Color(0xFF0088CC);
-      default:
-        return const Color(0xFF0088CC);
-    }
+    return const Color(0xFF0088CC);
   }
 
   @override
@@ -65,7 +32,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final session = ref.watch(authViewModelProvider).session;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final activeUserRole = session?.activeUserRole ?? UserRole.professional;
+    final activeUserRole = session?.activeUserRole ?? UserRole.other;
     final name = session?.fullName ?? 'User';
     final email = session?.email ?? '';
     final username = session?.username ?? '';
