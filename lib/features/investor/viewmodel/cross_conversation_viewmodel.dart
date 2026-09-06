@@ -6,6 +6,8 @@ class CrossConversationViewModel extends StateNotifier<CrossConversationState> {
   CrossConversationViewModel() : super(const CrossConversationState());
 
   void loadConversations() {
+    // Load once per session — reloading would wipe read states.
+    if (state.conversations.isNotEmpty) return;
     final now = DateTime.now();
     final conversations = [
       CrossConversation(

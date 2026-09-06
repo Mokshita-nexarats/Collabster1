@@ -6,6 +6,8 @@ class InvestorNotificationsViewModel extends StateNotifier<InvestorNotificationS
   InvestorNotificationsViewModel() : super(const InvestorNotificationState());
 
   void loadNotifications() {
+    // Load once per session — reloading would wipe read states.
+    if (state.notifications.isNotEmpty) return;
     final now = DateTime.now();
     final notifications = [
       InvestorNotification(

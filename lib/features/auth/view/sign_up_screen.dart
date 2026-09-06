@@ -815,8 +815,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   Widget _buildRoleSelectionStep(SignUpState state) {
     // Deduplicate by label — one card per label prevents duplicate Startup / Community tiles
+    // Feed mode removed: it is no longer a selectable role.
     final rolesByLabel = <String, UserRole>{};
     for (final role in UserRole.values) {
+      if (role == UserRole.other) continue;
       rolesByLabel.putIfAbsent(role.label, () => role);
     }
     final roles = rolesByLabel.values.toList();

@@ -6,6 +6,8 @@ class CommunityNotificationsViewModel extends StateNotifier<CommunityNotificatio
   CommunityNotificationsViewModel() : super(const CommunityNotificationState());
 
   void loadNotifications() {
+    // Load once per session — reloading would wipe read states.
+    if (state.notifications.isNotEmpty) return;
     final now = DateTime.now();
     final notifications = [
       CommunityNotification(

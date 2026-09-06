@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_assets.dart';
-import '../../../shared/widgets/role_switcher_sheet.dart';
 import '../../auth/view/screens/profile_screen.dart';
 import 'saved_items_screen.dart';
 
@@ -58,12 +57,6 @@ class _MainDrawerState extends State<MainDrawer> {
         context,
         MaterialPageRoute(builder: (_) => const ProfileScreen()),
       );
-    } else if (route == 'switch_tab') {
-      Navigator.pop(context);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        RoleSwitcherSheet.show(context);
-      });
     }
   }
 
@@ -136,11 +129,6 @@ class _MainDrawerState extends State<MainDrawer> {
                         'profile',
                         Icons.person_outline_rounded,
                         'Profile',
-                      ),
-                      _navItem(
-                        'switch_tab',
-                        Icons.swap_horiz_rounded,
-                        'Switch Tab',
                       ),
                     ],
                   ),

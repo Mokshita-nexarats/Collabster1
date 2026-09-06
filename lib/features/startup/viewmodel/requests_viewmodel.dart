@@ -6,6 +6,8 @@ class RequestsViewModel extends StateNotifier<RequestsState> {
   RequestsViewModel() : super(const RequestsState());
 
   void loadInitialData() {
+    // Load once per session — reloading would resurrect accepted/ignored requests.
+    if (state.pending.isNotEmpty || state.accepted.isNotEmpty) return;
     state = state.copyWith(
       pending: const [
         ConnectionRequest(
