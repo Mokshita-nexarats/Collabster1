@@ -12,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authViewModelProvider);
     final session = authState.session;
-    final activeRole = session?.activeUserRole ?? UserRole.professional;
+    final activeRole = session?.activeUserRole ?? UserRole.other;
 
     return Scaffold(
       appBar: AppBar(

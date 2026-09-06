@@ -396,7 +396,7 @@ class AuthSession {
   }
 
   factory AuthSession.fromJson(Map<String, dynamic> json) {
-    final roleString = json['role'] as String? ?? 'Professional';
+    final roleString = json['role'] as String? ?? 'other';
     final activeRoleString = json['activeRole'] as String?;
     final rolesList = (json['roles'] as List<dynamic>?)
         ?.map((e) => e as String)

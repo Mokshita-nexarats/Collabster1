@@ -1,17 +1,13 @@
-import '../../features/career/model/job_model.dart';
-import '../../features/career/model/notification_model.dart';
 import '../../features/community/model/notification_model.dart';
 import '../../features/community/model/post_model.dart';
-import '../../features/event/model/event_model.dart';
-import '../../features/event/model/notification_model.dart';
 import '../../features/investor/model/funding_round_model.dart';
 import '../../features/investor/model/investor_model.dart';
 import '../../features/investor/model/notification_model.dart';
 import '../../features/startup/model/notification_model.dart';
 import '../../features/startup/model/startup_models.dart';
 
-/// Unified cross-mode opportunity (job or internship) surfaced across
-/// Startup → Career → Community hubs.
+/// Unified cross-mode opportunity (startup hiring role) surfaced across
+/// Startup → Community hubs.
 class BridgeOpportunity {
   final String id;
   final String kind; // 'job' | 'internship'
@@ -91,24 +87,6 @@ List<BridgeOpportunity> startupHiringOpportunities(
       .toList();
 }
 
-/// Career board jobs & internships → unified opportunities.
-List<BridgeOpportunity> careerJobOpportunities(List<JobItem> jobs) {
-  return jobs
-      .map(
-        (j) => BridgeOpportunity(
-          id: 'career-${j.title}',
-          kind: j.roleType,
-          title: j.title,
-          company: j.company,
-          location: j.location,
-          salary: j.salaryTag,
-          experience: j.timeAgo,
-          tags: j.tags,
-        ),
-      )
-      .toList();
-}
-
 /// Startup post → unified post.
 BridgePost startupPostToBridge(StartupPost post, {required String startupName}) {
   return BridgePost(
@@ -126,7 +104,7 @@ BridgePost startupPostToBridge(StartupPost post, {required String startupName}) 
 }
 
 /// Community post → unified post.
-BridgePost careerPostToBridge(CareerPost post) {
+BridgePost communityPostToBridge(CareerPost post) {
   return BridgePost(
     id: 'community-${post.id}',
     title: post.title,
@@ -141,7 +119,11 @@ BridgePost careerPostToBridge(CareerPost post) {
   );
 }
 
-/// Unified cross-mode event surfaced across Event → Startup → Community hubs.
+/// Backwards-compatible alias (was careerPostToBridge before Career removal).
+BridgePost careerPostToBridge(CareerPost post) => communityPostToBridge(post);
+
+/// Unified cross-mode event surfaced from Startup → Community hubs.
+/// (Standalone Event mode removed; startup-internal events only.)
 class BridgeEvent {
   final String id;
   final String title;
@@ -151,7 +133,7 @@ class BridgeEvent {
   final String category;
   final bool isOnline;
   final int attendeeCount;
-  final String source; // 'event' | 'startup' | 'community'
+  final String source; // 'startup' | 'community'
   final String sourceLabel;
 
   const BridgeEvent({
@@ -166,22 +148,6 @@ class BridgeEvent {
     this.isOnline = false,
     this.attendeeCount = 0,
   });
-}
-
-/// Event hub event → unified event.
-BridgeEvent eventToBridge(Event event) {
-  return BridgeEvent(
-    id: 'event-${event.id}',
-    title: event.title,
-    description: event.description,
-    location: event.location,
-    startDate: event.startDate,
-    category: event.category,
-    isOnline: event.isOnline,
-    attendeeCount: event.attendeeCount,
-    source: 'event',
-    sourceLabel: 'Event Hub',
-  );
 }
 
 /// Unified investor / funding connection across Startup → Investor modes.
@@ -341,18 +307,18 @@ List<BridgeInvestor> investorModeToBridge(List<Investor> investors) {
       .toList();
 }
 
-/// Unified cross-mode notification surfaced across all modes.
+/// Unified cross-mode notification surfaced across Startup / Community / Investor / Feed.
 class BridgeNotification {
   final String id;
   final String title;
   final String subtitle;
   final String body;
-  final String type; // 'connection' | 'message' | 'milestone' | 'funding' | 'team' | 'document' | 'system' | 'post' | 'event' | 'job' | 'interview'
+  final String type; // 'connection' | 'message' | 'milestone' | 'funding' | 'team' | 'document' | 'system' | 'post'
   final String iconKey;
   final String colorKey;
   final DateTime createdAt;
   final bool isRead;
-  final String source; // 'startup' | 'career' | 'community' | 'event' | 'investor'
+  final String source; // 'startup' | 'community' | 'investor'
   final String sourceLabel;
   final String? deepLink;
 
@@ -421,54 +387,6 @@ List<BridgeNotification> communityNotificationsToBridge(
       .toList();
 }
 
-/// Career notifications → unified notifications.
-List<BridgeNotification> careerNotificationsToBridge(
-  List<CareerNotification> notifications,
-) {
-  return notifications
-      .map(
-        (n) => BridgeNotification(
-          id: 'career-${n.id}',
-          title: n.title,
-          subtitle: n.description,
-          body: '',
-          type: n.type.name,
-          iconKey: n.iconName,
-          colorKey: '0x${n.iconColor.toRadixString(16).padLeft(8, '0')}',
-          createdAt: DateTime.now().subtract(_parseCareerTime(n.time)),
-          isRead: n.isRead,
-          source: 'career',
-          sourceLabel: 'Career Hub',
-          deepLink: n.deepLink,
-        ),
-      )
-      .toList();
-}
-
-/// Event notifications → unified notifications.
-List<BridgeNotification> eventNotificationsToBridge(
-  List<EventNotification> notifications,
-) {
-  return notifications
-      .map(
-        (n) => BridgeNotification(
-          id: 'event-${n.id}',
-          title: n.title,
-          subtitle: n.subtitle,
-          body: n.body,
-          type: n.type.name,
-          iconKey: n.iconName,
-          colorKey: '0x${n.iconColor.toRadixString(16).padLeft(8, '0')}',
-          createdAt: n.createdAt,
-          isRead: n.isRead,
-          source: 'event',
-          sourceLabel: 'Event Hub',
-          deepLink: n.deepLink,
-        ),
-      )
-      .toList();
-}
-
 /// Investor notifications → unified notifications.
 List<BridgeNotification> investorNotificationsToBridge(
   List<InvestorNotification> notifications,
@@ -491,31 +409,4 @@ List<BridgeNotification> investorNotificationsToBridge(
         ),
       )
       .toList();
-}
-
-Duration _parseCareerTime(String time) {
-  final parts = time.toLowerCase().split(' ');
-  if (parts.length != 2) return Duration.zero;
-  final value = int.tryParse(parts[0]) ?? 0;
-  final unit = parts[1];
-  switch (unit) {
-    case 'm':
-    case 'min':
-    case 'mins':
-    case 'minute':
-    case 'minutes':
-      return Duration(minutes: value);
-    case 'h':
-    case 'hr':
-    case 'hrs':
-    case 'hour':
-    case 'hours':
-      return Duration(hours: value);
-    case 'd':
-    case 'day':
-    case 'days':
-      return Duration(days: value);
-    default:
-      return Duration.zero;
-  }
 }

@@ -8,16 +8,12 @@ import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
 import '../../../auth/view/screens/profile_screen.dart';
 import '../../../auth/view/sign_in_screen.dart';
-import '../../../career/view/screens/notifications_screen.dart';
-import '../../../career/view/screens/jobs_screen.dart';
-import '../../../event/view/screens/event_home_screen.dart';
 import '../../../startup/view/screens/startup_posts_feed_screen.dart';
 import '../../model/chat_model.dart';
 import '../../model/community_model.dart';
 import '../../model/post_model.dart';
 import 'chat_screen.dart';
 import 'create_post_screen.dart';
-import 'create_event_screen.dart';
 import 'create_community_screen.dart';
 import 'posts_list_screen.dart';
 import 'communities_list_screen.dart';
@@ -75,9 +71,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
       if (!mounted) return;
       ref.read(communityViewModelProvider.notifier).loadInitialData();
       ref.read(postViewModelProvider.notifier).loadPosts();
-      ref.read(eventViewModelProvider.notifier).loadEvents();
       ref.read(hiringViewModelProvider.notifier).loadInitialData();
-      ref.read(careerViewModelProvider.notifier).loadInitialData();
     });
   }
 
@@ -160,25 +154,10 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
     );
   }
 
-  void _openEventsScreen() {
-    ref.read(eventViewModelProvider.notifier).markEventsAsRead();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const EventsListScreen()),
-    );
-  }
-
   void _openCreatePostScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => const CreatePostScreen()),
-    );
-  }
-
-  void _openCreateEventScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const CreateEventScreen()),
     );
   }
 
@@ -207,14 +186,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
   void _openNotificationsScreen() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const NotificationsScreen()),
-    );
-  }
-
-  void _openJobsBoard() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const JobsScreen()),
+      MaterialPageRoute(builder: (_) => const ActivityListScreen()),
     );
   }
 
@@ -312,12 +284,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                   'Share an update with your communities', _tgBlue, () {
                 Navigator.pop(ctx);
                 _openCreatePostScreen();
-              }),
-              _createTile(ctx, Icons.event_outlined, 'New Event',
-                  'Host a meetup, workshop or webinar', const Color(0xFF4CCD5E),
-                  () {
-                Navigator.pop(ctx);
-                _openCreateEventScreen();
               }),
               _createTile(ctx, Icons.group_add_outlined, 'New Community',
                   'Start a public channel or group', _tgDarkBlue, () {
@@ -1333,17 +1299,13 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                       _openPostsScreen),
                   const Divider(
                       height: 1, color: _tgDivider, indent: 68),
-                  _quickLink(Icons.event_outlined, 'Events',
-                      'Upcoming meetups & workshops', _openEventsScreen),
-                  const Divider(
-                      height: 1, color: _tgDivider, indent: 68),
                   _quickLink(Icons.forum_outlined, 'Rooms',
                       '${ref.watch(communityViewModelProvider).rooms.length} topic rooms',
                       _openRoomsScreen),
                   const Divider(
                       height: 1, color: _tgDivider, indent: 68),
                   _quickLink(Icons.alt_route_rounded, 'Connect',
-                      'Cross-mode feed — startup, career, events',
+                      'Cross-mode feed — startup & community',
                       () {
                     Navigator.push(
                       context,
@@ -1620,7 +1582,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                     ),
                   const SizedBox(height: 10),
                 ],
-                _tgSectionHeader('Hiring now', _openJobsBoard),
+                _tgSectionHeader('Hiring now', null),
                 const SizedBox(height: 8),
                 SizedBox(
                   height: 148,
@@ -1709,13 +1671,10 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
 
   Widget _updatesQuickActions() {
     final postState = ref.watch(postViewModelProvider);
-    final eventState = ref.watch(eventViewModelProvider);
     final communityState = ref.watch(communityViewModelProvider);
     final items = [
       _QA(Icons.article_outlined, 'Posts', _tgBlue, _openPostsScreen,
           postState.unreadCount),
-      _QA(Icons.event_outlined, 'Events', const Color(0xFF4CCD5E),
-          _openEventsScreen, eventState.unreadCount),
       _QA(Icons.group_outlined, 'Groups', _tgDarkBlue,
           _openCommunitiesScreen, communityState.unreadCount),
       _QA(Icons.forum_outlined, 'Rooms', const Color(0xFF7C3AED),
@@ -1805,7 +1764,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
 
   List<BridgeOpportunity> _hiringNow() {
     final hiringRoles = ref.watch(hiringViewModelProvider).roles;
-    final careerJobs = ref.watch(careerViewModelProvider).jobs;
     final session = ref.watch(authViewModelProvider).session;
     final label = (session?.startupName?.isNotEmpty == true)
         ? session!.startupName!
@@ -1815,7 +1773,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
         hiringRoles.where((r) => r.roleType == 'job').toList(),
         startupName: label ?? 'Startup',
       ),
-      ...careerJobOpportunities(careerJobs),
     ].take(8).toList();
   }
 
@@ -1873,7 +1830,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
 
   Widget _hiringCard(BridgeOpportunity opp) {
     return GestureDetector(
-      onTap: _openJobsBoard,
+      onTap: _openStartupFeed,
       child: Container(
         width: 230,
         padding: const EdgeInsets.all(12),
@@ -1901,7 +1858,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                       size: 16),
                 ),
                 const Spacer(),
-                Text(opp.fromStartup ? 'STARTUP' : 'CAREER',
+                Text('STARTUP',
                     style: const TextStyle(
                         fontSize: 9.5,
                         fontWeight: FontWeight.w800,
@@ -2243,10 +2200,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                     () {
                   Navigator.pop(context);
                   _openPostsScreen();
-                }),
-                _drawerItem(Icons.event_outlined, 'Events', () {
-                  Navigator.pop(context);
-                  _openEventsScreen();
                 }),
                 _drawerItem(Icons.notifications_none_rounded,
                     'Notifications', () {

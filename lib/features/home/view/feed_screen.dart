@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/di/providers.dart';
-import '../../career/view/screens/notifications_screen.dart';
+import 'activity_screen.dart';
 import 'comments_sheet.dart';
 import 'share_sheet.dart';
 import 'main_drawer.dart';
@@ -225,7 +225,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen>
           GestureDetector(
             onTap: () {
               Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute(builder: (_) => const NotificationsScreen()),
+                MaterialPageRoute(builder: (_) => const ActivityScreen()),
               );
             },
             behavior: HitTestBehavior.opaque,

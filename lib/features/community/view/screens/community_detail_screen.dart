@@ -5,13 +5,11 @@ import '../../../../core/di/providers.dart';
 import '../../model/chat_model.dart';
 import '../../model/community_model.dart';
 import '../../model/post_model.dart';
-import '../../../event/model/event_model.dart';
 import 'chat_screen.dart';
 import 'create_room_screen.dart';
 import 'post_detail_screen.dart';
 import 'posts_list_screen.dart';
 import 'rooms_list_screen.dart';
-import '../../../event/view/screens/event_home_screen.dart';
 
 class CommunityDetailScreen extends ConsumerStatefulWidget {
   final String title;
@@ -126,16 +124,6 @@ class _CommunityDetailScreenState
     if (diff.inHours < 24) return '${diff.inHours}h ago';
     if (diff.inDays < 7) return '${diff.inDays}d ago';
     return '${dt.day}/${dt.month}/${dt.year}';
-  }
-
-  String _eventDate(DateTime d) {
-    const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
-    final hh = d.hour % 12 == 0 ? 12 : d.hour % 12;
-    final ampm = d.hour >= 12 ? 'PM' : 'AM';
-    return '${d.day} ${months[d.month - 1]} · $hh:${d.minute.toString().padLeft(2, '0')} $ampm';
   }
 
   void _openRoom(CommunityRoom room) {
@@ -433,8 +421,6 @@ class _CommunityDetailScreenState
     final admins = members.take(3).toList();
     final onlineCount = members.where((m) => m.online).length;
     final posts = ref.watch(postViewModelProvider).posts;
-    final eventState = ref.watch(eventViewModelProvider);
-    final events = eventState.events;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
@@ -684,7 +670,7 @@ class _CommunityDetailScreenState
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 100),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                _buildStatsRow(rooms.length, posts.length, events.length),
+                _buildStatsRow(rooms.length, posts.length),
                 const SizedBox(height: 20),
                 _buildSectionTitle('About', null),
                 const SizedBox(height: 12),
@@ -795,47 +781,6 @@ class _CommunityDetailScreenState
                             child: _buildPostCard(p),
                           )),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    const Expanded(
-                        child: Text('Upcoming events',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w800,
-                                color: Color(0xFF1E293B),
-                                letterSpacing: -0.3))),
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const EventsListScreen()),
-                      ),
-                      child: const Row(
-                        children: [
-                          Text('See all',
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF0088CC))),
-                          Icon(Icons.chevron_right_rounded,
-                              size: 18, color: Color(0xFF0088CC)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                if (events.isEmpty)
-                  _buildEmptyMini('No upcoming events for this group yet.')
-                else
-                  ...events
-                      .take(2)
-                      .map((e) => Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 10),
-                            child: _buildEventCard(e),
-                          )),
-                const SizedBox(height: 20),
                 _buildSectionTitle('Invite', null),
                 const SizedBox(height: 12),
                 _buildInviteCard(),
@@ -875,7 +820,7 @@ class _CommunityDetailScreenState
     );
   }
 
-  Widget _buildStatsRow(int roomCount, int postCount, int eventCount) {
+  Widget _buildStatsRow(int roomCount, int postCount) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
@@ -910,9 +855,6 @@ class _CommunityDetailScreenState
           ),
           _divider(),
           _stat(Icons.article_outlined, '$postCount', 'Posts',
-              widget.gradientColors.first),
-          _divider(),
-          _stat(Icons.event_outlined, '$eventCount', 'Events',
               widget.gradientColors.first),
         ],
       ),
@@ -1026,7 +968,7 @@ class _CommunityDetailScreenState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'A community for people passionate about ${widget.title}. Join discussions, share updates, attend events and connect with like-minded members.',
+              'A community for people passionate about ${widget.title}. Join discussions, share updates, connect with like-minded members.',
               style: const TextStyle(
                 fontSize: 13.5,
                 color: Color(0xFF475569),
@@ -1560,117 +1502,6 @@ class _CommunityDetailScreenState
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  // ── Events ──────────────────────────────────────────────────────────────
-  Widget _buildEventCard(Event e) {
-    final registered =
-        ref.watch(eventViewModelProvider).isRegistered(e.id);
-    return _card(
-      Padding(
-        padding: const EdgeInsets.all(14),
-        child: Row(
-          children: [
-            Container(
-              width: 48,
-              height: 54,
-              decoration: BoxDecoration(
-                color:
-                    const Color(0xFF0088CC).withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('${e.startDate.day}',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF0088CC))),
-                  Text(
-                      [
-                        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-                      ][e.startDate.month - 1],
-                      style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF0088CC))),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(e.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF1E293B))),
-                  const SizedBox(height: 3),
-                  Text(
-                      '${_eventDate(e.startDate)} · ${e.location.isNotEmpty ? e.location : (e.isOnline ? 'Online' : 'TBA')}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontSize: 12, color: Color(0xFF64748B))),
-                  const SizedBox(height: 2),
-                  Text(
-                      '${e.attendeeCount} going · ${e.category}',
-                      style: const TextStyle(
-                          fontSize: 11.5,
-                          color: Color(0xFF94A3B8))),
-                ],
-              ),
-            ),
-            const SizedBox(width: 8),
-            GestureDetector(
-              onTap: () {
-                final notifier =
-                    ref.read(eventViewModelProvider.notifier);
-                if (registered) {
-                  notifier.cancelRsvp(e.id);
-                } else {
-                  notifier.rsvpEvent(e.id);
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(registered
-                        ? 'RSVP removed for "${e.title}"'
-                        : 'You are going to "${e.title}" 🎉'),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 14, vertical: 7),
-                decoration: BoxDecoration(
-                  color: registered
-                      ? const Color(0xFF0088CC)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                      color: const Color(0xFF0088CC), width: 1.3),
-                ),
-                child: Text(registered ? 'Going' : 'RSVP',
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                        color: registered
-                            ? Colors.white
-                            : const Color(0xFF0088CC))),
-              ),
-            ),
-          ],
         ),
       ),
     );

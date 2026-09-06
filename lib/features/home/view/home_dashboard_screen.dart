@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/widgets/mode_menu_bar.dart';
 import '../../auth/view/screens/profile_screen.dart';
-import '../../career/view/screens/jobs_screen.dart';
-import '../../career/view/screens/freelance_screen.dart';
-import '../../career/view/screens/resume_screen.dart';
-import '../../career/view/screens/notifications_screen.dart';
-import '../../career/view/screens/saved_jobs_screen.dart';
 import '../../inbox/view/inbox_screen.dart';
+import 'activity_screen.dart';
 import 'feed_screen.dart';
-import '../../learn/view/screens/learning_progress_screen.dart';
+import 'saved_items_screen.dart';
 
 class HomeDashboardScreen extends ConsumerStatefulWidget {
   const HomeDashboardScreen({super.key});
@@ -115,48 +111,7 @@ class _HomeDashboardScreenState extends ConsumerState<HomeDashboardScreen> {
                     const Color(0xFF4338CA),
                     () {
                       Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const JobsScreen()),
-                      );
-                    },
-                  ),
-                  _buildSheetAction(
-                    Icons.work_outline_rounded,
-                    'Jobs',
-                    const Color(0xFF0891B2),
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const JobsScreen()),
-                      );
-                    },
-                  ),
-                  _buildSheetAction(
-                    Icons.laptop_mac_outlined,
-                    'Freelance',
-                    const Color(0xFF7C3AED),
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const FreelanceScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildSheetAction(
-                    Icons.description_outlined,
-                    'Resume',
-                    const Color(0xFF059669),
-                    () {
-                      Navigator.pop(ctx);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ResumeScreen()),
-                      );
+                      setState(() => _selectedIndex = 1);
                     },
                   ),
                   _buildSheetAction(
@@ -168,7 +123,7 @@ class _HomeDashboardScreenState extends ConsumerState<HomeDashboardScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => SavedJobsScreen(
+                          builder: (_) => SavedItemsScreen(
                             onBack: () => Navigator.pop(context),
                           ),
                         ),
@@ -176,15 +131,56 @@ class _HomeDashboardScreenState extends ConsumerState<HomeDashboardScreen> {
                     },
                   ),
                   _buildSheetAction(
+                    Icons.chat_bubble_outline_rounded,
+                    'Messages',
+                    const Color(0xFF0891B2),
+                    () {
+                      Navigator.pop(ctx);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const InboxScreen()),
+                      );
+                    },
+                  ),
+                  _buildSheetAction(
                     Icons.notifications_outlined,
-                    'Alerts',
+                    'Activity',
                     const Color(0xFFD97706),
                     () {
                       Navigator.pop(ctx);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const NotificationsScreen(),
+                          builder: (_) => const ActivityScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildSheetAction(
+                    Icons.person_outline_rounded,
+                    'Profile',
+                    const Color(0xFF059669),
+                    () {
+                      Navigator.pop(ctx);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ProfileScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildSheetAction(
+                    Icons.edit_outlined,
+                    'New Post',
+                    const Color(0xFF7C3AED),
+                    () {
+                      Navigator.pop(ctx);
+                      setState(() => _selectedIndex = 0);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Use the composer at the top of your Feed to post.'),
+                          behavior: SnackBarBehavior.floating,
                         ),
                       );
                     },
@@ -319,7 +315,7 @@ class _HomeDashboardScreenState extends ConsumerState<HomeDashboardScreen> {
           TextField(
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
-              hintText: 'Search opportunities, people, or resources',
+              hintText: 'Search posts, people, or startups',
               hintStyle: const TextStyle(color: Color(0xFF9CA3AF)),
               prefixIcon: const Icon(
                 Icons.search_rounded,
@@ -360,31 +356,32 @@ class _HomeDashboardScreenState extends ConsumerState<HomeDashboardScreen> {
             runSpacing: 10,
             children: [
               _buildExploreCategoryChip(
-                icon: Icons.work_outline_rounded,
-                label: 'Jobs',
+                icon: Icons.dynamic_feed_rounded,
+                label: 'Feed',
                 color: const Color(0xFF4338CA),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const JobsScreen()),
-                ),
+                onTap: () => setState(() => _selectedIndex = 0),
               ),
               _buildExploreCategoryChip(
-                icon: Icons.laptop_mac_outlined,
-                label: 'Freelance',
+                icon: Icons.bookmark_outline_rounded,
+                label: 'Saved',
                 color: const Color(0xFF7C3AED),
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const FreelanceScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => SavedItemsScreen(
+                      onBack: () => Navigator.pop(context),
+                    ),
+                  ),
                 ),
               ),
               _buildExploreCategoryChip(
-                icon: Icons.school_outlined,
-                label: 'Learning',
+                icon: Icons.notifications_outlined,
+                label: 'Activity',
                 color: const Color(0xFF0891B2),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LearningProgressScreen(),
+                    builder: (_) => const ActivityScreen(),
                   ),
                 ),
               ),

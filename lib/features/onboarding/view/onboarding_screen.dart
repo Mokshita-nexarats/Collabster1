@@ -467,7 +467,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         ),
         const SizedBox(height: 12),
         Text(
-          'Join a thriving ecosystem of startups,\ninvestors, mentors & creators.',
+          'Join a thriving ecosystem of startups,\ninvestors & creators.',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14.5,
@@ -491,14 +491,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         const Color(0xFF818CF8),
       ),
       _Feature(Icons.trending_up_rounded, 'Investors', const Color(0xFF34D399)),
-      _Feature(Icons.school_outlined, 'Learn', const Color(0xFFFBBF24)),
       _Feature(
         Icons.people_outline_rounded,
         'Network',
         const Color(0xFFF472B6),
       ),
-      _Feature(Icons.work_outline_rounded, 'Careers', const Color(0xFF60A5FA)),
-      _Feature(Icons.event_outlined, 'Events', const Color(0xFFA78BFA)),
+      _Feature(Icons.groups_rounded, 'Community', const Color(0xFF60A5FA)),
+      _Feature(Icons.dynamic_feed_rounded, 'Feed', const Color(0xFFA78BFA)),
     ];
 
     return Wrap(

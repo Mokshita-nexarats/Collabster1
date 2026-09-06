@@ -280,7 +280,7 @@ class _StartupPostsFeedScreenState
     final communityPosts = ref
         .watch(postViewModelProvider)
         .posts
-        .map(careerPostToBridge)
+        .map(communityPostToBridge)
         .toList();
 
     return Column(

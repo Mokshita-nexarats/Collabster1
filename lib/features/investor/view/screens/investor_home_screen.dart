@@ -1857,7 +1857,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
             SizedBox(width: 12),
             Expanded(
               child: Text(
-                'Open Connect Hub — see Startup, Career, Community, Events & Investors in one feed',
+                'Open Connect Hub — see Startup, Community & Investors in one feed',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 13,

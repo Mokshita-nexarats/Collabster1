@@ -110,7 +110,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
                   ),
                   const SizedBox(height: 10),
                   ...() {
-                    // Deduplicate by label — prevents 2× Career / Startup / Community tiles
+                    // Deduplicate by label — prevents duplicate Startup / Community tiles
                     final deduped = <String, UserRole>{};
                     for (final r in userRoles) {
                       // Keep active role as representative for its label

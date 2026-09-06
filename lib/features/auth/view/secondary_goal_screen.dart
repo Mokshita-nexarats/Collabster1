@@ -38,9 +38,9 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
 
   List<UserRole> get _availableRoles {
     final session = ref.read(authViewModelProvider).session;
-    final primaryRole = session?.activeUserRole ?? UserRole.professional;
+    final primaryRole = session?.activeUserRole ?? UserRole.other;
     final primaryLabel = primaryRole.label;
-    // Deduplicate by label and exclude primary's label — prevents 2× Career/Startup/Community cards
+    // Deduplicate by label and exclude primary's label — prevents duplicate Startup / Community cards
     final seen = <String>{primaryLabel};
     final deduped = <UserRole>[];
     for (final role in UserRole.values) {
@@ -105,7 +105,7 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
   @override
   Widget build(BuildContext context) {
     final session = ref.watch(authViewModelProvider).session;
-    final primaryRole = session?.activeUserRole ?? UserRole.professional;
+    final primaryRole = session?.activeUserRole ?? UserRole.other;
     final availableRoles = _availableRoles;
 
     return Scaffold(
