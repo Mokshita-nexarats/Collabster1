@@ -5,7 +5,8 @@ import '../enums/app_enums.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/di/providers.dart';
 import '../../features/auth/model/auth_session.dart';
-import '../../features/home/view/home_dashboard_screen.dart';
+import '../../features/home/view/collabster_home/collabster_home_screen.dart';
+import '../../features/home/view/collabster_home/home_feed_item.dart';
 import '../utils/dashboard_router.dart';
 
 class RoleSwitcherSheet extends ConsumerWidget {
@@ -93,8 +94,8 @@ class RoleSwitcherSheet extends ConsumerWidget {
                 MediaQuery.of(context).viewPadding.bottom,
               ),
               children: [
-                // ─── Feed shortcut (always shown) ───
-                _FeedTile(onTap: () => _navigateToFeed(context, ref)),
+                // ─── Universal feed (same screen for every user) ───
+                _FeedTile(onTap: () => _openFeed(context, currentRole)),
                 const SizedBox(height: 16),
                 Container(height: 1, color: const Color(0xFFF3F4F6)),
                 const SizedBox(height: 16),
@@ -113,6 +114,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
                     // Deduplicate by label — prevents duplicate Startup / Community tiles
                     final deduped = <String, UserRole>{};
                     for (final r in userRoles) {
+                      if (r == UserRole.other) continue; // Feed mode removed
                       // Keep active role as representative for its label
                       if (r.label == currentRole.label) {
                         deduped[r.label] = currentRole;
@@ -167,6 +169,7 @@ class RoleSwitcherSheet extends ConsumerWidget {
                     final ownedLabels = userRoles.map((r) => r.label).toSet();
                     final seenAddable = <String>{};
                     final addableRoles = UserRole.values.where((role) {
+                      if (role == UserRole.other) return false; // Feed mode removed
                       if (userRoles.contains(role)) return false;
                       if (ownedLabels.contains(role.label)) return false;
                       return seenAddable.add(role.label);
@@ -274,21 +277,6 @@ class RoleSwitcherSheet extends ConsumerWidget {
     _replaceWithDashboard(context, ref);
   }
 
-  Future<void> _navigateToFeed(BuildContext context, WidgetRef ref) async {
-    try {
-      await ref.read(authViewModelProvider.notifier).switchRole(UserRole.other);
-    } catch (_) {}
-    if (!context.mounted) return;
-    Navigator.of(context).pop(); // close sheet
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!context.mounted) return;
-      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const HomeDashboardScreen()),
-        (_) => false,
-      );
-    });
-  }
-
   void _replaceWithDashboard(BuildContext context, WidgetRef ref) {
     final updatedSession = ref.read(authViewModelProvider).session;
     if (updatedSession == null) return;
@@ -302,6 +290,112 @@ class RoleSwitcherSheet extends ConsumerWidget {
         (_) => false,
       );
     });
+  }
+
+  /// Opens the universal feed without switching roles.
+  void _openFeed(BuildContext context, UserRole currentRole) {
+    final feedRole = switch (currentRole.label) {
+      'Startup' => HomeRole.startup,
+      'Investor' => HomeRole.investor,
+      _ => HomeRole.community,
+    };
+    Navigator.of(context).pop(); // close sheet
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => CollabsterHomeScreen(activeRole: feedRole),
+      ),
+    );
+  }
+}
+
+class _FeedTile extends StatelessWidget {
+  const _FeedTile({required this.onTap});
+
+  final VoidCallback onTap;
+
+  static const _kBlue = Color(0xFF2563EB);
+  static const _kBlueLight = Color(0xFFEFF6FF);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: _kBlueLight,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: _kBlue, width: 1.5),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF2563EB), Color(0xFF3B82F6)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.dynamic_feed_rounded,
+                  color: Colors.white,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Feed',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: _kBlue,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'Universal feed for every user',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                decoration: BoxDecoration(
+                  color: _kBlue,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'Go →',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -573,101 +667,6 @@ class _RoleAddTile extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Feed shortcut tile — always shown at the top of the Switch Tab sheet
-// ─────────────────────────────────────────────────────────────────────────────
-
-class _FeedTile extends StatelessWidget {
-  const _FeedTile({required this.onTap});
-
-  final VoidCallback onTap;
-
-  static const _kPurple = Color(0xFF4338CA);
-  static const _kPurpleLight = Color(0xFFEEF2FF);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: _kPurpleLight,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: _kPurple, width: 2),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF4338CA), Color(0xFF7C3AED)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Icon(
-                  Icons.dynamic_feed_rounded,
-                  color: Colors.white,
-                  size: 22,
-                ),
-              ),
-              const SizedBox(width: 14),
-              const Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Feed',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: _kPurple,
-                      ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      'View your social feed & updates',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 5,
-                ),
-                decoration: BoxDecoration(
-                  color: _kPurple,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Text(
-                  'Go →',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
       ),

@@ -1,8 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../core/di/providers.dart';
 import '../../../../core/theme/investor_colors.dart';
 import '../../../auth/view/sign_in_screen.dart';
@@ -17,9 +16,6 @@ import 'investor_messages_screen.dart';
 import 'investor_profile_screen.dart';
 import 'pitch_deck_screen.dart';
 import 'portfolio_screen.dart';
-import 'investor_reminders_screen.dart';
-import 'investor_notes_screen.dart';
-import 'investor_meetings_screen.dart';
 import 'investor_notifications_screen.dart';
 
 class InvestorHomeScreen extends ConsumerStatefulWidget {
@@ -40,6 +36,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     return 'Good Evening';
   }
 
+
   @override
   void initState() {
     super.initState();
@@ -47,13 +44,13 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
       if (!mounted) return;
       ref.read(investorViewModelProvider.notifier).loadInvestorData();
       ref.read(pitchDeckViewModelProvider.notifier).loadPitchDecks();
-      ref.read(bridgeViewModelProvider.notifier).loadAll();
     });
   }
 
   void _onNavTap(int index) {
     if (index == 4) {
-      _openInvestorProfile();
+      // Switch tab — profile lives in the side menu now.
+      RoleSwitcherSheet.show(context);
       return;
     }
     setState(() => _selectedIndex = index);
@@ -1304,8 +1301,6 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
-  // ═══════════════════════ HOME TAB ═══════════════════════
-
   Widget _buildHomeTab() {
     final authState = ref.watch(authViewModelProvider);
     final session = authState.session;
@@ -1369,8 +1364,6 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
               _buildSectionHeader('Investor Network', onViewAll: () => _openTab(2)),
               const SizedBox(height: 12),
               _buildInvestorNetwork(),
-              const SizedBox(height: 26),
-              _buildConnectBanner(),
             ]),
           ),
         ),
@@ -1378,110 +1371,6 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
-  void _openNotificationsScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const InvestorNotificationsScreen()),
-    );
-  }
-
-  void _openInvestorProfile() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => InvestorProfileScreen(
-          embedded: false,
-          onGoHome: () => Navigator.pop(context),
-        ),
-      ),
-    );
-  }
-
-  Future<void> _logout() async {
-    Navigator.pop(context);
-    await ref.read(authViewModelProvider.notifier).logout();
-    if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const SignInScreen()),
-    );
-  }
-
-  Widget _buildDrawer() {
-    final session = ref.watch(authViewModelProvider).session;
-    return ModeDrawer(
-      userName: session?.fullName ?? 'Investor',
-      email: session?.email ?? '',
-      photoPath: session?.profilePhotoPath ?? '',
-      headerGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
-      avatarColor: InvestorColors.goldDeep,
-      items: [
-        ModeDrawerItem(
-          icon: Icons.add_circle_outline_rounded,
-          label: 'Create New',
-          onTap: () {
-            Navigator.pop(context);
-            _showCreateSheet();
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.pie_chart_outline_rounded,
-          label: 'Portfolio',
-          onTap: () {
-            Navigator.pop(context);
-            _openTab(1);
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.show_chart_rounded,
-          label: 'Deal Flow',
-          onTap: () {
-            Navigator.pop(context);
-            _openTab(2);
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.notifications_none_rounded,
-          label: 'Notifications',
-          onTap: () {
-            Navigator.pop(context);
-            _openNotificationsScreen();
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.person_outline_rounded,
-          label: 'My Profile',
-          onTap: () {
-            Navigator.pop(context);
-            _openInvestorProfile();
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.alt_route_rounded,
-          label: 'Connect',
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) =>
-                    const ConnectScreen(modeTheme: 'investor'),
-              ),
-            );
-          },
-        ),
-        ModeDrawerItem(
-          icon: Icons.swap_horiz_rounded,
-          label: 'Switch Tab',
-          onTap: () {
-            Navigator.pop(context);
-            RoleSwitcherSheet.show(context);
-          },
-        ),
-      ],
-      onLogout: _logout,
-    );
-  }
 
   Widget _buildHeaderRow() {
     final hasUnread =
@@ -1542,6 +1431,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
+
   Widget _buildSectionHeader(String title, {VoidCallback? onViewAll}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1576,30 +1466,9 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
+
   Widget _buildActionGrid() {
     final actions = [
-      _HomeAction(
-        icon: Icons.flag_rounded,
-        label: 'Reminders',
-        color: const Color(0xFFF59E0B),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const InvestorRemindersScreen()),
-          );
-        },
-      ),
-      _HomeAction(
-        icon: Icons.note_add_rounded,
-        label: 'Notes',
-        color: const Color(0xFF229ED9),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const InvestorNotesScreen()),
-          );
-        },
-      ),
       _HomeAction(
         icon: Icons.edit_note_rounded,
         label: 'Posts',
@@ -1609,15 +1478,10 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
         },
       ),
       _HomeAction(
-        icon: Icons.calendar_month_rounded,
-        label: 'Meets',
+        icon: Icons.pie_chart_rounded,
+        label: 'Portfolio',
         color: const Color(0xFF0088CC),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const InvestorMeetingsScreen()),
-          );
-        },
+        onTap: () => _openTab(1),
       ),
       _HomeAction(
         icon: Icons.explore_rounded,
@@ -1633,17 +1497,6 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const PitchDeckScreen()),
-          );
-        },
-      ),
-      _HomeAction(
-        icon: Icons.alt_route_rounded,
-        label: 'Connect',
-        color: InvestorColors.purple,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const ConnectScreen(modeTheme: 'investor')),
           );
         },
       ),
@@ -1744,6 +1597,7 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
+
   Widget _buildInvestorNetwork() {
     final state = ref.watch(investorViewModelProvider);
     final investors = state.investors;
@@ -1829,52 +1683,98 @@ class _InvestorHomeScreenState extends ConsumerState<InvestorHomeScreen> {
     );
   }
 
-  Widget _buildConnectBanner() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const ConnectScreen(modeTheme: 'investor')),
-        );
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          gradient: InvestorColors.heroGradient,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
-            BoxShadow(
-              color: InvestorColors.goldDeep.withValues(alpha: 0.3),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: const Row(
-          children: [
-            Icon(Icons.alt_route_rounded, color: Colors.white, size: 22),
-            SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                'Open Connect Hub — see Startup, Community & Investors in one feed',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  height: 1.35,
-                ),
-              ),
-            ),
-            Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 20),
-          ],
+  void _openNotificationsScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const InvestorNotificationsScreen()),
+    );
+  }
+
+  void _openInvestorProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => InvestorProfileScreen(
+          embedded: false,
+          onGoHome: () => Navigator.pop(context),
         ),
       ),
     );
   }
-}
 
-// ═══════════════════════ PORTFOLIO HERO ═══════════════════════
+  Future<void> _logout() async {
+    Navigator.pop(context);
+    await ref.read(authViewModelProvider.notifier).logout();
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
+    );
+  }
+
+  Widget _buildDrawer() {
+    final session = ref.watch(authViewModelProvider).session;
+    return ModeDrawer(
+      userName: session?.fullName ?? 'Investor',
+      email: session?.email ?? '',
+      photoPath: session?.profilePhotoPath ?? '',
+      headerGradient: const [Color(0xFF0088CC), Color(0xFF229ED9)],
+      avatarColor: InvestorColors.goldDeep,
+      items: [
+        ModeDrawerItem(
+          icon: Icons.add_circle_outline_rounded,
+          label: 'Create New',
+          onTap: () {
+            Navigator.pop(context);
+            _showCreateSheet();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.pie_chart_outline_rounded,
+          label: 'Portfolio',
+          onTap: () {
+            Navigator.pop(context);
+            _openTab(1);
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.show_chart_rounded,
+          label: 'Deal Flow',
+          onTap: () {
+            Navigator.pop(context);
+            _openTab(2);
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.notifications_none_rounded,
+          label: 'Notifications',
+          onTap: () {
+            Navigator.pop(context);
+            _openNotificationsScreen();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.person_outline_rounded,
+          label: 'My Profile',
+          onTap: () {
+            Navigator.pop(context);
+            _openInvestorProfile();
+          },
+        ),
+        ModeDrawerItem(
+          icon: Icons.swap_horiz_rounded,
+          label: 'Switch Tab',
+          onTap: () {
+            Navigator.pop(context);
+            RoleSwitcherSheet.show(context);
+          },
+        ),
+      ],
+      onLogout: _logout,
+    );
+  }
+
+  }
 
 class _PortfolioHeroCard extends ConsumerWidget {
   const _PortfolioHeroCard({required this.onTap});
@@ -2004,6 +1904,7 @@ class _PortfolioHeroCard extends ConsumerWidget {
 
 // ═══════════════════════ GROWTH LINE CHART ═══════════════════════
 
+
 class _GrowthLineChart extends StatelessWidget {
   const _GrowthLineChart({
     required this.values,
@@ -2086,6 +1987,7 @@ class _GrowthLineChart extends StatelessWidget {
 }
 
 // ═══════════════════════ DEAL PREVIEW CARD ═══════════════════════
+
 
 class _DealPreviewCard extends StatelessWidget {
   const _DealPreviewCard({required this.round, required this.onTap});
@@ -2237,6 +2139,7 @@ class _DealPreviewCard extends StatelessWidget {
   }
 }
 
+
 class _EmptyCard extends StatelessWidget {
   const _EmptyCard({
     required this.icon,
@@ -2282,6 +2185,7 @@ class _EmptyCard extends StatelessWidget {
   }
 }
 
+
 class _HomeAction {
   const _HomeAction({
     required this.icon,
@@ -2295,8 +2199,6 @@ class _HomeAction {
   final Color color;
   final VoidCallback onTap;
 }
-
-// ═══════════════════════ BOTTOM NAV ═══════════════════════
 
 class _InvestorNavBar extends StatelessWidget {
   const _InvestorNavBar({
@@ -2324,7 +2226,7 @@ class _InvestorNavBar extends StatelessWidget {
         ModeMenuItem(index: 0, icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
         ModeMenuItem(index: 1, icon: Icons.pie_chart_outline_rounded, activeIcon: Icons.pie_chart_rounded, label: 'Portfolio'),
         ModeMenuItem(index: 3, icon: Icons.chat_bubble_outline_rounded, activeIcon: Icons.chat_bubble_rounded, label: 'Messages'),
-        ModeMenuItem(index: 4, icon: Icons.person_outline_rounded, activeIcon: Icons.person_rounded, label: 'Profile'),
+        ModeMenuItem(index: 4, icon: Icons.swap_horiz_rounded, activeIcon: Icons.swap_horiz_rounded, label: 'Switch'),
       ],
     );
   }

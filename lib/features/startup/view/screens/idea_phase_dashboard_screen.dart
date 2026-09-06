@@ -94,9 +94,9 @@ class _IdeaPhaseDashboardScreenState
           ),
           ModeMenuItem(
             index: 4,
-            icon: Icons.person_outline_rounded,
-            activeIcon: Icons.person_rounded,
-            label: 'Profile',
+            icon: Icons.swap_horiz_rounded,
+            activeIcon: Icons.swap_horiz_rounded,
+            label: 'Switch',
           ),
         ],
       ),
@@ -901,26 +901,26 @@ class _IdeaPhaseDashboardScreenState
           );
         },
       ),
-      ModeDrawerItem(
-        icon: Icons.swap_horiz_rounded,
-        label: 'Switch Tab',
-        onTap: () {
-          Navigator.pop(context);
-          RoleSwitcherSheet.show(context);
-        },
-      ),
     ],
     onLogout: _logout,
   );
 
   void _selectTab(int index) {
     if (index == 2) return;
+    if (index == 4) {
+      // Switch tab — founder profile lives in the side menu now.
+      RoleSwitcherSheet.show(context);
+      return;
+    }
     setState(() => _selectedTab = index);
   }
 
   void _selectFromDrawer(int index) {
     Navigator.pop(context);
-    _selectTab(index);
+    // Drawer sets the tab directly — index 4 here means Founder Profile,
+    // while bottom-nav 4 opens the role switcher (see _selectTab).
+    if (index == 2) return;
+    setState(() => _selectedTab = index);
   }
 
   Future<void> _showWorkspaceSwitcher() async {

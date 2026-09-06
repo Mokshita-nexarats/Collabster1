@@ -6,6 +6,8 @@ class NotificationsViewModel extends StateNotifier<NotificationsState> {
   NotificationsViewModel() : super(const NotificationsState());
 
   void loadNotifications({String? startupName}) {
+    // Load once per session — reloading would wipe read/deleted states.
+    if (state.notifications.isNotEmpty) return;
     final notifications = _generateSampleNotifications(startupName);
     final sorted = [...notifications]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
     state = state.copyWith(notifications: sorted);

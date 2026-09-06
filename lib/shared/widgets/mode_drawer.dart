@@ -76,7 +76,7 @@ class ModeDrawer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 18),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       radius: 32,
@@ -106,6 +106,7 @@ class ModeDrawer extends StatelessWidget {
                     if (email.isNotEmpty)
                       Text(
                         email,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
@@ -114,6 +115,7 @@ class ModeDrawer extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       statusText,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 12,

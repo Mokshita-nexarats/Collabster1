@@ -12,6 +12,8 @@ import '../../features/community/viewmodel/community_viewmodel.dart';
 import '../../features/community/viewmodel/community_state.dart';
 import '../../features/community/viewmodel/post_viewmodel.dart';
 import '../../features/community/viewmodel/post_state.dart';
+import '../../features/home/view/collabster_home/home_feed_item.dart';
+import '../../features/home/view/collabster_home/user_posts_viewmodel.dart';
 import '../../features/community/viewmodel/activity_viewmodel.dart';
 import '../../features/community/viewmodel/activity_state.dart';
 import '../../features/community/viewmodel/message_viewmodel.dart';
@@ -50,8 +52,6 @@ import '../../features/startup/viewmodel/team_state.dart';
 import '../../features/startup/viewmodel/startup_dashboard_viewmodel.dart';
 import '../../features/startup/viewmodel/startup_dashboard_state.dart';
 import '../theme/theme_provider.dart';
-import '../bridge/bridge_state.dart';
-import '../bridge/bridge_viewmodel.dart';
 
 final authRepositoryProvider = Provider<IAuthRepository>((ref) {
   return AuthRepositoryImpl();
@@ -204,22 +204,9 @@ final crossConversationViewModelProvider =
 });
 
 // ---------------------------------------------------------------------------
-// Connection Bridge — aggregates Startup, Community, Investor + Feed
-// into unified cross-mode feeds.
+// Universal Feed — current user's own posts (My Posts screen).
 // ---------------------------------------------------------------------------
-final bridgeViewModelProvider =
-    StateNotifierProvider<BridgeViewModel, BridgeState>((ref) {
-  return BridgeViewModel(
-    hiringViewModel: ref.read(hiringViewModelProvider.notifier),
-    postViewModel: ref.read(postViewModelProvider.notifier),
-    investorPipelineViewModel:
-        ref.read(investorPipelineViewModelProvider.notifier),
-    investorViewModel: ref.read(investorViewModelProvider.notifier),
-    fundraisingViewModel: ref.read(fundraisingViewModelProvider.notifier),
-    startupNotificationsViewModel: ref.read(notificationsViewModelProvider.notifier),
-    communityNotificationsViewModel: ref.read(communityNotificationsViewModelProvider.notifier),
-    investorNotificationsViewModel: ref.read(investorNotificationsViewModelProvider.notifier),
-    crossConversationViewModel: ref.read(crossConversationViewModelProvider.notifier),
-    authViewModel: ref.read(authViewModelProvider.notifier),
-  );
+final userPostsViewModelProvider =
+    StateNotifierProvider<UserPostsViewModel, List<HomeFeedPost>>((ref) {
+  return UserPostsViewModel();
 });

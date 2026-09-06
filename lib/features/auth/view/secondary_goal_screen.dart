@@ -44,6 +44,7 @@ class _SecondaryGoalScreenState extends ConsumerState<SecondaryGoalScreen>
     final seen = <String>{primaryLabel};
     final deduped = <UserRole>[];
     for (final role in UserRole.values) {
+      if (role == UserRole.other) continue; // Feed mode removed
       if (role == primaryRole) continue;
       if (role.label == primaryLabel) continue;
       if (seen.add(role.label)) deduped.add(role);

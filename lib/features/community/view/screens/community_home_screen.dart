@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/di/providers.dart';
 import '../../../../core/bridge/bridge_models.dart';
-import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
 import '../../../auth/view/screens/profile_screen.dart';
 import '../../../auth/view/sign_in_screen.dart';
@@ -89,10 +88,8 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
       return;
     }
     if (index == 4) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const ProfileScreen()),
-      );
+      // Switch tab — profile lives in the side menu now.
+      RoleSwitcherSheet.show(context);
       return;
     }
     setState(() {
@@ -1304,16 +1301,9 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                       _openRoomsScreen),
                   const Divider(
                       height: 1, color: _tgDivider, indent: 68),
-                  _quickLink(Icons.alt_route_rounded, 'Connect',
-                      'Cross-mode feed — startup & community',
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const ConnectScreen(
-                              modeTheme: 'community')),
-                    );
-                  }),
+                  _quickLink(Icons.trending_up_rounded, 'Trending Posts',
+                      'Most liked discussions right now',
+                      _openTrendingPostsScreen),
                 ]),
               ]),
             ),
@@ -1514,8 +1504,8 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
 
   // ═══════════════════════════════════════════════════════════════════════
   // TAB 0 — HOME (updates feed)
-  // ═══════════════════════════════════════════════════════════════════════
-  Widget _buildUpdatesTab(String userName) {
+  // Old home tab — kept for reference, Home now uses CollabsterHomeBody.
+Widget _buildUpdatesTab(String userName) {
     final first = userName.split(RegExp(r'\s+')).first;
     final activities = ref.watch(activityViewModelProvider).activities;
 
@@ -2104,7 +2094,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
   }
 
   // ── Telegram drawer ─────────────────────────────────────────────────────
-  Widget _buildTelegramDrawer(String userName, String email) {
+    Widget _buildTelegramDrawer(String userName, String email) {
     final session = ref.watch(authViewModelProvider).session;
     final photoPath = session?.profilePhotoPath ?? '';
     final hasPhoto = photoPath.isNotEmpty && File(photoPath).existsSync();
@@ -2138,7 +2128,7 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                 padding:
                     const EdgeInsets.fromLTRB(20, 16, 20, 18),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       radius: 32,
@@ -2156,17 +2146,20 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                     ),
                     const SizedBox(height: 12),
                     Text(userName,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w700)),
                     if (email.isNotEmpty)
                       Text(email,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 13)),
                     const SizedBox(height: 2),
                     const Text('online',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white70, fontSize: 12)),
                   ],
@@ -2205,21 +2198,6 @@ class _CommunityHomeScreenState extends ConsumerState<CommunityHomeScreen> {
                     'Notifications', () {
                   Navigator.pop(context);
                   _openNotificationsScreen();
-                }),
-                _drawerItem(Icons.alt_route_rounded, 'Connect',
-                    () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const ConnectScreen(
-                            modeTheme: 'community')),
-                  );
-                }),
-                _drawerItem(Icons.swap_horiz_rounded, 'Switch Tab',
-                    () {
-                  Navigator.pop(context);
-                  RoleSwitcherSheet.show(context);
                 }),
               ],
             ),
@@ -2375,8 +2353,8 @@ class _TelegramBottomNav extends StatelessWidget {
             _centerFab(),
             _item(3, Icons.chat_bubble_outline_rounded,
                 Icons.chat_bubble_rounded, 'Chats'),
-            _item(4, Icons.person_outline_rounded,
-                Icons.person_rounded, 'Profile'),
+            _item(4, Icons.swap_horiz_rounded,
+                Icons.swap_horiz_rounded, 'Switch'),
           ],
         ),
       ),

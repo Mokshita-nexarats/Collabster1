@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/di/providers.dart';
-import '../../../../core/bridge/view/connect_screen.dart';
 import '../../../../shared/utils/app_snackbar.dart';
 import '../../../../shared/widgets/role_switcher_sheet.dart';
 import '../../../../shared/widgets/mode_drawer.dart';
@@ -1267,10 +1266,8 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
         );
         break;
       case 4:
-        Navigator.push(
-          context,
-          _smoothRoute(const ProfileScreen()),
-        );
+        // Switch tab — profile lives in the side menu now.
+        RoleSwitcherSheet.show(context);
         break;
     }
   }
@@ -1330,22 +1327,9 @@ class _StartupDashboardScreenState extends ConsumerState<StartupDashboardScreen>
           },
         ),
         ModeDrawerItem(
-          icon: Icons.alt_route_rounded,
-          label: 'Connect',
-          onTap: () => _pushSmooth(const ConnectScreen()),
-        ),
-        ModeDrawerItem(
           icon: Icons.person_outline_rounded,
           label: 'My Profile',
           onTap: () => _pushSmooth(const ProfileScreen()),
-        ),
-        ModeDrawerItem(
-          icon: Icons.swap_horiz_rounded,
-          label: 'Switch Tab',
-          onTap: () {
-            Navigator.pop(context);
-            RoleSwitcherSheet.show(context);
-          },
         ),
       ],
       onLogout: _logout,
@@ -1945,12 +1929,6 @@ class _QuickActionsGrid extends StatelessWidget {
         color: const Color(0xFF229ED9),
         onTap: () => Navigator.push(context, _smoothRoute(StartupRequestsScreen(startupName: startupName))),
       ),
-      _QuickAction(
-        icon: Icons.alt_route_rounded,
-        label: 'Connect',
-        color: const Color(0xFF229ED9),
-        onTap: () => Navigator.push(context, _smoothRoute(const ConnectScreen())),
-      ),
     ];
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -2062,7 +2040,7 @@ class _BottomNavBar extends StatelessWidget {
         const ModeMenuItem(index: 0, icon: Icons.home_outlined, activeIcon: Icons.home_rounded, label: 'Home'),
         const ModeMenuItem(index: 1, icon: Icons.people_outline, activeIcon: Icons.people_rounded, label: 'Network'),
         ModeMenuItem(index: 3, icon: Icons.chat_bubble_outline, activeIcon: Icons.chat_bubble_rounded, label: 'Messages', badge: messagesUnread),
-        const ModeMenuItem(index: 4, icon: Icons.person_outline, activeIcon: Icons.person, label: 'Profile'),
+        const ModeMenuItem(index: 4, icon: Icons.swap_horiz_rounded, activeIcon: Icons.swap_horiz_rounded, label: 'Switch'),
       ],
     );
   }
